@@ -12,13 +12,13 @@
                 </div>
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-7" style="padding-bottom:120px">
-                    @if ($errors->any())
+                    {{--@if ($errors->any())
                         <div class="alert alert-danger">
                             @foreach ($errors->all() as $error)
                                 {{ $error }}<br>
                             @endforeach
                         </div>
-                    @endif
+                    @endif--}}
                     @if(session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
@@ -29,8 +29,10 @@
                         <div class="form-group">
                             <label>Mã loại sản phẩm</label>
                             <input class="form-control" name="id" placeholder="Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự" />
+                            <div class="error"> {{$errors->first('id')}}</div>
                             <label>Tên loại sản phẩm</label>
                             <input class="form-control" name="ten" placeholder="Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự" />
+                            <div class="error"> {{$errors->first('ten')}}</div>
                         </div>
                         <button type="submit" class="btn btn-default">Thêm</button>
                         <button type="reset" class="btn btn-default">Làm mới</button>

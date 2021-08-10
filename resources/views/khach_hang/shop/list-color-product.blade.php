@@ -19,6 +19,14 @@
                                     <img src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" alt="" class="product-image-1 w-100" width="350px" height="300px">
                                 </div>
                                 <div class="add-action d-flex flex-column position-absolute">
+                                    <form action="{{route('add-wishlist')}}" method="post">
+                                        {{csrf_field()}}
+                                        {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                        <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                        <a title="Add To Wishlist">
+                                            <button type="submit"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i></button>
+                                        </a>
+                                    </form>
                                     <a href="#exampleModalCenter" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter">
                                         <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
                                     </a>
@@ -32,8 +40,14 @@
                                     <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }} </span>
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
-                                <a href="#" class="btn product-cart">Thêm giỏ hàng</a>
+                                <form action="{{route('add-cart')}}" method="post">
+                                    {{csrf_field()}}
+                                    {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                    <button type="submit" class="btn product-cart">Thêm giỏ hàng</button>
+                                </form>
                             </div>
+
                             <div class="product-content-listview">
                                 <div class="product-title">
                                     <h4 class="title-2"> <a href="product-details.html">{{$msp->Ma_MSP}} {{$msp->mau}}</a></h4>
@@ -43,15 +57,38 @@
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
                                 <p class="desc-content">{{$msp->thongTinMau}}</p>
+                                <form action="{{route('add-cart')}}" method="post">
+                                    {{csrf_field()}}
+                                    {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                    <div class="button-listview">
+                                        <button type="submit" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>THÊM GIỎ HÀNG</span> </button>
+
+                                    </div>
+                                </form>
                                 <div class="button-listview">
-                                    <a href="#" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>THÊM GIỎ HÀNG</span> </a>
+                                    <form action="{{route('add-wishlist')}}" method="post">
+                                        {{csrf_field()}}
+                                        {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                        <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                        <a class="list-icon" title="Add To Wishlist">
+                                            <button type="submit"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i></button>
+                                        </a>
+                                    </form>
+                                    <a class="list-icon" href="#exampleModalCenter" title="Quick View">
+                                        <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="top" title="QuickView"></i>
+                                    </a>
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+
         {{--<div class="row">
             <div class="col-sm-12 col-custom">
                 <div class="toolbar-bottom">
@@ -65,4 +102,5 @@
             </div>
         </div>--}}
     </div>
+
 @endsection

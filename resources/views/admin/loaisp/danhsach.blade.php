@@ -30,8 +30,8 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{$lsp->Ma_LSP}}</td>
                         <td>{{$lsp->ten_LSP}}</td>
-                        <td><a href="admin/loaisp/xoa/{{$lsp->Ma_LSP}}"><img src="admin_asset/delete.png" width="45px"/></a></td>
-                        <td><a href="admin/loaisp/sua/{{$lsp->Ma_LSP}}"><img src="admin_asset/edit.png" width="45px"/></a></td>
+                        <td><a href="admin/loaisp/xoa/{{$lsp->id}}"><img src="admin_asset/delete.png" width="45px"/></a></td>
+                        <td><a href="admin/loaisp/sua/{{$lsp->id}}"><img src="admin_asset/edit.png" width="45px"/></a></td>
                     </tr>
                 @endforeach
                 </tbody>

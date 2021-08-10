@@ -21,6 +21,7 @@ class NhanVienController extends Controller
     public  function postThem(Request  $request){
         $this->validate($request,
             [
+                'pass'=>'bail|required|min:8|max:255',
                 'ten' => 'bail|required|min:5|max:50',
                 'diachi' => 'bail|required|min:5|max:255',
                 'sodth' => 'bail|required|min:10|max:10',
@@ -29,6 +30,9 @@ class NhanVienController extends Controller
                 'email' => 'bail|required|unique:nguoi_dung,email|min:5|max:50',
             ],
             [
+                'pass.required' => 'Bạn chưa nhập Mật khẩu nhân viên',
+                'pass.min' => 'Mật khẩu nhân viên phải có độ dài từ 8 đến 255 ký tự',
+                'pass.max' => 'Mật khẩu nhân viên phải có độ dài từ 8 đến 255 ký tự',
                 'ten.required' => 'Bạn chưa nhập Tên nhân viên',
                 'ten.min' => 'Tên nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'ten.max' => 'Tên nhân viên phải có độ dài từ 5 đến 50 ký tự',

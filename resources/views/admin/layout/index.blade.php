@@ -26,6 +26,15 @@
 
     <!-- DataTables Responsive CSS -->
     <link href="admin_asset/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+
+    <style>
+        .error{
+            color: red;
+            font-style: italic;
+            font-family: Florence, cursive;
+        }
+    </style>
+
 </head>
 
 <body>

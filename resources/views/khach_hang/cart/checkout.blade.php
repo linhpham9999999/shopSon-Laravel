@@ -1,5 +1,9 @@
 @extends('khach_hang.layout.index')
 
+@section('title')
+    <title>Shop son HLYNK Lipsticks</title>
+@endsection()
+
 @section('content')
 
     <div class="breadcrumbs-area position-relative">
@@ -9,7 +13,7 @@
                     <div class="breadcrumb-content position-relative section-content">
                         <h3 class="title-3">Giỏ hàng</h3>
                         <ul>
-                            <li><a href="index.html">Trang chủ</a></li>
+                            <li><a href="{{route('trangchuKH')}}">Trang chủ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -18,8 +22,15 @@
     </div>
     <!-- Breadcrumb Area End Here -->
     <!-- cart main wrapper start -->
+    @if(session('message'))
+        <div class="alert alert-success">
+            {{session('message')}}
+        </div>
+    @endif
+
     <div class="cart-main-wrapper mt-no-text">
         <div class="container custom-area">
+            @if($isHasProduct)
             <div class="row">
                 <div class="col-lg-12 col-custom">
                     <!-- Cart Table Area -->
@@ -29,6 +40,7 @@
                             <tr>
                                 <th class="pro-thumbnail">Ảnh</th>
                                 <th class="pro-title">Tên sản phẩm</th>
+                                <th class="pro-title">Màu son</th>
                                 <th class="pro-price">Giá</th>
                                 <th class="pro-quantity">Số lượng</th>
                                 <th class="pro-subtotal">Tổng giá</th>
@@ -36,25 +48,27 @@
                             </tr>
                             </thead>
                             <tbody>
-
-                            <tr>
-                                <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/images/product/small-size/4.jpg" alt="Product" /></a></td>
-                                <td class="pro-title"><a href="#">Rose bouquet white</a></td>
-                                <td class="pro-price"><span>$110.00</span></td>
-                                <td class="pro-quantity">
-                                    <div class="quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="2" type="text">
-                                            <div class="dec qtybutton">-</div>
-                                            <div class="inc qtybutton">+</div>
-                                            <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                            <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
+                            @foreach($products as $product)
+                                <tr>
+                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
+                                    <td class="pro-title">{{$product['name']}}</td>
+                                    <td class="pro-title">{{$product['color']}}</td>
+                                    <td class="pro-price"><span>{{ $product['unit_price'] -  $product['promotion_price']}}</span></td>
+                                    <td class="pro-quantity">
+                                        <div class="quantity">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="qty">
+                                                <div class="dec qtybutton">-</div>
+                                                <div class="inc qtybutton">+</div>
+                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
+                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="pro-subtotal"><span>$110.00</span></td>
-                                <td class="pro-remove"><a href="#"><i class="lnr lnr-trash"></i></a></td>
-                            </tr>
+                                    </td>
+                                    <td class="pro-subtotal"><span>{{ $product['unit_price']*$product['quantity'] -  $product['promotion_price']*$product['quantity'] }}</span></td>
+                                    <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -82,24 +96,26 @@
                                 <table class="table">
                                     <tr>
                                         <td>Sub Total</td>
-                                        <td>$230</td>
+                                        <td>{{ $subPrice }}</td>
                                     </tr>
                                     <tr>
                                         <td>Shipping</td>
-                                        <td>$70</td>
+                                        <td>{{ $shipping }}</td>
                                     </tr>
                                     <tr class="total">
                                         <td>Total</td>
-                                        <td class="total-amount">$300</td>
+                                        <td class="total-amount">{{ $subPrice +  $shipping }}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                        <a href="checkout.html" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Proceed To Checkout</a>
+                        <a href="{{route('proceed-to-checkout')}}" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Kiểm tra trước khi đặt hàng</a>
                     </div>
                 </div>
             </div>
+            @else
+                <h2>Không có sản phẩm</h2>
+            @endif
         </div>
     </div>
-
 @endsection

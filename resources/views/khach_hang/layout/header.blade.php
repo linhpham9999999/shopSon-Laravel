@@ -25,8 +25,8 @@
                                 </a>
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('allSanPham')}}">Sản phẩm </a></li>
-                                    <li><a href="#">Sản phẩm yêu thích</a></li>{{--{{route('wishList')}}--}}
-                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="{{route('wishList')}}">Sản phẩm yêu thích</a></li>
+                                    <li><a href="{{route('view-cart')}}">Giỏ hàng</a></li>
                                 </ul>
                             </li>
                             <!--<li> PHÁT TRIỂN NIÊN LUẬN NGÀNH
@@ -75,7 +75,7 @@
                     <div class="header-right-area main-nav">
                         <ul class="nav">
                             <li class="minicart-wrap">
-                                <a href="#" class="minicart-btn toolbar-btn">
+                                <a href="{{route('view-cart')}}" class="minicart-btn toolbar-btn">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="cart-item_count">3</span> <!--Số lượng sản phẩm trong giỏ hàng-->
                                 </a>
@@ -84,6 +84,7 @@
                                         <div class="cart-img">
                                             <a href="cart.html"><img src="khach_hang_asset/assets/images/cart/1.jpg" alt=""></a>
                                         </div>
+
                                         <div class="cart-text">
                                             <h5 class="title"><a href="cart.html">Odio tortor consequat</a></h5>
                                             <div class="cart-text-btn">
@@ -94,6 +95,7 @@
                                                 <button type="button"><i class="fa fa-trash-o"></i></button>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="cart-price-total d-flex justify-content-between">
                                         <h5>Tổng tiền :</h5>

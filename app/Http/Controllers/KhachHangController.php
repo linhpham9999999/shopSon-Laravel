@@ -38,7 +38,7 @@ class KhachHangController extends Controller
         $sanpham = DB::table('san_pham')->select('*')->get();
         $listColorProduct = DB::table('mau_san_pham')
             ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
-            ->select('mau_san_pham.*','giagoc','giamgia')
+            ->select('mau_san_pham.*','giagoc','giamgia','ten_SP','san_pham.hinhanhgoc')
             ->where('san_pham.id','=',$id)->get();
 
         return view('khach_hang.shop.list-color-product',compact('listColorProduct','loaisp','sanpham'));
@@ -98,4 +98,7 @@ class KhachHangController extends Controller
         return redirect()->route('contact')->with('alert','Gửi thành công');
     }
 
+    public function addCart(Request  $request){
+
+    }
 }

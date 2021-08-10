@@ -14,14 +14,15 @@
                     <div class="alert alert-success">
                         {{session('thongbao')}}
                     </div>
-                @endif
-                <!-- /.col-lg-12 -->
+            @endif
+            <!-- /.col-lg-12 -->
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr align="center">
                         <th>Mã màu sản phẩm</th>
                         <th>Màu sản phẩm</th>
-                        <th>Loại sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Ý nghĩa</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -31,9 +32,12 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{$msp->Ma_MSP}}</td>
                             <td>{{$msp->mau}}</td>
-                            <td>{{$msp->ten_LSP}}</td>
-                            <td><a href="admin/mausp/xoa/{{$msp->id}}"><img src="admin_asset/delete.png" width="45px"/></a></td>
-                            <td><a href="admin/mausp/sua/{{$msp->id}}"><img src="admin_asset/edit.png" width="45px"/></a></td>
+                            <td><img src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" width="100px"/></td>
+                            <td>{{$msp->thongTinMau}}</td>
+                            <td><a href="admin/mausp/xoa/{{$msp->id}}"><img src="admin_asset/delete.png" width="45px"/></a>
+                            </td>
+                            <td><a href="admin/mausp/sua/{{$msp->id}}"><img src="admin_asset/edit.png"
+                                                                            width="45px"/></a></td>
                         </tr>
                     @endforeach
                     </tbody>

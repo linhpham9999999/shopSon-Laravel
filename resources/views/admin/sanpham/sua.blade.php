@@ -24,7 +24,7 @@
                             {{session('thongbao')}}
                         </div>
                     @endif
-                    <form action="admin/sanpham/sua/{{$sanpham->id}}" method="POST">
+                    <form action="admin/sanpham/sua/{{$sanpham->id}}" method="POST"  enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label>Loại sản phẩm</label>
@@ -44,24 +44,59 @@
                         </div>
                         <label>Mã sản phẩm</label>
                         <input class="form-control" name="id" value="{{$sanpham->Ma_SP}}" placeholder="Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự" />
+                        <div class="error"> {{$errors->first('id')}}</div>
+
                         <label>Tên sản phẩm</label>
                         <input class="form-control" name="ten" value="{{$sanpham->ten_SP}}" placeholder="Tên sản phẩm phải có độ dài từ 5 đến 50 ký tự" />
+                        <div class="error"> {{$errors->first('ten')}}</div>
+
                         <label>Xuất xứ</label>
                         <input class="form-control" name="xuatxu" value="{{$sanpham->xuatxu}}" placeholder="Xuất xứ sản phẩm có độ dài từ 3 đến 50 ký tự" />
+                        <div class="error"> {{$errors->first('xuatxu')}}</div>
+
                         <label>Trọng lượng</label>
                         <input class="form-control" name="trluong" value="{{$sanpham->trongluong}}" placeholder="Nhập trọng lượng sản phẩm (g)" />
+                        <div class="error"> {{$errors->first('trluong')}}</div>
+
                         <label>Giá gốc</label>
-                        <input class="form-control" name="giagoc" value="{{$sanpham->gia}}" placeholder="Nhập giá sản phẩm (VNĐ)" />
+                        <input class="form-control" name="giagoc" value="{{$sanpham->giagoc}}" placeholder="Nhập giá sản phẩm (VNĐ)" />
+                        <div class="error"> {{$errors->first('giagoc')}}</div>
+
                         <label>Giảm giá</label>
                         <input class="form-control" name="giamgia" value="{{$sanpham->giamgia}}" placeholder="Nhập giảm giá sản phẩm (VNĐ)" />
+                        <div class="error"> {{$errors->first('giamgia')}}</div>
+
                         <label>Số lượng tồn</label>
                         <input class="form-control" name="slton" value="{{$sanpham->soluongton}}" placeholder="Nhập số lượng tồn của sản phẩm" />
+                        <div class="error"> {{$errors->first('slton')}}</div>
+
                         <label>Hạn sử dụng </label>
                         <input class="form-control" name="hsd" value="{{$sanpham->hansudung_thang}}" placeholder="Nhập hạn sử dụng sản phẩm (tháng)" />
+                        <div class="error"> {{$errors->first('hsd')}}</div>
+
                         <label>Giới thiệu</label>
                         <input class="form-control" name="gthieu" value="{{$sanpham->gioithieu}}" placeholder="Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự" />
+                        <div class="error"> {{$errors->first('gthieu')}}</div>
+
+                        <label>Số sao</label>
+                        <select class="form-control" name="sosao">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+
+                        <label>Nổi bật</label>
+                        <select class="form-control" name="noibat">
+                            <option value="0">Không</option>
+                            <option value="1">Có</option>
+                        </select>
+
                         <label>Hình ảnh sản phẩm</label>
-                        <input type="file" name="hinhanh"/>
+                        <input type="file" name="hinh_anh" />
+                        <div class="error"> {{$errors->first('hinh_anh')}}</div>
+
                         <button type="submit" class="btn btn-default">Sửa</button>
                         <button type="reset" class="btn btn-default">Làm mới</button>
                     </form>

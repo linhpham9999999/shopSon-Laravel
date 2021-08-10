@@ -29,7 +29,7 @@ class NhaPhanPhoiController extends Controller
                 'emailNPP' => 'bail|required|email|min:3|max:40',
             ],
             [
-                'idNPP.required' => 'Bạn chưa nhập mã nhà phân phối',
+                'idNPP.required' => 'Bạn chưa nhập Mã nhà phân phối',
                 'idNPP.unique' => 'Mã nhà phân phối đã tồn tại',
                 'idNPP.min' => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
                 'idNPP.max' => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
@@ -66,30 +66,33 @@ class NhaPhanPhoiController extends Controller
     }
 
     public  function postSua(Request $request, $Ma_NPP){
-        $phanphoi = DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)->update(['ten_NPP'=>$request->tenNPP]);
-        $phanphoi = DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)->update(['diachi_NPP'=>$request->dcNPP]);
-        $phanphoi = DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)->update(['sodth_NPP'=>$request->sodtNPP]);
-        $phanphoi = DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)->update(['email_NPP'=>$request->emailNPP]);
+        DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)
+            ->update(['Ma_NPP'=>$request->idNPP,
+                    'ten_NPP'=>$request->tenNPP,
+                    'diachi_NPP'=>$request->dcNPP,
+                    'sodth_NPP'=>$request->sodtNPP,
+                    'email_NPP'=>$request->emailNPP]);
         $this->validate($request,
             [
-                'Ma_NPP' => 'unique:nha_phan_phoi,Ma_NPP|min:3|max:8',
-                'ten_NPP' => 'unique:nha_phan_phoi,ten_NPP|min:5|max:50',
-                'diachi_NPP' => 'min:5|max:50',
-                'sodth_NPP' => 'min:10|max:10',
-                'email_NPP' => 'unique:nha_phan_phoi,Ten|min:3|max:40',
+                'idNPP'             => 'bail|required|unique:nha_phan_phoi,Ma_NPP|min:3|max:8',
+                'tenNPP'            => 'unique:nha_phan_phoi,ten_NPP|min:5|max:50',
+                'dcNPP'             => 'min:5|max:50',
+                'sodtNPP'           => 'min:10|max:10',
+                'emailNPP'          => 'unique:nha_phan_phoi,Ten|min:3|max:40',
             ],
             [
-                'Ma_NPP.unique' => 'Mã nhà phân phối đã tồn tại',
-                'Ma_NPP.min' => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
-                'Ma_NPP.max' => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
-                'ten_NPP.unique' => 'Tên nhà phân phối đã tồn tại',
-                'ten_NPP.min' => 'Tên nhà phân phối phải có độ dài từ 5 đến 50 ký tự',
-                'diachi_NPP.min' => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
-                'diachi_NPP.max' => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
-                'sodth_NPP.min' => 'Số điện thoại phải có độ dài 10 ký tự',
-                'sodth_NPP.max' => 'Số điện thoại phải có độ dài 10 ký tự',
-                'email_NPP.min' => 'Email phải có độ dài từ 5 đến 40 ký tự',
-                'email_NPP.max' => 'Email phải có độ dài 1từ 5 đến 40 ký tự'
+                'idNPP.required'    => 'Bạn chưa nhập Mã nhà phân phối',
+                'idNPP.unique'      => 'Mã nhà phân phối đã tồn tại',
+                'idNPP.min'         => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
+                'idNPP.max'         => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
+                'tenNPP.unique'     => 'Tên nhà phân phối đã tồn tại',
+                'tenNPP.min'        => 'Tên nhà phân phối phải có độ dài từ 5 đến 50 ký tự',
+                'dcNPP.min'         => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
+                'dcNPP.max'         => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
+                'sodtNPP.min'       => 'Số điện thoại phải có độ dài 10 ký tự',
+                'sodtNPP.max'       => 'Số điện thoại phải có độ dài 10 ký tự',
+                'emailNPP.min'      => 'Email phải có độ dài từ 5 đến 40 ký tự',
+                'emailNPP.max'      => 'Email phải có độ dài 1từ 5 đến 40 ký tự'
             ]);
         return redirect('admin/nhaphanphoi/sua/'.$Ma_NPP)->with('thongbao','Sửa thành công');
     }

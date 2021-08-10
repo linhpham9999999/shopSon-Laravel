@@ -13,13 +13,13 @@
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                @if(count($errors) > 0)
+                {{--@if(count($errors) > 0)
                     <div class="alert alert-danger">
                         @foreach($errors->all() as $err)
                             {{$err}}<br>
                         @endforeach
                     </div>
-                @endif
+                @endif--}}
                 @if(session('thongbao'))
                     <div class="alert alert-success">
                         {{session('thongbao')}}
@@ -29,14 +29,21 @@
                 <form action="admin/nhaphanphoi/sua/{{$npp->Ma_NPP}}" method="POST">
                     {{csrf_field()}}
                     <div class="form-group">
+                        <label>Mã nhà phân phối</label>
+                        <input class="form-control" name="idNPP" placeholder="Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự" value="{{$npp->Ma_NPP}}"/>
+                        <div class="error"> {{$errors->first('idNPP')}}</div>
                         <label>Tên nhà phân phối</label>
                         <input class="form-control" name="tenNPP" placeholder="Tên nhà phân phối phải có độ dài từ 5 đến 100 ký tự" value="{{$npp->ten_NPP}}"/>
+                        <div class="error"> {{$errors->first('tenNPP')}}</div>
                         <label>Địa chỉ </label>
                         <input class="form-control" name="dcNPP" placeholder="Địa chỉ phải có độ dài từ 5 đến 100 ký tự" value="{{$npp->diachi_NPP}}" />
+                        <div class="error"> {{$errors->first('dcNPP')}}</div>
                         <label>Số điện thoại </label>
                         <input class="form-control" name="sodtNPP" placeholder="Số điện thoại phải có độ dài 10 ký tự" value="{{$npp->sodth_NPP}}" />
+                        <div class="error"> {{$errors->first('sodtNPP')}}</div>
                         <label>Email </label>
                         <input class="form-control" name="emailNPP" placeholder="Email phải có độ dài 1từ 5 đến 40 ký tự" value="{{$npp->email_NPP}}" />
+                        <div class="error"> {{$errors->first('emailNPP')}}</div>
                     </div>
                     <button type="submit" class="btn btn-default">Sửa</button>
                     <button type="reset" class="btn btn-default">Làm mới</button>

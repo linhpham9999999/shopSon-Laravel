@@ -28,7 +28,8 @@
                         <th>Giảm giá</th>
                         <th>Số lượng tồn</th>
                         <th>Hạn sử dụng</th>
-                        <th>Giới thiệu</th>
+                        {{--<th>Giới thiệu</th>--}}
+                        <th>Nổi bật</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -45,7 +46,14 @@
                             <td>{{$sp->giamgia}} VNĐ</td>
                             <td>{{$sp->soluongton}}</td>
                             <td>{{$sp->hansudung_thang}} tháng</td>
-                            <td>{{$sp->gioithieu}}</td>
+                            {{--<td>{{$sp->gioithieu}}</td>--}}
+                            <td>
+                                @if($sp->noibat == 1)
+                                    {{ 'Có' }}
+                                @else
+                                    {{'Không'}}
+                               @endif
+                            </td>
                             <td><a href="admin/sanpham/xoa/{{$sp->id}}"><img src="admin_asset/delete.png" width="45px"/></a></td>
                             <td><a href="admin/sanpham/sua/{{$sp->id}}"><img src="admin_asset/edit.png" width="45px"/></a></td>
                         </tr>

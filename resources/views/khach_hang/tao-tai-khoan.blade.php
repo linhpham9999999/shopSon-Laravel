@@ -3,7 +3,7 @@
 @section('title')
     <title>Đăng ký</title>
     <style>
-        .error{
+        .error {
             color: red;
             font-style: italic;
             font-family: Florence, cursive;
@@ -50,10 +50,10 @@
                                 <label> Nam&nbsp;&nbsp;&nbsp;</label>
 
                                 <input type="radio" name="gtinh" checked value="0"/>
-                                <label > Nữ&nbsp;&nbsp;&nbsp;</label>
+                                <label> Nữ&nbsp;&nbsp;&nbsp;</label>
 
-                                <input type="radio" name="gtinh"checked value="2"/>
-                                <label > Khác&nbsp;&nbsp;&nbsp;</label>
+                                <input type="radio" name="gtinh" checked value="2"/>
+                                <label> Khác&nbsp;&nbsp;&nbsp;</label>
                             </div>
                             <div class="single-input-item mb-3">
                                 <input type="text" name="nsinh" placeholder="Ngày sinh Năm-Tháng-Ngày">
@@ -79,7 +79,9 @@
                                 <input type="hidden" name="quyen" value="0"> {{--0 là quyền khách hàng--}}
                             </div>
                             <div class="single-input-item mb-3">
-                                <button type="submit" style="margin-left: 180px" class="btn flosun-button secondary-btn theme-color rounded-0">Đăng ký</button>
+                                <button type="submit" style="margin-left: 180px"
+                                        class="btn flosun-button secondary-btn theme-color rounded-0">Đăng ký
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -89,3 +91,4 @@
     </div>
     <!-- Register Area End Here -->
 @endsection()
+
