@@ -97,8 +97,4 @@ class KhachHangController extends Controller
         }
         return redirect()->route('contact')->with('alert','Gửi thành công');
     }
-
-    public function addCart(Request  $request){
-
-    }
 }

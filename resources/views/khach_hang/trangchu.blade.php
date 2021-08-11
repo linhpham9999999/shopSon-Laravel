@@ -60,7 +60,7 @@
                                 <div class="single-product position-relative mb-30">
                                     <div class="product-image">
                                         <a class="d-block" href="product-details.html">
-                                            <img src="admin_asset/image_son/{{$sp->hinhanhgoc}}" alt="" class="product-image-1 w-100" width="300px" height="300px">
+                                            <img src="admin_asset/image_son/{{$sp->hinhanhgoc}}" alt="" class="product-image-1 w-100" width="420px" height="300px">
                                             {{--<img src="khach_hang_asset/assets/images/product/4.jpg" alt="" class="product-image-2 position-absolute w-100">--}}
                                         </a>
                                         <div class="add-action d-flex flex-column position-absolute">
@@ -134,7 +134,7 @@
                                             <span class="regular-price ">{{ $sp->giagoc - $sp->giamgia }}</span>
                                             <span class="old-price"><del>{{$sp->giagoc}}</del></span>
                                         </div>
-                                        <a href="cart.html" class="btn product-cart">Add to Cart</a>
+                                        <a href="{{route('list-color-product',['id'=>$sp->id])}}" class="btn product-cart">Chọn màu sản phẩm</a>
                                     </div>
                                 </div>
                                 <!--Single Product End-->

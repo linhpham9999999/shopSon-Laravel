@@ -66,26 +66,18 @@ class NhaPhanPhoiController extends Controller
     }
 
     public  function postSua(Request $request, $Ma_NPP){
-        DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)
-            ->update(['Ma_NPP'=>$request->idNPP,
-                    'ten_NPP'=>$request->tenNPP,
-                    'diachi_NPP'=>$request->dcNPP,
-                    'sodth_NPP'=>$request->sodtNPP,
-                    'email_NPP'=>$request->emailNPP]);
         $this->validate($request,
             [
-                'idNPP'             => 'bail|required|unique:nha_phan_phoi,Ma_NPP|min:3|max:8',
-                'tenNPP'            => 'unique:nha_phan_phoi,ten_NPP|min:5|max:50',
+                'idNPP'             => 'bail|required|min:3|max:8',
+                'tenNPP'            => 'min:5|max:50',
                 'dcNPP'             => 'min:5|max:50',
                 'sodtNPP'           => 'min:10|max:10',
-                'emailNPP'          => 'unique:nha_phan_phoi,Ten|min:3|max:40',
+                'emailNPP'          => 'min:3|max:40',
             ],
             [
                 'idNPP.required'    => 'Bạn chưa nhập Mã nhà phân phối',
-                'idNPP.unique'      => 'Mã nhà phân phối đã tồn tại',
                 'idNPP.min'         => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
                 'idNPP.max'         => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
-                'tenNPP.unique'     => 'Tên nhà phân phối đã tồn tại',
                 'tenNPP.min'        => 'Tên nhà phân phối phải có độ dài từ 5 đến 50 ký tự',
                 'dcNPP.min'         => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
                 'dcNPP.max'         => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
@@ -94,6 +86,12 @@ class NhaPhanPhoiController extends Controller
                 'emailNPP.min'      => 'Email phải có độ dài từ 5 đến 40 ký tự',
                 'emailNPP.max'      => 'Email phải có độ dài 1từ 5 đến 40 ký tự'
             ]);
+        DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)
+            ->update([     'Ma_NPP'      =>$request->idNPP,
+                         'ten_NPP'       =>$request->tenNPP,
+                         'diachi_NPP'    =>$request->dcNPP,
+                         'sodth_NPP'     =>$request->sodtNPP,
+                         'email_NPP'     =>$request->emailNPP]);
         return redirect('admin/nhaphanphoi/sua/'.$Ma_NPP)->with('thongbao','Sửa thành công');
     }
     public  function getXoa($Ma_NPP){

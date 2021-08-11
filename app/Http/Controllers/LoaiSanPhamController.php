@@ -52,7 +52,7 @@ class LoaiSanPhamController extends Controller
 
     public function getSua($id)
     {
-        $loaisp = DB::table('loai_san_pham')->select('*')->where('Ma_LSP', '=', $id)->first();
+        $loaisp = DB::table('loai_san_pham')->select('*')->where('id', '=', $id)->first();
         return view('admin.loaisp.sua', compact('loaisp'));
     }
 
@@ -61,24 +61,22 @@ class LoaiSanPhamController extends Controller
         $this->validate(
             $request,
             [
-                'id'            => 'bail|required|unique:loai_san_pham,Ma_LSP|min:3|max:8',
-                'ten'           => 'bail|unique:loai_san_pham,ten_LSP|required|min:5|max:50'
+                'Ma_LSP'            => 'bail|required|min:3|max:8',
+                'ten'           => 'bail|required|min:5|max:50'
             ],
             [
-                'id.required'    => 'Bạn chưa nhập Mã loại sản phẩm',
-                'id.unique'      => 'Mã loại sản phẩm đã tồn tại',
-                'id.min'         => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'id.max'         => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'Ma_LSP.required'    => 'Bạn chưa nhập Mã loại sản phẩm',
+                'Ma_LSP.min'         => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'Ma_LSP.max'         => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
                 'ten.required'   => 'Bạn chưa nhập Tên loại sản phẩm',
-                'ten.unique'     => 'Tên loại sản phẩm đã tồn tại',
                 'ten.min'        => 'Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự',
                 'ten.max'        => 'Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự'
             ]
         );
-        DB::table('loai_san_pham')->select('*')->where('Ma_LSP', '=', $id)
+        DB::table('loai_san_pham')->select('*')->where('id', '=', $id)
             ->update(
                 [
-                    'Ma_LSP' => $request->id,
+                    'Ma_LSP' => $request->Ma_LSP,
                     'ten_LSP' => $request->ten
                 ]
             );
@@ -88,7 +86,7 @@ class LoaiSanPhamController extends Controller
 
     public function getXoa($id)
     {
-        $lsp = DB::table('loai_san_pham')->select('*')->where('Ma_LSP', '=', $id);
+        $lsp = DB::table('loai_san_pham')->select('*')->where('id', '=', $id);
         $lsp->delete();
 
         return redirect('admin/loaisp/danhsach')->with('thongbao', 'Xóa thành công');
