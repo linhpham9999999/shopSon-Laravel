@@ -59,7 +59,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="about-us.html">
+                                <a href="{{route('about_us')}}">
                                     <span class="menu-text"> Giới thiệu</span>
                                 </a>
                             </li>
@@ -119,7 +119,7 @@
                                 </ul>
                             </li>
                             <li class="account-menu-wrap d-none d-lg-flex">
-                                <a href="#" class="off-canvas-menu-btn">
+                                <a href="javascript:void(0)" class="off-canvas-menu-btn">
                                     <i class="fa fa-bars"></i>
                                 </a>
                             </li>
@@ -179,7 +179,7 @@
     </aside>
     <!-- off-canvas menu end -->
     <!-- off-canvas menu start -->
-    <aside class="off-canvas-menu-wrapper" id="sideMenu">
+    <div class="off-canvas-menu-wrapper" id="sideMenu">
         <div class="off-canvas-overlay"></div>
         <div class="off-canvas-inner-content">
             <div class="off-canvas-inner">
@@ -215,7 +215,8 @@
                 <!-- offcanvas widget area end -->
             </div>
         </div>
-    </aside>
+    </div>
+
     <!-- off-canvas menu end -->
     <!-- off-canvas menu end -->
 </header>

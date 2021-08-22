@@ -95,7 +95,7 @@
 
 <!-- Main JS -->
 <script src="khach_hang_asset/assets/js/main.js"></script>
-
+<script src="khach_hang_asset/assets/js/linh.js"></script>
 
 </body>
 

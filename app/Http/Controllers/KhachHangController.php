@@ -97,4 +97,8 @@ class KhachHangController extends Controller
         }
         return redirect()->route('contact')->with('alert','Gửi thành công');
     }
+
+    public function aboutUs(){
+        return view('khach_hang/about_shop/about_shop');
+    }
 }

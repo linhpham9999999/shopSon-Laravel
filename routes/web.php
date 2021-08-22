@@ -204,6 +204,13 @@ Route::group(
                 Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
             }
         );
+
+        Route::group(
+            ['prefix' => 'about_shop'],
+            function () {
+                Route::get('/', 'App\Http\Controllers\KhachHangController@aboutUs')->name('about_us');
+            }
+        );
     }
 );
 ?>
