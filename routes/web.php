@@ -18,18 +18,21 @@ Route::get('/', function () {
 })->name('home');*/
 
 // ADMIN
-Route::get(
-    'admin/trangchu',
-    function () {
-        return view('admin.trangchu');
-    }
-);
+//Route::get(
+//    'admin/trangchu',
+//    function () {
+//        return view('admin.trangchu');
+//    }
+//);
 
 Route::group(
     ['prefix' => 'admin'],
     function () {
         Route::get('/', 'App\Http\Controllers\TestController@login')->name('login');
-        Route::post('/trangchu', 'App\Http\Controllers\TestController@check')->name('xy-ly-dang-nhap');
+        Route::post('/test-login', 'App\Http\Controllers\TestController@check')->name('xy-ly-dang-nhap');
+        Route::get('/trangchu',function () {
+            return view('admin.trangchu');
+        })->name('homeAd')->middleware('login');
         Route::get('logout', 'App\Http\Controllers\TestController@logout')->name('logoutAD');
 
         Route::group(
@@ -47,18 +50,6 @@ Route::group(
                 Route::post('them', 'App\Http\Controllers\NhaPhanPhoiController@postThem')->name('actionThem');
             }
         );
-        /*Route::group(['prefix' => 'dongiasp'], function () {
-            //admin/nhaphanphoi/danhsach
-            Route::get('danhsach', 'App\Http\Controllers\DonGiaSpController@getDanhSach');
-
-            Route::get('sua/{Ma_DGSP}', 'App\Http\Controllers\DonGiaSpController@getSua');
-            Route::post('sua/{Ma_DGSP}', 'App\Http\Controllers\DonGiaSpController@postSua');
-
-            Route::get('xoa/{Ma_DGSP}', 'App\Http\Controllers\DonGiaSpController@getXoa');
-
-            Route::get('them', 'App\Http\Controllers\DonGiaSpController@getThem');
-            Route::post('them', 'App\Http\Controllers\DonGiaSpController@postThem')->name('actionThem1');
-        });*/
         Route::group(
             ['prefix' => 'loaisp', 'middleware' => 'login'],
             function () {

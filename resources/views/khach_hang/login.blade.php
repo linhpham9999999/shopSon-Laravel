@@ -14,7 +14,7 @@
                 <div class="breadcrumb-content position-relative section-content">
                     <h3 class="title-3">Đăng nhập - Đăng ký</h3>
                     <ul>
-                        <li><a href="users/trangchu">Trang chủ</a></li>
+                        <li><a href="{{route('trangchuKH')}}">Trang chủ</a></li>
                     </ul>
                 </div>
             </div>

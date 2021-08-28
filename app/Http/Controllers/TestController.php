@@ -38,16 +38,26 @@ class TestController extends Controller
         ]);
         if ($authenticated) {
             $request->session()->put('name', $nhanvien);
-            return redirect()->route('xy-ly-dang-nhap',compact('user','nhanvien'));
+            return redirect()->route('homeAd',compact('user','nhanvien'));
         }
         $request->session()->flash('thongbao', 'Đăng nhập không thành công');
         return redirect()->route('login');
 
     }
-    public function logout(){
-        $user = Auth::user();
-        cookie('user',$user,-3600);
+//    public function logout(){
+//        $user = Auth::user();
+//        session('user',$user,-3600);
+//        Auth::logout();
+//        return redirect('admin/');
+//    }
+    public function logout(Request $request){
         Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('admin/');
     }
+
 }

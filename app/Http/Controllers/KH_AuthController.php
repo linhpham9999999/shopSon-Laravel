@@ -42,12 +42,17 @@ class KH_AuthController extends Controller
     }
 
     public function logoutKH(Request $request){
-        $request->session()->flush();
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect()->route('loginKH');
     }
 
     public function create_account(){
-        return view('khach_hang.tao-tai-khoan');
+        return view('khach_hang.account.tao-tai-khoan');
     }
     public function testDK(Request $request){
         $this->validate($request,
@@ -80,7 +85,7 @@ class KH_AuthController extends Controller
                 'pass.max' => 'Password phải có độ dài từ 5 đến 255 ký tự',
             ]);
         DB::table('nguoi_dung')->insert([
-            'password' => md5($request->pass),
+            'password' => bcrypt($request->pass),
             'hoten' => $request->ten,
             'diachi' => $request->diachi,
             'sodth' => $request->sodth,
