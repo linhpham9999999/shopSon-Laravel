@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use DB;
-class TestController extends Controller
+class AD_AuthController extends Controller
 {
     public function login(){
         return view('admin.login');
@@ -44,12 +44,7 @@ class TestController extends Controller
         return redirect()->route('login');
 
     }
-//    public function logout(){
-//        $user = Auth::user();
-//        session('user',$user,-3600);
-//        Auth::logout();
-//        return redirect('admin/');
-//    }
+
     public function logout(Request $request){
         Auth::logout();
 

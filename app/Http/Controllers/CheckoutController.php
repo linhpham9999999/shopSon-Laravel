@@ -17,7 +17,7 @@ class CheckoutController extends Controller
         [$product, $isHasProductsCart]  = $this->getProductsFromCart();
         $subPrice                       = $this->subPrice($product);
         $shipping                       = $this->shipPrice($product);
-
+//        dd($isHasProductsCart);
         return view('khach_hang/cart/checkout',['products'     => $product,
                                                     'isHasProduct'  => $isHasProductsCart,
                                                     'subPrice'      => $subPrice,
@@ -39,7 +39,8 @@ class CheckoutController extends Controller
             // decode giỏ hàng string -> array để lấy info
             $products = json_decode($cart, true);
             $isHasProductsCart = true;
-        } else {
+        }
+        else {
             $products = [];
         }
         return [$products, $isHasProductsCart];

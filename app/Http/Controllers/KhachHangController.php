@@ -44,23 +44,6 @@ class KhachHangController extends Controller
         return view('khach_hang.shop.list-color-product',compact('listColorProduct','loaisp','sanpham'));
     }
 
-    /*public function accountUser(){
-        if(Auth::check()){
-            $email = Auth::user()->email;
-        }
-
-        $users = DB::table('nguoi_dung')
-            ->join('dia_chi_giao_hang','nguoi_dung.id','=','dia_chi_giao_hang.id_NGUOIDUNG_mua')
-            ->where('email','=',$email)
-            ->select('hoten','diachi','dia_chi_giao_hang','email','sodth','sodth_giao_hang')->first();
-
-        return view('khach_hang.account.account',compact('users'));
-    }*/
-
-    /*public function wishList(){
-
-    }*/
-
     public function contact()
     {
         $email  = '';

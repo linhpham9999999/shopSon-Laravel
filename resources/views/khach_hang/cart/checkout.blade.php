@@ -30,7 +30,7 @@
 
     <div class="cart-main-wrapper mt-no-text">
         <div class="container custom-area">
-            @if($isHasProduct)
+            @if($isHasProduct === true)
             <div class="row">
                 <div class="col-lg-12 col-custom">
                     <!-- Cart Table Area -->

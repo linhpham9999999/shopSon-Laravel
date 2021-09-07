@@ -28,18 +28,6 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                {{--<li>
-                    <a href="admin/dongiasp/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i>Đơn giá sản phẩm<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/dongiasp/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/dongiasp/them">Thêm</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>--}}
                 <li>
                     <a href="admin/sanpham/danhsach"><i class="fa "></i>&#10148; Sản phẩm<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -76,18 +64,10 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                {{--<li>
-                    <a href="admin/hinhanh/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i>Hình sản phẩm<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/hinhanh/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/hinhanh/them">Thêm</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="admin/duyetHD/danhsach"><i class="fa "></i>&#10148; Hóa đơn</a>
                     <!-- /.nav-second-level -->
-                </li>--}}
+                </li>
                 <li>
                     <a href="admin/nhanvien/danhsach"><i class="fa fa-users fa-fw"></i> Nhân viên<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
