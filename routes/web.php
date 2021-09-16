@@ -122,19 +122,19 @@ Route::group(
         Route::get('trangchu', 'App\Http\Controllers\KhachHangController@index')->name('trangchuKH');
         Route::get('/logout', 'App\Http\Controllers\KH_AuthController@logoutKH')->name('logoutKH');
 
+        // Danh sách tất cả sản phẩm, loại sản phẩm
         Route::group(
             ['prefix' => 'shop'],
             function () {
-                Route::get('allSanPham', 'App\Http\Controllers\KhachHangController@listSP')->name('allSanPham');
-                Route::get('loai-san-pham/{id}', 'App\Http\Controllers\KhachHangController@loaiSP')->name(
+                Route::get('all-product', 'App\Http\Controllers\KhachHangController@listSP')->name('allSanPham');
+                Route::get('product-type/{id}', 'App\Http\Controllers\KhachHangController@loaiSP')->name(
                     'loai-san-pham'
                 );
-                Route::get('details/{id}', 'App\Http\Controllers\KhachHangController@details')->name('details');
             }
         );
 
-        //view-product màu
-        Route::get('list-color-product/{id}', 'App\Http\Controllers\KhachHangController@listColorProduct')
+        // Danh sách tất cả Màu sản phẩm
+        Route::get('product-color-list/{id}', 'App\Http\Controllers\KhachHangController@listColorProduct')
             ->name('list-color-product');
 
         //Contact
@@ -145,6 +145,9 @@ Route::group(
                 Route::post('/sent', 'App\Http\Controllers\KhachHangController@handleContact')->name('handle-contact');
             }
         );
+
+//        // Xem thông tin chi tiết tài khoản KH
+//        Route::get('view-account','App\Http\Controllers\AccountKHController@viewAccount')->name('view-account');
 
         //Cart
         Route::group(
@@ -185,5 +188,4 @@ Route::group(
 );
 
 Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
-
 ?>

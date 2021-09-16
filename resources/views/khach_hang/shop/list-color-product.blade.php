@@ -1,4 +1,4 @@
-@extends('khach_hang.shop.danhsach')
+@extends('khach_hang.shop.menu')
 
 @section('all-product')
     <div class="col-lg-9 col-12 col-custom widget-mt">
@@ -34,7 +34,7 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-title">
-                                    <h4 class="title-2"> <a href="product-details.html">{{$msp->Ma_MSP}} {{$msp->mau}}</a></h4>
+                                    <h4 class="title-2"> {{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
                                 <div class="price-box">
                                     <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }} </span>
@@ -50,7 +50,7 @@
 
                             <div class="product-content-listview">
                                 <div class="product-title">
-                                    <h4 class="title-2"> <a href="product-details.html">{{$msp->Ma_MSP}} {{$msp->mau}}</a></h4>
+                                    <h4 class="title-2">{{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
                                 <div class="price-box">
                                     <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }}</span>

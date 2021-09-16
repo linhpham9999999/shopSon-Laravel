@@ -16,6 +16,7 @@ class KhachHangController extends Controller
         $sanpham  = DB::table('san_pham')->select('*')->where('noibat','=','1')->get();
         return view('khach_hang.trangchu', compact('sanpham'));
     }
+    // Thông tin tất cả sản phẩm trong bảng SAN_PHAM
     public function listSP(){
         $allSP = DB::table('san_pham')->simplePaginate(6);
         $loaisp = DB::table('loai_san_pham')->select('id','ten_LSP')->get();
@@ -23,6 +24,7 @@ class KhachHangController extends Controller
 
         return view('khach_hang.shop.all-product',compact('allSP','loaisp','sanpham'));
     }
+    // Xem sản phẩm theo loại sản phẩm
     public function loaiSP($id){
         $allSP = DB::table('san_pham')->simplePaginate(6);
         $loaisp = DB::table('loai_san_pham')->select('id','ten_LSP')->get();
@@ -32,7 +34,7 @@ class KhachHangController extends Controller
 
         return view('khach_hang.shop.loai-san-pham',compact('sanpham','allSP','loaisp','listSP'));
     }
-
+    // Danh sách Màu Sản phẩm của từng Sản phẩm
     public function listColorProduct($id){
         $loaisp = DB::table('loai_san_pham')->select('id','ten_LSP')->get();
         $sanpham = DB::table('san_pham')->select('*')->get();

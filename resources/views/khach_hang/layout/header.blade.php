@@ -52,7 +52,7 @@
                                 </a>
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('contact')}}">Liên hệ</a></li>
-                                    <li><a href="#">Tài khoản</a></li>{{--{{route('account_user')}}--}}
+{{--                                    <li><a href="{{route('view-account')}}">Tài khoản</a></li>--}}
                                     <li><a href="{{route('loginKH')}}">Login</a></li>
                                     <li><a href="{{route('logoutKH')}}">Logout</a></li>
                                     <li><a href="{{route('create_account')}}">Đăng ký</a></li>
@@ -77,35 +77,35 @@
                             <li class="minicart-wrap">
                                 <a href="{{route('view-cart')}}" class="minicart-btn toolbar-btn">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span class="cart-item_count">3</span> <!--Số lượng sản phẩm trong giỏ hàng-->
+{{--                                    <span class="cart-item_count">3</span> <!--Số lượng sản phẩm trong giỏ hàng-->--}}
                                 </a>
-                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                    <div class="single-cart-item">
-                                        <div class="cart-img">
-                                            <a href="cart.html"><img src="khach_hang_asset/assets/images/cart/1.jpg" alt=""></a>
-                                        </div>
+{{--                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">--}}
+{{--                                    <div class="single-cart-item">--}}
+{{--                                        <div class="cart-img">--}}
+{{--                                            <a href="cart.html"><img src="khach_hang_asset/assets/images/cart/1.jpg" alt=""></a>--}}
+{{--                                        </div>--}}
 
-                                        <div class="cart-text">
-                                            <h5 class="title"><a href="cart.html">Odio tortor consequat</a></h5>
-                                            <div class="cart-text-btn">
-                                                <div class="cart-qty">
-                                                    <span>1×</span>
-                                                    <span class="cart-price">$98.00</span>
-                                                </div>
-                                                <button type="button"><i class="fa fa-trash-o"></i></button>
-                                            </div>
-                                        </div>
+{{--                                        <div class="cart-text">--}}
+{{--                                            <h5 class="title"><a href="cart.html">Odio tortor consequat</a></h5>--}}
+{{--                                            <div class="cart-text-btn">--}}
+{{--                                                <div class="cart-qty">--}}
+{{--                                                    <span>1×</span>--}}
+{{--                                                    <span class="cart-price">$98.00</span>--}}
+{{--                                                </div>--}}
+{{--                                                <button type="button"><i class="fa fa-trash-o"></i></button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                    </div>
-                                    <div class="cart-price-total d-flex justify-content-between">
-                                        <h5>Tổng tiền :</h5>
-                                        <h5>$166.00</h5>
-                                    </div>
-                                    <div class="cart-links d-flex justify-content-between">
-                                        <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">Giỏ Hàng</a>
-                                        <a class="btn flosun-button secondary-btn rounded-0" href="checkout.html">Thủ tục thanh toán</a>
-                                    </div>
-                                </div>
+{{--                                    </div>--}}
+{{--                                    <div class="cart-price-total d-flex justify-content-between">--}}
+{{--                                        <h5>Tổng tiền :</h5>--}}
+{{--                                        <h5>$166.00</h5>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="cart-links d-flex justify-content-between">--}}
+{{--                                        <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">Giỏ Hàng</a>--}}
+{{--                                        <a class="btn flosun-button secondary-btn rounded-0" href="checkout.html">Thủ tục thanh toán</a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </li>
                             <li class="sidemenu-wrap">
                                 <a href="#"><i class="fa fa-search"></i> </a>
@@ -153,9 +153,11 @@
                 <!-- mobile menu end -->
                 <div class="offcanvas-widget-area">
                     <ul class="menu-top-menu">
-                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="{{'about_us'}}">About Us</a></li>
                     </ul>
-                    <p class="desc-content"> ....</p> <!--Thông tin về shop-->
+                    <p class="desc-content">
+                        ....
+                    </p> <!--Thông tin về shop-->
                     <div class="top-info-wrap text-left text-black">
                         <ul class="address-info">
                             <li>
@@ -189,18 +191,27 @@
                 <!-- offcanvas widget area start -->
                 <div class="offcanvas-widget-area">
                     <ul class="menu-top-menu">
-                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="{{'about_us'}}">About Us</a></li>
                     </ul>
-                    <p class="desc-content"> ....</p> <!--Thông tin về shop-->
+                    <p class="desc-content">
+                        Chào bạn
+                        @if(\Illuminate\Support\Facades\Auth::check())
+                            {{\Illuminate\Support\Facades\Auth::user()->hoten}}
+                        @endif !
+                        <br> <br>
+                        Chào mừng bạn đến với shop Son HLYNKLIPSTICKS của chúng tôi.
+                        <br>
+
+                    </p> <!--Thông tin về shop-->
                     <div class="top-info-wrap text-left text-black">
                         <ul class="address-info">
                             <li>
                                 <i class="fa fa-phone"></i>
-                                <a href="info@yourdomain.com">(1245) 2456 012</a>
+                                <a href="hlynklipsticks.@gmail.com">0794246163</a>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i>
-                                <a href="info@yourdomain.com">info@yourdomain.com</a>
+                                <a href="hlynklipsticks.@gmail.com">hlynklipsticks.@gmail.com</a>
                             </li>
                         </ul>
                         <div class="widget-social">

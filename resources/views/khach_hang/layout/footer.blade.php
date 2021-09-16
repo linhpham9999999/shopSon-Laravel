@@ -26,7 +26,7 @@
                     <div class="single-footer-widget">
                         <h2 class="widget-title" style="font-weight: bold">Liên kết nhanh</h2>
                         <ul class="widget-list" >
-                            <li><a href="about-us.html"style="color: white; text-decoration: none" >Giới thiệu</a></li>
+                            <li><a href="{{route('about_us')}}" style="color: white; text-decoration: none" >Giới thiệu</a></li>
                             <li><a href="{{route('contact')}}" style="color: white; text-decoration: none">Liên hệ</a></li>
                         </ul>
                     </div>

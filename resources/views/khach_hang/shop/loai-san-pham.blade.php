@@ -1,4 +1,4 @@
-@extends('khach_hang.shop.danhsach')
+@extends('khach_hang.shop.menu')
 
 @section('all-product')
     <div class="col-lg-9 col-12 col-custom widget-mt">
