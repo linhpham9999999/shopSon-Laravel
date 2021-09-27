@@ -16,7 +16,7 @@
                 </div>
             @endif
             <!-- /.col-lg-12 -->
-            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <table class="table table-striped table-bordered table-hover" > {{--id="dataTables-example"--}}
                 <thead>
                 <tr align="center">
                     <th>Mã loại sản phẩm</th>

@@ -19,12 +19,12 @@
                                     <img src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" alt="" class="product-image-1 w-100" width="350px" height="300px">
                                 </div>
                                 <div class="add-action d-flex flex-column position-absolute">
-                                    <form action="{{route('add-wishlist')}}" method="post">
+                                    <form>  {{--action="{{route('add-wishlist')}}" method="post"--}}
                                         {{csrf_field()}}
                                         {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
-                                        <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                        <input type="hidden" name="productIdColor" class="lish_product_id_wish_{{$msp->id}}" value="{{$msp->id}}">
                                         <a title="Add To Wishlist">
-                                            <button type="submit"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i></button>
+                                            <button type="button" class="add-wish-list" name="add-wish-list" data-id_product_wish="{{$msp->id}}"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i></button>
                                         </a>
                                     </form>
                                     <a href="#exampleModalCenter" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter">
@@ -40,11 +40,11 @@
                                     <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }} </span>
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
-                                <form action="{{route('add-cart')}}" method="post">
+                                <form>{{--action="{{route('add-cart')}}" method="post"--}}
                                     {{csrf_field()}}
                                     {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
-                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
-                                    <button type="submit" class="btn product-cart">Thêm giỏ hàng</button>
+                                    <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
+                                    <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$msp->id}}">Thêm giỏ hàng</button>
                                 </form>
                             </div>
 
@@ -57,22 +57,22 @@
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
                                 <p class="desc-content">{{$msp->thongTinMau}}</p>
-                                <form action="{{route('add-cart')}}" method="post">
+                                <form>{{--action="{{route('add-cart')}}" method="post"--}}
                                     {{csrf_field()}}
                                     {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
-                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                    <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
                                     <div class="button-listview">
-                                        <button type="submit" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>THÊM GIỎ HÀNG</span> </button>
+                                        <button type="button" class="btn product-cart button-icon flosun-button dark-btn add-to-cart" data-id_product="{{$msp->id}}" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>THÊM GIỎ HÀNG</span> </button>
 
                                     </div>
                                 </form>
                                 <div class="button-listview">
-                                    <form action="{{route('add-wishlist')}}" method="post">
+                                    <form>
                                         {{csrf_field()}}
                                         {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
-                                        <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                        <input type="hidden" name="productIdColor" class="lish_product_id_wish_{{$msp->id}}" value="{{$msp->id}}">
                                         <a class="list-icon" title="Add To Wishlist">
-                                            <button type="submit"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i></button>
+                                            <button type="button" class="add-wish-list" name="add-wish-list" data-id_product_wish="{{$msp->id}}"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i></button>
                                         </a>
                                     </form>
                                     <a class="list-icon" href="#exampleModalCenter" title="Quick View">

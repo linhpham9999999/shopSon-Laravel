@@ -12,7 +12,7 @@ class WishlistController extends Controller
     public function wishList(Request  $request)
     {
         // Chon mau san pham theo productIdColor
-        $idmsp      = $request->productIdColor;
+        $idmsp      = $request->get('lish_product_id_wish');
         $mausp      = DB::table('mau_san_pham')->find($idmsp);
 
         // Chon san pham theo idSP trong bang mausp vua chon -> lay thon tin san pham

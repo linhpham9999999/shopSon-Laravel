@@ -27,7 +27,6 @@
                 @endif
                 </li>
             </ul>
-            <!-- /.dropdown-user -->
         </li>
         <!-- /.dropdown -->
     </ul>

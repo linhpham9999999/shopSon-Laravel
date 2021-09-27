@@ -18,7 +18,8 @@ class CartController extends Controller
 
     public function store(Request  $request){
 //        $productId = $request->get('productId');
-        $productIdColor = $request->get('productIdColor');
+        //$productIdColor = $request->get('productIdColor');
+        $productIdColor = $request->get('cart_product_id');
         // Lấy sản phẩm từ DB dựa vào id
         $product = $this->getProduct($productIdColor);
         // Kiểm tra sản phẩm có hay ko
@@ -47,7 +48,6 @@ class CartController extends Controller
         // Gán lại giỏ hàng
         Cookie::queue('cart',$json,3000000);
 
-//        return back()->with('messgae','Thêm sản phẩm thành công');
     }
 
     /**

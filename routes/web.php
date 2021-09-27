@@ -153,8 +153,8 @@ Route::group(
         Route::group(
             ['prefix' => 'cart', 'middleware' => 'loginKH'],
             function () {
-                Route::post('/', 'App\Http\Controllers\CartController@store')->name('add-cart');
-                Route::get('/', 'App\Http\Controllers\CheckoutController@showView')->name('view-cart');
+                Route::post('/add-cart', 'App\Http\Controllers\CartController@store')->name('add-cart');
+                Route::get('/view-cart', 'App\Http\Controllers\CheckoutController@showView')->name('view-cart');
                 Route::get('delete/{id}', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
             }
         );
@@ -163,8 +163,8 @@ Route::group(
         Route::group(
             ['prefix' => 'wishlist', 'middleware' => 'loginKH'],
             function () {
-                Route::post('/', 'App\Http\Controllers\WishlistController@wishList')->name('add-wishlist');
-                Route::get('/', 'App\Http\Controllers\WishlistController@viewList')->name('wishList');
+                Route::post('/add-wishlist', 'App\Http\Controllers\WishlistController@wishList')->name('add-wishlist');
+                Route::get('/view-list', 'App\Http\Controllers\WishlistController@viewList')->name('wishList');
                 Route::get('delete/{id}', 'App\Http\Controllers\WishlistController@deleteList')->name('detele-wish-list');
             }
         );

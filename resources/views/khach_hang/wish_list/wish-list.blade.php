@@ -54,11 +54,13 @@
                                 <td class="pro-title">{{$list->mau_wl}}</td>
                                 <td class="pro-price"><span>{{$list->gia_wl}} VND</span></td>
                                 <td class="pro-cart">
-                                    <form action="{{route('add-cart')}}" method="post">
+                                    <form>{{--action="{{route('add-cart')}}" method="post"--}}
                                         {{csrf_field()}}
-                                        <input type="hidden" name="productIdColor" value="{{$list->id_MSP}}">
-                                        <button type="submit" class="btn product-cart">Thêm giỏ hàng</button>
+                                        {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                        <input type="hidden" name="productIdColor" class="cart_product_id_{{$list->id_MSP}}" value="{{$list->id_MSP}}">
+                                        <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$list->id_MSP}}">Thêm giỏ hàng</button>
                                     </form>
+
                                 </td>
                                 <td class="pro-remove"><a href="{{route('detele-wish-list',['id'=>$list->id])}}"><i class="lnr lnr-trash"></i></a></td>
                             </tr>

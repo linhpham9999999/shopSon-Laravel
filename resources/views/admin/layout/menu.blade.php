@@ -26,7 +26,6 @@
                             <a href="admin/nhaphanphoi/them">Thêm</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="admin/sanpham/danhsach"><i class="fa "></i>&#10148; Sản phẩm<span class="fa arrow"></span></a>
@@ -38,7 +37,6 @@
                             <a href="admin/sanpham/them">Thêm</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="admin/loaisp/danhsach"><i class="fa "></i>&#10148; Loại sản phẩm<span class="fa arrow"></span></a>
@@ -50,7 +48,6 @@
                             <a href="admin/loaisp/them">Thêm</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="admin/mausp/danhsach"><i class="fa "></i>&#10148; Màu sản phẩm<span class="fa arrow"></span></a>
@@ -62,11 +59,9 @@
                             <a href="admin/mausp/them">Thêm</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="admin/duyetHD/danhsach"><i class="fa "></i>&#10148; Hóa đơn</a>
-                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="admin/nhanvien/danhsach"><i class="fa fa-users fa-fw"></i> Nhân viên<span class="fa arrow"></span></a>
@@ -78,7 +73,6 @@
                             <a href="admin/nhanvien/them">Thêm</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
         </ul>
     </div>
