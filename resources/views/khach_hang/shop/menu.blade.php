@@ -35,17 +35,22 @@
                 <aside class="sidebar_widget widget-mt">
                     <div class="widget_inner">
                         <div class="widget-list widget-mb-1">
-                            <h3 class="widget-title">Tìm kiếm</h3>
-                            <div class="search-box">
-                                <div class="input-group" >
-                                    <input type="text" style="height: 50px; width: 200px" class="form-control" placeholder="Search Our Store" aria-label="Search Our Store">
-                                    <span class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="fa fa-search" style="height: 35px; padding-top: 10px "></i>
-                                        </button>
-                                    </span>
+                            <h3 class="widget-title">Tìm kiếm sản phẩm</h3>
+                            <form action="{{route('search-product')}}" method="POST">
+                                {{csrf_field()}}
+                                <div class="search-box">
+                                    <div class="input-group" >
+                                        <span>
+                                            <input type="text" name="keywords_submit" style="height: 50px; width: 200px" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Search Our Store">
+                                        </span>
+                                        <span>
+                                            <button class="btn btn-outline-secondary" type="submit">
+                                                <i class="fa fa-search" style="height: 35px; padding-top: 10px "></i>
+                                            </button>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
 {{--                        <div class="widget-list widget-mb-1">--}}
 {{--                            <h3 class="widget-title">Giá</h3>--}}

@@ -122,7 +122,7 @@ Route::group(
         Route::get('trangchu', 'App\Http\Controllers\KhachHangController@index')->name('trangchuKH');
         Route::get('/logout', 'App\Http\Controllers\KH_AuthController@logoutKH')->name('logoutKH');
 
-        // Danh sách tất cả sản phẩm, loại sản phẩm
+        // Danh sách tất cả sản phẩm, loại sản phẩm, tìm kiếm sản phẩm theo Tên SP
         Route::group(
             ['prefix' => 'shop'],
             function () {
@@ -130,6 +130,7 @@ Route::group(
                 Route::get('product-type/{id}', 'App\Http\Controllers\KhachHangController@loaiSP')->name(
                     'loai-san-pham'
                 );
+                Route::post('/search', 'App\Http\Controllers\SearchProductController@search')->name('search-product');
             }
         );
 
@@ -174,6 +175,7 @@ Route::group(
             function () {
                 Route::get('/billing-details', 'App\Http\Controllers\BuyProductsController@proceedCheckout')->name('proceed-to-checkout');
                 Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
+                Route::get('/order', 'App\Http\Controllers\BuyProductsController@orderStatus')->name('order-status');
             }
         );
 

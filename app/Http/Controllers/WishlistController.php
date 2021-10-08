@@ -22,15 +22,20 @@ class WishlistController extends Controller
         if( Auth::check() ){
             $email_wl = Auth::user()->email;
         }
-        DB::table('wish_list')
-            ->insert([   'mau_wl'            => $mausp->mau,
-                         'hinhanh_wl'        => $mausp->hinhanh,
-                         'thongTinMau_wl'    => $mausp->thongTinMau,
-                         'ten_san_pham_wl'   => $sanpham->ten_SP,
-                         'gia_wl'            => $sanpham->giagoc - $sanpham->giamgia,
-                         'email_wl'          => $email_wl,
-                         'id_MSP'            => $idmsp
-                     ]);
+        //$authencated = DB::table('wish_list')->select('id_MSP')->where('id_MSP','=',$idmsp)->get();
+
+            DB::table('wish_list')
+                ->insert(
+                    [
+                        'mau_wl' => $mausp->mau,
+                        'hinhanh_wl' => $mausp->hinhanh,
+                        'thongTinMau_wl' => $mausp->thongTinMau,
+                        'ten_san_pham_wl' => $sanpham->ten_SP,
+                        'gia_wl' => $sanpham->giagoc - $sanpham->giamgia,
+                        'email_wl' => $email_wl,
+                        'id_MSP' => $idmsp
+                    ]
+                );
 
     }
 

@@ -51,7 +51,7 @@ class BuyProductsController extends Controller
         $products = json_decode($cart, true);
 
         //Thêm dữ liệu vào bảng Hóa đơn
-        $bill = DB::table('hoa_don')
+        DB::table('hoa_don')
             ->insert(['Ma_HD'               => 'HD'.rand(10,1000),
                      'id_TT'                => $request->trangthai,
                      'email_nguoimua'       => $email,
@@ -66,7 +66,7 @@ class BuyProductsController extends Controller
         //Thêm dữ liệu vào bảng Chi tiết hóa đơn
         foreach ( $products as $product)
         {
-            $bill_details = DB::table('chi_tiet_hoa_don')
+            DB::table('chi_tiet_hoa_don')
                 ->insert(['id_HD'       => $id_HD,
                         'id_MSP'        => $product['id'],
                         'soluong'       => $product['quantity'],
@@ -82,5 +82,21 @@ class BuyProductsController extends Controller
         return view('khach_hang.cart.status-order', compact('products','status'));
     }
 
+    public function orderStatus(){
+        $email = '' ;
+        if( Auth::check()) {
+            $email = Auth::user()->email;
+        }
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
+            ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
+            ->select('hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaydat',
+                        'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','hoa_don.tongtien','trang_thai.trangthai')
+            ->where('hoa_don.email_nguoimua','=',$email)
+            ->get();
+        return view('khach_hang.cart.get-status-order', compact('hoadon'));
+    }
 
 }

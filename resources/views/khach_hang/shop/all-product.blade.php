@@ -154,7 +154,7 @@
                         </div>
                         <p class="desc-content">{{$sp->gioithieu}}</p>
                         <div class="button-listview">
-                            <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>CHỌN MÀU SON</span> </a>
+                            <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top"> <span>CHỌN MÀU SON</span> </a>
                             {{--<a class="list-icon" href="compare.html" title="Compare">
                                 <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="top" title="Compare"></i>
                             </a>

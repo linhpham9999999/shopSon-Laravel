@@ -27,6 +27,7 @@
                                     <li><a href="{{route('allSanPham')}}">Sản phẩm </a></li>
                                     <li><a href="{{route('wishList')}}">Sản phẩm yêu thích</a></li>
                                     <li><a href="{{route('view-cart')}}">Giỏ hàng</a></li>
+                                    <li><a href="{{route('order-status')}}">Trạng thái đơn hàng</a></li>
                                 </ul>
                             </li>
                             <!--<li> PHÁT TRIỂN NIÊN LUẬN NGÀNH
@@ -108,11 +109,12 @@
 {{--                                </div>--}}
                             </li>
                             <li class="sidemenu-wrap">
-                                <a href="#"><i class="fa fa-search"></i> </a>
+                                <i class="fa fa-search"></i>
                                 <ul class="dropdown-sidemenu dropdown-hover-2 dropdown-search">
                                     <li>
-                                        <form action="#">
-                                            <input name="search" id="search" placeholder="Search" type="text">
+                                        <form action="{{route('search-product')}}" method="POST">
+                                            {{csrf_field()}}
+                                            <input name="keywords_submit" id="search" placeholder="Nhập tên sản phẩm" type="text">
                                             <button type="submit"><i class="fa fa-search"></i></button>
                                         </form>
                                     </li>

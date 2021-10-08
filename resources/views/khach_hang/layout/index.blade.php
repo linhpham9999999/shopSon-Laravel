@@ -118,10 +118,10 @@
                             confirmButtonClass: "btn-success",
                             confirmButtonText: "Đi đến giỏ hàng",
                             closeOnConfirm: false
-                    },
-                    function () {
-                        window.location.href = "{{url('/khach_hang/cart/view-cart')}}";
-                    });
+                        },
+                        function () {
+                            window.location.href = "{{url('/khach_hang/cart/view-cart')}}";
+                        });
                 }
             });
         });
@@ -136,14 +136,14 @@
                 data:{lish_product_id_wish:lish_product_id_wish, _token:_token},/*ten dat: bien var*/
                 success:function (data) {
                     swal({
-                        title: "Đã thêm sản phẩm yêu thích",
-                        // showCancelButton: true,
-                        // confirmButtonClass: "btn-success",
-                        // closeOnConfirm: false
-                    },
-                    function () {
-                        //window.location.href = "{{url('/khach_hang/wishlist/view-list')}}";
-                    });
+                            title: "Đã thêm sản phẩm yêu thích",
+                            // showCancelButton: true,
+                            // confirmButtonClass: "btn-success",
+                            // closeOnConfirm: false
+                        },
+                        function () {
+                            //window.location.href = "{{url('/khach_hang/wishlist/view-list')}}";
+                        });
                 }
             });
         });
