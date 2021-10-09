@@ -38,7 +38,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #FFC0CB;" >
 
     <div id="wrapper">
 

@@ -81,7 +81,7 @@ class BuyProductsController extends Controller
 //        dd($products);
         return view('khach_hang.cart.status-order', compact('products','status'));
     }
-
+    // Trạng thái đơn hàng đã đặt
     public function orderStatus(){
         $email = '' ;
         if( Auth::check()) {
@@ -95,7 +95,7 @@ class BuyProductsController extends Controller
             ->select('hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaydat',
                         'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','hoa_don.tongtien','trang_thai.trangthai')
             ->where('hoa_don.email_nguoimua','=',$email)
-            ->get();
+            ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
 

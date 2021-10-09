@@ -68,6 +68,10 @@
                                 <div class="error"> {{$errors->first('pass')}}</div>
                             </div>
                             <div class="single-input-item mb-3">
+                                <input type="password" name="password_confirmation" placeholder="Retype your Password">
+                                <div class="error"> {{$errors->first('password_confirmation')}}</div>
+                            </div>
+                            <div class="single-input-item mb-3">
                                 <input type="text" name="sodth" placeholder="Số điện thoại">
                                 <div class="error"> {{$errors->first('sodth')}}</div>
                             </div>

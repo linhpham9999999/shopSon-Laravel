@@ -1,5 +1,5 @@
 <div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse" style=" background-color:#AFEEEE ">
+    <div class="sidebar-nav navbar-collapse" style=" background-color:#FFB6C1 ">
         <ul class="nav" id="side-menu">
             {{--<li class="sidebar-search">
                 <div class="input-group custom-search-form">

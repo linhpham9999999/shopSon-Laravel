@@ -68,7 +68,7 @@
                             </tbody>
                         </table>
                         @else
-                            <h2>Không có sản phẩm </h2>
+                            <h2>Bạn chưa thêm sản phẩm yêu thích</h2>
                         @endif
                     </div>
                 </div>

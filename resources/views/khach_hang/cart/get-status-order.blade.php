@@ -29,6 +29,7 @@
                 <div class="col-lg-12 col-custom">
                     <!-- Cart Table Area -->
                     <div class="cart-table table-responsive">
+                        @if(!empty($hoadon))
                         <p ><strong>Lưu ý: Hóa đơn từ 300.000đ trở lên được freeship. Còn lại phí ship: 50.000đ</strong></p>
                         <table class="table table-bordered">
                             <thead>
@@ -58,6 +59,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        @else
+                            <h2>Bạn chưa đặt mua sản phẩm nào</h2>
+                        @endif
                     </div>
 
                 </div>

@@ -63,6 +63,7 @@ class KH_AuthController extends Controller
                 'nsinh' => 'bail|required|date_format:Y-m-d',
                 'email' => 'bail|required|unique:nguoi_dung,email|min:5|max:50',
                 'pass' => 'bail|required|min:5|max:255',
+                'password_confirmation'=>'bail|required|same:pass'
             ],
             [
                 'ten.required' => 'Bạn chưa nhập Tên nhân viên',
@@ -83,6 +84,8 @@ class KH_AuthController extends Controller
                 'pass.required' => 'Bạn chưa nhập password',
                 'pass.min' => 'Password phải có độ dài từ 5 đến 255 ký tự',
                 'pass.max' => 'Password phải có độ dài từ 5 đến 255 ký tự',
+                'password_confirmation.required' => 'Bạn chưa nhập lại password',
+                'password_confirmation.same' => 'Password không trùng',
             ]);
         DB::table('nguoi_dung')->insert([
             'password' => bcrypt($request->pass),
