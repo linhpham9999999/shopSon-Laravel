@@ -6,7 +6,7 @@
                 <div class="col-lg-2 col-xl-2 col-md-6 col-6 col-custom">
                     <div class="header-logo d-flex align-items-center">
                         <a href="{{route('trangchuKH')}}">
-                            <img class="img-full" src="khach_hang_asset/assets/images/logo/logo.png" alt="Header Logo">
+                            <img class="img-full" src="khach_hang_asset/assets/images/logo/logo.png"  alt="Header Logo">
                         </a>
                     </div>
                 </div>

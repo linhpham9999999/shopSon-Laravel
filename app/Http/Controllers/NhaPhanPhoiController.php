@@ -23,10 +23,10 @@ class NhaPhanPhoiController extends Controller
         $this->validate($request,
             [
                 'idNPP' => 'bail|required|unique:nha_phan_phoi,Ma_NPP|min:3|max:8',
-                'tenNPP' => 'bail|required|unique:nha_phan_phoi,ten_NPP|min:5|max:100',
-                'dcNPP' => 'bail|required|min:5|max:100',
+                'tenNPP' => 'bail|required|unique:nha_phan_phoi,ten_NPP|min:10|max:100',
+                'dcNPP' => 'bail|required|min:10|max:255',
                 'sodtNPP' => 'bail|required|min:10|max:10',
-                'emailNPP' => 'bail|required|email|min:3|max:40',
+                'emailNPP' => 'bail|required|email|min:10|max:40',
             ],
             [
                 'idNPP.required' => 'Bạn chưa nhập Mã nhà phân phối',
@@ -35,18 +35,18 @@ class NhaPhanPhoiController extends Controller
                 'idNPP.max' => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
                 'tenNPP.required' => 'Bạn chưa nhập Tên nhà phân phối',
                 'tenNPP.unique' => 'Tên nhà phân phối đã tồn tại',
-                'tenNPP.min' => 'Tên nhà phân phối phải có độ dài từ 5 đến 50 ký tự',
-                'tenNPP.max' => 'Tên nhà phân phối phải có độ dài từ 5 đến 50 ký tự',
+                'tenNPP.min' => 'Tên nhà phân phối phải có độ dài từ 10 đến 100 ký tự',
+                'tenNPP.max' => 'Tên nhà phân phối phải có độ dài từ 10 đến 100 ký tự',
                 'dcNPP.required' => 'Bạn chưa nhập Địa chỉ nhà phân phối',
-                'dcNPP.min' => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
-                'dcNPP.max' => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
+                'dcNPP.min' => 'Địa chỉ phải có độ dài từ 10 đến 255 ký tự',
+                'dcNPP.max' => 'Địa chỉ phải có độ dài từ 10 đến 255 ký tự',
                 'sodtNPP.required' => 'Bạn chưa nhập Số điện thoại nhà phân phối',
                 'sodtNPP.min' => 'Số điện thoại phải có độ dài 10 ký tự',
                 'sodtNPP.max' => 'Số điện thoại phải có độ dài 10 ký tự',
                 'emailNPP.required' => 'Bạn chưa nhập Email nhà phân phối',
                 'emailNPP.email' => 'Dữ liệu nhập vào phải có dạng email',
-                'emailNPP.min' => 'Email phải có độ dài từ 5 đến 40 ký tự',
-                'emailNPP.max' => 'Email phải có độ dài 1từ 5 đến 40 ký tự'
+                'emailNPP.min' => 'Email phải có độ dài từ 10 đến 40 ký tự',
+                'emailNPP.max' => 'Email phải có độ dài 1từ 10 đến 40 ký tự'
             ]);
         //lưu thông tin thêm nhaphanphoi vào csdl
         $nhaphanphoi = new nha_phan_phoi;
@@ -69,22 +69,27 @@ class NhaPhanPhoiController extends Controller
         $this->validate($request,
             [
                 'idNPP'             => 'bail|required|min:3|max:8',
-                'tenNPP'            => 'min:5|max:50',
-                'dcNPP'             => 'min:5|max:50',
-                'sodtNPP'           => 'min:10|max:10',
-                'emailNPP'          => 'min:3|max:40',
+                'tenNPP'            => 'bail|required|min:10|max:100',
+                'dcNPP'             => 'bail|required|min:10|max:255',
+                'sodtNPP'           => 'bail|required|min:10|max:10',
+                'emailNPP'          => 'bail|required|min:10|max:50',
             ],
             [
                 'idNPP.required'    => 'Bạn chưa nhập Mã nhà phân phối',
                 'idNPP.min'         => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
                 'idNPP.max'         => 'Mã nhà phân phối phải có độ dài từ 3 đến 8 ký tự',
-                'tenNPP.min'        => 'Tên nhà phân phối phải có độ dài từ 5 đến 50 ký tự',
-                'dcNPP.min'         => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
-                'dcNPP.max'         => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự',
+                'tenNPP.required'   => 'Bạn chưa nhập Tên nhà phân phối',
+                'tenNPP.min'        => 'Tên nhà phân phối phải có độ dài từ 10 đến 100 ký tự',
+                'tenNPP.max'        => 'Tên nhà phân phối phải có độ dài từ 10 đến 100 ký tự',
+                'dcNPP.required'    => 'Bạn chưa nhập Địa chỉ nhà phân phối',
+                'dcNPP.min'         => 'Địa chỉ phải có độ dài từ 10 đến 255 ký tự',
+                'dcNPP.max'         => 'Địa chỉ phải có độ dài từ 10 đến 255 ký tự',
+                'sodtNPP.required'  => 'Bạn chưa nhập Số điện thoại nhà phân phối',
                 'sodtNPP.min'       => 'Số điện thoại phải có độ dài 10 ký tự',
                 'sodtNPP.max'       => 'Số điện thoại phải có độ dài 10 ký tự',
-                'emailNPP.min'      => 'Email phải có độ dài từ 5 đến 40 ký tự',
-                'emailNPP.max'      => 'Email phải có độ dài 1từ 5 đến 40 ký tự'
+                'emailNPP.required' => 'Bạn chưa nhập Email nhà phân phối',
+                'emailNPP.min'      => 'Email phải có độ dài từ 10 đến 50 ký tự',
+                'emailNPP.max'      => 'Email phải có độ dài 1từ 10 đến 50 ký tự'
             ]);
         DB::table('nha_phan_phoi')->select('*')->where('Ma_NPP','=',$Ma_NPP)
             ->update([     'Ma_NPP'      =>$request->idNPP,

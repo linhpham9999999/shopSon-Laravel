@@ -39,7 +39,7 @@
                 <div class="checkout-area mt-no-text">
                     <div class="container custom-container">
                         <div class="row">
-                            <div class="col-lg-6 col-12 col-custom" style="height:450px ;float: left; background-color: #E6E6E6; width: 430px">
+                            <div class="col-lg-6 col-12 col-custom" style="height:480px ;float: left; background-color: #E6E6E6; width: 430px">
                                 <div class="checkbox-form">
                                     <h3 class="t1">Thông tin khách hàng</h3>
                                     @foreach($user as $ct)
@@ -53,7 +53,7 @@
                                             <div class="col-md-12 col-custom">
                                                 <div class="checkout-form-list">
                                                     <label>Địa chỉ </label>
-                                                    <p class="formdetails">{{$ct->email}}</p>
+                                                    <p class="formdetails">{{$ct->diachi}}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-custom">
@@ -65,7 +65,13 @@
                                             <div class="col-md-12 col-custom">
                                                 <div class="checkout-form-list">
                                                     <label>Email <span class="required">*</span></label>
-                                                    <p class="formdetails">{{$ct->diachi}}</p>
+                                                    <p class="formdetails">{{$ct->email}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-custom">
+                                                <div class="checkout-form-list">
+                                                    <label>Trạng thái đơn hàng <span class="required">*</span></label>
+                                                    <p class="formdetails">{{$ct->trangthai}}</p>
                                                 </div>
                                             </div>
                                         </div>

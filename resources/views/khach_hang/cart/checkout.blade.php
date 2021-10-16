@@ -39,10 +39,10 @@
                             <thead>
                             <tr>
                                 <th class="pro-thumbnail">Ảnh</th>
-                                <th class="pro-title">Tên sản phẩm</th>
-                                <th class="pro-title">Màu son</th>
-                                <th class="pro-price">Giá</th>
-                                <th class="pro-quantity">Số lượng</th>
+                                <th class="pro-quantity">Tên sản phẩm</th>
+                                <th class="pro-quantity">Màu son</th>
+                                <th class="pro-title">Giá</th>
+                                <th class="pro-title">Số lượng</th>
                                 <th class="pro-subtotal">Tổng giá</th>
                                 <th class="pro-remove">Xóa</th>
                             </tr>
@@ -51,19 +51,19 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
-                                    <td class="pro-title">{{$product['name']}}</td>
-                                    <td class="pro-title">{{$product['color']}}</td>
-                                    <td class="pro-price"><span>{{ $product['unit_price'] -  $product['promotion_price']}}</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="qty">
-                                                <div class="dec qtybutton">-</div>
-                                                <div class="inc qtybutton">+</div>
-                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
-                                            </div>
-                                        </div>
+                                    <td class="pro-quantity">{{$product['name']}}</td>
+                                    <td class="pro-quantity">{{$product['color']}}</td>
+                                    <td class="pro-title"><span>{{ $product['unit_price'] -  $product['promotion_price']}}</span></td>
+                                    <td class="pro-title">x{{ $product['quantity'] }}
+{{--                                        <div class="quantity">--}}
+{{--                                            <div class="cart-plus-minus">--}}
+{{--                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="qty">--}}
+{{--                                                <div class="dec qtybutton">-</div>--}}
+{{--                                                <div class="inc qtybutton">+</div>--}}
+{{--                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>--}}
+{{--                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </td>
                                     <td class="pro-subtotal"><span>{{ $product['unit_price']*$product['quantity'] -  $product['promotion_price']*$product['quantity'] }}</span></td>
                                     <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
@@ -73,17 +73,17 @@
                         </table>
                     </div>
                     <!-- Cart Update Option -->
-                    <div class="cart-update-option d-block d-md-flex justify-content-between">
-                        <div class="apply-coupon-wrapper">
-                            <form action="#" method="post" class=" d-block d-md-flex">
-                                <input type="text" placeholder="Enter Your Coupon Code" required />
-                                <button class="btn flosun-button primary-btn rounded-0 black-btn">Áp dụng giảm giá</button>
-                            </form>
-                        </div>
-                        <div class="cart-update mt-sm-16">
-                            <a href="#" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</a> <!--chuyển đến danh sach giỏ hàng-->
-                        </div>
-                    </div>
+{{--                    <div class="cart-update-option d-block d-md-flex justify-content-between">--}}
+{{--                        <div class="apply-coupon-wrapper">--}}
+{{--                            <form action="#" method="post" class=" d-block d-md-flex">--}}
+{{--                                <input type="text" placeholder="Enter Your Coupon Code" required />--}}
+{{--                                <button class="btn flosun-button primary-btn rounded-0 black-btn">Áp dụng giảm giá</button>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
+{{--                        <div class="cart-update mt-sm-16">--}}
+{{--                            <a href="#" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</a> <!--chuyển đến danh sach giỏ hàng-->--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="row">

@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <label>Hình ảnh</label>
                             <input type="file" name="hinhanh" />
-                            <div class="error"> {{$errors->first('yn')}}</div>
+                            <div class="error"> {{$errors->first('hinhanh')}}</div>
                         </div>
                         <button type="submit" class="btn btn-default">Thêm</button>
                         <button type="reset" class="btn btn-default">Làm mới</button>

@@ -44,7 +44,6 @@ class CartController extends Controller
         }
         // encode mảng thành chuỗi json
         $json = json_encode($products);
-
         // Gán lại giỏ hàng
         Cookie::queue('cart',$json,3000000);
 

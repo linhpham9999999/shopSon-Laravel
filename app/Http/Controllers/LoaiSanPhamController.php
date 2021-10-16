@@ -61,16 +61,17 @@ class LoaiSanPhamController extends Controller
         $this->validate(
             $request,
             [
-                'Ma_LSP'            => 'bail|required|min:3|max:8',
+                'Ma_LSP'        => 'bail|required|unique:loai_san_pham,Ma_LSP|min:3|max:8',
                 'ten'           => 'bail|required|min:5|max:50'
             ],
             [
-                'Ma_LSP.required'    => 'Bạn chưa nhập Mã loại sản phẩm',
-                'Ma_LSP.min'         => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'Ma_LSP.max'         => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'ten.required'   => 'Bạn chưa nhập Tên loại sản phẩm',
-                'ten.min'        => 'Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự',
-                'ten.max'        => 'Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự'
+                'Ma_LSP.required'   => 'Bạn chưa nhập Mã loại sản phẩm',
+                'Ma_LSP.unique'     => 'Mã loại sản phẩm đã tồn tại',
+                'Ma_LSP.min'        => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'Ma_LSP.max'        => 'Mã loại sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'ten.required'      => 'Bạn chưa nhập Tên loại sản phẩm',
+                'ten.min'           => 'Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự',
+                'ten.max'           => 'Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự'
             ]
         );
         DB::table('loai_san_pham')->select('*')->where('id', '=', $id)

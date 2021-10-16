@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Carbon;
 
+
 class BuyProductsController extends Controller
 {
     public function proceedCheckout()
@@ -75,10 +76,13 @@ class BuyProductsController extends Controller
                          ]);
         }
         // Xóa sản phẩm trong giỏ sau khi mua
+        session_unset();
+        Cookie::queue(
+            Cookie::forget('cart')
+        );
 
         // Chuyển đến xem trạng thái mua hàng
         $status = DB::table('hoa_don')->select('id_TT')->where('id','=',$id_HD)->get();
-//        dd($products);
         return view('khach_hang.cart.status-order', compact('products','status'));
     }
     // Trạng thái đơn hàng đã đặt

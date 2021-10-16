@@ -84,12 +84,9 @@ class CheckoutController extends Controller
         //return $id;
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
-//        $key = array_search($id, array_column($products, 'id'));
         if (array_key_exists($id, $products)) {
             unset($products[$id]);
         }
-//        unset($products[$key]);
-//        $products = array_values(($products));
         $json = json_encode($products);
         Cookie::queue('cart', $json, 1440);
         return back()->with('message','Đã xóa khỏi giỏ!');
