@@ -113,6 +113,8 @@ class ProductController extends Controller
         $this->validate(
             $request,
             [
+                'id'        => 'bail|required|min:3|max:8',
+                'ten'       => 'bail|required|min:5|max:50',
                 'xuatxu' => 'bail|required|min:3|max:50',
                 'trluong' => 'bail|required|numeric|min:1',
                 'giagoc' => 'bail|required|numeric|min:5',
@@ -123,6 +125,12 @@ class ProductController extends Controller
                 'hinh_anh' => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
+                'id.required'           => 'Bạn chưa nhập Mã sản phẩm',
+                'id.min'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'id.max'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'ten.required'          => 'Bạn chưa nhập Tên sản phẩm',
+                'ten.min'               => 'Tên sản phẩm phải có độ dài từ 5 đến 50 ký tự',
+                'ten.max'               => 'Tên sản phẩm phải có độ dài từ 5 đến 50 ký tự',
                 'xuatxu.required'       => 'Bạn chưa nhập Xuất xứ sản phẩm',
                 'xuatxu.min'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
                 'xuatxu.max'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',

@@ -21,8 +21,12 @@
                         {{csrf_field()}}
                         <div class="form-group">
                             <label>Password nhân viên</label>
-                            <input class="form-control" name="pass" placeholder="Password nhân viên phải có độ dài từ 5 đến 255 ký tự" />
+                            <input type="password" class="form-control" name="pass" placeholder="Password nhân viên phải có độ dài từ 5 đến 255 ký tự" />
                             <div class="error"> {{$errors->first('pass')}}</div>
+
+                            <label>Nhập lại password</label>
+                            <input type="password" class="form-control" name="pass2" placeholder="Password phải trùng với password vừa nhập" />
+                            <div class="error"> {{$errors->first('pass2')}}</div>
 
                             <label>Họ tên</label>
                             <input class="form-control" name="ten" placeholder="Họ tên phải có độ dài từ 5 đến 50 ký tự" />
