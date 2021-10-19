@@ -31,7 +31,8 @@ class KH_AuthController extends Controller
 
         $authenticated = Auth::attempt([
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
+            'quyen' => 0
         ]);
         if ($authenticated) {
             $request->session()->put('name', $tenKH);

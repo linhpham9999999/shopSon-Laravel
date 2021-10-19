@@ -17,9 +17,13 @@ class checkLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
+//    dd(Auth::user());
+
+        //Khong ton tai session
+        if (!Auth::check() || Auth::user()->quyen==0) {
             return redirect()->route('login');
         }
         return $next($request);
+
     }
 }

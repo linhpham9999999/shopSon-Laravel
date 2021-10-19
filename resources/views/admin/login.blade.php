@@ -8,7 +8,7 @@
 
     <title>Đăng nhập hệ thống quản lý</title>
     <base href="{{asset('')}}">
-
+    <link rel="shortcut icon" type="image/x-icon" href="khach_hang_asset/assets/images/favicon.ico">
     <!-- Bootstrap Core CSS -->
     <link href="admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 

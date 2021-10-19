@@ -34,13 +34,15 @@ class AD_AuthController extends Controller
         $authenticated = Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
-            'quyen' => '1'
+            'quyen' => 1
         ]);
+//    dd(Auth::user());
         if ($authenticated) {
             $request->session()->put('name', $nhanvien);
             return redirect()->route('homeAd',compact('user','nhanvien'));
         }
         $request->session()->flash('thongbao', 'Đăng nhập không thành công');
+
         return redirect()->route('login');
 
     }
