@@ -17,7 +17,7 @@ class checkLoginUsers
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
+        if (!Auth::check()|| Auth::user()->quyen==1) {
             return redirect()->route('loginKH');
         }
         return $next($request);

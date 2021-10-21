@@ -19,7 +19,6 @@ class checkLogin
     {
 //    dd(Auth::user());
 
-        //Khong ton tai session
         if (!Auth::check() || Auth::user()->quyen==0) {
             return redirect()->route('login');
         }
