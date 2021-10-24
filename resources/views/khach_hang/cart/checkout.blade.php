@@ -14,6 +14,7 @@
                         <h3 class="title-3">Giỏ hàng</h3>
                         <ul>
                             <li><a href="{{route('trangchuKH')}}">Trang chủ</a></li>
+                            <li>Giỏ hàng</li>
                         </ul>
                     </div>
                 </div>
@@ -113,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            @else
+            @elseif($isHasProduct === false)
                 <h2>Không có sản phẩm</h2>
             @endif
         </div>

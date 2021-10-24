@@ -33,7 +33,7 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-title">
-                                    <h4 class="title-2"> <a href="product-details.html">{{$sp->ten_SP}}</a></h4>
+                                    <h4 class="title-2"> {{$sp->ten_SP}}</h4>
                                 </div>
                                 @if($sp->sosao == 0)
                                     <div class="product-rating">
@@ -93,11 +93,11 @@
                                     <input type="hidden" name="idSP" value="{{$sp1->id}}"/>
                                     <button type="submit" class="btn product-cart">Thêm giỏ hàng</button>
                                 </form>--}}
-                                <a href="khach_hang/list-color-product/{{$sp->id}}" class="btn product-cart">CHỌN MÀU SON</a>
+                                <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart">CHỌN MÀU SON</a>
                             </div>
                             <div class="product-content-listview">
                                 <div class="product-title">
-                                    <h4 class="title-2"> <a href="product-details.html">{{$sp->ten_SP}}</a></h4>
+                                    <h4 class="title-2"> {{$sp->ten_SP}}</h4>
                                 </div>
                                 @if($sp->sosao == 0)
                                     <div class="product-rating">
@@ -154,7 +154,7 @@
                                 </div>
                                 <p class="desc-content">{{$sp->gioithieu}}</p>
                                 <div class="button-listview">
-                                    <a href="khach_hang/list-color-product/{{$sp->id}}" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>CHỌN MÀU SON</span> </a>
+                                    <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>CHỌN MÀU SON</span> </a>
                                     {{--<a class="list-icon" href="compare.html" title="Compare">
                                         <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="top" title="Compare"></i>
                                     </a>

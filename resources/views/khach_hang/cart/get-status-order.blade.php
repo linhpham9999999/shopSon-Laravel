@@ -14,6 +14,7 @@
                         <h3 class="title-3">Trạng thái đơn hàng</h3>
                         <ul>
                             <li><a href="{{route('trangchuKH')}}">Trang chủ</a></li>
+                            <li>Trạng thái đơn hàng</li>
                         </ul>
                     </div>
                 </div>
