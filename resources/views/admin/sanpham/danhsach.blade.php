@@ -39,7 +39,7 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{$sp->Ma_SP}}</td>
                             <td>{{$sp->ten_SP}}</td>
-                            <td><img src="admin_asset/image_son/{{$sp->hinhanhgoc}}" width="100px"/></td>
+                            <td><img src="admin_asset/image_son/{{$sp->hinhanhgoc}}" width="100px" height="100px"/></td>
                             <td>{{$sp->xuatxu}}</td>
                             <td>{{$sp->trongluong}}</td>
                             <td>{{$sp->giagoc}} VNĐ</td>

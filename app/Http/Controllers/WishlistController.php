@@ -11,6 +11,13 @@ class WishlistController extends Controller
 {
     public function wishList(Request  $request)
     {
+        $this->validate($request,
+            [
+                'lish_product_id_wish'=>'unique:wish_list,id_MSP',
+            ],
+            [
+                'lish_product_id_wish.unique' => 'Đã tồn tại sản phẩm yêu thích',
+            ]);
         // Chon mau san pham theo productIdColor
         $idmsp      = $request->get('lish_product_id_wish');
         $mausp      = DB::table('mau_san_pham')->find($idmsp);
@@ -22,7 +29,6 @@ class WishlistController extends Controller
         if( Auth::check() ){
             $email_wl = Auth::user()->email;
         }
-        //$authencated = DB::table('wish_list')->select('id_MSP')->where('id_MSP','=',$idmsp)->get();
 
             DB::table('wish_list')
                 ->insert(

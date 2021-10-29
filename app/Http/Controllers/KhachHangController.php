@@ -41,8 +41,7 @@ class KhachHangController extends Controller
         $listColorProduct = DB::table('mau_san_pham')
             ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
             ->select('mau_san_pham.*','giagoc','giamgia','ten_SP','san_pham.hinhanhgoc')
-            ->where('san_pham.id','=',$id)->get();
-
+            ->where('san_pham.id','=',$id)->simplePaginate(6);
         return view('khach_hang.shop.list-color-product',compact('listColorProduct','loaisp','sanpham'));
     }
 

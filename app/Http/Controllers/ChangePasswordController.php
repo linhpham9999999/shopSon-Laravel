@@ -50,6 +50,6 @@ class ChangePasswordController extends Controller
 
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
 
-        return view('khach_hang.account.changePassword')->with('alert','Lưu thành công');
+        return redirect('khach_hang/account/change-password')->with('alert','Lưu thành công');
     }
 }

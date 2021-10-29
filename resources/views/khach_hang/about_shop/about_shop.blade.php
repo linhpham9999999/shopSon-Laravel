@@ -49,6 +49,10 @@
                             <p><strong>Quy định sử dụng </strong></p>
                             <p>Khi khách hàng muốn mua sản phẩm online tại trang web thì cần phải đăng ký thành viên. Chúng tôi cam kết thông tin của Qúy khách hàng được bảo mật tuyệt đối nếu thông tin bị lộ sẽ chịu trách nhiệm trước pháp luật.</p>
                         </div>
+                        <div class="history-area-content text-center border-0">
+                            <p><strong>Hướng dẫn mua hàng </strong></p>
+                            <p>Khách hàng chọn danh mục <b>Shop</b> or <b>Sản phẩm</b> để xem các loại son, sau đó chọn màu thích hợp và thêm vào giỏ hàng. Khách hàng cần nhập đầy đủ Tên, số điện thoại, email để mua hàng.</p>
+                        </div>
                     </div>
                 </div>
             </div>

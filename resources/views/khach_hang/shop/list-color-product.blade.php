@@ -89,18 +89,18 @@
             @endforeach
         </div>
 
-        {{--<div class="row">
+        <div class="row">
             <div class="col-sm-12 col-custom">
                 <div class="toolbar-bottom">
                     <div class="pagination">
                         <ul>
-                            {!! $allSP->links() !!}
+                            {!! $listColorProduct->links() !!}
                         </ul>
                     </div>
-                    <p class="desc-content text-center text-sm-right mb-0">Showing {!! $allSP->firstItem() !!} - {!! $allSP->lastItem() !!}</p>
+                    <p class="desc-content text-center text-sm-right mb-0">Showing {!! $listColorProduct->firstItem() !!} - {!! $listColorProduct->lastItem() !!}</p>
                 </div>
             </div>
-        </div>--}}
+        </div>
     </div>
 
 @endsection

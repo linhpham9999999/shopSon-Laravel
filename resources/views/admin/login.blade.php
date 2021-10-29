@@ -62,7 +62,7 @@
     </div>
     <div style="text-align: center; font-family: Monospace;">
         <h4 style="font-size: 30px;"><span>HLYNK Lipsticks</span> Shop </h4>
-            <p>Chuyên cung cấp những sản phẩm chất lượng, uy tín<br>
+            <p>Chuyên cung cấp những sản phẩm son môi chất lượng, uy tín<br>
                 Địa chỉ: 172/10A, Lê Bình, Hưng Lợi, Ninh Kiều, Cần Thơ<br>
                 &#9990;: 0794246163 - &#9990;: 0788984972 - &#9993;: hlynklipsticks@gmail.com
             </p>

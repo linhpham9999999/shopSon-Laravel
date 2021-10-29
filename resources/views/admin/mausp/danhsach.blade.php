@@ -16,7 +16,7 @@
                     </div>
             @endif
             <!-- /.col-lg-12 -->
-                <table class="table table-striped table-bordered table-hover" >{{--id="dataTables-example"--}}
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example" >{{----}}
                     <thead>
                     <tr align="center">
                         <th>Mã màu sản phẩm</th>
@@ -28,7 +28,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($mausanpham as $msp)
+                    @foreach($data as $msp)
                         <tr class="odd gradeX" align="center">
                             <td>{{$msp->Ma_MSP}}</td>
                             <td>{{$msp->mau}}</td>

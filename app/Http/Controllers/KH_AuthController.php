@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\nguoi_dung;
 use App\Http\Controllers\Session;
 
 use DB;
+use Illuminate\Support\Facades\Hash;
+
 class KH_AuthController extends Controller
 {
     public function login(){
@@ -89,7 +90,7 @@ class KH_AuthController extends Controller
                 'password_confirmation.same' => 'Password không trùng',
             ]);
         DB::table('nguoi_dung')->insert([
-            'password' => bcrypt($request->pass),
+            'password' => Hash::make($request->pass),
             'hoten' => $request->ten,
             'diachi' => $request->diachi,
             'sodth' => $request->sodth,

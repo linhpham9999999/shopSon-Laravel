@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\nguoi_dung;
 
 use DB;
@@ -53,16 +53,18 @@ class NhanVienController extends Controller
                 'email.min' => 'Email nhân viên phải có độ dài từ 5 đến 40 ký tự',
                 'email.max' => 'Email nhân viên phải có độ dài từ 5 đến 40 ký tự',
             ]);
-        $nhanvien = new nguoi_dung;
-        $nhanvien->password = $request->pass;
-        $nhanvien->hoten = $request->ten;
-        $nhanvien->diachi = $request->diachi;
-        $nhanvien->sodth = $request->sodth;
-        $nhanvien->gioitinh = $request->gtinh;
-        $nhanvien->ngaysinh = $request->nsinh;
-        $nhanvien->email = $request->email;
-        $nhanvien->quyen = $request->quyen;
-        $nhanvien->save();
+        DB::table('nguoi_dung')->insert(
+            [
+                'password' => Hash::make($request->pass),
+                'hoten' => $request->ten,
+                'diachi' => $request->diachi,
+                'sodth' => $request->sodth,
+                'gioitinh' => $request->gtinh,
+                'ngaysinh' => $request->nsinh,
+                'email' => $request->email,
+                'quyen'=>$request->quyen
+            ]
+        );
 
         return redirect('admin/nhanvien/them')->with('thongbao','Thêm thành công');
     }
