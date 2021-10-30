@@ -113,14 +113,14 @@ class ProductController extends Controller
             [
                 'id'        => 'bail|required|min:3|max:8',
                 'ten'       => 'bail|required',
-                'xuatxu' => 'bail|required|min:3|max:50',
-                'trluong' => 'bail|required|numeric|min:1',
-                'giagoc' => 'bail|required|numeric|min:5',
-                'giamgia' => 'bail|required|numeric',
-                'slton' => 'bail|required|integer',
-                'hsd' => 'bail|required|integer',
-                'gthieu' => 'bail|required|min:5|max:500',
-                'hinh_anh' => 'bail|required|mimes:jpg,bmp,png'
+                'xuatxu'    => 'bail|required|min:3|max:50',
+                'trluong'   => 'bail|required|numeric|min:1',
+                'giagoc'    => 'bail|required|numeric|min:5',
+                'giamgia'   => 'bail|required|numeric',
+                'slton'     => 'bail|required|integer',
+                'hsd'       => 'bail|required|integer',
+                'gthieu'    => 'bail|required|min:5|max:500',
+                'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
                 'id.required'           => 'Bạn chưa nhập Mã sản phẩm',
@@ -157,20 +157,20 @@ class ProductController extends Controller
 
         DB::table('san_pham')->select('*')->where('id', '=', $id)->update(
             [
-                'Ma_SP' => $request->id,
-                'id_LSP' => $request->idLSP,
-                'id_NPP' => $request->idNPP,
-                'ten_SP' => $request->ten,
-                'xuatxu' => $request->xuatxu,
-                'trongluong' => $request->trluong,
-                'giagoc' => $request->giagoc,
-                'giamgia' => $request->giamgia,
-                'soluongton' => $request->slton,
-                'hansudung_thang' => $request->hsd,
-                'gioithieu' => $request->gthieu,
-                'hinhanhgoc' => $name,
-                'sosao' => $request->sosao,
-                'noibat' => $request->noibat,
+                'Ma_SP'         => $request->id,
+                'id_LSP'        => $request->idLSP,
+                'id_NPP'        => $request->idNPP,
+                'ten_SP'        => $request->ten,
+                'xuatxu'        => $request->xuatxu,
+                'trongluong'    => $request->trluong,
+                'giagoc'        => $request->giagoc,
+                'giamgia'       => $request->giamgia,
+                'soluongton'    => $request->slton,
+                'hansudung_thang'=> $request->hsd,
+                'gioithieu'     => $request->gthieu,
+                'hinhanhgoc'    => $name,
+                'sosao'         => $request->sosao,
+                'noibat'        => $request->noibat,
             ]
         );
 

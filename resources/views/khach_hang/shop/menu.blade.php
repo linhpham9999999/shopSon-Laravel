@@ -51,6 +51,21 @@
                                     </div>
                                 </div>
                             </form>
+                            <form action="{{route('search-product-price')}}" method="POST">
+                                {{csrf_field()}}
+                                <div class="search-box">
+                                    <div class="input-group" >
+                                        <span>
+                                            <input type="text" name="price_submit" style="height: 50px; width: 200px" class="form-control" placeholder="Nhập giá sản phẩm" aria-label="Search Our Store">
+                                        </span>
+                                        <span>
+                                            <button class="btn btn-outline-secondary" type="submit">
+                                                <i class="fa fa-search" style="height: 35px; padding-top: 10px "></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 {{--                        <div class="widget-list widget-mb-1">--}}
 {{--                            <h3 class="widget-title">Giá</h3>--}}

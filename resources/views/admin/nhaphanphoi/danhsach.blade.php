@@ -37,8 +37,8 @@
                             <td>{{$npp->diachi_NPP}}</td>
                             <td>{{$npp->sodth_NPP}}</td>
                             <td>{{$npp->email_NPP}}</td>
-                            <td><a href="admin/nhaphanphoi/xoa/{{$npp->Ma_NPP}}"><img src="admin_asset/delete.png" width="45px"/></a></td>
-                            <td><a href="admin/nhaphanphoi/sua/{{$npp->Ma_NPP}}"><img src="admin_asset/edit.png" width="45px"/></a></td>
+                            <td><a href="admin/nhaphanphoi/xoa/{{$npp->id}}"><img src="admin_asset/delete.png" width="45px"/></a></td>
+                            <td><a href="admin/nhaphanphoi/sua/{{$npp->id}}"><img src="admin_asset/edit.png" width="45px"/></a></td>
                         </tr>
                     @endforeach
                 </tbody>

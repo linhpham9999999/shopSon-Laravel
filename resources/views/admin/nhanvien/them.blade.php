@@ -21,15 +21,15 @@
                         {{csrf_field()}}
                         <div class="form-group">
                             <label>Password nhân viên</label>
-                            <input type="password" class="form-control" name="pass" placeholder="Password nhân viên phải có độ dài từ 5 đến 255 ký tự" />
+                            <input type="password" class="form-control" name="pass" placeholder="Mật khẩu nhân viên phải có độ dài từ 8 đến 255 ký tự" />
                             <div class="error"> {{$errors->first('pass')}}</div>
 
                             <label>Nhập lại password</label>
-                            <input type="password" class="form-control" name="pass2" placeholder="Password phải trùng với password vừa nhập" />
+                            <input type="password" class="form-control" name="pass2" placeholder="Mật khẩu phải trùng với Mật khẩu vừa nhập" />
                             <div class="error"> {{$errors->first('pass2')}}</div>
 
                             <label>Họ tên</label>
-                            <input class="form-control" name="ten" placeholder="Họ tên phải có độ dài từ 5 đến 50 ký tự" />
+                            <input class="form-control" name="ten" placeholder="Tên phải có độ dài từ 5 đến 50 ký tự" />
                             <div class="error"> {{$errors->first('ten')}}</div>
 
                             <label>Địa chỉ</label>
@@ -50,7 +50,7 @@
                             <div class="error"> {{$errors->first('nsinh')}}</div>
 
                             <label>Email</label>
-                            <input class="form-control" name="email" placeholder="Email phải có độ dài từ 5 đến 40 ký tự" />
+                            <input class="form-control" name="email" placeholder="Email phải có độ dài từ 5 đến 50 ký tự" />
                             <div class="error"> {{$errors->first('email')}}</div>
 
                             <input class="form-control" type="hidden" name="quyen" value="1" />

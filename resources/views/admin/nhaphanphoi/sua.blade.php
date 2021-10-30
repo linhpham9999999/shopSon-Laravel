@@ -19,7 +19,7 @@
                     </div>
                 @endif
 
-                <form action="{{route('actionSuaNPP',['Ma_NPP'=>$npp->Ma_NPP])}}" method="POST">
+                <form action="{{route('actionSuaNPP',['id'=>$npp->id])}}" method="POST">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label>Mã nhà phân phối</label>
@@ -27,11 +27,11 @@
                         <div class="error"> {{$errors->first('idNPP')}}</div>
 
                         <label>Tên nhà phân phối</label>
-                        <input class="form-control" name="tenNPP" placeholder="Tên nhà phân phối phải có độ dài từ 5 đến 100 ký tự" value="{{$npp->ten_NPP}}"/>
+                        <input class="form-control" name="tenNPP" placeholder="Tên nhà phân phối phải có độ dài từ 10 đến 100 ký tự" value="{{$npp->ten_NPP}}"/>
                         <div class="error"> {{$errors->first('tenNPP')}}</div>
 
                         <label>Địa chỉ </label>
-                        <input class="form-control" name="dcNPP" placeholder="Địa chỉ phải có độ dài từ 5 đến 100 ký tự" value="{{$npp->diachi_NPP}}" />
+                        <input class="form-control" name="dcNPP" placeholder="Địa chỉ phải có độ dài từ 10 đến 255 ký tự" value="{{$npp->diachi_NPP}}" />
                         <div class="error"> {{$errors->first('dcNPP')}}</div>
 
                         <label>Số điện thoại </label>
@@ -39,7 +39,7 @@
                         <div class="error"> {{$errors->first('sodtNPP')}}</div>
 
                         <label>Email </label>
-                        <input class="form-control" name="emailNPP" placeholder="Email phải có độ dài 1từ 5 đến 40 ký tự" value="{{$npp->email_NPP}}" />
+                        <input class="form-control" name="emailNPP" placeholder="Email phải có độ dài từ 10 đến 50 ký tự" value="{{$npp->email_NPP}}" />
                         <div class="error"> {{$errors->first('emailNPP')}}</div>
                     </div>
                     <button type="submit" class="btn btn-default">Sửa</button>

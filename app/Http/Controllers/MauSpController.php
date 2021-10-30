@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Models\mau_san_pham;
 use App\Models\loai_san_pham;
 use App\Models\san_pham;
 
@@ -15,9 +12,9 @@ class MauSpController extends Controller
 {
     public function getDanhSach()
     {
-        $allSP = DB::table('mau_san_pham')->simplePaginate(6);
+        //$allSP = DB::table('mau_san_pham')->simplePaginate(6);
         $data = DB::table('mau_san_pham')->select('*')->get();
-        return view('admin.mausp.danhsach', compact('data','allSP'));
+        return view('admin.mausp.danhsach', compact('data'));
     }
 
     public function getThem()
@@ -34,24 +31,23 @@ class MauSpController extends Controller
             [
                 'idMSP'     => 'bail|required|unique:mau_san_pham,Ma_MSP|min:3|max:8',
                 'mau'       => 'bail|unique:mau_san_pham,mau|required|min:5|max:50',
-                'yn'        => 'bail|required|min:5|max:255',
+                'yn'        => 'bail|required|min:5|max:500',
                 'hinhanh'   => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
-                'idMSP.required'      => 'Bạn chưa nhập Mã màu sản phẩm',
-                'idMSP.unique'        => 'Mã màu sản phẩm đã tồn tại',
-                'idMSP.min'           => 'Mã màu sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'idMSP.max'           => 'Mã màu sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'mau.required'        => 'Bạn chưa nhập Tên màu sản phẩm',
-                'mau.unique'          => 'Tên màu sản phẩm đã tồn tại',
-                'mau.min'             => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
-                'mau.max'             => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
-                'hinhanh.required'    => 'Bạn chưa chọn Hình ảnh màu sản phẩm',
-                'hinhanh.mimes'      => 'File chọn phải là file hình ảnh (*.jpg, *png)',
-                'yn.required'         => 'Bạn chưa nhập Ý nghĩa màu sản phẩm',
-                'yn.min'              => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 255 ký tự',
-                'yn.max'              => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 255 ký tự'
-
+                'idMSP.required'   => 'Bạn chưa nhập Mã màu sản phẩm',
+                'idMSP.unique'     => 'Mã màu sản phẩm đã tồn tại',
+                'idMSP.min'        => 'Mã màu sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'idMSP.max'        => 'Mã màu sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'mau.required'     => 'Bạn chưa nhập Tên màu sản phẩm',
+                'mau.unique'       => 'Tên màu sản phẩm đã tồn tại',
+                'mau.min'          => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
+                'mau.max'          => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
+                'hinhanh.required' => 'Bạn chưa chọn Hình ảnh màu sản phẩm',
+                'hinhanh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
+                'yn.required'      => 'Bạn chưa nhập Ý nghĩa màu sản phẩm',
+                'yn.min'           => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 500 ký tự',
+                'yn.max'           => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 500 ký tự'
             ]
         );
         if ($request->hasFile('hinhanh')) {
@@ -87,20 +83,20 @@ class MauSpController extends Controller
             [
                 'idMSP'     => 'bail|required|min:3|max:8',
                 'mau'       => 'bail|required|min:5|max:50',
-                'yn'        => 'bail|min:5|max:255',
+                'yn'        => 'bail|min:5|max:500',
                 'hinhanh'   => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
                 'idMSP.required'    => 'Bạn chưa nhập Mã màu sản phẩm',
                 'idMSP.min'         => 'Mã màu sản phẩm phải có độ dài từ 3 đến 8 ký tự',
                 'idMSP.max'         => 'Mã màu sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'mau.required'        => 'Bạn chưa nhập Tên màu sản phẩm',
-                'mau.min'             => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
-                'mau.max'             => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
+                'mau.required'      => 'Bạn chưa nhập Tên màu sản phẩm',
+                'mau.min'           => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
+                'mau.max'           => 'Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự',
                 'hinhanh.required'  => 'Bạn chưa chọn Hình ảnh màu sản phẩm',
                 'hinhanh.mimes'     => 'File chọn phải là file hình ảnh (*.jpg, *png)',
-                'yn.min'            => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 255 ký tự',
-                'yn.max'            => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 255 ký tự',
+                'yn.min'            => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 500 ký tự',
+                'yn.max'            => 'Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 500 ký tự',
             ]
         );
         if ($request->hasFile('hinhanh')) {

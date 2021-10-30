@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label>Ý nghĩa màu sản phẩm</label>
-                            <input class="form-control" name="yn" placeholder="Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 255 ký tự" />
+                            <input class="form-control" name="yn" placeholder="Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 500 ký tự" />
                             <div class="error"> {{$errors->first('yn')}}</div>
                         </div>
                         <div class="form-group">

@@ -44,7 +44,7 @@ class KhachHangController extends Controller
             ->where('san_pham.id','=',$id)->simplePaginate(6);
         return view('khach_hang.shop.list-color-product',compact('listColorProduct','loaisp','sanpham'));
     }
-
+    // View Lien He
     public function contact()
     {
         $email  = '';
@@ -58,7 +58,7 @@ class KhachHangController extends Controller
         }
         return view('khach_hang.contact.view-contact', compact('email','name','idUser'));
     }
-
+    // Xu ly Lien He Shop
     public function handleContact(ContactRequest $request)
     {
         if(Auth::check()){

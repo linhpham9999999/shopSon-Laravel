@@ -48,7 +48,7 @@
                             <div class="error"> {{$errors->first('id')}}</div>
 
                             <label>Tên sản phẩm</label>
-                            <input class="form-control" name="ten" placeholder="Tên sản phẩm phải có độ dài từ 5 đến 50 ký tự" />
+                            <input class="form-control" name="ten" />
                             <div class="error"> {{$errors->first('ten')}}</div>
 
                             <label>Xuất xứ</label>

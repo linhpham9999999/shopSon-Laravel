@@ -13,4 +13,11 @@ class SearchProductController extends Controller
 
         return view('khach_hang.shop.search',compact('product','loaisp'));
     }
+    public function searchPrice(Request $request){
+        $keywords = $request->price_submit;
+        $product = DB::table('san_pham')->where('giagoc','like','%'.$keywords.'%')->get();
+        $loaisp = DB::table('loai_san_pham')->select('id','ten_LSP')->get();
+
+        return view('khach_hang.shop.search-price',compact('product','loaisp'));
+    }
 }

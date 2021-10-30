@@ -20,7 +20,7 @@
                     <form action="admin/nhanvien/sua/{{$nhanvien->id}}" method="POST">
                         {{csrf_field()}}
                         <label>Họ tên</label>
-                        <input class="form-control" name="ten" value="{{$nhanvien->hoten}}" placeholder="Họ tên phải có độ dài từ 5 đến 50 ký tự" />
+                        <input class="form-control" name="ten" value="{{$nhanvien->hoten}}" placeholder="Tên nhân viên phải có độ dài từ 5 đến 50 ký tự" />
                         <div class="error"> {{$errors->first('ten')}}</div>
                         <label>Địa chỉ</label>
                         <input class="form-control" name="diachi" value="{{$nhanvien->diachi}}" placeholder="Địa chỉ phải có độ dài từ 5 đến 255 ký tự" />
@@ -38,7 +38,7 @@
                         <input class="form-control" name="nsinh" value="{{$nhanvien->ngaysinh}}" placeholder="Ngày sinh phải dạng Năm-Tháng-Ngày" />
                         <div class="error"> {{$errors->first('nsinh')}}</div>
                         <label>Email</label>
-                        <input class="form-control" name="email" value="{{$nhanvien->email}}" placeholder="Email phải có độ dài từ 5 đến 40 ký tự" />
+                        <input class="form-control" name="email" value="{{$nhanvien->email}}" placeholder="Email phải có độ dài từ 5 đến 50 ký tự" />
                         <div class="error"> {{$errors->first('email')}}</div>
                         <button type="submit" class="btn btn-default">Sửa</button>
                         <button type="reset" class="btn btn-default">Làm mới</button>

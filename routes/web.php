@@ -30,10 +30,10 @@ Route::group(
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\NhaPhanPhoiController@getDanhSach');
 
-                Route::get('sua/{Ma_NPP}', 'App\Http\Controllers\NhaPhanPhoiController@getSua');
-                Route::post('sua/{Ma_NPP}', 'App\Http\Controllers\NhaPhanPhoiController@postSua')->name('actionSuaNPP');
+                Route::get('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getSua');
+                Route::post('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@postSua')->name('actionSuaNPP');
 
-                Route::get('xoa/{Ma_NPP}', 'App\Http\Controllers\NhaPhanPhoiController@getXoa');
+                Route::get('xoa/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getXoa');
 
                 Route::get('them', 'App\Http\Controllers\NhaPhanPhoiController@getThem');
                 Route::post('them', 'App\Http\Controllers\NhaPhanPhoiController@postThem')->name('actionThem');
@@ -131,6 +131,7 @@ Route::group(
                     'loai-san-pham'
                 );
                 Route::post('/search', 'App\Http\Controllers\SearchProductController@search')->name('search-product');
+                Route::post('/search-price', 'App\Http\Controllers\SearchProductController@searchPrice')->name('search-product-price');
             }
         );
 
