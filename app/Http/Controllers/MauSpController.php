@@ -12,8 +12,8 @@ class MauSpController extends Controller
 {
     public function getDanhSach()
     {
-        //$allSP = DB::table('mau_san_pham')->simplePaginate(6);
-        $data = DB::table('mau_san_pham')->select('*')->get();
+        $data = DB::table('mau_san_pham')->paginate(5);
+//        dd($data->links());
         return view('admin.mausp.danhsach', compact('data'));
     }
 

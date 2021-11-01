@@ -155,7 +155,7 @@
                 <!-- mobile menu end -->
                 <div class="offcanvas-widget-area">
                     <ul class="menu-top-menu">
-                        <li><a href="{{'about_us'}}">About Us</a></li>
+                        <li><a href="{{route('about_us')}}">About Us</a></li>
                     </ul>
                     <p class="desc-content">
                         ....
@@ -193,7 +193,7 @@
                 <!-- offcanvas widget area start -->
                 <div class="offcanvas-widget-area">
                     <ul class="menu-top-menu">
-                        <li><a href="{{'about_us'}}">About Us</a></li>
+                        <li><a href="{{route('about_us')}}">Welcome</a></li>
                     </ul>
                     <p class="desc-content">
                         Chào bạn

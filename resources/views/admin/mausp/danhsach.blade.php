@@ -7,16 +7,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Màu sản phẩm
-                        <small>danh sách</small>
+                        <small>danh sách </small>
                     </h1>
+                    <span>{!! $data->links() !!} Showing {!! $data->firstItem() !!} - {!! $data->lastItem() !!}</span>
                 </div>
                 @if(session('thongbao'))
                     <div class="alert alert-success">
                         {{session('thongbao')}}
                     </div>
-            @endif
+                @endif
             <!-- /.col-lg-12 -->
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example" >{{----}}
+                <table class="table table-striped table-bordered table-hover" >{{--id="dataTables-example"--}}
                     <thead>
                     <tr align="center">
                         <th>Mã màu sản phẩm</th>
@@ -47,5 +48,6 @@
         </div>
         <!-- /.container-fluid -->
     </div>
+
     <!-- /#page-wrapper -->
 @endsection
