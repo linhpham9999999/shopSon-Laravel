@@ -195,6 +195,8 @@ Route::group(
                 Route::get('/', 'App\Http\Controllers\KhachHangController@aboutUs')->name('about_us');
             }
         );
+        Route::post('/quickView','App\Http\Controllers\QuickViewController@quickView');
+        Route::post('/quickViewColor','App\Http\Controllers\QuickViewController@quickViewColor');
     }
 );
 

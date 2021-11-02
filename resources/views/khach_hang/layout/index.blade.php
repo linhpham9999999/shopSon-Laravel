@@ -150,6 +150,45 @@
     });
 </script>
 
+<script type="text/javascript">
+    $('.xemnhanh').click(function(){
+        var product_id = $(this).data('id_product');
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+            url:"{{url('/khach_hang/quickView')}}",
+            method:"POST",
+            dataType:"JSON",
+            data:{product_id:product_id,_token:_token},
+                success:function(data){
+                    $('#procduct_quickview_image').html(data.product_image);
+                    $('#procduct_quickview_title').html(data.product_name);
+                    $('#procduct_quickview_price').html(data.product_price);
+                    $('#procduct_quickview_slton').html(data.product_slton);
+                    $('#procduct_quickview_tt').html(data.product_trluong);
+                    $('#procduct_quickview_xx').html(data.product_xuatxu);
+                    $('#procduct_quickview_hsd').html(data.product_hsd);
+                    $('#procduct_quickview_content').html(data.product_content);
+                }
+        })
+    })
+    $('.xemnhanhmau').click(function(){
+        var color_product_id = $(this).data('id_product_color');
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+            url:"{{url('/khach_hang/quickViewColor')}}",
+            method:"POST",
+            dataType:"JSON",
+            data:{color_product_id:color_product_id,_token:_token},
+            success:function(data){
+                $('#procduct_quickview_imageson').html(data.product_imageson);
+                $('#procduct_quickview_mamau').html(data.product_mamau);
+                $('#procduct_quickview_tenmau').html(data.product_tenmau);
+                $('#procduct_quickview_ynghia').html(data.product_ynghia);
+            }
+        })
+    })
+</script>
+
 </body>
 
 </html>

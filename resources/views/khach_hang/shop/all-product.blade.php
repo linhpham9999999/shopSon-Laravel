@@ -26,9 +26,12 @@
                             {{--<a href="wishlist.html" title="Add To Wishlist">
                                 <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
                             </a>--}}
-                            <a class="quick-view" href="#exampleModalCenter" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter">
-                                <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
-                            </a>
+                            <form>
+                                {{csrf_field()}}
+                                <a class="list-icon" title="Add To Wishlist">
+                                    <button type="button" data-toggle="modal" data-target="#xemnhanh" class="quick-view xemnhanh" name="xemnhanh" data-id_product="{{$sp->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="xem chi tiết"></i></button>
+                                </a>
+                            </form>
                         </div>
                     </div>
                     <div class="product-content">
@@ -88,11 +91,6 @@
                             <span class="regular-price ">{{ $sp->giagoc - $sp->giamgia }} </span>
                             <span class="old-price"><del>{{$sp->giagoc}}</del></span>
                         </div>
-                             {{--<form action="">
-                                 {{csrf_field()}}
-                                 <input type="hidden" name="idSP" value="{{$sp1->id}}"/>
-                                 <button type="submit" class="btn product-cart">Thêm giỏ hàng</button>
-                             </form>--}}
                         <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart">CHỌN MÀU SON</a>
                     </div>
                     <div class="product-content-listview">
@@ -155,12 +153,12 @@
                         <p class="desc-content">{{$sp->gioithieu}}</p>
                         <div class="button-listview">
                             <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top"> <span>CHỌN MÀU SON</span> </a>
-                            {{--<a class="list-icon" href="compare.html" title="Compare">
-                                <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="top" title="Compare"></i>
-                            </a>
-                            <a class="list-icon" href="wishlist.html" title="Add To Wishlist">
-                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i>
-                            </a>--}}
+                            <form>
+                                {{csrf_field()}}
+                                <a class="list-icon" title="Add To Wishlist">
+                                    <button type="button" data-toggle="modal" data-target="#xemnhanh" class="quick-view xemnhanh" name="xemnhanh" data-id_product="{{$sp->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="xem chi tiết"></i></button>
+                                </a>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -183,101 +181,112 @@
 </div>
 
 <!-- Modal -->
-<div class="modal flosun-modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+{{--<div class="modal fade" id="xemnhanh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border: 2px solid red; width: 800px; height: 500px;">
+            <div class="modal-header">
+                <h5 class="modal-title procduct_quickview_title" id="">
+                    <span id="procduct_quickview_title"></span>Modal title
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <span id="procduct_quickview_image"></span>
+                    </div>
+                    <div class="col-md-7">
+                        <style type="text/css">
+                            h5.modal-title.procduct_quickview_title{
+                                text-align: center;
+                                font-size: 25px;
+                                color: brown;
+                            }
+                            p.quickview{
+                                font-size: 14px;
+                                color: brown;
+                            }
+                            span#procduct_quickview_content img{
+                                width: 100%;
+                            }
+                             @media screen and (min-width: 768px) {
+                                .modal-dialog{
+                                    width: 700px;
+                                    margin-left:420px;
+                                    margin-top: 100px;
+                                }
+                                .modal-sm{
+                                    width: 350px;
+                                }
+                            }
+                            @media screen and (min-width: 992px){
+                                .modal-lg{
+                                    width: 1200px;
+                                }
+                            }
+                        </style>
+                        <h2 class="quickview"><span id="procduct_quickview_title"></span></h2>
+                        <p>Ma ID: <span id="procduct_quickview_id"></span></p>
+                        <span>
+                            <p class="quickview">Gia goc san pham: <span id="procduct_quickview_price"></span></p>
+                            <p class="quickview">Giam gia: <span id="procduct_quickview_giamgia"></span></p>
+                            <p class="quickview">So luong ton: <span id="procduct_quickview_slton"></span></p>
+                            <p class="quickview">Trong luong: <span id="procduct_quickview_tt"></span></p>
+                            <p class="quickview">Xuat su: <span id="procduct_quickview_xx"></span></p>
+                            <p class="quickview">HSD: <span id="procduct_quickview_hsd"></span></p>
+                        </span>
+                        <p class="quickview">Mo ta san pham</p>
+                        <fieldset>
+                            <span id="procduct_quickview_content"></span>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>--}}
+<div class="modal flosun-modal fade" id="xemnhanh" tabindex="-1" role="dialog" aria-hidden="true" style="font-family: cursive">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
                 <span class="close-icon" aria-hidden="true">x</span>
             </button>
-            @foreach($sanpham as $sp1)
-                <div class="modal-body">
-                    <div class="container-fluid custom-area">
-                        <div class="row">
-                            <div class="col-md-6 col-custom">
-                                <div class="modal-product-img">
-                                    <div class="w-100" href="#">
-                                        <img class="w-100" src="admin_asset/image_son/{{$sp1->hinhanhgoc}}" alt="Product1">
-                                    </div>
+            <div class="modal-body">
+                <div class="container-fluid custom-area">
+                    <div class="row">
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product-img">
+                                <div id="procduct_quickview_image">
                                 </div>
                             </div>
-                            <div class="col-md-6 col-custom">
-                                <div class="modal-product">
-                                    <div class="product-content">
-                                        <div class="product-title">
-                                            <h4 class="title">
-                                                {{$sp1->ten_SP}}
-                                            </h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">{{ $sp1->giagoc - $sp1->giamgia }}</span>
-                                            <span class="old-price"><del>{{$sp1->giagoc}}</span>
-                                        </div>
-                                        <div class="product-rating">
-                                            @if($sp1->sosao == 0)
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            @elseif($sp1->sosao == 1)
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            @elseif($sp1->sosao == 2)
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            @elseif($sp1->sosao == 3)
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            @elseif($sp1->sosao == 4)
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            @else
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            @endif
-                                            <span>Review</span>
-                                        </div>
-                                        <p class="desc-content">{{$sp1->gioithieu}}</p>
-                                        <div class="quantity-with-btn">
-                                            <div class="add-to_btn">
-                                                <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">Add to cart</a>
-                                                <a class="btn flosun-button secondary-btn rounded-0" href="wishlist.html">Add to wishlist</a>
-                                            </div>
-                                        </div>
+                        </div>
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product">
+                                <div class="product-content">
+                                    <div class="product-title" >
+                                        <h3  id="procduct_quickview_title" style="font-size: 30px; font-weight: bold; border-bottom: 2px solid black; padding-bottom: 5px">
+                                        </h3>
+                                    </div>
+                                    <div class="price-box" style="margin-top: 40px">
+                                        <p class="quickview"><strong>Giá sản phẩm: </strong><span id="procduct_quickview_price"></span></p>
+                                        <p class="quickview"><strong>Số lượng tồn: </strong><span id="procduct_quickview_slton"></span></p>
+                                        <p class="quickview"><strong>Trọng lượng: </strong><span id="procduct_quickview_tt"></span></p>
+                                        <p class="quickview"><strong>Xuất xứ: </strong><span id="procduct_quickview_xx"></span></p>
+                                        <p class="quickview"><strong>HSD: </strong><span id="procduct_quickview_hsd"></span></p>
+                                        <p class="quickview"><strong>Ý nghĩa sản phẩm: </strong><span id="procduct_quickview_content"></span></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
 </div>

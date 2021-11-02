@@ -27,9 +27,12 @@
                                             <button type="button" class="add-wish-list" name="add-wish-list" data-id_product_wish="{{$msp->id}}"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i></button>
                                         </a>
                                     </form>
-                                    <a href="#exampleModalCenter" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter">
-                                        <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
-                                    </a>
+                                    <form>
+                                        {{csrf_field()}}
+                                        <a class="list-icon" title="Add To Wishlist">
+                                            <button type="button" data-toggle="modal" data-target="#xemnhanhmau" class="quick-view xemnhanhmau" name="xemnhanh" data-id_product_color="{{$msp->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i></button>
+                                        </a>
+                                    </form>
                                 </div>
                             </div>
                             <div class="product-content">
@@ -75,13 +78,13 @@
                                             <button type="button" class="add-wish-list" name="add-wish-list" data-id_product_wish="{{$msp->id}}"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i></button>
                                         </a>
                                     </form>
-                                    <a class="list-icon" href="#exampleModalCenter" title="Quick View">
-                                        <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="top" title="QuickView"></i>
-                                    </a>
+                                    <form>
+                                        {{csrf_field()}}
+                                        <a class="list-icon" title="Add To Wishlist">
+                                            <button type="button" data-toggle="modal" data-target="#xemnhanhmau" class="quick-view xemnhanhmau" name="xemnhanh" data-id_product_color="{{$msp->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i></button>
+                                        </a>
+                                    </form>
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -98,6 +101,42 @@
                         </ul>
                     </div>
                     <p class="desc-content text-center text-sm-right mb-0">Showing {!! $listColorProduct->firstItem() !!} - {!! $listColorProduct->lastItem() !!}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal flosun-modal fade" id="xemnhanhmau" tabindex="-1" role="dialog" aria-hidden="true" style="font-family: cursive">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
+                    <span class="close-icon" aria-hidden="true">x</span>
+                </button>
+                <div class="modal-body">
+                    <div class="container-fluid custom-area">
+                        <div class="row">
+                            <div class="col-md-6 col-custom">
+                                <div class="modal-product-img">
+                                    <div id="procduct_quickview_imageson">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-custom">
+                                <div class="modal-product">
+                                    <div class="product-content">
+                                        <div class="product-title" >
+                                            <span id="procduct_quickview_mamau"></span>
+                                            <h3  id="procduct_quickview_tenmau" style="font-size: 30px; font-weight: bold; border-bottom: 2px solid black; padding-bottom: 5px">
+                                            </h3>
+                                        </div>
+                                        <div class="price-box" style="margin-top: 40px">
+                                            <p class="quickview"><strong>Ý nghĩa màu son: </strong><span id="procduct_quickview_ynghia"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
