@@ -10,6 +10,7 @@
                 <h1 class="page-header">Nhà Phân Phối
                     <small>danh sách</small>
                 </h1>
+                <span>{!! $nha_phan_phoi->links() !!} Showing {!! $nha_phan_phoi->firstItem() !!} - {!! $nha_phan_phoi->lastItem() !!}</span>
             </div>
             @if(session('thongbao'))
                 <div class="alert alert-success">
@@ -30,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($nhaphanphoi as $npp)
+                    @foreach($nha_phan_phoi as $npp)
                         <tr class="odd gradeX" align="center">
                             <td>{{$npp->Ma_NPP}}</td>
                             <td>{{$npp->ten_NPP}}</td>

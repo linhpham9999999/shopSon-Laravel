@@ -33,7 +33,7 @@ export default class UpdateStatus
 
         request.done((response) => {
             $(`.js_status_${id}`).text('Đang chờ lấy hàng');
-            $('.js_button_confirm').text('Đã duyệt')
+            $('.js_button_confirm').text('Đã duyệt');
         })
     }
 

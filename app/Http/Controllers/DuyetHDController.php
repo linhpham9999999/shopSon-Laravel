@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DuyetHDController extends Controller
 {
@@ -10,8 +12,28 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')->get();
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')->paginate(5);
 
+        return view('admin\duyetHD\danhsach',compact('hoadon'));
+    }
+    function postDanhSach(Request $request){
+        if(Auth::check()){
+            $email_nguoiban = Auth::user()->email;
+        }
+        $idHD = $request->idHD;
+//        dd($idHD);
+        DB::table('hoa_don')->select('*')->where('id', '=', $idHD)
+            ->update(
+                [
+                    'id_TT' => 2,
+                    'email_nguoiban' => $email_nguoiban,
+//                    'ngaygiao'        => Carbon::now()->addDay(3)
+                ]
+            );
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')->paginate(5);
         return view('admin\duyetHD\danhsach',compact('hoadon'));
     }
     function getChiTiet($id){

@@ -58,6 +58,7 @@ class BuyProductsController extends Controller
                      'email_nguoimua'       => $email,
                      'dia_chi_giao_hang'    => $request->diachi,
                      'ngaydat'              => Carbon :: now (),
+                     'ngaygiao'              => Carbon :: now ()->addDay(4),
                      'tongtien'             => $request->total,
                      'ghichu'               => $request->note,
                      'sodth_giao_hang'      => $request->sodth
@@ -96,7 +97,7 @@ class BuyProductsController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
-            ->select('hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaydat',
+            ->select('hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaygiao','ngaydat',
                         'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','hoa_don.tongtien','trang_thai.trangthai')
             ->where('hoa_don.email_nguoimua','=',$email)
             ->get()->toArray();

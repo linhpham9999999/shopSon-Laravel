@@ -39,6 +39,7 @@
                                 <th class="pro-title">Ảnh</th>
                                 <th class="pro-title">Tên màu</th>
                                 <th class="pro-title">Ngày đặt</th>
+                                <th class="pro-title">Ngày giao</th>
                                 <th class="pro-price">Giá</th>
                                 <th class="pro-quantity">Số lượng</th>
                                 <th class="pro-subtotal">Trạng thái</th>
@@ -52,6 +53,7 @@
                                     <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{ $hd->hinhanh }}" alt="Product" /></a></td>
                                     <td class="pro-title">{{ $hd->mau }}</td>
                                     <td class="pro-title">{{ $hd->ngaydat }}</td>
+                                    <td class="pro-title">{{ $hd->ngaygiao }}</td>
                                     <td class="pro-quantity">{{ $hd->don_gia}}</td>
                                     <td class="pro-quantity">{{ $hd->soluong }}</td>
                                     <td class="pro-subtotal">{{ $hd->trangthai}}</td>

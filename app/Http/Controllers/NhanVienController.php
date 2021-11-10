@@ -12,7 +12,7 @@ use DB;
 class NhanVienController extends Controller
 {
     public function getDanhSach(){
-        $nhanvien = DB::table('nguoi_dung')->select('*')->where('quyen','=','1')->get();
+        $nhanvien = DB::table('nguoi_dung')->select('*')->where('quyen','=','1')->paginate(5);
         return view('admin.nhanvien.danhsach',['nhanvien'=>$nhanvien]);
     }
     public  function getThem(){

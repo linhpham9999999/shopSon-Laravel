@@ -9,6 +9,7 @@
                     <h1 class="page-header">Quản lý hóa đơn
                         <small>danh sách</small>
                     </h1>
+                    <span>{!! $hoadon->links() !!} Showing {!! $hoadon->firstItem() !!} - {!! $hoadon->lastItem() !!}</span>
                 </div>
                 @if(session('thongbao'))
                     <div class="alert alert-success">
@@ -31,17 +32,28 @@
                     <tbody>
                     @foreach($hoadon as $hd)
                         <tr class="odd gradeX" align="center">
-                            <td>{{$hd->Ma_HD}}</td>
-                            <td>{{$hd->hoten}}</td>
-                            <td>{{$hd->ngaydat}}</td>
-                            <td>{{$hd->tongtien}}</td>
-                            <td class="js_status_{{$hd->id}}">{{$hd->trangthai}}</td>
-                            <td><a href="{{route('chi_tiet_hd',['id'=>$hd->id])}}" style="text-decoration: none">Xem chi tiết</a></td>
-                            @if($hd->id_TT == 3)
+                            <form action="{{route('duyetHD1')}}" method="POST">
+                                {{csrf_field()}}
+                                <td>{{$hd->Ma_HD}}</td>
+                                <td>{{$hd->hoten}}</td>
+                                <td>{{$hd->ngaydat}}</td>
+                                <td>{{$hd->tongtien}}</td>
+                                <td class="js_status_{{$hd->id}}">{{$hd->trangthai}}</td>
+                                <td><a href="{{route('chi_tiet_hd',['id'=>$hd->id])}}" style="text-decoration: none">Xem chi tiết</a></td>
+                                <input type="hidden" name="idHD" value="{{$hd->id}}">
+
+                                @if($hd->id_TT == 3)
+                                    <td><button type="submit">Duyệt</button></td>
+                                @elseif($hd->id_TT == 2)
+                                    <td><button type="button">Đã duyệt</button></td>
+                                @endif
+
+                            </form>
+                            {{--@if($hd->id_TT == 3)
                                 <td><button type="button" class="js_button_confirm" data-status="2" data-id="{{$hd->id}}">Duyệt</button></td>
                             @else
                                 <td><button type="button">Đã duyệt</button></td>
-                            @endif
+                            @endif--}}
                         </tr>
                     @endforeach
                     </tbody>

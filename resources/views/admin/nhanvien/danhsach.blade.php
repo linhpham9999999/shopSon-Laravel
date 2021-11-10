@@ -9,6 +9,7 @@
                     <h1 class="page-header">Nhân viên
                         <small>danh sách</small>
                     </h1>
+                    <span>{!! $nhanvien->links() !!} Showing {!! $nhanvien->firstItem() !!} - {!! $nhanvien->lastItem() !!}</span>
                 </div>
                 @if(session('thongbao'))
                     <div class="alert alert-success">

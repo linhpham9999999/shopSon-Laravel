@@ -14,7 +14,7 @@ class LoaiSanPhamController extends Controller
 {
     public function getDanhSach()
     {
-        $loaisp = loai_san_pham::all();
+        $loaisp = DB::table('loai_san_pham')->paginate(5);
         return view('admin.loaisp.danhsach', ['loaisanpham' => $loaisp]);
     }
 

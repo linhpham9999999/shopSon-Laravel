@@ -10,8 +10,8 @@ use DB;
 class NhaPhanPhoiController extends Controller
 {
     public function getDanhSach(){
-        $nha_phan_phoi = nha_phan_phoi::all();
-        return view('admin.nhaphanphoi.danhsach',['nhaphanphoi'=>$nha_phan_phoi]);
+        $nha_phan_phoi = DB::table('nha_phan_phoi')->paginate(5);
+        return view('admin.nhaphanphoi.danhsach',compact('nha_phan_phoi'));
     }
     public  function getThem(){
         return view('admin.nhaphanphoi.them');

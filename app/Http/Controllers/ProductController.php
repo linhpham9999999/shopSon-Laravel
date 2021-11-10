@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Models\san_pham;
 
 use DB;
 
@@ -14,8 +11,8 @@ class ProductController extends Controller
 {
     public function getDanhSach()
     {
-        $sanpham = san_pham::all();
-        return view('admin.sanpham.danhsach', ['sanpham' => $sanpham]);
+        $sanpham = DB::table('san_pham')->paginate(5);
+        return view('admin.sanpham.danhsach', compact('sanpham'));
     }
 
     public function getThem()

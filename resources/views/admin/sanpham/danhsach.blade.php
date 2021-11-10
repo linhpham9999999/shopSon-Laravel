@@ -9,6 +9,7 @@
                     <h1 class="page-header">Sản phẩm
                         <small>danh sách</small>
                     </h1>
+                    <span>{!! $sanpham->links() !!} Showing {!! $sanpham->firstItem() !!} - {!! $sanpham->lastItem() !!}</span>
                 </div>
                 @if(session('thongbao'))
                     <div class="alert alert-success">

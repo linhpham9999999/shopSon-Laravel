@@ -9,6 +9,7 @@
                 <h1 class="page-header">Loại sản phẩm
                     <small>danh sách</small>
                 </h1>
+                <span>{!! $loaisanpham->links() !!} Showing {!! $loaisanpham->firstItem() !!} - {!! $loaisanpham->lastItem() !!}</span>
             </div>
             @if(session('thongbao'))
                 <div class="alert alert-success">

@@ -103,6 +103,7 @@ Route::group(
         Route::group(['prefix'=>'duyetHD','middleware' => 'login'],
             function (){
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach');
+                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSach')->name('duyetHD1');
                 Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTiet')->name('chi_tiet_hd');
             }
         );
@@ -122,7 +123,7 @@ Route::group(
         Route::get('trangchu', 'App\Http\Controllers\KhachHangController@index')->name('trangchuKH');
         Route::get('/logout', 'App\Http\Controllers\KH_AuthController@logoutKH')->name('logoutKH');
 
-        // Danh sách tất cả sản phẩm, loại sản phẩm, tìm kiếm sản phẩm theo Tên SP
+        // Danh sách tất cả sản phẩm, loại sản phẩm, tìm kiếm sản phẩm theo Tên SP, Gía SP
         Route::group(
             ['prefix' => 'shop'],
             function () {
@@ -200,5 +201,5 @@ Route::group(
     }
 );
 
-Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
+//Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
 ?>
