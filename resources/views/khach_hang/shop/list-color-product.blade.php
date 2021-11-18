@@ -3,6 +3,11 @@
 @section('all-product')
     <div class="col-lg-9 col-12 col-custom widget-mt">
         <!--shop toolbar start-->
+        @if(session('thongbao'))
+            <div class="alert alert-success">
+                {{session('thongbao')}}
+            </div>
+        @endif
         <div class="shop_toolbar_wrapper mb-30">
             <div class="shop_toolbar_btn">
                 <button data-role="grid_3" type="button" class="active btn-grid-3" title="Grid"><i class="fa fa-th"></i></button>
@@ -43,12 +48,17 @@
                                     <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }} </span>
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
-                                <form>{{--action="{{route('add-cart')}}" method="post"--}}
+                                <form action="{{route('add-cart')}}" method="post">
                                     {{csrf_field()}}
-                                    {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                    <button type="submit" class="btn product-cart add-to-cart" name="add-to-cart">Thêm giỏ hàng</button>
+                                </form>
+                                {{--<form>--}}{{--action="{{route('add-cart')}}" method="post"--}}{{--
+                                    {{csrf_field()}}
+                                    --}}{{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}{{--
                                     <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
                                     <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$msp->id}}">Thêm giỏ hàng</button>
-                                </form>
+                                </form> AJAX--}}
                             </div>
 
                             <div class="product-content-listview">
@@ -60,14 +70,19 @@
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
                                 <p class="desc-content">{{$msp->thongTinMau}}</p>
-                                <form>{{--action="{{route('add-cart')}}" method="post"--}}
+                                {{--<form>--}}{{--action="{{route('add-cart')}}" method="post"--}}{{--
                                     {{csrf_field()}}
-                                    {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                    --}}{{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}{{--
                                     <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
                                     <div class="button-listview">
                                         <button type="button" class="btn product-cart button-icon flosun-button dark-btn add-to-cart" data-id_product="{{$msp->id}}" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>THÊM GIỎ HÀNG</span> </button>
 
                                     </div>
+                                </form>--}}
+                                <form action="{{route('add-cart')}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
+                                    <button type="submit" class="btn product-cart button-icon flosun-button dark-btn add-to-cart" data-toggle="tooltip" data-placement="top" title="Add to Cart"><span>THÊM GIỎ HÀNG</span> </button>
                                 </form>
                                 <div class="button-listview">
                                     <form>
