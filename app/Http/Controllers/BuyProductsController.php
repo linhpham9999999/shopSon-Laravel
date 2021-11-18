@@ -83,8 +83,16 @@ class BuyProductsController extends Controller
         );
 
         // Chuyển đến xem trạng thái mua hàng
-        $status = DB::table('hoa_don')->select('id_TT')->where('id','=',$id_HD)->get();
-        return view('khach_hang.cart.status-order', compact('products','status'));
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
+            ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
+            ->select('hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaygiao','ngaydat',
+                     'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','hoa_don.tongtien','trang_thai.trangthai')
+            ->where('hoa_don.email_nguoimua','=',$email)
+            ->get()->toArray();
+        return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
     // Trạng thái đơn hàng đã đặt
     public function orderStatus(){

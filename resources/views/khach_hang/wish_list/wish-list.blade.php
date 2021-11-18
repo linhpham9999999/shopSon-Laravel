@@ -34,6 +34,11 @@
                 <div class="col-lg-12">
                     <!-- Wishlist Table Area -->
                     <div class="wishlist-table table-responsive">
+                        @if(session('thongbao'))
+                            <div class="alert alert-success">
+                                {{session('thongbao')}}
+                            </div>
+                        @endif
                         @if( !empty($wishlist) )
                         <table class="table table-bordered">
                             <thead>
@@ -54,11 +59,11 @@
                                 <td class="pro-title">{{$list->mau_wl}}</td>
                                 <td class="pro-price"><span>{{$list->gia_wl}} VND</span></td>
                                 <td class="pro-cart">
-                                    <form>{{--action="{{route('add-cart')}}" method="post"--}}
+                                    <form action="{{route('add-cart')}}" method="post">
                                         {{csrf_field()}}
-                                        {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
                                         <input type="hidden" name="productIdColor" class="cart_product_id_{{$list->id_MSP}}" value="{{$list->id_MSP}}">
-                                        <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$list->id_MSP}}">Thêm giỏ hàng</button>
+{{--                                        <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$list->id_MSP}}">Thêm giỏ hàng</button>--}}
+                                        <button type="submit" class="btn product-cart add-to-cart" name="add-to-cart">Thêm giỏ hàng</button>
                                     </form>
 
                                 </td>

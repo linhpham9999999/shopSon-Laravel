@@ -99,32 +99,32 @@
 <script src="khach_hang_asset/assets/js/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function (){
-        //Them SP vao gio hang
-        $('.add-to-cart').click(function (){
-            var id = $(this).data('id_product');
-            var cart_product_id = $('.cart_product_id_'+id).val();
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: '{{url('/khach_hang/cart/add-cart')}}',
-                method: 'POST',
-                data:{cart_product_id:cart_product_id, _token:_token},/*ten dat: bien var*/
-                success:function (data) {
-                    swal({
-                            title: "Đã thêm 1 sản phẩm vào giỏ",
-                            text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-                            showCancelButton: true,
-                            cancelButtonText: "Xem tiếp",
-                            confirmButtonClass: "btn-success",
-                            confirmButtonText: "Đi đến giỏ hàng",
-                            closeOnConfirm: false
-                        },
-                        function () {
-                            window.location.href = "{{url('/khach_hang/cart/view-cart')}}";
-                        });
-                }
-            });
-        });
+    {{--$(document).ready(function (){--}}
+    {{--    //Them SP vao gio hang--}}
+    {{--    $('.add-to-cart').click(function (){--}}
+    {{--        var id = $(this).data('id_product');--}}
+    {{--        var cart_product_id = $('.cart_product_id_'+id).val();--}}
+    {{--        var _token = $('input[name="_token"]').val();--}}
+    {{--        $.ajax({--}}
+    {{--            url: '{{url('/khach_hang/cart/add-cart')}}',--}}
+    {{--            method: 'POST',--}}
+    {{--            data:{cart_product_id:cart_product_id, _token:_token},/*ten dat: bien var*/--}}
+    {{--            success:function (data) {--}}
+    {{--                swal({--}}
+    {{--                        title: "Đã thêm 1 sản phẩm vào giỏ",--}}
+    {{--                        text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",--}}
+    {{--                        showCancelButton: true,--}}
+    {{--                        cancelButtonText: "Xem tiếp",--}}
+    {{--                        confirmButtonClass: "btn-success",--}}
+    {{--                        confirmButtonText: "Đi đến giỏ hàng",--}}
+    {{--                        closeOnConfirm: false--}}
+    {{--                    },--}}
+    {{--                    function () {--}}
+    {{--                        window.location.href = "{{url('/khach_hang/cart/view-cart')}}";--}}
+    {{--                    });--}}
+    {{--            }--}}
+    {{--        });--}}
+    {{--    });--}}
         //Them SP yeu thich
         $('.add-wish-list').click(function (){
             var id = $(this).data('id_product_wish');
@@ -133,6 +133,7 @@
             $.ajax({
                 url: '{{url('/khach_hang/wishlist/add-wishlist')}}',
                 method: 'POST',
+                middleware: 'loginKH',
                 data:{lish_product_id_wish:lish_product_id_wish, _token:_token},/*ten dat: bien var*/
                 success:function (data) {
                     swal({
