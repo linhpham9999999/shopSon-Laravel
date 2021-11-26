@@ -37,7 +37,7 @@ class CartController extends Controller
             $products[$product['quantity']] = $product;
 
         }else{
-            // decode giỏ hàng từ session, string => array, json -> mảng
+            // decode giỏ hàng, string => array, json -> mảng
             $products = json_decode($cookieCart, true);
             // kiểm tra tăng số lượng
             $products = $this->increaseQuantity($products, $product, $productIdColor);

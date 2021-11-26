@@ -148,11 +148,10 @@ Route::group(
                 Route::post('/sent', 'App\Http\Controllers\KhachHangController@handleContact')->name('handle-contact');
             }
         );
-
+        // Xem thông tin chi tiết tài khoản KH, chỉnh sửa tài khoản
         Route::group(
             ['prefix' => 'account', 'middleware' => 'loginKH'],
             function () {
-                // Xem thông tin chi tiết tài khoản KH, chỉnh sửa tài khoản
                 Route::get('/view-account','App\Http\Controllers\AccountKHController@viewAccount')->name('view-account');
                 Route::post('/change-account/{id}','App\Http\Controllers\AccountKHController@postAccount')->name('change-account');
                 Route::get('/change-password','App\Http\Controllers\ChangePasswordController@index')->name('password');

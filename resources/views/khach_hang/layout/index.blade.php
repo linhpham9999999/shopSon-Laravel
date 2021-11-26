@@ -99,7 +99,7 @@
 <script src="khach_hang_asset/assets/js/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-    {{--$(document).ready(function (){--}}
+    $(document).ready(function (){
     {{--    //Them SP vao gio hang--}}
     {{--    $('.add-to-cart').click(function (){--}}
     {{--        var id = $(this).data('id_product');--}}

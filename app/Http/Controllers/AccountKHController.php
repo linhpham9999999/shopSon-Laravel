@@ -22,7 +22,7 @@ class AccountKHController extends Controller
             'diachi'    => 'bail|required|min:5|max:255',
             'sodth'     => 'bail|required|min:10|max:10',
             'ngaysinh'  => 'bail|required|date_format:Y-m-d',
-            'email'     => 'bail|required|unique:nguoi_dung,email|min:5|max:50',
+            'email'     => 'bail|required|min:5|max:50',
         ],
         [
             'name.required'         => 'Bạn chưa nhập Tên tài khoản',
@@ -37,7 +37,6 @@ class AccountKHController extends Controller
             'ngaysinh.required'     => 'Bạn chưa nhập Ngày sinh',
             'ngaysinh.date_format'  => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
             'email.required'        => 'Bạn chưa nhập Email ',
-            'email.unique'          => 'Emai đã tồn tại',
             'email.min'             => 'Email phải có độ dài từ 5 đến 40 ký tự',
             'email.max'             => 'Email phải có độ dài từ 5 đến 40 ký tự'
         ]);
