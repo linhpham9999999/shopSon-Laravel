@@ -183,8 +183,8 @@ Route::group(
             ['prefix' => 'buy-products', 'middleware' => 'loginKH'],
             function () {
                 Route::get('/billing-details', 'App\Http\Controllers\BuyProductsController@proceedCheckout')->name('proceed-to-checkout');
-                Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
                 Route::get('/order', 'App\Http\Controllers\BuyProductsController@orderStatus')->name('order-status');
+                Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
             }
         );
 
