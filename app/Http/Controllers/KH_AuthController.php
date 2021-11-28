@@ -100,6 +100,6 @@ class KH_AuthController extends Controller
             'quyen' => $request->quyen
         ]);
 
-        return redirect()->route('loginKH');
+        return redirect()->route('loginKH')->with('alert','Đăng ký thành công');
     }
 }

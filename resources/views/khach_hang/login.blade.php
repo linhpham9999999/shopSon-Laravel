@@ -24,6 +24,11 @@
 <!-- Breadcrumb Area End Here -->
 <!-- Login Area Start Here -->
 <div class="login-register-area mt-no-text">
+    @if(session('alert'))
+        <div class="alert alert-success">
+            {{session('alert')}}
+        </div>
+    @endif
     <div class="container custom-area">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-custom">

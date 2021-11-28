@@ -81,17 +81,15 @@ class CheckoutController extends Controller
     }
 
     public function deleteCart($id){
-        //return $id;
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
         if (array_key_exists($id, $products)) {
             unset($products[$id]);
+
         }
         $json = json_encode($products);
-        Cookie::queue('cart', $json, 1440);
+        Cookie::queue('cart', $json, 60);
         return back()->with('message','Đã xóa khỏi giỏ!');
-
     }
-
 
 }
