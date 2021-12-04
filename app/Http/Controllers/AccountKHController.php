@@ -21,8 +21,7 @@ class AccountKHController extends Controller
             'name'      => 'bail|required|min:5|max:50',
             'diachi'    => 'bail|required|min:5|max:255',
             'sodth'     => 'bail|required|min:10|max:10',
-            'ngaysinh'  => 'bail|required|date_format:Y-m-d',
-            'email'     => 'bail|required|min:5|max:50',
+            'ngaysinh'  => 'bail|required|date_format:Y-m-d'
         ],
         [
             'name.required'         => 'Bạn chưa nhập Tên tài khoản',
@@ -36,9 +35,6 @@ class AccountKHController extends Controller
             'sodth.max'             => 'Số điện thoại phải có độ dài 10 ký tự',
             'ngaysinh.required'     => 'Bạn chưa nhập Ngày sinh',
             'ngaysinh.date_format'  => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
-            'email.required'        => 'Bạn chưa nhập Email ',
-            'email.min'             => 'Email phải có độ dài từ 5 đến 40 ký tự',
-            'email.max'             => 'Email phải có độ dài từ 5 đến 40 ký tự'
         ]);
 
         DB::table('nguoi_dung')->select('*')->where('id','=',$id)
@@ -47,7 +43,6 @@ class AccountKHController extends Controller
             'gioitinh'=>$request->gtinh,
             'ngaysinh'=>$request->ngaysinh,
             'diachi'=>$request->diachi,
-            'email'=>$request->email,
             'sodth'=>$request->sodth ]);
 
         return redirect('khach_hang/account/view-account')->with('alert','Sửa thành công');

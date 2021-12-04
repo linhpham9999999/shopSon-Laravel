@@ -72,8 +72,8 @@
                                         </div>
                                         <div class="input-item mb-4">
                                             <label>Email</label>
-                                            <input value="{{$users->email}}" class="border-0 rounded-0 w-100 input-area email gray-bg" type="email" name="email"  placeholder="Email">
-                                            <div class="error">{{$errors->first('email')}}</div>
+                                            <p class="border-0 rounded-0 w-100 input-area email gray-bg" type="email"  >{{$users->email}}</p>
+
                                         </div>
                                         <div class="input-item mb-4">
                                             <label>Địa chỉ giao hàng</label>
