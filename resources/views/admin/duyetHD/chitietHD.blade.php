@@ -53,7 +53,7 @@
                                             <div class="col-md-12 col-custom">
                                                 <div class="checkout-form-list">
                                                     <label>Địa chỉ </label>
-                                                    <p class="formdetails">{{$ct->diachi}}</p>
+                                                    <p class="formdetails">{{$ct->dia_chi_giao_hang}}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-custom">
