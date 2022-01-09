@@ -36,28 +36,27 @@
                             <thead>
                             <tr>
                                 <th class="pro-thumbnail">Mã hóa đơn</th>
-                                <th class="pro-title">Ảnh</th>
                                 <th class="pro-title">Tên màu</th>
-                                <th class="pro-title">Ngày đặt</th>
-                                <th class="pro-title">Ngày giao</th>
-                                <th class="pro-price">Giá</th>
-                                <th class="pro-quantity">Số lượng</th>
-                                <th class="pro-subtotal">Trạng thái</th>
+                                <th class="pro-thumbnail">Ảnh</th>
                                 <th class="pro-subtotal">Tổng tiền</th>
+                                <th class="pro-subtotal">Xem chi tiết</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($hoadon as $hd)
                                 <tr>
                                     <td class="pro-title">{{$hd->Ma_HD }}</td>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{ $hd->hinhanh }}" alt="Product" /></a></td>
-                                    <td class="pro-title">{{ $hd->mau }}</td>
-                                    <td class="pro-title">{{ $hd->ngaydat }}</td>
-                                    <td class="pro-title">{{ $hd->ngaygiao }}</td>
-                                    <td class="pro-quantity">{{ $hd->don_gia}}</td>
-                                    <td class="pro-quantity">{{ $hd->soluong }}</td>
-                                    <td class="pro-subtotal">{{ $hd->trangthai}}</td>
+                                    <td class="pro-thumbnail">{{ $hd->mau }}</td>
+                                    <td class="pro-title"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{ $hd->hinhanh }}" alt="Product" /></a></td>
                                     <td class="pro-subtotal">{{ $hd->tongtien}}</td>
+                                    <td class="pro-subtotal">
+                                        <form >{{--action="khach_hang/billDetailView" method="post"--}}
+                                            {{csrf_field()}}
+                                            <a class="list-icon" title="Add To Wishlist">
+                                                <button type="button" data-toggle="modal" data-target="#chitietHD" class="quick-view chitietHD"  name="chitietHD" data-id_hoadon="{{ $hd->id }}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="chi tiết"></i></button>
+                                            </a>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -70,6 +69,46 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="modal flosun-modal fade" id="chitietHD" tabindex="-1" role="dialog" aria-hidden="true" style="font-family: cursive">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
+                    <span class="close-icon" aria-hidden="true">x</span>
+                </button>
+                <div class="modal-body">
+                    <div class="container-fluid custom-area">
+
+                        <div class="row">
+                            <div class="col-md-6 col-custom">
+                                <div class="modal-product-img">
+                                    <div id="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-custom">
+                                <div class="modal-product">
+                                    <div class="product-content">
+                                        <div class="product-title" style="font-size: 30px; font-weight: bold; border-bottom: 2px solid black; padding-bottom: 5px" >
+                                            <h3 id="maHD" ></h3>
+                                        </div>
+                                        <div class="price-box" style="margin-top: 40px">
+                                            <p class="quickview"><strong>Địa chỉ giao hàng: </strong><span id="diachiGH"></span></p>
+                                            <p class="quickview"><strong>Ngày đặt: </strong><span id="ngaydat"></span></p>
+                                            <p class="quickview"><strong>Ngày giao: </strong><span id="ngaygiao"></span></p>
+                                            <p class="quickview"><strong>Số điện thoại: </strong><span id="sodth"></span></p>
+                                            <p class="quickview"><strong>Tổng tiền: </strong><span id="tongtien"></span></p>
+                                            <p class="quickview"><strong>Trạng thái đơn hàng: </strong><span id="trangthai"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

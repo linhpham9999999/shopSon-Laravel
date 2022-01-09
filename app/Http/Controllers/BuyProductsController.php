@@ -40,7 +40,9 @@ class BuyProductsController extends Controller
             }
         }
 //        dd($total);
-        return view('khach_hang.cart.proceed-to-checkout',compact('users','products','ship','total'));
+        $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
+        return view('khach_hang.cart.proceed-to-checkout',
+                    compact('users','products','ship','total','payments'));
     }
 
     public function orderSuccess(Request $request){
@@ -55,6 +57,7 @@ class BuyProductsController extends Controller
         DB::table('hoa_don')
             ->insert(['Ma_HD'               => 'HD'.rand(10,1000),
                      'id_TT'                => $request->trangthai,
+                     'id_HTTT'              => $request->payment,
                      'email_nguoimua'       => $email,
                      'dia_chi_giao_hang'    => $request->diachi,
                      'ngaydat'              => Carbon :: now (),
@@ -75,7 +78,13 @@ class BuyProductsController extends Controller
                         'don_gia'       => $product['unit_price'] - $product['promotion_price'],
                         'thanh_tien'    => ($product['unit_price'] - $product['promotion_price'])*$product['quantity']
                          ]);
+//            DB::table('mau_san_pham')
+//                ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
+//                ->select('san_pham.soluongton')->where('mau_san_pham.id','=',$product['id'])
+//                ->update(['san_pham.soluongton' =>  - 1]);
         }
+
+
         // Xóa sản phẩm trong giỏ sau khi mua
         session_unset();
         Cookie::queue(
@@ -88,7 +97,7 @@ class BuyProductsController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
-            ->select('hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaygiao','ngaydat',
+            ->select('hoa_don.id','hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaygiao','ngaydat',
                      'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','hoa_don.tongtien','trang_thai.trangthai')
             ->where('hoa_don.email_nguoimua','=',$email)
             ->get()->toArray();
@@ -105,7 +114,7 @@ class BuyProductsController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
-            ->select('hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaygiao','ngaydat',
+            ->select('hoa_don.id','hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaygiao','ngaydat',
                         'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','hoa_don.tongtien','trang_thai.trangthai')
             ->where('hoa_don.email_nguoimua','=',$email)
             ->get()->toArray();

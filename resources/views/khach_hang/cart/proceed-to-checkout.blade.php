@@ -67,7 +67,18 @@
                                         <p class="formdetails">{{$user->diachi}}</p>
                                     </div>
                                 </div>
+                                <div class="col-md-12 col-custom">
+                                    <div class="checkout-form-list">
+                                        <label>Hình thức thanh toán <span class="required">*</span></label>
+                                        <p class="formdetails"><select name="payment">
+                                            @foreach($payments as $payment)
+                                                <option  value="{{$payment->id}}">{{$payment->ten_HTTT}}</option>
+                                            @endforeach
+                                        </select></p>
+                                    </div>
+                                </div>
                             </div>
+
                             @endforeach
                             <div class="different-address">
                                 <div class="ship-different-title">

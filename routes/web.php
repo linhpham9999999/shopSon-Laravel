@@ -197,6 +197,7 @@ Route::group(
         );
         Route::post('/quickView','App\Http\Controllers\QuickViewController@quickView');
         Route::post('/quickViewColor','App\Http\Controllers\QuickViewController@quickViewColor');
+        Route::post('/billDetailView','App\Http\Controllers\QuickViewController@billDetailView');
     }
 );
 

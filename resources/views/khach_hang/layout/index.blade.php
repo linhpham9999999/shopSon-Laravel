@@ -188,6 +188,27 @@
             }
         })
     })
+    $('.chitietHD').click(function(){
+        var id_hoadon = $(this).data('id_hoadon');
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+            url:"{{url('/khach_hang/billDetailView')}}",
+            method:"POST",
+            dataType:"JSON",
+            data:{id_hoadon:id_hoadon,_token:_token},
+            success:function(data){
+                $('#image').html(data.imageHD);
+                $('#maHD').html(data.maHD);
+                $('#diachiGH').html(data.diachiGH);
+                $('#ngaydat').html(data.ngaydat);
+                $('#ngaygiao').html(data.ngaygiao);
+                $('#sodth').html(data.sodth);
+                $('#tongtien').html(data.tongtien);
+                $('#ghichu').html(data.ghichu);
+                $('#trangthai').html(data.trangthai);
+            }
+        })
+    })
 </script>
 
 </body>
