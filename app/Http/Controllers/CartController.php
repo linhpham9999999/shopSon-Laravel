@@ -34,7 +34,7 @@ class CartController extends Controller
             // Gán số lượng mặc định là 1
             $product['quantity'] = 1;
             // Gán sản phẩm vào giỏ hàng
-            $products[$product['quantity']] = $product;
+            $products[$productIdColor] = $product;
 
         }else{
             // decode giỏ hàng, string => array, json -> mảng
