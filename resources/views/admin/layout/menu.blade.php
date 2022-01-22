@@ -1,80 +1,74 @@
-<div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse" style=" background-color:#FFB6C1 ">
-        <ul class="nav" id="side-menu">
-            {{--<li class="sidebar-search">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                </div>
-                <!-- /input-group -->
-            </li>--}}
-            <div style="height:50px; width: 50px; "></div>
-                <li>
-                    <a href="admin/trangchu"><i class="fa tchu"> </i>&#10065; Trang chủ</a>
-                </li>
-                <li>
-                    <a href="admin/nhaphanphoi/danhsach"><i class="fa "></i>&#10148; Nhà phân phối<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/nhaphanphoi/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/nhaphanphoi/them">Thêm</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="admin/sanpham/danhsach"><i class="fa "></i>&#10148; Sản phẩm<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/sanpham/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/sanpham/them">Thêm</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="admin/loaisp/danhsach"><i class="fa "></i>&#10148; Loại sản phẩm<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/loaisp/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/loaisp/them">Thêm</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="admin/mausp/danhsach"><i class="fa "></i>&#10148; Màu sản phẩm<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/mausp/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/mausp/them">Thêm</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="admin/duyetHD/danhsach"><i class="fa "></i>&#10148; Hóa đơn</a>
-                </li>
-                <li>
-                    <a href="admin/nhanvien/danhsach"><i class="fa fa-users fa-fw"></i> Nhân viên<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/nhanvien/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/nhanvien/them">Thêm</a>
-                        </li>
-                    </ul>
-                </li>
+<div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+
+    <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text">
+                HLYNK Lipsticks
+            </a>
+        </div>
+
+        <ul class="nav">
+            <li class="active">
+                <a href="{{route('homeAd')}}">
+                    <i class="pe-7s-home"></i>
+                    <p>Trang chủ</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('info')}}">
+                    <i class="pe-7s-user"></i>
+                    <p>Thông tin cá nhân</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('dsNPP')}}">
+                    <i class="pe-7s-box2"></i>
+                    <p>Nhà phân phối</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('dsLSP')}}">
+                    <i class="pe-7s-note2"></i>
+                    <p>Loại sản phẩm</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('dsSP')}}">
+                    <i class="pe-7s-note2"></i>
+                    <p>Sản phẩm</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('dsMSP')}}">
+                    <i class="pe-7s-note2"></i>
+                    <p>Màu sản phẩm</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('dsNV')}}">
+                    <i class="pe-7s-users"></i>
+                    <p>Nhân viên</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('quanlyHD')}}">
+                    <i class="pe-7s-shopbag"></i>
+                    <p>Duyệt hóa đơn</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="pe-7s-mail"></i>
+                    <p>Tin nhắn</p>
+                </a>
+            </li>
         </ul>
     </div>
-    <!-- /.sidebar-collapse -->
 </div>

@@ -28,14 +28,14 @@ Route::group(
         Route::group(
             ['prefix' => 'nhaphanphoi', 'middleware' => 'login'],
             function () {
-                Route::get('danhsach', 'App\Http\Controllers\NhaPhanPhoiController@getDanhSach');
+                Route::get('danhsach', 'App\Http\Controllers\NhaPhanPhoiController@getDanhSach')->name('dsNPP');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getSua');
                 Route::post('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@postSua')->name('actionSuaNPP');
 
                 Route::get('xoa/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getXoa');
 
-                Route::get('them', 'App\Http\Controllers\NhaPhanPhoiController@getThem');
+                Route::get('them', 'App\Http\Controllers\NhaPhanPhoiController@getThem')->name('getThemNPP');
                 Route::post('them', 'App\Http\Controllers\NhaPhanPhoiController@postThem')->name('actionThem');
             }
         );
@@ -43,14 +43,14 @@ Route::group(
         Route::group(
             ['prefix' => 'loaisp', 'middleware' => 'login'],
             function () {
-                Route::get('danhsach', 'App\Http\Controllers\LoaiSanPhamController@getDanhSach');
+                Route::get('danhsach', 'App\Http\Controllers\LoaiSanPhamController@getDanhSach')->name('dsLSP');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\LoaiSanPhamController@getSua');
                 Route::post('sua/{id}', 'App\Http\Controllers\LoaiSanPhamController@postSua')->name('actionSuaLSP');
 
                 Route::get('xoa/{id}', 'App\Http\Controllers\LoaiSanPhamController@getXoa');
 
-                Route::get('them', 'App\Http\Controllers\LoaiSanPhamController@getThem');
+                Route::get('them', 'App\Http\Controllers\LoaiSanPhamController@getThem')->name('getThemLSP');
                 Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThem')->name('actionThem2');
             }
         );
@@ -58,14 +58,14 @@ Route::group(
         Route::group(
             ['prefix' => 'mausp', 'middleware' => 'login'],
             function () {
-                Route::get('danhsach', 'App\Http\Controllers\MauSpController@getDanhSach');
+                Route::get('danhsach', 'App\Http\Controllers\MauSpController@getDanhSach')->name('dsMSP');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\MauSpController@getSua');
                 Route::post('sua/{id}', 'App\Http\Controllers\MauSpController@postSua');
 
                 Route::get('xoa/{id}', 'App\Http\Controllers\MauSpController@getXoa');
 
-                Route::get('them', 'App\Http\Controllers\MauSpController@getThem');
+                Route::get('them', 'App\Http\Controllers\MauSpController@getThem')->name('getThemMSP');
                 Route::post('them', 'App\Http\Controllers\MauSpController@postThem')->name('actionThem3');
             }
         );
@@ -73,14 +73,14 @@ Route::group(
         Route::group(
             ['prefix' => 'sanpham', 'middleware' => 'login'],
             function () {
-                Route::get('danhsach', 'App\Http\Controllers\ProductController@getDanhSach');
+                Route::get('danhsach', 'App\Http\Controllers\ProductController@getDanhSach')->name('dsSP');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\ProductController@getSua');
                 Route::post('sua/{id}', 'App\Http\Controllers\ProductController@postSua');
 
                 Route::get('xoa/{id}', 'App\Http\Controllers\ProductController@getXoa');
 
-                Route::get('them', 'App\Http\Controllers\ProductController@getThem');
+                Route::get('them', 'App\Http\Controllers\ProductController@getThem')->name('getThemSP');
                 Route::post('them', 'App\Http\Controllers\ProductController@postThem')->name('actionThem4');
             }
         );
@@ -88,25 +88,30 @@ Route::group(
         Route::group(
             ['prefix' => 'nhanvien', 'middleware' => 'login'],
             function () {
-                Route::get('danhsach', 'App\Http\Controllers\NhanVienController@getDanhSach');
+                Route::get('danhsach', 'App\Http\Controllers\NhanVienController@getDanhSach')->name('dsNV');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\NhanVienController@getSua');
                 Route::post('sua/{id}', 'App\Http\Controllers\NhanVienController@postSua');
 
                 Route::get('xoa/{id}', 'App\Http\Controllers\NhanVienController@getXoa');
 
-                Route::get('them', 'App\Http\Controllers\NhanVienController@getThem');
+                Route::get('them', 'App\Http\Controllers\NhanVienController@getThem')->name('getThemNV');
                 Route::post('them', 'App\Http\Controllers\NhanVienController@postThem')->name('actionThem6');
             }
         );
         // Duyệt đơn hàng
         Route::group(['prefix'=>'duyetHD','middleware' => 'login'],
             function (){
-                Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach');
+                Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach')->name('quanlyHD');
                 Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSach')->name('duyetHD1');
                 Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTiet')->name('chi_tiet_hd');
             }
         );
+        // Thông tin cá nhân
+        Route::get('/information','App\Http\Controllers\InfoController@getInfo')->name('info')
+            ->middleware('login');
+        Route::post('/update-information/{id}','App\Http\Controllers\InfoController@postInfo')->name('update-info')
+            ->middleware('login');
     }
 );
 

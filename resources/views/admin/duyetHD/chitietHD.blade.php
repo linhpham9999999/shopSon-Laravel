@@ -1,5 +1,7 @@
 @extends('admin.layout.index')
-
+@section('menu')
+    @include('admin.layout.menu_g')
+@endsection
 @section('cssKH')
     <style>
         .formdetails{

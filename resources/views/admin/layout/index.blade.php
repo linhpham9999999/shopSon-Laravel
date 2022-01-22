@@ -1,34 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>HLYNK Lipsticks</title>
     <base href="{{asset('')}}">
-    @yield('cssKH')
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="khach_hang_asset/assets/images/favicon.ico">
-    <!-- Bootstrap Core CSS -->
-    <link href="admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="admin_asset/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS     -->
+    <link href="admin_asset_new/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="admin_asset/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Animation library for notifications   -->
+    <link href="admin_asset_new/css/animate.min.css" rel="stylesheet"/>
 
-    <!-- Custom Fonts -->
-    <link href="admin_asset/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="admin_asset_new/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
-    <!-- DataTables CSS -->
-    <link href="admin_asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
 
-    <!-- DataTables Responsive CSS -->
-    <link href="admin_asset/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="admin_asset_new/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="admin_asset_new/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
     <style>
         .error{
@@ -37,50 +38,64 @@
             font-family: Florence, cursive;
         }
     </style>
-
 </head>
+<body>
 
-<body style="background-color: #FFC0CB;" >
+<div class="wrapper">
 
-    <div id="wrapper">
+    @yield('menu')
+
+    <div class="main-panel">
 
         @include('admin.layout.header')
 
-        @yield('content')
+        <div class="content">
+            @yield('content')
+        </div>
+
+
+        @include('admin.layout.footer')
 
     </div>
-    <!-- /#wrapper -->
+</div>
 
-    <!-- jQuery -->
-    <script src="admin_asset/js/jsAdmin.js"></script>
 
-    <script src="admin_asset/bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="admin_asset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="admin_asset/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="admin_asset/dist/js/sb-admin-2.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="admin_asset/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
-    <script src="admin_asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-    <script src="{{asset('js/app.js')}}"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-        $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
-        });
-    </script>
-
-    @yield('script')
 </body>
+
+<!--   Core JS Files   -->
+<script src="admin_asset_new/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="admin_asset_new/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script src="admin_asset_new/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="admin_asset_new/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="admin_asset_new/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="admin_asset_new/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+<script src="admin_asset_new/js/demo.js"></script>
+
+{{--<script type="text/javascript">--}}
+{{--    $(document).ready(function(){--}}
+
+{{--        demo.initChartist();--}}
+
+{{--        $.notify({--}}
+{{--            icon: 'pe-7s-monitor',--}}
+{{--            message: "Chào mừng bạn đến với hệ thống quản lý son môi <b>HLYNK Lipsticks</b>"--}}
+
+{{--        },{--}}
+{{--            type: 'info',--}}
+{{--            timer: 4000--}}
+{{--        });--}}
+
+{{--    });--}}
+{{--</script>--}}
 
 </html>

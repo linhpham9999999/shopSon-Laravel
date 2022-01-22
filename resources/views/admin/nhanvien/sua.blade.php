@@ -1,5 +1,7 @@
 @extends('admin.layout.index')
-
+@section('menu')
+    @include('admin.layout.menu_f')
+@endsection
 @section('content')
     <!-- Page Content -->
     <div id="page-wrapper">
