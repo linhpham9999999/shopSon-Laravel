@@ -1,74 +1,98 @@
-<div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
-    <div class="sidebar-wrapper">
-        <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
-                HLYNK Lipsticks
+<div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
+    <div class="nk-sidebar-element nk-sidebar-head">
+        <div class="nk-menu-trigger">
+            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+            <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+        </div>
+        <div class="nk-sidebar-brand">
+            <a href="html/index.html" class="logo-link nk-sidebar-logo">
+                <img class="logo-light logo-img" src="admin_asset_new/images/logo-dark.png" srcset="./images/logo2x.png 2x" alt="logo">
+                <img class="logo-dark logo-img" src="admin_asset_new/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
             </a>
         </div>
+    </div><!-- .nk-sidebar-element -->
+    <div class="nk-sidebar-element nk-sidebar-body">
+        <div class="nk-sidebar-content">
+            <div class="nk-sidebar-menu" data-simplebar>
+                <ul class="nk-menu">
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Dashboards</h6>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="{{route('homeAd')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-home-fill"></em></span>
+                            <span class="nk-menu-text">Trang chủ</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="{{route('dsNPP')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-package-fill"></em></span>
+                            <span class="nk-menu-text">Quản lý nhà phân phối</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{route('dsLSP')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-view-panel"></em></span>
+                            <span class="nk-menu-text">Quản lý loại sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="html/index-invest.html" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-view-row"></em></span>
+                            <span class="nk-menu-text">Quản lý sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="html/index-invest.html" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-view-group-wd"></em></span>
+                            <span class="nk-menu-text">Quản lý màu sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="html/index-invest.html" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
+                            <span class="nk-menu-text">Quản lý đơn hàng</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="html/index-invest.html" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
+                            <span class="nk-menu-text">Quản lý nhân viên</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="html/index-invest.html" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
+                            <span class="nk-menu-text">Thống kê doanh thu</span>
+                            {{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
+                        </a>
+                    </li><!-- .nk-menu-item -->
 
-        <ul class="nav">
-            <li class="active">
-                <a href="{{route('homeAd')}}">
-                    <i class="pe-7s-home"></i>
-                    <p>Trang chủ</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('info')}}">
-                    <i class="pe-7s-user"></i>
-                    <p>Thông tin cá nhân</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('dsNPP')}}">
-                    <i class="pe-7s-box2"></i>
-                    <p>Nhà phân phối</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('dsLSP')}}">
-                    <i class="pe-7s-note2"></i>
-                    <p>Loại sản phẩm</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('dsSP')}}">
-                    <i class="pe-7s-note2"></i>
-                    <p>Sản phẩm</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('dsMSP')}}">
-                    <i class="pe-7s-note2"></i>
-                    <p>Màu sản phẩm</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('dsNV')}}">
-                    <i class="pe-7s-users"></i>
-                    <p>Nhân viên</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('quanlyHD')}}">
-                    <i class="pe-7s-shopbag"></i>
-                    <p>Duyệt hóa đơn</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="pe-7s-mail"></i>
-                    <p>Tin nhắn</p>
-                </a>
-            </li>
-        </ul>
-    </div>
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
+                            <span class="nk-menu-text">Thống kê sản phẩm</span>
+                        </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="html/kyc-list-regular.html" class="nk-menu-link"><span class="nk-menu-text">Sản phẩm bán chạy nhất</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="html/kyc-details-regular.html" class="nk-menu-link"><span class="nk-menu-text">Sản phẩm bán ít nhất</span></a>
+                            </li>
+                        </ul><!-- .nk-menu-sub -->
+                    </li><!-- .nk-menu-item -->
+
+                    <li class="nk-menu-item">
+                        <a href="html/index-invest.html" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-emails"></em></span>
+                            <span class="nk-menu-text">Tin nhắn</span>
+                            {{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
+                        </a>
+                    </li><!-- .nk-menu-item -->
+
+                </ul><!-- .nk-menu -->
+            </div><!-- .nk-sidebar-menu -->
+        </div><!-- .nk-sidebar-content -->
+    </div><!-- .nk-sidebar-element -->
 </div>

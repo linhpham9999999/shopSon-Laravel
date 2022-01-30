@@ -1,31 +1,42 @@
-<footer class="footer">
+<div class="nk-footer">
     <div class="container-fluid">
-        <nav class="pull-left">
-            <ul>
-                <li>
-                    <a href="#">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Company
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Blog
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <p class="copyright pull-right">
-            &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-        </p>
+        <div class="nk-footer-wrap">
+            <div class="nk-footer-copyright"> &copy; 2021 DashLite. Template by <a href="https://softnio.com" target="_blank">Softnio</a>
+            </div>
+            <div class="nk-footer-links">
+                <ul class="nav nav-sm">
+                    <li class="nav-item dropup">
+                        <a herf="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-toggle="dropdown" data-offset="0,10"><span>English</span></a>
+                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                            <ul class="language-list">
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <span class="language-name">English</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <span class="language-name">Español</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <span class="language-name">Français</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <span class="language-name">Türkçe</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-toggle="modal" data-target="#region" class="nav-link"><em class="icon ni ni-globe"></em><span class="ml-1">Select Region</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-</footer>
+</div>

@@ -30,12 +30,12 @@ Route::group(
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\NhaPhanPhoiController@getDanhSach')->name('dsNPP');
 
-                Route::get('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getSua');
-                Route::post('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@postSua')->name('actionSuaNPP');
+                Route::get('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getSua')->name('getSuaNPP');
+                Route::post('post-sua', 'App\Http\Controllers\NhaPhanPhoiController@postSua')->name('actionSuaNPP');
 
-                Route::get('xoa/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getXoa');
+                Route::post('xoa/{id}', 'App\Http\Controllers\NhaPhanPhoiController@postXoa')->name('deleteNPP');
 
-                Route::get('them', 'App\Http\Controllers\NhaPhanPhoiController@getThem')->name('getThemNPP');
+//                Route::get('them', 'App\Http\Controllers\NhaPhanPhoiController@getThem')->name('getThemNPP');
                 Route::post('them', 'App\Http\Controllers\NhaPhanPhoiController@postThem')->name('actionThem');
             }
         );
@@ -46,11 +46,11 @@ Route::group(
                 Route::get('danhsach', 'App\Http\Controllers\LoaiSanPhamController@getDanhSach')->name('dsLSP');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\LoaiSanPhamController@getSua');
-                Route::post('sua/{id}', 'App\Http\Controllers\LoaiSanPhamController@postSua')->name('actionSuaLSP');
+                Route::post('post-sua', 'App\Http\Controllers\LoaiSanPhamController@postSua')->name('actionSuaLSP');
 
-                Route::get('xoa/{id}', 'App\Http\Controllers\LoaiSanPhamController@getXoa');
+                Route::post('xoa/{id}', 'App\Http\Controllers\LoaiSanPhamController@postXoa');
 
-                Route::get('them', 'App\Http\Controllers\LoaiSanPhamController@getThem')->name('getThemLSP');
+//                Route::get('them', 'App\Http\Controllers\LoaiSanPhamController@getThem')->name('getThemLSP');
                 Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThem')->name('actionThem2');
             }
         );
@@ -205,6 +205,6 @@ Route::group(
         Route::post('/billDetailView','App\Http\Controllers\QuickViewController@billDetailView');
     }
 );
-
+Route::get('/admin/test', [\App\Http\Controllers\TestController::class, 'index'])
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
 ?>
