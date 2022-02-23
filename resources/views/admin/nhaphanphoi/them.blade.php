@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-lg btn-primary">Lưu thông tin</button>
+                        <button type="button" class="btn btn-lg btn-primary js-btn-save">Lưu thông tin</button>
 {{--                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAlert">Lưu thông tin</button>--}}
                     </div>
                 </form>

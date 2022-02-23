@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
                             @foreach($loaisp as $lsp)
-                                <tr class="nk-tb-item" id="npp_{{$lsp->id}}">
+                                <tr class="nk-tb-item" > {{--id="npp_{{$lsp->id}}"--}}
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$lsp->Ma_LSP}}</span>
                                     </td>

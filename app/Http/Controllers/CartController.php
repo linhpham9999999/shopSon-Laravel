@@ -17,9 +17,9 @@ class CartController extends Controller
      */
 
     public function store(Request  $request){
-        $productIdColor = $request->productIdColor;
-//        dd($productIdColor);
-//        $productIdColor = $request->get('cart_product_id');
+//        $productIdColor = $request->productIdColor; // SESSION BTHuong
+
+        $productIdColor = $request->get('cart_product_id'); //AJAX
         // Lấy sản phẩm từ DB dựa vào id
         $product = $this->getProduct($productIdColor);
         // Kiểm tra sản phẩm có hay ko
@@ -47,7 +47,7 @@ class CartController extends Controller
         // Gán lại giỏ hàng
         Cookie::queue('cart',$json,3000000);
 
-        return back()->with('thongbao', 'Đã thêm x1 sản phẩm vào giỏ');
+//        return back()->with('thongbao', 'Đã thêm x1 sản phẩm vào giỏ');
     }
 
     /**

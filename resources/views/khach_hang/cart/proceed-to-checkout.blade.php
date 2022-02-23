@@ -77,6 +77,16 @@
                                         </select></p>
                                     </div>
                                 </div>
+                                <div class="col-md-12 col-custom">
+                                    <div class="checkout-form-list">
+                                        <label>Hình thức giao hàng <span class="required">*</span></label>
+                                        <p class="formdetails"><select name="delivery">
+                                                @foreach($delivery as $del)
+                                                    <option  value="{{$del->id}}">{{$del->ten_HTGH}}</option>
+                                                @endforeach
+                                            </select></p>
+                                    </div>
+                                </div>
                             </div>
 
                             @endforeach

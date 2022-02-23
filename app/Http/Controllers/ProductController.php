@@ -12,7 +12,9 @@ class ProductController extends Controller
     public function getDanhSach()
     {
         $sanpham = DB::table('san_pham')->paginate(5);
-        return view('admin.sanpham.danhsach', compact('sanpham'));
+        $loaisanpham = DB::table('loai_san_pham')->select('id', 'ten_LSP')->get();
+        $nhapp = DB::table('nha_phan_phoi')->select('id', 'ten_NPP')->get();
+        return view('admin.sanpham.danhsach', compact('sanpham', 'loaisanpham','nhapp'));
     }
 
     public function getThem()
@@ -27,24 +29,23 @@ class ProductController extends Controller
         $this->validate(
             $request,
             [
-                'id'        => 'bail|required|unique:san_pham,Ma_SP|min:3|max:8',
-                'ten'       => 'bail|required|unique:san_pham,ten_SP',
+                'idSP'        => 'bail|required|unique:san_pham,Ma_SP|min:3|max:8',
+                'tenSP'       => 'bail|required|unique:san_pham,ten_SP',
                 'xuatxu'    => 'bail|required|min:3|max:50',
                 'trluong'   => 'bail|required|numeric|min:1',
                 'giagoc'    => 'bail|required|numeric|min:5',
                 'giamgia'   => 'bail|required|numeric|min:5',
-                'slton'     => 'bail|required|integer',
                 'hsd'       => 'bail|required|integer',
                 'gthieu'    => 'bail|required|min:5|max:500',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
-                'id.required'           => 'Bạn chưa nhập Mã sản phẩm',
-                'id.unique'             => 'Mã sản phẩm đã tồn tại',
-                'id.min'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'id.max'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'ten.required'          => 'Bạn chưa nhập Tên sản phẩm',
-                'ten.unique'            => 'Tên sản phẩm đã tồn tại',
+                'idSP.required'           => 'Bạn chưa nhập Mã sản phẩm',
+                'idSP.unique'             => 'Mã sản phẩm đã tồn tại',
+                'idSP.min'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'idSP.max'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'tenSP.required'          => 'Bạn chưa nhập Tên sản phẩm',
+                'tenSP.unique'            => 'Tên sản phẩm đã tồn tại',
                 'xuatxu.required'       => 'Bạn chưa nhập Xuất xứ sản phẩm',
                 'xuatxu.min'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
                 'xuatxu.max'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
@@ -57,8 +58,6 @@ class ProductController extends Controller
                 'giamgia.required'      => 'Bạn chưa nhập Giá sản phẩm',
                 'giamgia.numeric'       => 'Giá sản phẩm phải là 1 số',
                 'giamgia.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
-                'slton.required'        => 'Bạn chưa nhập Số lượng tồn của sản phẩm',
-                'slton.integer'         => 'Số lượng tồn của sản phẩm phải là 1 số nguyên',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
                 'gthieu.min'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
@@ -68,23 +67,22 @@ class ProductController extends Controller
                 'hinh_anh.mimes'        => 'File chọn phải là file hình ảnh (*.jpg, *png)'
             ]
         );
+
         if ($request->hasFile('hinh_anh')) {
             $tenfile = $request->hinh_anh;
             $name = $tenfile->getClientOriginalName();
             $tenfile->move('admin_asset/image_son', $name);
         }
-
         DB::table('san_pham')->insert(
             [
-                'Ma_SP' => $request->id,
+                'Ma_SP' => $request->idSP,
                 'id_LSP' => $request->idLSP,
                 'id_NPP' => $request->idNPP,
-                'ten_SP' => $request->ten,
+                'ten_SP' => $request->tenSP,
                 'xuatxu' => $request->xuatxu,
                 'trongluong' => $request->trluong,
                 'giagoc' => $request->giagoc,
                 'giamgia' => $request->giamgia,
-                'soluongton' => $request->slton,
                 'hansudung_thang' => $request->hsd,
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
@@ -101,6 +99,7 @@ class ProductController extends Controller
         $loaisp = DB::table('loai_san_pham')->select('*')->get();
         $nhapp = DB::table('nha_phan_phoi')->select('id', 'ten_NPP')->get();
         return view('admin.sanpham.sua', compact('sanpham', 'loaisp', 'nhapp'));
+//        return response()->json($sanpham, $loaisp, $nhapp);
     }
 
     public function postSua(Request $request, $id)
@@ -108,22 +107,22 @@ class ProductController extends Controller
         $this->validate(
             $request,
             [
-                'id'        => 'bail|required|min:3|max:8',
-                'ten'       => 'bail|required',
+                'idSP'        => 'bail|required|min:3|max:8',
+                'tenSP'       => 'bail|required',
                 'xuatxu'    => 'bail|required|min:3|max:50',
                 'trluong'   => 'bail|required|numeric|min:1',
                 'giagoc'    => 'bail|required|numeric|min:5',
                 'giamgia'   => 'bail|required|numeric',
-                'slton'     => 'bail|required|integer',
+//                'slton'     => 'bail|required|integer',
                 'hsd'       => 'bail|required|integer',
                 'gthieu'    => 'bail|required|min:5|max:500',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
-                'id.required'           => 'Bạn chưa nhập Mã sản phẩm',
-                'id.min'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'id.max'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
-                'ten.required'          => 'Bạn chưa nhập Tên sản phẩm',
+                'idSP.required'           => 'Bạn chưa nhập Mã sản phẩm',
+                'idSP.min'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'idSP.max'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
+                'tenSP.required'          => 'Bạn chưa nhập Tên sản phẩm',
                 'xuatxu.required'       => 'Bạn chưa nhập Xuất xứ sản phẩm',
                 'xuatxu.min'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
                 'xuatxu.max'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
@@ -135,8 +134,8 @@ class ProductController extends Controller
                 'giagoc.min'            => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
                 'giamgia.required'      => 'Bạn chưa nhập Giá sản phẩm',
                 'giamgia.numeric'       => 'Giá sản phẩm phải là 1 số',
-                'slton.required'        => 'Bạn chưa nhập Số lượng tồn của sản phẩm',
-                'slton.integer'         => 'Số lượng tồn của sản phẩm phải là 1 số nguyên',
+//                'slton.required'        => 'Bạn chưa nhập Số lượng tồn của sản phẩm',
+//                'slton.integer'         => 'Số lượng tồn của sản phẩm phải là 1 số nguyên',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
                 'gthieu.min'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
@@ -154,15 +153,14 @@ class ProductController extends Controller
 
         DB::table('san_pham')->select('*')->where('id', '=', $id)->update(
             [
-                'Ma_SP'         => $request->id,
+                'Ma_SP'         => $request->idSP,
                 'id_LSP'        => $request->idLSP,
                 'id_NPP'        => $request->idNPP,
-                'ten_SP'        => $request->ten,
+                'ten_SP'        => $request->tenSP,
                 'xuatxu'        => $request->xuatxu,
                 'trongluong'    => $request->trluong,
                 'giagoc'        => $request->giagoc,
                 'giamgia'       => $request->giamgia,
-                'soluongton'    => $request->slton,
                 'hansudung_thang'=> $request->hsd,
                 'gioithieu'     => $request->gthieu,
                 'hinhanhgoc'    => $name,
@@ -174,11 +172,11 @@ class ProductController extends Controller
         return redirect('admin/sanpham/sua/' . $id)->with('thongbao', 'Sửa thành công');
     }
 
-    public function getXoa($id)
+    public function postXoa($id)
     {
-        $sp = DB::table('san_pham')->select('*')->where('id', '=', $id);
-        $sp->delete();
-
-        return redirect('admin/sanpham/danhsach')->with('thongbao', 'Xóa thành công');
+        DB::table('san_pham')->where('id','=',$id)->delete();
+        return response()->json([
+                                    'message' => 'Data deleted successfully!'
+                                ]);
     }
 }

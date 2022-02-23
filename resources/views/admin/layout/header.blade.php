@@ -61,10 +61,19 @@
                                     <em class="icon ni ni-user-alt"></em>
                                 </div>
                                 <div class="user-info d-none d-md-block">
-                                    <div class="user-status">Administrator</div>
-                                    <div class="user-name dropdown-indicator">
+                                    <div class="user-status">
                                         @if(\Illuminate\Support\Facades\Auth::check())
                                             {{\Illuminate\Support\Facades\Auth::user()->hoten}}
+                                        @endif
+                                    </div>
+{{--                                    <div class="user-name dropdown-indicator">--}}
+{{--                                        @if(\Illuminate\Support\Facades\Auth::check())--}}
+{{--                                            {{\Illuminate\Support\Facades\Auth::user()->hoten}}--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+                                    <div>
+                                        @if(\Illuminate\Support\Facades\Auth::check())
+                                            <a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
                                         @endif
                                     </div>
                                 </div>

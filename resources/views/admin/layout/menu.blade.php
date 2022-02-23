@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="html/index-invest.html" class="nk-menu-link">
+                        <a href="{{route('dsSP')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-view-row"></em></span>
                             <span class="nk-menu-text">Quản lý sản phẩm</span>
                         </a>
@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="html/index-invest.html" class="nk-menu-link">
+                        <a href="{{route('quanlyHD')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                             <span class="nk-menu-text">Quản lý đơn hàng</span>
                         </a>
@@ -61,7 +61,7 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
-                        <a href="html/index-invest.html" class="nk-menu-link">
+                        <a href="{{route('get-sales')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
                             <span class="nk-menu-text">Thống kê doanh thu</span>
                             {{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
@@ -83,13 +83,13 @@
                         </ul><!-- .nk-menu-sub -->
                     </li><!-- .nk-menu-item -->
 
-                    <li class="nk-menu-item">
-                        <a href="html/index-invest.html" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-emails"></em></span>
-                            <span class="nk-menu-text">Tin nhắn</span>
-                            {{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
-                        </a>
-                    </li><!-- .nk-menu-item -->
+{{--                    <li class="nk-menu-item">--}}
+{{--                        <a href="html/index-invest.html" class="nk-menu-link">--}}
+{{--                            <span class="nk-menu-icon"><em class="icon ni ni-emails"></em></span>--}}
+{{--                            <span class="nk-menu-text">Tin nhắn</span>--}}
+{{--                            --}}{{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
+{{--                        </a>--}}
+{{--                    </li><!-- .nk-menu-item -->--}}
 
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->

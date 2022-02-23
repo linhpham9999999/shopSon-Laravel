@@ -32,12 +32,6 @@
                                             <button type="button" class="add-wish-list" name="add-wish-list" data-id_product_wish="{{$msp->id}}"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i></button>
                                         </a>
                                     </form>
-                                    <form>
-                                        {{csrf_field()}}
-                                        <a class="list-icon" title="Add To Wishlist">
-                                            <button type="button" data-toggle="modal" data-target="#xemnhanhmau" class="quick-view xemnhanhmau" name="xemnhanh" data-id_product_color="{{$msp->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i></button>
-                                        </a>
-                                    </form>
                                 </div>
                             </div>
                             <div class="product-content">
@@ -48,17 +42,21 @@
                                     <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }} </span>
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
-                                <form action="{{route('add-cart')}}" method="post">
+                                {{--<form action="{{route('add-cart')}}" method="post">
                                     {{csrf_field()}}
                                     <input type="hidden" name="productIdColor" value="{{$msp->id}}">
                                     <button type="submit" class="btn product-cart add-to-cart" name="add-to-cart">Thêm giỏ hàng</button>
-                                </form>
-                                {{--<form>--}}{{--action="{{route('add-cart')}}" method="post"--}}{{--
+                                </form>--}}
+
+                                {{--DOI QUA CAI BALDE XEM CHI TIET DE THEM CART <form>--}}{{--action="{{route('add-cart')}}" method="post"--}}{{--
                                     {{csrf_field()}}
-                                    --}}{{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}{{--
+                                    <input type="hidden" name="productId" value="{{$msp->id_SP}}">
                                     <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
                                     <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$msp->id}}">Thêm giỏ hàng</button>
-                                </form> AJAX--}}
+                                </form>--}}
+
+                                <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT SẢN PHẨM</span> </a>
+
                             </div>
 
                             <div class="product-content-listview">
@@ -70,35 +68,8 @@
                                     <span class="old-price"><del>{{$msp->giagoc}}</del></span>
                                 </div>
                                 <p class="desc-content">{{$msp->thongTinMau}}</p>
-                                {{--<form>--}}{{--action="{{route('add-cart')}}" method="post"--}}{{--
-                                    {{csrf_field()}}
-                                    --}}{{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}{{--
-                                    <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
-                                    <div class="button-listview">
-                                        <button type="button" class="btn product-cart button-icon flosun-button dark-btn add-to-cart" data-id_product="{{$msp->id}}" data-toggle="tooltip" data-placement="top" title="Add to Cart"> <span>THÊM GIỎ HÀNG</span> </button>
-
-                                    </div>
-                                </form>--}}
-                                <form action="{{route('add-cart')}}" method="post">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
-                                    <button type="submit" class="btn product-cart button-icon flosun-button dark-btn add-to-cart" data-toggle="tooltip" data-placement="top" title="Add to Cart"><span>THÊM GIỎ HÀNG</span> </button>
-                                </form>
                                 <div class="button-listview">
-                                    <form>
-                                        {{csrf_field()}}
-                                        {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
-                                        <input type="hidden" name="productIdColor" class="lish_product_id_wish_{{$msp->id}}" value="{{$msp->id}}">
-                                        <a class="list-icon" title="Add To Wishlist">
-                                            <button type="button" class="add-wish-list" name="add-wish-list" data-id_product_wish="{{$msp->id}}"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i></button>
-                                        </a>
-                                    </form>
-                                    <form>
-                                        {{csrf_field()}}
-                                        <a class="list-icon" title="Add To Wishlist">
-                                            <button type="button" data-toggle="modal" data-target="#xemnhanhmau" class="quick-view xemnhanhmau" name="xemnhanh" data-id_product_color="{{$msp->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i></button>
-                                        </a>
-                                    </form>
+                                    <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT SẢN PHẨM</span> </a>
                                 </div>
                             </div>
                         </div>

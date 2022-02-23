@@ -15,7 +15,7 @@
                         <div class="toggle-expand-content" data-content="pageMenu">
                             <ul class="nk-block-tools g-3">
                                 <li class="nk-block-tools-opt">
-                                    <a href="#" class="btn btn-primary btn-add" data-target="#modal-add" data-toggle="modal"><em class="icon ni ni-plus"></em><span>Thêm</span></a>
+                                    <button class="btn btn-primary js-btn-add"><em class="icon ni ni-plus"></em><span>Thêm</span></button>
                                 </li>
                             </ul>
                         </div>
@@ -62,7 +62,7 @@
                                         </button>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <a data-id="{{$npp->id}}" class="btn btn-sm js-edit-btn"><img src="admin_asset/edit.png" width="45px"/></a>
+                                        <a data-id="{{$npp->id}}" class="btn btn-sm js-edit-btn-npp"><img src="admin_asset/edit.png" width="45px"/></a>
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                                 @endforeach

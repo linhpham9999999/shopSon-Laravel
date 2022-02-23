@@ -275,7 +275,6 @@
                                     </div>
                                     <div class="price-box" style="margin-top: 40px">
                                         <p class="quickview"><strong>Giá sản phẩm: </strong><span id="procduct_quickview_price"></span></p>
-                                        <p class="quickview"><strong>Số lượng tồn: </strong><span id="procduct_quickview_slton"></span></p>
                                         <p class="quickview"><strong>Trọng lượng: </strong><span id="procduct_quickview_tt"></span></p>
                                         <p class="quickview"><strong>Xuất xứ: </strong><span id="procduct_quickview_xx"></span></p>
                                         <p class="quickview"><strong>HSD: </strong><span id="procduct_quickview_hsd"></span></p>

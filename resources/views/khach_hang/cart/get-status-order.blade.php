@@ -11,10 +11,10 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="breadcrumb-content position-relative section-content">
-                        <h3 class="title-3">Trạng thái đơn hàng</h3>
+                        <h3 class="title-3">Lịch sử mua hàng</h3>
                         <ul>
                             <li><a href="{{route('trangchuKH')}}">Trang chủ</a></li>
-                            <li>Trạng thái đơn hàng</li>
+                            <li>Lịch sử mua hàng</li>
                         </ul>
                     </div>
                 </div>
@@ -36,9 +36,9 @@
                             <thead>
                             <tr>
                                 <th class="pro-thumbnail">Mã hóa đơn</th>
-                                <th class="pro-title">Tên màu</th>
-                                <th class="pro-thumbnail">Ảnh</th>
-                                <th class="pro-subtotal">Tổng tiền</th>
+                                <th class="pro-title">Ngày đặt</th>
+                                <th class="pro-thumbnail">Ngày giao</th>
+                                <th class="pro-subtotal">Trạng thái</th>
                                 <th class="pro-subtotal">Xem chi tiết</th>
                             </tr>
                             </thead>
@@ -46,16 +46,12 @@
                             @foreach($hoadon as $hd)
                                 <tr>
                                     <td class="pro-title">{{$hd->Ma_HD }}</td>
-                                    <td class="pro-thumbnail">{{ $hd->mau }}</td>
-                                    <td class="pro-title"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{ $hd->hinhanh }}" alt="Product" /></a></td>
-                                    <td class="pro-subtotal">{{ $hd->tongtien}}</td>
+                                    <td class="pro-thumbnail">{{ $hd->ngaydat }}</td>
+{{--                                    <td class="pro-title"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{ $hd->hinhanh }}" alt="Product" /></a></td>--}}
+                                    <td class="pro-subtotal">{{ $hd->ngaygiao}}</td>
+                                    <td class="pro-subtotal">{{ $hd->trangthai}}</td>
                                     <td class="pro-subtotal">
-                                        <form >{{--action="khach_hang/billDetailView" method="post"--}}
-                                            {{csrf_field()}}
-                                            <a class="list-icon" title="Add To Wishlist">
-                                                <button type="button" data-toggle="modal" data-target="#chitietHD" class="quick-view chitietHD"  name="chitietHD" data-id_hoadon="{{ $hd->id }}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="chi tiết"></i></button>
-                                            </a>
-                                        </form>
+                                        <a href="{{route('bill-detail',['id'=>$hd->id])}}" >Chi tiết</a>
                                     </td>
                                 </tr>
                             @endforeach

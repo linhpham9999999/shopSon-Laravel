@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-lg btn-primary js-btn-update">Lưu thông tin</button>
+                        <button type="button" class="btn btn-lg btn-primary js-btn-update-npp">Lưu thông tin</button>
                     </div>
                 </form>
             </div>

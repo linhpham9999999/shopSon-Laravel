@@ -35,6 +35,9 @@
         .navi svg {
             width: 25px;
         }
+        .text-sm {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -199,9 +202,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 {{--thêm--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+
+{{--lay cai nay ko con logout duoc--}}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 
+<script src="js/app.js"></script>
 <script type="text/javascript" charset="utf-8">
     $.ajaxSetup({
         headers: {
@@ -212,30 +218,30 @@
 <script type="text/javascript">
     $(document).ready(function () {
         //Thêm nhà cung cấp
-        $('#form-add-npp').submit(function (e) {
-            e.preventDefault();
-            var url = $(this).attr('data-url');
-            $.ajax({
-                type: 'post',
-                url: url,
-                data: {
-                    idNPP: $('#idNPP-add').val(),
-                    tenNPP: $('#tenNPP-add').val(),
-                    dcNPP: $('#dcNPP-add').val(),
-                    sodtNPP: $('#sodtNPP-add').val(),
-                    emailNPP: $('#emailNPP-add').val(),
-                },
-                success: function (response) {
-                    toastr.success(response.message)
-                    $('#modal-add').modal('hide');
-                    console.log(response.data)
-                    location.reload();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    //xử lý lỗi tại đây
-                }
-            })
-        })
+        // $('#form-add-npp').submit(function (e) {
+        //     e.preventDefault();
+        //     var url = $(this).attr('data-url');
+        //     $.ajax({
+        //         type: 'post',
+        //         url: url,
+        //         data: {
+        //             idNPP: $('#idNPP-add').val(),
+        //             tenNPP: $('#tenNPP-add').val(),
+        //             dcNPP: $('#dcNPP-add').val(),
+        //             sodtNPP: $('#sodtNPP-add').val(),
+        //             emailNPP: $('#emailNPP-add').val(),
+        //         },
+        //         success: function (response) {
+        //             toastr.success(response.message)
+        //             $('#modal-add').modal('hide');
+        //             console.log(response.data)
+        //             location.reload();
+        //         },
+        //         error: function (jqXHR, textStatus, errorThrown) {
+        //             //xử lý lỗi tại đây
+        //         }
+        //     })
+        // })
         //Xóa nhà cung cấp
         $('.js-delete-ncc').on('click', function(e){
             if(!confirm("Bạn có chắc xóa không?")) {
@@ -267,12 +273,45 @@
             return false;
         })
     });
+    //Thêm sản phẩm
+    // $('#form-add-product').submit(function (e) {
+    //     e.preventDefault();
+    //     var url = $(this).attr('data-url');
+    //     $.ajax({
+    //         type: 'post',
+    //         url: url,
+    //         data: {
+    //             idLSP: $('#idLSP-add').val(),
+    //             idNPP: $('#idNPP-add').val(),
+    //             idSP: $('#idSP-add').val(),
+    //             tenSP: $('#tenSP-add').val(),
+    //             xuatxu: $('#xuatxu-add').val(),
+    //             trluong: $('#trluong-add').val(),
+    //             giagoc: $('#giagoc-add').val(),
+    //             giamgia: $('#giamgia-add').val(),
+    //             hsh: $('#hsh-add').val(),
+    //             gthieu: $('#gthieu-add').val(),
+    //             sosao: $('#sosao-add').val(),
+    //             noibat: $('#noibat-add').val(),
+    //             hinh_anh: $('#hinh_anh-add').val(),
+    //         },
+    //         success: function (response) {
+    //             toastr.success(response.message)
+    //             $('#modal-add-product').modal('hide');
+    //             console.log(response.data)
+    //             location.reload();
+    //         },
+    //         error: function (jqXHR, textStatus, errorThrown) {
+    //             console.log(errorThrown)
+    //         }
+    //     })
+    // })
 </script>
 
 <script>
     //Sửa nhà cung cấp
     $(document).ready(function (){
-        $('.js-edit-btn').on('click', function() {
+        $('.js-edit-btn-npp').on('click', function() {
             var id = $(this).data('id');
             $.get('admin/nhaphanphoi/sua/' + id, function(npp){
                 $("#id").val(npp.id);
@@ -284,7 +323,7 @@
                 $('#modal-edit-npp').modal('show');
             })
         })
-        $('.js-btn-update').on('click',function (e) {
+        $('.js-btn-update-npp').on('click',function (e) {
             e.preventDefault();
             $.ajax({
                 url: "admin/nhaphanphoi/post-sua",
@@ -407,8 +446,87 @@
             })
         })
     })
+    // Sửa sản phẩm
+    // $(document).ready(function (){
+    //     $('.js-edit-btn-sp').on('click', function() {
+    //         var id = $(this).data('id');
+    //         $.get('admin/sanpham/sua/' + id, function(sp, lsp, npp){
+    //             $("#id").val(sp.id);
+    //             $("#idLSP-edit").val(lsp.id);
+    //             $("#idNPP-edit").val(npp.id);
+    //             $("#idSP-edit").val(sp.Ma_SP);
+    //             $("#tenSP-edit").val(sp.ten_SP);
+    //             $("#xuatxu-edit").val(sp.xuatxu);
+    //             $("#trluong-edit").val(sp.trongluong);
+    //             $("#giagoc-edit").val(sp.giagoc);
+    //             $("#giamgia-edit").val(sp.giamgia);
+    //             $("#slton-edit").val(sp.soluongton);
+    //             $("#hsh-edit").val(sp.hansudung_thang);
+    //             $("#gthieu-edit").val(sp.gioithieu);
+    //             $("#sosao-edit").val(sp.sosao);
+    //             $("#noibat-edit").val(sp.noibat);
+    //             $("#hinh_anh-edit").val(sp.hinhanhgoc);
+    //             $('#modal-edit-lsp').modal('show');
+    //         })
+    //     })
+    //     $('.js-btn-update-sp').on('click',function (e) {
+    //         e.preventDefault();
+    //         $.ajax({
+    //             url: "admin/sanpham/post-sua",
+    //             method: 'post',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             data: JSON.stringify({
+    //                 _token: $("meta[name='csrf-token']").attr("content"),
+    //                 id: $('#id').val(),
+    //                 idLSP: $('#idLSP-edit').val(),
+    //                 tenLSP: $('#tenLSP-edit').val(),
+    //             }),
+    //             success: function (response) {
+    //                 toastr.success(response.message)
+    //                 $('#modal-edit-lsp').modal('hide');
+    //                 console.log(response)
+    //                 location.reload();
+    //             },
+    //             error: function (jqXHR, textStatus, errorThrown) {
+    //                 //xử lý lỗi tại đây
+    //             }
+    //         })
+    //     })
+    // })
 </script>
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Xóa Sản phẩm
+        $('.js-delete-sanpham').on('click', function(e){
+            if(!confirm("Bạn có chắc xóa không?")) {
+            return false;
+        }
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        var token = $("meta[name='csrf-token']").attr("content");
+        $.ajax(
+            {
+                url: "admin/sanpham/xoa/" + id,
+                method: 'POST',
+                data: {
+                _token: token,
+                id: id
+            },
+            success: function (response){
+            $("#success").html(response.message)
+            Swal.fire('Remind!',
+            'Xóa thành công Sản phẩm!',
+            'success').then(function() {
+            location.reload();
+             })
+            }
+        });
+            return false;
+        })
+    });
+</script>
 </body>
 
 </html>

@@ -482,7 +482,7 @@ Axios.prototype.request = function request(config) {
     var chain = [dispatchRequest, undefined];
 
     Array.prototype.unshift.apply(chain, requestInterceptorChain);
-    chain.concat(responseInterceptorChain);
+    chain = chain.concat(responseInterceptorChain);
 
     promise = Promise.resolve(config);
     while (chain.length) {
@@ -1025,6 +1025,21 @@ function getDefaultAdapter() {
   return adapter;
 }
 
+function stringifySafely(rawValue, parser, encoder) {
+  if (utils.isString(rawValue)) {
+    try {
+      (parser || JSON.parse)(rawValue);
+      return utils.trim(rawValue);
+    } catch (e) {
+      if (e.name !== 'SyntaxError') {
+        throw e;
+      }
+    }
+  }
+
+  return (encoder || JSON.stringify)(rawValue);
+}
+
 var defaults = {
 
   transitional: {
@@ -1057,7 +1072,7 @@ var defaults = {
     }
     if (utils.isObject(data) || (headers && headers['Content-Type'] === 'application/json')) {
       setContentTypeIfUnset(headers, 'application/json');
-      return JSON.stringify(data);
+      return stringifySafely(data);
     }
     return data;
   }],
@@ -2049,6 +2064,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./custom/index */ "./resources/js/custom/index.js");
 
+__webpack_require__(/*! ./page/admin/danhsach/index */ "./resources/js/page/admin/danhsach/index.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -2072,7 +2089,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 // import Echo from 'laravel-echo';
+//
 // window.Pusher = require('pusher-js');
+//
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
@@ -2103,6 +2122,7 @@ var UpdateStatus = /*#__PURE__*/function () {
   function UpdateStatus() {
     _classCallCheck(this, UpdateStatus);
 
+    // ham xay dung
     this.setupAjax();
     this.bindEvent();
   }
@@ -2121,6 +2141,7 @@ var UpdateStatus = /*#__PURE__*/function () {
     value: function bindEvent() {
       var _this = this;
 
+      //function(){} ==== () => {}
       $('.js_button_confirm').on('click', function (event) {
         _this.updateStatus(event);
       });
@@ -2163,6 +2184,200 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UpdateStatus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateStatus */ "./resources/js/custom/UpdateStatus.js");
 
 var updateStatus = new _UpdateStatus__WEBPACK_IMPORTED_MODULE_0__["default"]();
+
+/***/ }),
+
+/***/ "./resources/js/page/admin/danhsach/AddProduct.js":
+/*!********************************************************!*\
+  !*** ./resources/js/page/admin/danhsach/AddProduct.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AddProduct)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var SELECTOR_ADD_MODAL = '#modal-add';
+
+var AddProduct = /*#__PURE__*/function () {
+  function AddProduct() {
+    _classCallCheck(this, AddProduct);
+
+    this.$modal = $(SELECTOR_ADD_MODAL);
+  }
+
+  _createClass(AddProduct, [{
+    key: "_bindEvent",
+    value: function _bindEvent() {
+      var _this = this;
+
+      $('.js-btn-add').on('click', function () {
+        _this.handleAddButton();
+      });
+      this.$modal.find('.js-btn-save').on('click', function () {
+        _this.handleSaveButton();
+      });
+    }
+  }, {
+    key: "handleAddButton",
+    value: function handleAddButton() {
+      this.$modal.modal('show');
+    }
+  }, {
+    key: "handleSaveButton",
+    value: function handleSaveButton() {
+      var idNPP = $('input[name="idNPP"]').val();
+      var tenNPP = $('input[name="tenNPP"]').val();
+      var dcNPP = $('input[name="dcNPP"]').val();
+      var sodtNPP = $('input[name="sodtNPP"]').val();
+      var emailNPP = $('input[name="emailNPP"]').val();
+
+      var _token = $("meta[name='csrf-token']").attr("content");
+
+      axios.post('admin/nhaphanphoi/them', {
+        _token: _token,
+        idNPP: idNPP,
+        tenNPP: tenNPP,
+        dcNPP: dcNPP,
+        sodtNPP: sodtNPP,
+        emailNPP: emailNPP
+      }).then(function (response) {
+        toastr.success(response.data.message);
+        $('#modal-add').modal('hide');
+        location.reload();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      this._bindEvent();
+    }
+  }]);
+
+  return AddProduct;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/page/admin/danhsach/AddSanPham.js":
+/*!********************************************************!*\
+  !*** ./resources/js/page/admin/danhsach/AddSanPham.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AddSanPham)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var SELECTOR_ADD_MODAL = '#modal-add-sp';
+
+var AddSanPham = /*#__PURE__*/function () {
+  function AddSanPham() {
+    _classCallCheck(this, AddSanPham);
+
+    this.$modal = $(SELECTOR_ADD_MODAL);
+  }
+
+  _createClass(AddSanPham, [{
+    key: "_bindEvent",
+    value: function _bindEvent() {
+      var _this = this;
+
+      $('.js-btn-add-product').on('click', function () {
+        _this.handleAddButton();
+      });
+      this.$modal.find('.js-btn-save-sp').on('click', function () {
+        _this.handleSaveButton();
+      });
+    }
+  }, {
+    key: "handleAddButton",
+    value: function handleAddButton() {
+      this.$modal.modal('show');
+    }
+  }, {
+    key: "handleSaveButton",
+    value: function handleSaveButton() {
+      var idLSP = $('input[name="idLSP"]').val();
+      var idNPP = $('input[name="idNPP"]').val();
+      var idSP = $('input[name="idSP"]').val();
+      var tenSP = $('input[name="tenSP"]').val();
+      var xuatxu = $('input[name="xuatxu"]').val();
+      var trluong = $('input[name="trluong"]').val();
+      var giagoc = $('input[name="giagoc"]').val();
+      var giamgia = $('input[name="giamgia"]').val();
+      var slton = $('input[name="slton"]').val();
+      var hsd = $('input[name="hsd"]').val();
+      var gthieu = $('input[name="gthieu"]').val();
+      var sosao = $('input[name="sosao"]').val();
+      var noibat = $('input[name="noibat"]').val();
+      var hinh_anh = $('input[name="hinh_anh"]').val();
+
+      var _token = $("meta[name='csrf-token']").attr("content");
+
+      axios.post('admin/sanpham/them', {
+        _token: _token,
+        idNPP: idNPP,
+        tenNPP: tenNPP,
+        dcNPP: dcNPP,
+        sodtNPP: sodtNPP,
+        emailNPP: emailNPP
+      }).then(function (response) {
+        toastr.success(response.data.message);
+        $('#modal-add-sp').modal('hide');
+        location.reload();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      this._bindEvent();
+    }
+  }]);
+
+  return AddSanPham;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/page/admin/danhsach/index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/page/admin/danhsach/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddProduct__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddProduct */ "./resources/js/page/admin/danhsach/AddProduct.js");
+/* harmony import */ var _AddSanPham__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddSanPham */ "./resources/js/page/admin/danhsach/AddSanPham.js");
+
+
+var addProduct = new _AddProduct__WEBPACK_IMPORTED_MODULE_0__["default"]();
+addProduct.render();
+var addSanPham = new _AddSanPham__WEBPACK_IMPORTED_MODULE_1__["default"]();
+addSanPham.render();
 
 /***/ }),
 
@@ -19592,7 +19807,7 @@ process.umask = function() { return 0; };
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.2","_inBundle":false,"_integrity":"sha512-87otirqUw3e8CzHTMO+/9kh/FSgXt/eVDvipijwDtEuwbkySWZ9SBm6VEubmJ/kLKEoLQV/POhxXFb66bfekfg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.2.tgz","_shasum":"21297d5084b2aeeb422f5d38e7be4fbb82239017","_spec":"axios@^0.21","_where":"D:\\\\xampp\\\\htdocs\\\\shopSon","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.2"}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/","#USER"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"D:\\\\xampp\\\\htdocs\\\\shopSon","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

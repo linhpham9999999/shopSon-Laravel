@@ -26,35 +26,22 @@
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('allSanPham')}}">Sản phẩm </a></li>
                                     <li><a href="{{route('wishList')}}">Sản phẩm yêu thích</a></li>
-                                    <li><a href="{{route('view-cart')}}">Giỏ hàng</a></li>
-                                    <li><a href="{{route('order-status')}}">Trạng thái đơn hàng</a></li>
                                 </ul>
                             </li>
-                            <!--<li> PHÁT TRIỂN NIÊN LUẬN NGÀNH
-                                <a href="blog-details-fullwidth.html">
-                                    <span class="menu-text"> Blog</span>
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-submenu dropdown-hover">
-                                    <li><a href="blog.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                    <li><a href="blog-list-fullwidth.html">Blog List Fullwidth</a></li>
-                                    <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                    <li><a href="blog-grid-fullwidth.html">Blog Grid Fullwidth</a></li>
-                                    <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>
-                                    <li><a href="blog-details-fullwidth.html">Blog Details Fullwidth</a></li>
-                                </ul>
-                            </li>-->
                             <li>
-                                <a href="{{route('about_us')}}">
+                                <a href="{{route('view-cart')}}">
                                     <span class="menu-text"> Giới thiệu</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('contact')}}">
-                                    <span class="menu-text">Liên hệ</span>
+                                <a href="{{route('view-cart')}}">
+                                    <span class="menu-text">Giỏ hàng</span>
+                                    <i class="fa fa-angle-down"></i>
                                 </a>
+                                <ul class="dropdown-submenu dropdown-hover">
+                                    <li><a href="{{route('view-cart')}}">Giỏ hàng</a></li>
+                                    <li><a href="{{route('order-status')}}">Lịch sử mua hàng</a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="{{route('view-account')}}">

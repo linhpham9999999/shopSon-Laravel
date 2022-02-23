@@ -100,31 +100,31 @@
 
 <script type="text/javascript">
     $(document).ready(function (){
-    {{--    //Them SP vao gio hang--}}
-    {{--    $('.add-to-cart').click(function (){--}}
-    {{--        var id = $(this).data('id_product');--}}
-    {{--        var cart_product_id = $('.cart_product_id_'+id).val();--}}
-    {{--        var _token = $('input[name="_token"]').val();--}}
-    {{--        $.ajax({--}}
-    {{--            url: '{{url('/khach_hang/cart/add-cart')}}',--}}
-    {{--            method: 'POST',--}}
-    {{--            data:{cart_product_id:cart_product_id, _token:_token},/*ten dat: bien var*/--}}
-    {{--            success:function (data) {--}}
-    {{--                swal({--}}
-    {{--                        title: "Đã thêm 1 sản phẩm vào giỏ",--}}
-    {{--                        text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",--}}
-    {{--                        showCancelButton: true,--}}
-    {{--                        cancelButtonText: "Xem tiếp",--}}
-    {{--                        confirmButtonClass: "btn-success",--}}
-    {{--                        confirmButtonText: "Đi đến giỏ hàng",--}}
-    {{--                        closeOnConfirm: false--}}
-    {{--                    },--}}
-    {{--                    function () {--}}
-    {{--                        window.location.href = "{{url('/khach_hang/cart/view-cart')}}";--}}
-    {{--                    });--}}
-    {{--            }--}}
-    {{--        });--}}
-    {{--    });--}}
+        //Them SP vao gio hang
+        $('.add-to-cart').click(function (){
+            var id = $(this).data('id_product');
+            var cart_product_id = $('.cart_product_id_'+id).val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: '{{url('/khach_hang/cart/add-cart')}}',
+                method: 'POST',
+                data:{cart_product_id:cart_product_id, _token:_token},/*ten dat: bien var*/
+                success:function (data) {
+                    swal({
+                            title: "Đã thêm 1 sản phẩm vào giỏ",
+                            text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                            showCancelButton: true,
+                            cancelButtonText: "Xem tiếp",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "Đi đến giỏ hàng",
+                            closeOnConfirm: false
+                        },
+                        function () {
+                            window.location.href = "{{url('/khach_hang/cart/view-cart')}}";
+                        });
+                }
+            });
+        });
         //Them SP yeu thich
         $('.add-wish-list').click(function (){
             var id = $(this).data('id_product_wish');
@@ -164,7 +164,6 @@
                     $('#procduct_quickview_image').html(data.product_image);
                     $('#procduct_quickview_title').html(data.product_name);
                     $('#procduct_quickview_price').html(data.product_price);
-                    $('#procduct_quickview_slton').html(data.product_slton);
                     $('#procduct_quickview_tt').html(data.product_trluong);
                     $('#procduct_quickview_xx').html(data.product_xuatxu);
                     $('#procduct_quickview_hsd').html(data.product_hsd);
@@ -188,27 +187,27 @@
             }
         })
     })
-    $('.chitietHD').click(function(){
-        var id_hoadon = $(this).data('id_hoadon');
-        var _token = $('input[name="_token"]').val();
-        $.ajax({
-            url:"{{url('/khach_hang/billDetailView')}}",
-            method:"POST",
-            dataType:"JSON",
-            data:{id_hoadon:id_hoadon,_token:_token},
-            success:function(data){
-                $('#image').html(data.imageHD);
-                $('#maHD').html(data.maHD);
-                $('#diachiGH').html(data.diachiGH);
-                $('#ngaydat').html(data.ngaydat);
-                $('#ngaygiao').html(data.ngaygiao);
-                $('#sodth').html(data.sodth);
-                $('#tongtien').html(data.tongtien);
-                $('#ghichu').html(data.ghichu);
-                $('#trangthai').html(data.trangthai);
-            }
-        })
-    })
+    {{--$('.chitietHD').click(function(){--}}
+    {{--    var id_hoadon = $(this).data('id_hoadon');--}}
+    {{--    var _token = $('input[name="_token"]').val();--}}
+    {{--    $.ajax({--}}
+    {{--        url:"{{url('/khach_hang/billDetailView')}}",--}}
+    {{--        method:"POST",--}}
+    {{--        dataType:"JSON",--}}
+    {{--        data:{id_hoadon:id_hoadon,_token:_token},--}}
+    {{--        success:function(data){--}}
+    {{--            $('#image').html(data.imageHD);--}}
+    {{--            $('#maHD').html(data.maHD);--}}
+    {{--            $('#diachiGH').html(data.diachiGH);--}}
+    {{--            $('#ngaydat').html(data.ngaydat);--}}
+    {{--            $('#ngaygiao').html(data.ngaygiao);--}}
+    {{--            $('#sodth').html(data.sodth);--}}
+    {{--            $('#tongtien').html(data.tongtien);--}}
+    {{--            $('#ghichu').html(data.ghichu);--}}
+    {{--            $('#trangthai').html(data.trangthai);--}}
+    {{--        }--}}
+    {{--    })--}}
+    {{--})--}}
 </script>
 
 </body>

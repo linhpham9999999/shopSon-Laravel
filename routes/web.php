@@ -76,9 +76,9 @@ Route::group(
                 Route::get('danhsach', 'App\Http\Controllers\ProductController@getDanhSach')->name('dsSP');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\ProductController@getSua');
-                Route::post('sua/{id}', 'App\Http\Controllers\ProductController@postSua');
+                Route::post('sua/{id}', 'App\Http\Controllers\ProductController@postSua')->name('postSuaSP');
 
-                Route::get('xoa/{id}', 'App\Http\Controllers\ProductController@getXoa');
+                Route::post('xoa/{id}', 'App\Http\Controllers\ProductController@postXoa');
 
                 Route::get('them', 'App\Http\Controllers\ProductController@getThem')->name('getThemSP');
                 Route::post('them', 'App\Http\Controllers\ProductController@postThem')->name('actionThem4');
@@ -144,7 +144,9 @@ Route::group(
         // Danh sách tất cả Màu sản phẩm
         Route::get('product-color-list/{id}', 'App\Http\Controllers\KhachHangController@listColorProduct')
             ->name('list-color-product');
-
+        //Xem chi tiet Mau SP
+        Route::get('product-color-detail/{id}', 'App\Http\Controllers\KhachHangController@listDetailColorProduct')
+            ->name('product-color-detail');
         //Contact
         Route::group(
             ['prefix' => 'contact'],
@@ -202,9 +204,9 @@ Route::group(
         );
         Route::post('/quickView','App\Http\Controllers\QuickViewController@quickView');
         Route::post('/quickViewColor','App\Http\Controllers\QuickViewController@quickViewColor');
-        Route::post('/billDetailView','App\Http\Controllers\QuickViewController@billDetailView');
+        Route::get('/billDetail/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail');
+        Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales');
     }
 );
-Route::get('/admin/test', [\App\Http\Controllers\TestController::class, 'index'])
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
 ?>

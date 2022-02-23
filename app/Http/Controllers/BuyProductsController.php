@@ -41,8 +41,9 @@ class BuyProductsController extends Controller
         }
 //        dd($total);
         $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
+        $delivery = DB::table('hinh_thuc_giao_hang')->select('*')->get();
         return view('khach_hang.cart.proceed-to-checkout',
-                    compact('users','products','ship','total','payments'));
+                    compact('users','products','ship','total','payments','delivery'));
     }
 
     public function orderSuccess(Request $request){
@@ -58,6 +59,7 @@ class BuyProductsController extends Controller
             ->insert(['Ma_HD'               => 'HD'.rand(10,1000),
                      'id_TT'                => $request->trangthai,
                      'id_HTTT'              => $request->payment,
+                     'id_HTGH'              => $request->delivery,
                      'email_nguoimua'       => $email,
                      'dia_chi_giao_hang'    => $request->diachi,
                      'ngaydat'              => Carbon :: now (),
@@ -120,5 +122,17 @@ class BuyProductsController extends Controller
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
-
+    public function billDetailView(Request $request,$id){
+        $cthd = DB::table('hoa_don')
+            ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
+            ->select('hoa_don.id','mau_san_pham.hinhanh','mau_san_pham.mau','mau_san_pham.thongTinMau',
+                     'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong',
+                     'hoa_don.tongtien','trang_thai.trangthai',
+                     'ngaygiao','ngaydat')
+            ->where('hoa_don.id','=',$id)->get();
+//        dd($cthd);
+        return view('khach_hang.cart.bill-details', compact('cthd'));
+    }
 }
