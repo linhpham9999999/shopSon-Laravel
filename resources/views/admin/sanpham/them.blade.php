@@ -6,7 +6,7 @@
             <div class="modal-header">
                 <h5 class="modal-title">Thêm thông tin sản phẩm</h5>
                 <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                    <em class="icon ni ni-cross"></em>
+{{--                    <em class="icon ni ni-cross"></em>--}}
                 </a>
             </div>
             @if(session('thongbao'))

@@ -29,13 +29,15 @@ class NhanVienController extends Controller
                 'gtinh'     => 'bail|required',
                 'nsinh'     => 'bail|required|date_format:Y-m-d',
                 'email'     => 'bail|required|unique:nguoi_dung,email|min:5|max:50',
+                'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png',
+                'date'      => 'bail|required|date_format:Y-m-d'
             ],
             [
                 'pass.required'     => 'Bạn chưa nhập Mật khẩu nhân viên',
                 'pass.min'          => 'Mật khẩu nhân viên phải có độ dài từ 8 đến 255 ký tự',
                 'pass.max'          => 'Mật khẩu nhân viên phải có độ dài từ 8 đến 255 ký tự',
                 'pass2.required'    => 'Bạn chưa nhập lại password',
-                'pass2.same'        => 'Password không trùng',
+                'pass2.same'        => 'Password không khớp',
                 'ten.required'      => 'Bạn chưa nhập Tên nhân viên',
                 'ten.min'           => 'Tên nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'ten.max'           => 'Tên nhân viên phải có độ dài từ 5 đến 50 ký tự',
@@ -52,7 +54,16 @@ class NhanVienController extends Controller
                 'email.unique'      => 'Emai nhân viên đã tồn tại',
                 'email.min'         => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'email.max'         => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
+                'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh của sản phẩm',
+                'hinh_anh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
+                'date.required'    => 'Bạn chưa nhập Thời gian bán sản phẩm',
+                'date.date_format' => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
             ]);
+        if ($request->hasFile('hinh_anh')) {
+            $tenfile = $request->hinh_anh;
+            $name = $tenfile->getClientOriginalName();
+            $tenfile->move('images', $name);
+        }
         DB::table('nguoi_dung')->insert(
             [
                 'password' => Hash::make($request->pass),
@@ -62,7 +73,10 @@ class NhanVienController extends Controller
                 'gioitinh' => $request->gtinh,
                 'ngaysinh' => $request->nsinh,
                 'email' => $request->email,
-                'quyen'=>$request->quyen
+                'quyen'=>$request->quyen,
+                'ngay_vao_lam'=>$request->date,
+                'thong_tin_user'=>$request->info,
+                'hinhanh_user'=>$name,
             ]
         );
 
@@ -82,6 +96,8 @@ class NhanVienController extends Controller
                 'sodth' => 'bail|required|min:10|max:10',
                 'nsinh' => 'bail|required|date_format:Y-m-d',
                 'email' => 'bail|required|unique:nguoi_dung,email|min:5|max:50',
+                'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png',
+                'date'      => 'bail|required|date_format:Y-m-d'
             ],
             [
                 'ten.required'          => 'Bạn chưa nhập Tên nhân viên',
@@ -99,22 +115,34 @@ class NhanVienController extends Controller
                 'email.unique'          => 'Emai nhân viên đã tồn tại',
                 'email.min'             => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'email.max'             => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
+                'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh của sản phẩm',
+                'hinh_anh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
+                'date.required'    => 'Bạn chưa nhập Thời gian bán sản phẩm',
+                'date.date_format' => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
             ]);
+        if ($request->hasFile('hinh_anh')) {
+            $tenfile = $request->hinh_anh;
+            $name = $tenfile->getClientOriginalName();
+            $tenfile->move('images', $name);
+        }
         DB::table('nguoi_dung')->select('*')->where('id','=',$id)->update([
                 'hoten'     => $request->ten,
                 'diachi'    => $request->diachi,
                 'sodth'     => $request->sodth,
                 'gioitinh'  => $request->gtinh,
                 'ngaysinh'  => $request->nsinh,
-                'email'     => $request->email
+                'email'     => $request->email,
+                'ngay_vao_lam'=>$request->date,
+                'thong_tin_user'=>$request->info,
+                'hinhanh_user'=>$name,
         ]);
 
         return redirect('admin/nhanvien/sua/'.$id)->with('thongbao','Sửa thành công');
     }
-    public  function getXoa($id){
-        $nv = DB::table('nguoi_dung')->select('*')->where('id','=',$id);
-        $nv->delete();
-
-        return redirect('admin/nhanvien/danhsach')->with('thongbao','Xóa thành công');
+    public  function postXoa($id){
+        DB::table('nguoi_dung')->where('id','=',$id)->delete();
+        return response()->json([
+                                    'message' => 'Data deleted successfully!'
+                                ]);
     }
 }

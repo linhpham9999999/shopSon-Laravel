@@ -35,7 +35,13 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="khach_hang_asset/assets/css/style.css">
     <link rel="stylesheet" href="khach_hang_asset/assets/js/sweetalert.css">
-
+    <style>
+        .error{
+            color: red;
+            font-style: italic;
+            font-family: Florence, cursive;
+        }
+    </style>
 </head>
 
 <body>

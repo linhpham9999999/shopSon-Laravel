@@ -17,9 +17,27 @@ class CartController extends Controller
      */
 
     public function store(Request  $request){
-//        $productIdColor = $request->productIdColor; // SESSION BTHuong
+        $productIdColor = $request->productIdColor; // SESSION BTHuong
+        $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $productIdColor)->first();
+        $sluong = $soluongton->soluongton;
+        $number = $request->number;
+        if($number > $sluong){
+            return back()->with('testquantity', 'Số lượng sản phẩm tồn không đủ bán');
+        }
+        $this->validate(
+            $request,
+            [
+                'number'                => 'bail|required|numeric|min:1'
+            ],
+            [
+                'number.required'      => 'Bạn chưa nhập số lượng sản phẩm',
+                'number.numeric'       => 'Số lượng sản phẩm phải là 1 số ',
+                'number.min'           => 'Số lượng sản phẩm phải lớn hơn 1',
+            ]
+        );
+//        dd($number);
+//        $productIdColor = $request->get('cart_product_id'); //AJAX
 
-        $productIdColor = $request->get('cart_product_id'); //AJAX
         // Lấy sản phẩm từ DB dựa vào id
         $product = $this->getProduct($productIdColor);
         // Kiểm tra sản phẩm có hay ko
@@ -31,8 +49,8 @@ class CartController extends Controller
         if(!$cookieCart){
             // Khởi tạo giỏ hàng
             $products = [];
-            // Gán số lượng mặc định là 1
-            $product['quantity'] = 1;
+            // Gán số lượng là sluong KH vừa nhập vào
+            $product['quantity'] = $number;
             // Gán sản phẩm vào giỏ hàng
             $products[$productIdColor] = $product;
 
@@ -40,14 +58,15 @@ class CartController extends Controller
             // decode giỏ hàng, string => array, json -> mảng
             $products = json_decode($cookieCart, true);
             // kiểm tra tăng số lượng
-            $products = $this->increaseQuantity($products, $product, $productIdColor);
+            $products = $this->increaseQuantity($products, $product, $productIdColor, $number);
         }
         // encode mảng thành chuỗi json
         $json = json_encode($products);
         // Gán lại giỏ hàng
         Cookie::queue('cart',$json,3000000);
 
-//        return back()->with('thongbao', 'Đã thêm x1 sản phẩm vào giỏ');
+
+        return back()->with('thongbao', 'Đã thêm sản phẩm vào giỏ');
     }
 
     /**
@@ -94,17 +113,17 @@ class CartController extends Controller
      * @return array
      */
 
-    public function increaseQuantity(array $products, array $product, string $productIdColor): array
+    public function increaseQuantity(array $products, array $product, string $productIdColor, int $number): array
     {
         // Ktra sản phẩm có trong giỏ hàng chưa
         if(array_key_exists( $productIdColor, $products)){
             // lấy sản phẩm trong cart ra
             $product                = $products[$productIdColor];
-            // tăng số lượng sản phẩm lên 1
-            $product['quantity']    = $product['quantity'] + 1;
+            // tăng số lượng sản phẩm lên number
+            $product['quantity']    = $product['quantity'] + $number;
         } else { // chưa có sp đó trong giỏ
-            // gán số lượng = 1
-            $product['quantity'] = 1;
+            // gán số lượng = number
+            $product['quantity'] = $number;
         }
         // gán sản phẩm lại cart
         $products[$productIdColor] = $product;

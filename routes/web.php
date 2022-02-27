@@ -91,9 +91,9 @@ Route::group(
                 Route::get('danhsach', 'App\Http\Controllers\NhanVienController@getDanhSach')->name('dsNV');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\NhanVienController@getSua');
-                Route::post('sua/{id}', 'App\Http\Controllers\NhanVienController@postSua');
+                Route::post('sua/{id}', 'App\Http\Controllers\NhanVienController@postSua')->name('postSuaNV');
 
-                Route::get('xoa/{id}', 'App\Http\Controllers\NhanVienController@getXoa');
+                Route::post('xoa/{id}', 'App\Http\Controllers\NhanVienController@postXoa');
 
                 Route::get('them', 'App\Http\Controllers\NhanVienController@getThem')->name('getThemNV');
                 Route::post('them', 'App\Http\Controllers\NhanVienController@postThem')->name('actionThem6');
