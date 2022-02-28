@@ -1,10 +1,86 @@
 @extends('admin.layout.index')
-@section('menu')
-    @include('admin.layout.menu_e')
-@endsection
 @section('content')
-    <!-- Page Content -->
-    <div id="page-wrapper">
+    <div style="background-color: #008080">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sửa thông tin màu sản phẩm</h5>
+{{--                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <em class="icon ni ni-cross"></em>--}}
+{{--                    </a>--}}
+                </div>
+                @if(session('thongbao'))
+                    <div class="alert alert-success" style="margin-bottom: 0px">
+                        {{session('thongbao')}}
+                    </div>
+                @endif
+                <div class="modal-body">
+                    <form action="{{route('actionSuaMSP',['id'=>$mausanppham->id])}}" method="POST" role="form" enctype="multipart/form-data" class="form-validate is-alter">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <label class="form-label" for="full-name">Loại sản phẩm</label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" name="idLSP" id="idLSP-edit">
+                                    @foreach($loaisp as $lsp)
+                                        <option value="{{$lsp->id}}" id="idLSP-edit" >{{$lsp->ten_LSP}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email-address">Sản phẩm</label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" name="idSP" id="idNPP-edit">
+                                    @foreach($sanpham as $sp)
+                                        <option value="{{$sp->id}}" id="idNPP-edit" >{{$sp->ten_SP}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email-address">Mã màu sản phẩm</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" value="{{$mausanppham->Ma_MSP}}" name="idMSP" id="idSP-edit" placeholder="Mã màu sản phẩm phải có độ dài từ 3 đến 8 ký tự"/>
+                                <div class="error"> {{$errors->first('idMSP')}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone-no">Tên màu sản phẩm</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" value="{{$mausanppham->mau}}" name="mau" id="tenSP-edit" placeholder="Tên màu sản phẩm phải có độ dài từ 5 đến 50 ký tự"/>
+                                <div class="error"> {{$errors->first('mau')}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email-address">Số lượng tồn</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" value="{{$mausanppham->soluongton}}" name="slton" id="xuatxu-edit" placeholder="Nhập số lượng tồn của sản phẩm" />
+                                <div class="error"> {{$errors->first('slton')}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email-address">Ý nghĩa màu</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" value="{{$mausanppham->thongTinMau}}" name="yn" id="trluong-edit" placeholder="Ý nghĩa màu sản phẩm phải có độ dài từ 5 đến 500 ký tự"/>
+                                <div class="error"> {{$errors->first('yn')}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email-address">Hình ảnh</label>
+                            <div class="form-control-wrap">
+                                <input type="file" name="hinh_anh" value="{{$mausanppham->hinhanh}}" id="hinh_anh-edit"/>
+                                <div class="error"> {{$errors->first('hinh_anh')}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-primary js-btn-update-sp">Lưu thông tin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--<div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -68,6 +144,5 @@
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-    </div>
-    <!-- /#page-wrapper -->
+    </div>--}}
 @endsection

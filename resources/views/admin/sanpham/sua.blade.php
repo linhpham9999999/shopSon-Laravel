@@ -5,9 +5,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Sửa thông tin sản phẩm</h5>
-                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                    <em class="icon ni ni-cross"></em>
-                </a>
+{{--                <a href="#" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                    <em class="icon ni ni-cross"></em>--}}
+{{--                </a>--}}
             </div>
             @if(session('thongbao'))
                 <div class="alert alert-success">
@@ -42,36 +42,42 @@
                         <label class="form-label" for="email-address">Mã sản phẩm</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->Ma_SP}}" name="idSP" id="idSP-edit" placeholder="Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự" required/>
+                            <div class="error"> {{$errors->first('idSP')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="phone-no">Tên sản phẩm</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->ten_SP}}" name="tenSP" id="tenSP-edit" placeholder="Tên sản phẩm phải có độ dài từ 5 đến 100 ký tự" required/>
+                            <div class="error"> {{$errors->first('tenSP')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="email-address">Xuất xứ</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->xuatxu}}" name="xuatxu" id="xuatxu-edit" placeholder="Xuất xứ sản phẩm có độ dài từ 3 đến 50 ký tự" required />
+                            <div class="error"> {{$errors->first('xuatxu')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="email-address">Trọng lượng</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->trongluong}}" name="trluong" id="trluong-edit" placeholder="Nhập trọng lượng sản phẩm (g)" required />
+                            <div class="error"> {{$errors->first('trluong')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="email-address">Gía gốc</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->giagoc}}" name="giagoc" id="giagoc-edit" placeholder="Nhập giá sản phẩm (VNĐ)" required />
+                            <div class="error"> {{$errors->first('giagoc')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="email-address">Giảm giá</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->giamgia}}" name="giamgia" id="giamgia-edit" placeholder="Nhập giá giảm sản phẩm (VNĐ)" required />
+                            <div class="error"> {{$errors->first('giamgia')}}</div>
                         </div>
                     </div>
 {{--                    <div class="form-group">--}}
@@ -84,12 +90,14 @@
                         <label class="form-label" for="email-address">Hạn sử dụng</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->hansudung_thang}}" name="hsd" id="hsh-edit" placeholder="Nhập hạn sử dụng sản phẩm (tháng)" required />
+                            <div class="error"> {{$errors->first('hsd')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="email-address">Giới thiệu</label>
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->gioithieu}}" name="gthieu" id="gthieu-edit" placeholder="Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự" required />
+                            <div class="error"> {{$errors->first('gthieu')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -117,6 +125,7 @@
                         <label class="form-label" for="email-address">Hình ảnh</label>
                         <div class="form-control-wrap">
                             <input type="file" name="hinh_anh" value="{{$sanpham->hinhanhgoc}}" id="hinh_anh-edit"/>
+                            <div class="error"> {{$errors->first('hinh_anh')}}</div>
                         </div>
                     </div>
                     <div class="form-group">

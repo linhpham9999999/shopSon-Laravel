@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class CheckoutController extends Controller
@@ -81,12 +82,26 @@ class CheckoutController extends Controller
     }
 
     public function deleteCart($id){
+//        dd($quantity);
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
+
+        foreach ($products as $value){
+            $quantity = $value['quantity'];
+        }
+
+        $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $id)->first();
+        $quantitycurent = $soluongton->soluongton;
+
+        DB::table('mau_san_pham')->select('soluongton')
+            ->where('id','=',$id)
+            ->update(['soluongton' => $quantitycurent + $quantity]);
+
         if (array_key_exists($id, $products)) {
             unset($products[$id]);
 
         }
+
         $json = json_encode($products);
         Cookie::queue('cart', $json, 60);
         return back()->with('message','Đã xóa khỏi giỏ!');

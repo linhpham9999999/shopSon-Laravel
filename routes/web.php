@@ -61,9 +61,9 @@ Route::group(
                 Route::get('danhsach', 'App\Http\Controllers\MauSpController@getDanhSach')->name('dsMSP');
 
                 Route::get('sua/{id}', 'App\Http\Controllers\MauSpController@getSua');
-                Route::post('sua/{id}', 'App\Http\Controllers\MauSpController@postSua');
+                Route::post('sua/{id}', 'App\Http\Controllers\MauSpController@postSua')->name('actionSuaMSP');
 
-                Route::get('xoa/{id}', 'App\Http\Controllers\MauSpController@getXoa');
+                Route::post('xoa/{id}', 'App\Http\Controllers\MauSpController@postXoa');
 
                 Route::get('them', 'App\Http\Controllers\MauSpController@getThem')->name('getThemMSP');
                 Route::post('them', 'App\Http\Controllers\MauSpController@postThem')->name('actionThem3');

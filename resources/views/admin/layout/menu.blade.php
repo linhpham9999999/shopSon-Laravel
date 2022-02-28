@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="html/index-invest.html" class="nk-menu-link">
+                        <a href="{{route('dsMSP')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-view-group-wd"></em></span>
                             <span class="nk-menu-text">Quản lý màu sản phẩm</span>
                         </a>
