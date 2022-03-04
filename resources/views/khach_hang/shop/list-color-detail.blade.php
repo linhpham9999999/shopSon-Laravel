@@ -48,7 +48,7 @@
                                 </div><!-- .col -->
                                 <div class="col-lg-6">
                                     <div class="product-info mt-5 mr-xxl-5">
-                                        <h4 class="product-price text-primary"> number_format({{ $msp->giagoc - $msp->giamgia }})VNĐ<small class="text-muted fs-14px old-price"> đã giảm {{$msp->giamgia}}</small></h4>
+                                        <h4 class="product-price text-primary">{{ $msp->giagoc - $msp->giamgia }}VNĐ<small class="text-muted fs-14px old-price"> đã giảm {{$msp->giamgia}}</small></h4>
                                         <h2 class="product-title">{{$msp->ten_SP}} {{$msp->mau}}</h2>
                                         <div class="product-rating">
 

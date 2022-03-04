@@ -14,6 +14,7 @@
     <!-- Page Title  -->
     <title>HLYNK Lipsticks</title>
     <base href="{{asset('')}}">
+    @yield('cssKH')
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="admin_asset_new/assets/css/dashlite.css?ver=2.9.0">
     <link id="skin-default" rel="stylesheet" href="admin_asset_new/assets/css/theme.css?ver=2.9.0">

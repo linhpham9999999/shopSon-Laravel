@@ -20,9 +20,9 @@
                             <tr class="nk-tb-item nk-tb-head">
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">STT</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Mã hóa đơn</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Hình ảnh</span></th>
-                                <th class="nk-tb-col tb-col-lg"><span class="sub-text">Tên sản phẩm</span></th>
+                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày giao </span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Người mua</span></th>
+                                <th class="nk-tb-col tb-col-lg"><span class="sub-text">Số điện thoại</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Tổng tiền</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
@@ -36,13 +36,13 @@
                                         <span>{{$sp->Ma_HD}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
-                                        <span><img src="admin_asset/image_son/{{$sp->hinhanhgoc}}" width="100px" height="100px"/></span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-lg">
-                                        <span>{{$sp->ten_SP}}</span>
+                                        <span>{{$sp->ngaygiao}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$sp->email_nguoimua}}</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-lg">
+                                        <span>{{$sp->sodth_giao_hang}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$sp->tongtien}}</span>
@@ -53,7 +53,7 @@
                         </table><!-- .nk-tb-list -->
                     </div><!-- .card-inner -->
                     <div class="card-inner">
-                        <span><p style="font-weight: bold; padding-left: 900px;">Tổng tiền: <span style="padding-left: 10px; font-size: 20px">{{ $sum }}</span></p></span>
+                        <span><p style="font-weight: bold; padding-left: 900px;">Tổng tiền: <span style="padding-left: 10px; font-size: 20px">{{ $sum }} VNĐ</span></p></span>
                     </div><!-- .card-inner -->
                 </div><!-- .card-inner-group -->
             </div><!-- .card -->

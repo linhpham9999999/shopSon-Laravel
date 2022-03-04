@@ -112,12 +112,9 @@ class BuyProductsController extends Controller
             $email = Auth::user()->email;
         }
         $hoadon = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
-            ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
-            ->select('hoa_don.id','hoa_don.email_nguoimua','mau_san_pham.hinhanh','hoa_don.Ma_HD','mau_san_pham.mau','ngaygiao','ngaydat',
-                        'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','hoa_don.tongtien','trang_thai.trangthai')
+            ->select('hoa_don.id','hoa_don.email_nguoimua','hoa_don.Ma_HD','ngaygiao','ngaydat'
+                       ,'hoa_don.tongtien','trang_thai.trangthai')
             ->where('hoa_don.email_nguoimua','=',$email)
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));

@@ -112,6 +112,7 @@ Route::group(
             ->middleware('login');
         Route::post('/update-information/{id}','App\Http\Controllers\InfoController@postInfo')->name('update-info')
             ->middleware('login');
+        Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales')->middleware('login');
     }
 );
 
@@ -205,7 +206,6 @@ Route::group(
         Route::post('/quickView','App\Http\Controllers\QuickViewController@quickView');
         Route::post('/quickViewColor','App\Http\Controllers\QuickViewController@quickViewColor');
         Route::get('/billDetail/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail');
-        Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales');
     }
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
