@@ -30,7 +30,7 @@
                         <table class="nk-tb-list nk-tb-ulist">
                             <thead>
                             <tr class="nk-tb-item nk-tb-head">
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ảnh</span></th>
+{{--                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ảnh</span></th>--}}
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Họ tên</span></th>
 {{--                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày sinh</span></th>--}}
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Giới tính</span></th>
@@ -44,9 +44,9 @@
                             <tbody>
                             @foreach($nhanvien as $nv)
                                 <tr class="nk-tb-item">
-                                    <td class="nk-tb-col tb-col-md">
-                                        <span><img src="images/{{$nv->hinhanh_user}}" alt="ảnh nhân viên" width="100px" height="100px"></span>
-                                    </td>
+{{--                                    <td class="nk-tb-col tb-col-md">--}}
+{{--                                        <span><img src="images/{{$nv->hinhanh_user}}" alt="ảnh nhân viên" width="100px" height="100px"></span>--}}
+{{--                                    </td>--}}
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$nv->hoten}}</span>
                                     </td>

@@ -64,7 +64,6 @@
                                 </div>
                             </div>
                         </div><!-- .card-inner -->
-
                         <div class="card-inner">
                             <div class="nk-wg-action">
                                 @foreach($user as $ct)
@@ -99,13 +98,38 @@
                                                 <span class="formdetails">{{$ct->trangthai}}</span>
                                             </div>
                                         </div>
+                                        <div class="col-md-12 col-custom">
+                                            <div class="checkout-form-list">
+                                                <label style="font-weight: bold">Tổng thanh toán (+ship):</label>
+                                                <span class="formdetails">{{$ct->tongtien}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-custom">
+                                            <div class="checkout-form-list">
+                                                <label style="font-weight: bold">Ngày đặt hàng:</label>
+                                                <span class="formdetails">{{$ct->ngaydat}}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                @endforeach
+
                             </div>
                         </div><!-- .card-inner -->
                     </div><!-- .card-inner-group -->
                 </div><!-- .card -->
             </div><!-- .col -->
+
+            <div class="col-lg-12" style="margin-left: 950px;">
+                <form action="{{route('duyetHD1')}}" method="POST">
+                    {{csrf_field()}}
+                    <input type="hidden" name="idHD" value="{{$ct->id}}">
+                        @if($ct->id_TT == 3)
+                            <td><button type="submit" class="btn btn-primary">Duyệt</button></td>
+                        @elseif($ct->id_TT == 2)
+                            <td><button type="button" class="btn btn-primary">Đã duyệt</button></td>
+                        @endif
+                </form>
+            </div>
+            @endforeach
         </div><!-- .row -->
     </div>
     </div>

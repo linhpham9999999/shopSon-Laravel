@@ -67,29 +67,21 @@
                             {{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
                         </a>
                     </li><!-- .nk-menu-item -->
-
                     <li class="nk-menu-item has-sub">
-                        <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
-                            <span class="nk-menu-text">Thống kê sản phẩm</span>
+                        <a href="{{route('info')}}" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                            <span class="nk-menu-text"> Quản lý tài khoản</span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/kyc-list-regular.html" class="nk-menu-link"><span class="nk-menu-text">Sản phẩm bán chạy nhất</span></a>
+                                <a href="{{route('info')}}" class="nk-menu-link"><span class="nk-menu-text">Chỉnh sửa thông tin</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="html/kyc-details-regular.html" class="nk-menu-link"><span class="nk-menu-text">Sản phẩm bán ít nhất</span></a>
+                                <a href="{{route('change-password-admin')}}" class="nk-menu-link"><span class="nk-menu-text">Đổi mật khẩu</span></a>
                             </li>
-                        </ul><!-- .nk-menu-sub -->
+                        </ul>
                     </li><!-- .nk-menu-item -->
 
-{{--                    <li class="nk-menu-item">--}}
-{{--                        <a href="html/index-invest.html" class="nk-menu-link">--}}
-{{--                            <span class="nk-menu-icon"><em class="icon ni ni-emails"></em></span>--}}
-{{--                            <span class="nk-menu-text">Tin nhắn</span>--}}
-{{--                            --}}{{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
-{{--                        </a>--}}
-{{--                    </li><!-- .nk-menu-item -->--}}
 
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->

@@ -12,7 +12,7 @@
             </div><!-- .nk-header-brand -->
             <div class="nk-header-news d-none d-xl-block">
                 <div class="nk-news-list">
-                    <a class="nk-news-item" href="#">
+                    <a class="nk-news-item" href="{{route('homeAd')}}">
                         <div class="nk-news-icon">
                             <em class="icon ni ni-card-view"></em>
                         </div>

@@ -104,6 +104,7 @@ Route::group(
             function (){
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach')->name('quanlyHD');
                 Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSach')->name('duyetHD1');
+
                 Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTiet')->name('chi_tiet_hd');
             }
         );
@@ -112,6 +113,13 @@ Route::group(
             ->middleware('login');
         Route::post('/update-information/{id}','App\Http\Controllers\InfoController@postInfo')->name('update-info')
             ->middleware('login');
+
+        //Thay đổi mật khẩu
+        Route::get('/change-password','App\Http\Controllers\ADChangePasswordController@index')->name('change-password-admin')
+            ->middleware('login');
+        Route::post('/change-password','App\Http\Controllers\ADChangePasswordController@store')->name('post-change-password-admin');
+
+        //Thống kê doanh thu
         Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales')->middleware('login');
     }
 );

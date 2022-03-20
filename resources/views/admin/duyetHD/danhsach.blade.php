@@ -1,3 +1,4 @@
+
 @extends('admin.layout.index')
 @section('content')
     <div class="nk-content-body">
@@ -12,13 +13,6 @@
                 <div class="nk-block-head-content">
                     <div class="toggle-wrap nk-block-tools-toggle">
                         <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
-                        <div class="toggle-expand-content" data-content="pageMenu">
-                            <ul class="nk-block-tools g-3">
-                                <li class="nk-block-tools-opt">
-                                    <a href="#" class="btn btn-primary btn-add" data-target="#modal-add" data-toggle="modal"><em class="icon ni ni-plus"></em><span>Thêm</span></a>
-                                </li>
-                            </ul>
-                        </div>
                     </div><!-- .toggle-wrap -->
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
@@ -30,22 +24,22 @@
                         <table class="nk-tb-list nk-tb-ulist">
                             <thead>
                             <tr class="nk-tb-item nk-tb-head">
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Mã hóa đơn</span></th>
+                                <th class="nk-tb-col tb-col-md" style="text-align: center"><span class="sub-text">Mã hóa đơn</span></th>
                                 <th class="nk-tb-col tb-col-lg"><span class="sub-text">Khách hàng</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày đặt</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Tổng tiền</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Trạng thái</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Xem chi tiết</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Duyệt hóa đơn</span></th>
+
                             </tr><!-- .nk-tb-item -->
                             </thead>
                             <tbody>
                             @foreach($hoadon as $hd)
                                 <tr class="nk-tb-item" > {{--id="npp_{{$lsp->id}}"--}}
-                                    <form action="{{route('duyetHD1')}}" method="POST">
-                                        {{csrf_field()}}
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{$hd->Ma_HD}}</span>
+{{--                                    <form action="{{route('duyetHD1')}}" method="POST">--}}
+                                        {{--{{csrf_field()}}--}}
+                                        <td class="nk-tb-col tb-col-md" style="text-align: center">
+                                            <span>#{{$hd->Ma_HD}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{$hd->hoten}}</span>
@@ -54,21 +48,21 @@
                                             <span>{{$hd->ngaydat}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
-                                            <span>{{$hd->tongtien}}</span>
+                                            <span>{{ number_format($hd->tongtien)}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{$hd->trangthai}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
-                                            <a href="{{route('chi_tiet_hd',['id'=>$hd->id])}}" style="text-decoration: none">Xem chi tiết</a></td>
-                                            <input type="hidden" name="idHD" value="{{$hd->id}}">
+                                            <a href="{{route('chi_tiet_hd',['id'=>$hd->id])}}" class="btn btn-dim btn-sm btn-primary">Chi tiết</a></td>
+{{--                                            <input type="hidden" name="idHD" value="{{$hd->id}}">--}}
 
-                                            @if($hd->id_TT == 3)
-                                                <td><button type="submit">Duyệt</button></td>
-                                            @elseif($hd->id_TT == 2)
-                                                <td><button type="button">Đã duyệt</button></td>
-                                            @endif
-                                    </form>
+{{--                                            @if($hd->id_TT == 3)--}}
+{{--                                                <td><button type="submit">Duyệt</button></td>--}}
+{{--                                            @elseif($hd->id_TT == 2)--}}
+{{--                                                <td><button type="button">Đã duyệt</button></td>--}}
+{{--                                            @endif--}}
+{{--                                    </form>--}}
                                 </tr><!-- .nk-tb-item -->
                             @endforeach
                             </tbody>

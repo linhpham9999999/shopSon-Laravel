@@ -55,5 +55,4 @@ class InfoController extends Controller
 
         return redirect('admin/information')->with('thongbao','Sửa thành công');
     }
-
 }
