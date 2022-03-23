@@ -45,7 +45,7 @@
                                         <span>{{$sp->sodth_giao_hang}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$sp->tongtien}}</span>
+                                        <span>{{ number_format($sp->tongtien)}}</span>
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach

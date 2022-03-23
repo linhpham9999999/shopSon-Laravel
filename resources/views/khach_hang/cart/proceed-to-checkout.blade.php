@@ -40,31 +40,35 @@
                     <div class="col-lg-6 col-12 col-custom" style="float: left">
                         <div class="checkbox-form">
                             <h3>Chi tiết hóa đơn</h3>
-                            <p style="font-weight: bold; padding-left: 5px; margin-bottom: 15px; background-color: #F2F2F2; height: 30px; font-size: 15px; margin-right: 80px; padding-top: 5px">Vui lòng cập nhật số điện thoại, địa chỉ giao hàng (nếu thay đổi).</p>
-                            @foreach($users as $user)
+                            <p style="font-weight: bold; padding-left: 5px; margin-bottom: 15px; background-color: #F2F2F2; height: 30px; font-size: 15px; margin-right: 80px; padding-top: 5px">Vui lòng cập nhật số điện thoại (nếu thay đổi).</p>
+
                             <div class="row">
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
                                         <label>Your Name <span class="required">*</span></label>
-                                        <p class="formdetails">{{$user->hoten}}</p>
+                                        <p class="formdetails">{{$users->hoten}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
                                         <label>Email Address </label>
-                                        <p class="formdetails">{{$user->email}}</p>
+                                        <p class="formdetails">{{$users->email}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
                                         <label>Phone <span class="required">*</span></label>
-                                        <p class="formdetails">{{$user->sodth}}</p>
+                                        <input class="formdetails" placeholder="Số điện thoại" type="text" name="sodth" value="{{$users->sodth}}" />
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
                                         <label>Address <span class="required">*</span></label>
-                                        <p class="formdetails">{{$user->diachi}}</p>
+                                        <p class="formdetails"><select name="diachi">
+                                        @foreach($diachi as $dc)
+                                            <option value="{{$dc->dia_chi_giao_hang}}">{{$dc->dia_chi_giao_hang}}</option>
+                                        @endforeach
+                                        </select></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-custom">
@@ -89,35 +93,6 @@
                                 </div>
                             </div>
 
-                            @endforeach
-                            <div class="different-address">
-                                <div class="ship-different-title">
-                                    <div>
-                                        <input id="ship-box" type="checkbox">
-                                        <label for="ship-box">Ship đến một địa chỉ khác?</label>
-                                    </div>
-                                </div>
-                                <div id="ship-box-info" class="row mt-2">
-                                    <div class="col-md-12 col-custom">
-                                        <div class="checkout-form-list">
-                                            <label>Address <span class="required">*</span></label>
-                                            <input placeholder="Địa chỉ" type="text" name="diachi" value="{{$user->diachi}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-custom">
-                                        <div class="checkout-form-list">
-                                            <label>Phone <span class="required">*</span></label>
-                                            <input placeholder="Số điện thoại" type="text" name="sodth" value="{{$user->sodth}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="order-notes mt-3">
-                                    <div class="checkout-form-list checkout-form-list-2">
-                                        <label>Ghi chú</label>
-                                        <textarea id="checkout-mess" cols="30" rows="10" name="note" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: những lưu ý đặc biệt khi giao hàng."></textarea>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12 col-custom" style="float: right; " >

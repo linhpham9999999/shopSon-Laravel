@@ -30,21 +30,23 @@
     </div>
     <!-- Breadcrumb Area End Here -->
     <!-- Contact Us Area Start Here -->
-    <div class="contact-us-area mt-no-text" style="padding-top: 0px">
+    <div class="contact-us-area mt-no-text" style="padding-top: 0px; margin-top:0px">
         <div class="container custom-area" style="margin-top: 0px">
-            @if(session('alert'))
-                <div class="alert alert-success">
-                    {{session('alert')}}
-                </div>
-            @endif
             <div class="row">
-                <div class="col-md-12 col-custom">
+                <div class="col-md-6 col-custom">
                     <form method="post" action="{{route('change-account',['id'=>$users->id])}}" accept-charset="UTF-8" class="contact-form">
                         {{csrf_field()}}
                         <div class="comment-box mt-5">
-                            <h5 class="text-uppercase">Thông tin tài khoản</h5>
-                            <div class="row mt-3">
-                                    <div class="col-6 col-custom">
+                            <h5 class="text-uppercase" style=" padding-left: 135px;">Thông tin tài khoản</h5>
+                            <div class="input-item mb-4">
+                                @if(session('alert'))
+                                    <div class="alert alert-success" style=" width: 448px;margin-left: 33px;">
+                                        {{session('alert')}}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="row mt-3" style="margin-left: 20px;">
+                                <div class="col-10 col-custom ">
                                         <div class="input-item mb-4">
                                             <label>Họ tên</label>
                                             <input value="{{$users->hoten}}" class="border-0 rounded-0 w-100 input-area name gray-bg" type="text" name="name"  placeholder="Name">
@@ -76,7 +78,7 @@
 
                                         </div>
                                         <div class="input-item mb-4">
-                                            <label>Địa chỉ giao hàng</label>
+                                            <label>Địa chỉ mặc định</label>
                                             <input value="{{$users->diachi}}" class="border-0 rounded-0 w-100 input-area email gray-bg" type="text" name="diachi"  placeholder="Address">
                                             <div class="error">{{$errors->first('diachi')}}</div>
                                         </div>
@@ -96,9 +98,50 @@
                                             <div class="error">{{$errors->first('passmoi2')}}</div>
                                         </div>--}}
                                     </div>
-
                                 <div class="col-12 col-custom mt-40">
-                                    <button type="submit" class="btn flosun-button secondary-btn theme-color rounded-0">Lưu thay đổi</button>
+                                    <button type="submit" class="btn flosun-button secondary-btn theme-color rounded-0" style="margin-left: 140px;">Lưu thay đổi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6 col-custom">
+                    <form method="post" action="{{route('add-address')}}" accept-charset="UTF-8" class="contact-form">
+                        {{csrf_field()}}
+                        <div class="comment-box mt-5">
+                            <h5 class="text-uppercase"  style=" padding-left: 135px;">Thêm địa chỉ giao hàng</h5>
+                            <div class="input-item mb-4">
+                                @if(session('alert2'))
+                                    <div class="alert alert-success" style=" width: 448px;margin-left: 33px;">
+                                        {{session('alert2')}}
+                                    </div>
+                                @endif
+                                @if(session('alert3'))
+                                    <div class="alert alert-success" style=" width: 448px;margin-left: 33px;">
+                                        {{session('alert3')}}
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="row mt-3" style="margin-left: 20px;">
+                                <div class="col-10 col-custom">
+                                    <div class="input-item mb-4">
+                                        <label>Địa chỉ giao hàng của bạn</label>
+                                        @foreach($diachi as $dc)
+                                            <p class="border-0 rounded-0 w-100 input-area email gray-bg" type="text"  placeholder="Address">
+                                                <a href="{{route('delete-address',['id'=>$dc->id])}}"><i class="lnr lnr-trash" style="margin-right: 10px"></i></a>{{$dc->dia_chi_giao_hang}}</p>
+                                        @endforeach
+                                    </div>
+                                    <div class="input-item mb-4">
+                                        <label>Thêm địa chỉ</label>
+                                        <input class="border-0 rounded-0 w-100 input-area email gray-bg" type="text" name="diachinew"  placeholder="Nhập địa chỉ">
+                                        <input type="hidden" name="iduser" value="{{$users->id}}">
+                                        <div class="error">{{$errors->first('diachinew')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-custom mt-40">
+                                    <button type="submit" style=" margin-left: 170px;" class="btn flosun-button secondary-btn theme-color rounded-0">Thêm</button>
                                 </div>
                             </div>
                         </div>

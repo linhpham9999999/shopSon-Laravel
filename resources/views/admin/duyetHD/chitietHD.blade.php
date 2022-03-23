@@ -118,16 +118,18 @@
                 </div><!-- .card -->
             </div><!-- .col -->
 
-            <div class="col-lg-12" style="margin-left: 950px;">
+            <div class="col-lg-12" style="margin-left: 850px;">
+                <span style="float: left">
                 <form action="{{route('duyetHD1')}}" method="POST">
                     {{csrf_field()}}
                     <input type="hidden" name="idHD" value="{{$ct->id}}">
                         @if($ct->id_TT == 3)
-                            <td><button type="submit" class="btn btn-primary">Duyệt</button></td>
+                            <td><button type="submit" class="btn btn-primary">Duyệt đơn hàng</button></td>
                         @elseif($ct->id_TT == 2)
                             <td><button type="button" class="btn btn-primary">Đã duyệt</button></td>
                         @endif
-                </form>
+                </form></span>
+                <span><a href="{{route('quanlyHD')}}" class="btn btn-secondary">Trở về đơn hàng</a></span>
             </div>
             @endforeach
         </div><!-- .row -->

@@ -21,9 +21,8 @@ class BuyProductsController extends Controller
             $email = Auth::user()->email;
         }
         $users = DB::table('nguoi_dung')
-            ->select('diachi', 'hoten', 'email', 'sodth')
-            ->where('email','=',$email)->get();
-
+            ->select('diachi', 'hoten', 'email', 'sodth','id')
+            ->where('email','=',$email)->first();
          // Tính tổng tiền, phí ship
         $total = 0;
         $ship = 0;
@@ -42,8 +41,10 @@ class BuyProductsController extends Controller
 //        dd($total);
         $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
         $delivery = DB::table('hinh_thuc_giao_hang')->select('*')->get();
+        $diachi = DB::table('dia_chi_giao_hang')->select('*')
+            ->where('dia_chi_giao_hang.id_NGUOIDUNG_mua','=',$users->id)->get();
         return view('khach_hang.cart.proceed-to-checkout',
-                    compact('users','products','ship','total','payments','delivery'));
+                    compact('users','products','ship','total','payments','delivery','diachi'));
     }
 
     public function orderSuccess(Request $request){

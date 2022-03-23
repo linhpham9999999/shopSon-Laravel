@@ -30,7 +30,7 @@
     </div>
     <!-- Breadcrumb Area End Here -->
     <!-- Contact Us Area Start Here -->
-    <div class="contact-us-area mt-no-text" style="padding-top: 0px">
+    <div class="contact-us-area mt-no-text" style="padding-top: 0px; margin-top:0px">
         <div class="container custom-area" style="margin-top: 0px">
             @if(session('alert'))
                 <div class="alert alert-success">
@@ -46,8 +46,8 @@
                         @endforeach--}}
                         <div class="comment-box mt-5">
                             <h5 class="text-uppercase">Thay đổi mật khẩu</h5>
-                            <div class="row mt-3">
-                                <div class="col-6 col-custom">
+                            <div class="row mt-3" style="margin-left: 280px;">
+                                <div class="col-8 col-custom">
                                     <div class="input-item mb-4">
                                         <input type="password" name="current_password" class="border-0 rounded-0 w-100 input-area email gray-bg" placeholder="Mật khẩu hiện tại" />
                                         <div class="error">{{$errors->first('current_password')}}</div>

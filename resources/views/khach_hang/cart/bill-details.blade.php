@@ -26,7 +26,7 @@
     </div>
     <div class="shop-main-area">
         <div class="container container-default custom-area">
-            <div class="row flex-row-reverse">
+            <div class="row flex-row-reverse" style=" margin-top: 60px;">
                     <div class="card card-bordered">
                         @foreach($cthd as $ct)
                             <div class="card-inner">
@@ -34,7 +34,7 @@
                                     <div class="col-lg-4">
                                         <div class="product-gallery mr-xl-1 mr-xxl-5">
                                             <div class="slider-init">
-                                                <div class="slider-item rounded" style="width: 300px; height:400px;">
+                                                <div class="slider-item rounded" style="width: 300px; height:300px;">
                                                     <img src="admin_asset/image_son/mau_san_pham/{{$ct->hinhanh}}" style=" padding-left: 10px; padding-top: 40px" class="w-100" alt="" >
                                                 </div>
                                             </div>
@@ -61,7 +61,9 @@
                         @endforeach
                     </div>
             </div>
-
+            <div style="width: 150px;margin-left: 500px;">
+                <a href="{{route('order-status')}}" class="btn flosun-button secondary-btn black-color rounded-0 w-100">Trở về</a>
+            </div>
         </div>
     </div>
     <!-- Shop Main Area End Here -->

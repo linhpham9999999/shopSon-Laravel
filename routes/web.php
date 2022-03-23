@@ -172,6 +172,10 @@ Route::group(
                 Route::post('/change-account/{id}','App\Http\Controllers\AccountKHController@postAccount')->name('change-account');
                 Route::get('/change-password','App\Http\Controllers\ChangePasswordController@index')->name('password');
                 Route::post('/change-password','App\Http\Controllers\ChangePasswordController@store')->name('change-password');
+                //Thêm địa chỉ giao hàng
+                Route::post('/add-address','App\Http\Controllers\AccountKHController@postAddress')->name('add-address');
+                //Xoa DCGH
+                Route::get('delete/{id}', 'App\Http\Controllers\AccountKHController@postDelete')->name('delete-address');
             }
         );
 
