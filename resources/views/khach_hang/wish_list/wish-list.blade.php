@@ -46,8 +46,8 @@
                                 <th class="pro-thumbnail">Hình ảnh</th>
                                 <th class="pro-price">Tên sản phẩm</th>
                                 <th class="pro-title">Màu</th>
-                                <th class="pro-price">Gía</th>
-                                <th class="pro-cart">Thêm giỏ hàng</th>
+                                <th class="pro-price">Giá</th>
+                                <th class="pro-cart">Xem</th>
                                 <th class="pro-remove">Xóa</th>
                             </tr>
                             </thead>
@@ -59,13 +59,13 @@
                                 <td class="pro-title">{{$list->mau_wl}}</td>
                                 <td class="pro-price"><span>{{$list->gia_wl}} VND</span></td>
                                 <td class="pro-cart">
-                                    <form action="{{route('add-cart')}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="productIdColor" class="cart_product_id_{{$list->id_MSP}}" value="{{$list->id_MSP}}">
+{{--                                    <form action="{{route('add-cart')}}" method="post">--}}
+{{--                                        {{csrf_field()}}--}}
+{{--                                        <input type="hidden" name="productIdColor" class="cart_product_id_{{$list->id_MSP}}" value="{{$list->id_MSP}}">--}}
 {{--                                        <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$list->id_MSP}}">Thêm giỏ hàng</button>--}}
-                                        <button type="submit" class="btn product-cart add-to-cart" name="add-to-cart">Thêm giỏ hàng</button>
-                                    </form>
-
+{{--                                        <button type="submit" class="btn product-cart add-to-cart" name="add-to-cart">Thêm giỏ hàng</button>--}}
+{{--                                    </form>--}}
+                                    <a href="{{route('product-color-detail',['id' => $list->id_MSP])}}"> <span>CHI TIẾT</span> </a>
                                 </td>
                                 <td class="pro-remove"><a href="{{route('detele-wish-list',['id'=>$list->id])}}"><i class="lnr lnr-trash"></i></a></td>
                             </tr>

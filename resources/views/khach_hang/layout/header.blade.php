@@ -34,6 +34,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{route('contact')}}">
+                                    <span class="menu-text"> Liên hệ</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{route('view-cart')}}">
                                     <span class="menu-text">Giỏ hàng</span>
                                     <i class="fa fa-angle-down"></i>
@@ -51,15 +56,7 @@
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('view-account')}}">Thông tin tài khoản</a></li>
                                     <li><a href="{{route('password')}}">Đổi mật khẩu</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="{{route('create_account')}}">
-                                    <span class="menu-text"> Đăng ký thành viên </span>
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-submenu dropdown-hover">
-                                    <li><a href="{{route('create_account')}}">Đăng ký</a></li>
+                                    <li><a href="{{route('create_account')}}">Đăng ký thành viên</a></li>
                                     <li><a href="{{route('loginKH')}}">Login</a></li>
                                     <li><a href="{{route('logoutKH')}}">Logout</a></li>
                                 </ul>
