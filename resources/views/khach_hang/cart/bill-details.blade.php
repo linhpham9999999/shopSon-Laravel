@@ -51,9 +51,37 @@
                                                 <p >{{$ct->thongTinMau}}</p>
                                             </div>
 
-                                            <div class="product-meta">
-                                                <p>{{$ct->trangthai}}</p>
+                                            <div>
+{{--                                                Admin chưa duyệt thì ''Chờ xác nhân''--}}
+                                                @if($ct->idTT == '3')
+                                                <span style="background-color: #555555;border: none;color: white;padding: 15px 32px;
+                                                    text-align: center; text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;
+                                                    ">{{$ct->trangthai}}</span>
+                                                @endif
+{{--                                                Khi Admin đã duyệt thì nút 'Nhận đc hàng' -> giao hàng rồi thì ấn vào -> 'Đã mua"--}}
+                                                <form action="{{route('accept-order')}}" method="POST">
+                                                    {{csrf_field()}}
+                                                @if ( $ct->idTT == '2')
+                                                        <input type="hidden" name="idHD" value="{{$ct->idHD}}">
+                                                    <span class="buy_now_btn">
+                                                    <button type="submit" style="background-color: #4CAF50;  border: none; color: white;
+                                                    padding: 15px 32px;text-align: center;text-decoration: none; display: inline-block;
+                                                    font-size: 16px; margin: 4px 2px;">Đã nhận được hàng</button>
+                                                    </span>
+                                                @endif
+                                                </form>
+
+                                                @if ( $ct->idTT == '1')
+                                                    <span class="buy_now_btn">
+                                                <span style="background-color: #555555;  border: none; color: white;
+                                                padding: 15px 32px;text-align: center;text-decoration: none; display: inline-block;
+                                                font-size: 16px; margin: 4px 2px;">Đã mua</span>
+                                                </span>
+                                                @endif
+
+
                                             </div><!-- .product-meta -->
+
                                         </div><!-- .product-info -->
                                     </div><!-- .col -->
                                 </div><!-- .row -->

@@ -53,7 +53,7 @@
                         </table><!-- .nk-tb-list -->
                     </div><!-- .card-inner -->
                     <div class="card-inner">
-                        <span><p style="font-weight: bold; padding-left: 900px;">Tổng tiền: <span style="padding-left: 10px; font-size: 20px">{{ $sum }} VNĐ</span></p></span>
+                        <span><p style="font-weight: bold; padding-left: 800px;">Tổng tiền: <span style="padding-left: 10px; font-size: 20px">{{ $sum }} VNĐ</span></p></span>
                     </div><!-- .card-inner -->
                 </div><!-- .card-inner-group -->
             </div><!-- .card -->

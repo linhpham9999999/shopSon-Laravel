@@ -93,7 +93,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-info btn-fill pull-right">Cập nhật thông tin</button>
+                            <button type="submit" style="margin-left: 500px;" class="btn btn-info btn-fill pull-right">Cập nhật thông tin</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>

@@ -125,9 +125,9 @@ class BuyProductsController extends Controller
             ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
-            ->select('hoa_don.id','mau_san_pham.hinhanh','mau_san_pham.mau','mau_san_pham.thongTinMau',
+            ->select('hoa_don.id as idHD','mau_san_pham.hinhanh','mau_san_pham.mau','mau_san_pham.thongTinMau',
                      'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong',
-                     'hoa_don.tongtien','trang_thai.trangthai',
+                     'hoa_don.tongtien','trang_thai.trangthai','trang_thai.id as idTT',
                      'ngaygiao','ngaydat')
             ->where('hoa_don.id','=',$id)->get();
 //        dd($cthd);

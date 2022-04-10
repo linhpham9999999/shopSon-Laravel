@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="form-label" for="email-address">Ngày vào làm</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" value="{{$nhanvien->ngay_vao_lam}}" name="date" placeholder="Nhập giá giảm sản phẩm (VNĐ)" required />
+                                <input class="form-control" value="{{$nhanvien->ngay_vao_lam}}" name="date" placeholder="Ngày vào làm phải dạng Năm-Tháng-Ngày" required />
                                 <div class="error"> {{$errors->first('date')}}</div>
                             </div>
                         </div>

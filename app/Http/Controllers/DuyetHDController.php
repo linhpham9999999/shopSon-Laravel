@@ -48,4 +48,14 @@ class DuyetHDController extends Controller
 //        dd($products);
         return view('admin\duyetHD\chitietHD',compact('user','products'));
     }
+    function confirm(Request $request){
+//        dd($request->idHD);
+        DB::table('hoa_don')->select('*')->where('id', '=',$request->idHD)
+            ->update(
+                [
+                    'id_TT' => 1,
+                ]
+            );
+        return back()->with('thongbao', '');
+    }
 }

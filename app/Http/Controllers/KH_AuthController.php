@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Session;
+use Illuminate\Support\Facades\DB;
 
-use DB;
 use Illuminate\Support\Facades\Hash;
 
 class KH_AuthController extends Controller
@@ -99,7 +99,13 @@ class KH_AuthController extends Controller
             'email' => $request->email,
             'quyen' => $request->quyen
         ]);
-
+        //Tự động thêm địa chỉ mặc định vào đc giao hàng
+        $id_nguoidung = DB::getPdo()->lastInsertId();
+        DB::table('dia_chi_giao_hang')->insert([
+            'id_NGUOIDUNG_mua'  =>$id_nguoidung,
+            'Ma_DCGH'           =>'DCGH'.rand(10,1000),
+            'dia_chi_giao_hang' =>$request->diachi
+                                               ]);
         return redirect()->route('loginKH')->with('alert','Đăng ký thành công');
     }
 }

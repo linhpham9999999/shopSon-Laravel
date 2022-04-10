@@ -17,13 +17,14 @@ class InfoController extends Controller
         return view('admin.profile.profile', compact('users'));
     }
     public function postInfo(Request  $request, $id){
+//        |after:tomorrow
         $this->validate($request,
             [
                 'hoten'      => 'bail|required|min:5|max:50',
                 'diachi'    => 'bail|required|min:5|max:255',
                 'sodth'     => 'bail|required|min:10|max:10',
                 'ngaysinh'  => 'bail|required|date_format:Y-m-d',
-                'ngay_vao_lam' => 'bail|required|date_format:Y-m-d|after:tomorrow',
+                'ngay_vao_lam' => 'bail|required|date_format:Y-m-d',
                 'info'      => 'bail|min:5|max:500'
             ],
             [
@@ -40,7 +41,7 @@ class InfoController extends Controller
                 'ngaysinh.date_format'  => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
                 'ngay_vao_lam.required'     => 'Bạn chưa nhập Ngày sinh',
                 'ngay_vao_lam.date_format'  => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
-                'ngay_vao_lam.after'        => 'Ngày vào làm không hợp lệ',
+//                'ngay_vao_lam.after'        => 'Ngày vào làm không hợp lệ',
                 'info.min'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
                 'info.max'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
             ]);
