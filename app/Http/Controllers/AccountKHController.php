@@ -53,12 +53,12 @@ class AccountKHController extends Controller
     public function postAddress(Request $request){
         $this->validate($request,
             [
-                'diachinew'      => 'bail|required|min:5|max:50',
+                'diachinew'      => 'bail|required|min:5|max:500',
             ],
             [
                 'diachinew.required'         => 'Bạn chưa nhập địa chỉ',
-                'diachinew.min'              => 'Địa phải có độ dài từ 5 đến 50 ký tự',
-                'diachinew.max'              => 'Địa chỉ phải có độ dài từ 5 đến 50 ký tự'
+                'diachinew.min'              => 'Địa phải có độ dài từ 5 đến 500 ký tự',
+                'diachinew.max'              => 'Địa chỉ phải có độ dài từ 5 đến 500 ký tự'
             ]);
 
         DB::table('dia_chi_giao_hang')

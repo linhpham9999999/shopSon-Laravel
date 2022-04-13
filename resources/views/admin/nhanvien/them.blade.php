@@ -5,9 +5,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Thêm thông tin nhân viên</h5>
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        {{--                    <em class="icon ni ni-cross"></em>--}}
-                    </a>
+                    <a href="{{route('dsNV')}}" class="btn btn-wider btn-primary"><span>Back</span><em class="icon ni ni-arrow-right"></em></a>
+
                 </div>
                 @if(session('thongbao'))
                     <div class="alert alert-success">
@@ -96,9 +95,9 @@
                             </div>
                         </div>
                         <input class="form-control" type="hidden" name="quyen" value="1" />
-                        <div class="form-group">
+                        <div class="form-group" style="padding-left: 100px;">
                             <button type="submit" class="btn btn-lg btn-primary">Lưu thông tin</button>
-                            <button type="reset" class="btn btn-lg btn-primary">Làm mới</button>
+                            <button type="reset" class="btn btn-lg btn-light">Làm mới</button>
                         </div>
                     </form>
                 </div>

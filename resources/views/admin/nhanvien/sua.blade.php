@@ -5,6 +5,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Sửa thông tin nhân viên</h5>
+                    <a href="{{route('dsNV')}}" style="margin-left: 140px" class="btn btn-wider btn-primary"><span>Back</span><em class="icon ni ni-arrow-right"></em></a>
+
                     <a href="#" class="close" data-dismiss="modal" aria-label="Close">
 {{--                        <em class="icon ni ni-cross"></em>--}}
                     </a>
@@ -82,8 +84,9 @@
                                 <div class="error"> {{$errors->first('hinh_anh')}}</div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="padding-left: 100px;">
                             <input type="submit" class="btn btn-lg btn-primary js-btn-update-sp" value="Lưu thông tin" />
+                            <button type="reset" class="btn btn-lg btn-light">Làm mới</button>
                         </div>
                     </form>
                 </div>

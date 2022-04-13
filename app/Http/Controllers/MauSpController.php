@@ -13,7 +13,8 @@ class MauSpController extends Controller
     public function getDanhSach()
     {
         $data = DB::table('san_pham')->join('loai_san_pham','san_pham.id_LSP','=','loai_san_pham.id')
-            ->join('mau_san_pham','mau_san_pham.id_SP','=','san_pham.id')->paginate(5);
+            ->join('mau_san_pham','mau_san_pham.id_SP','=','san_pham.id')
+            ->paginate(5);
 //        dd($data);
 //        dd($data->links());
         return view('admin.mausp.danhsach', compact('data'));
@@ -83,7 +84,7 @@ class MauSpController extends Controller
 
     public function postSua(Request $request, $id)
     {
-
+//        dd($request->idLSP);
         $this->validate(
             $request,
             [

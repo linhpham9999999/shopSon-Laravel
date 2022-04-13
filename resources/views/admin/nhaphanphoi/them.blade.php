@@ -41,8 +41,9 @@
                             <input class="form-control" name="emailNPP" id="emailNPP-add" placeholder="Email phải có độ dài từ 10 đến 40 ký tự" required />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="padding-left: 100px;">
                         <button type="button" class="btn btn-lg btn-primary js-btn-save">Lưu thông tin</button>
+                        <button type="reset" class="btn btn-lg btn-light">Làm mới</button>
 {{--                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAlert">Lưu thông tin</button>--}}
                     </div>
                 </form>
