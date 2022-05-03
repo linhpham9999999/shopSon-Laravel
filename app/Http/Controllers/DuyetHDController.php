@@ -39,8 +39,9 @@ class DuyetHDController extends Controller
         $user = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->join('hinh_thuc_thanh_toan','hoa_don.id_HTTT','=','hinh_thuc_thanh_toan.id')
             ->where('hoa_don.id','=',$id)
-            ->select('ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai','hoa_don.id_TT','hoa_don.id')->get();
+            ->select('ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai','hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
         $products = DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
@@ -65,7 +66,14 @@ class DuyetHDController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',3)->paginate(5);
-        return view('admin\duyetHD\danhsach',compact('hoadon'));
+
+        $isOrder = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',3)->get()->toArray();
+//        dd($isOrder);
+        return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
     function getDSDaDuyet(){
         $hoadon = DB::table('hoa_don')
@@ -73,7 +81,12 @@ class DuyetHDController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',2)->paginate(5);
-        return view('admin\duyetHD\danhsach',compact('hoadon'));
+        $isOrder = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',2)->get()->toArray();
+        return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
     function getDSDaMua(){
         $hoadon = DB::table('hoa_don')
@@ -81,6 +94,11 @@ class DuyetHDController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',1)->paginate(5);
-        return view('admin\duyetHD\danhsach',compact('hoadon'));
+        $isOrder = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',1)->get()->toArray();
+        return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
 }

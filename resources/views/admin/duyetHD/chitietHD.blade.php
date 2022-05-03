@@ -40,14 +40,7 @@
                                     </table>
                                 </div><!-- .col -->
                                 <div class="col-xxl-4">
-                                    <div class="row g-4">
-                                        <div class="col-sm-6 col-xxl-12">
 
-                                        </div>
-                                        <div class="col-sm-6 col-xxl-12">
-
-                                        </div>
-                                    </div>
                                 </div><!-- .col -->
                             </div>
                         </div><!-- .nk-order-ovwg -->
@@ -76,12 +69,6 @@
                                         </div>
                                         <div class="col-md-12 col-custom">
                                             <div class="checkout-form-list">
-                                                <label style="font-weight: bold">Địa chỉ: </label>
-                                                <span class="formdetails">{{$ct->dia_chi_giao_hang}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-custom">
-                                            <div class="checkout-form-list">
                                                 <label style="font-weight: bold">Số điện thoại:</label>
                                                 <span class="formdetails">{{$ct->sodth}}</span>
                                             </div>
@@ -106,8 +93,20 @@
                                         </div>
                                         <div class="col-md-12 col-custom">
                                             <div class="checkout-form-list">
+                                                <label style="font-weight: bold">Hình thức thanh toán :</label>
+                                                <span class="formdetails">{{$ct->ten_HTTT}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-custom">
+                                            <div class="checkout-form-list">
                                                 <label style="font-weight: bold">Ngày đặt hàng:</label>
                                                 <span class="formdetails">{{$ct->ngaydat}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-custom">
+                                            <div class="checkout-form-list">
+                                                <label style="font-weight: bold">Địa chỉ: </label>
+                                                <span class="formdetails">{{$ct->dia_chi_giao_hang}}</span>
                                             </div>
                                         </div>
                                     </div>

@@ -17,6 +17,7 @@
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
+        @if( !empty($isOrder) )
         <div class="nk-block">
             <div class="card card-bordered card-stretch">
                 <div class="card-inner-group">
@@ -77,6 +78,9 @@
                 </div><!-- .card-inner-group -->
             </div><!-- .card -->
         </div><!-- .nk-block -->
+        @else
+        <h3 style="text-align: center">Không có đơn hàng nào đang chờ duyệt</h3>
+        @endif
     </div>
 
 @endsection

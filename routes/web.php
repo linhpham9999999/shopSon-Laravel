@@ -228,6 +228,9 @@ Route::group(
         Route::get('/billDetail/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail');
         //KH xác nhận lấy hàng
         Route::post('/accept-order','App\Http\Controllers\DuyetHDController@confirm')->name('accept-order')->middleware('loginKH');
+
+        //Thanh toán bằng MOMO
+        Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
     }
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
