@@ -32,9 +32,9 @@ class AD_AuthController extends Controller
         $user =  $request->email ;
         $nhanvien = DB::table('nguoi_dung')->select('hoten')->where('email','=',$user)->get();
         $authenticated = Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-            'quyen' => 1
+            'email'     => $request->email,
+            'password'  => $request->password,
+            'quyen'     => 1
         ]);
 //    dd(Auth::user());
         if ($authenticated) {

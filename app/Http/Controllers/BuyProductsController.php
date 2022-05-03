@@ -98,7 +98,7 @@ class BuyProductsController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('hoa_don.id','hoa_don.email_nguoimua','hoa_don.Ma_HD','ngaygiao','ngaydat'
-                ,'hoa_don.tongtien','trang_thai.trangthai')
+                ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->where('hoa_don.email_nguoimua','=',$email)
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
@@ -112,7 +112,7 @@ class BuyProductsController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('hoa_don.id','hoa_don.email_nguoimua','hoa_don.Ma_HD','ngaygiao','ngaydat'
-                       ,'hoa_don.tongtien','trang_thai.trangthai')
+                       ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->where('hoa_don.email_nguoimua','=',$email)
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));

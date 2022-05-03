@@ -28,6 +28,11 @@
         <div class="container custom-area">
             <div class="row">
                 <div class="col-lg-12 col-custom">
+                    @if(session('alert'))
+                        <div class="alert alert-success">
+                            {{session('alert')}}
+                        </div>
+                    @endif
                     <!-- Cart Table Area -->
                     <div class="cart-table table-responsive">
                         @if(!empty($hoadon))
@@ -40,6 +45,7 @@
                                 <th class="pro-thumbnail">Ngày giao</th>
                                 <th class="pro-subtotal">Trạng thái</th>
                                 <th class="pro-subtotal">Xem chi tiết</th>
+                                <th class="pro-subtotal"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,6 +58,11 @@
                                     <td class="pro-subtotal">{{ $hd->trangthai}}</td>
                                     <td class="pro-subtotal">
                                         <a href="{{route('bill-detail',['id'=>$hd->id])}}" >Chi tiết</a>
+                                    </td>
+                                    <td class="pro-subtotal">
+                                        @if ($hd->idTT == 3)
+                                            <a href="{{route('delete-order',['id'=>$hd->id])}}"><i class="lnr lnr-trash">Hủy</i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

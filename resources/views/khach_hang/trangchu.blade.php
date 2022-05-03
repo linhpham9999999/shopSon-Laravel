@@ -64,15 +64,12 @@
                                             {{--<img src="khach_hang_asset/assets/images/product/4.jpg" alt="" class="product-image-2 position-absolute w-100">--}}
                                         </a>
                                         <div class="add-action d-flex flex-column position-absolute">
-                                            {{--<a href="compare.html" title="Compare">
-                                                <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="left" title="Compare"></i>
-                                            </a>
-                                            <a href="wishlist.html" title="Add To Wishlist">
-                                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
-                                            </a>--}}
-                                            <a href="#exampleModalCenter" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter">
-                                                <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
-                                            </a>
+                                            <form>
+                                                {{csrf_field()}}
+                                                <a class="list-icon" title="Add To Wishlist">
+                                                    <button type="button" data-toggle="modal" data-target="#xemnhanh" class="quick-view xemnhanh" name="xemnhanh" data-id_product="{{$sp->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="xem chi tiết"></i></button>
+                                                </a>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="product-content">
@@ -149,4 +146,42 @@
     </div>
 </div>
 <!--Product Area End-->
+<div class="modal flosun-modal fade" id="xemnhanh" tabindex="-1" role="dialog" aria-hidden="true" style="font-family: cursive">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
+                <span class="close-icon" aria-hidden="true">x</span>
+            </button>
+            <div class="modal-body">
+                <div class="container-fluid custom-area">
+                    <div class="row">
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product-img">
+                                <div id="procduct_quickview_image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product">
+                                <div class="product-content">
+                                    <div class="product-title" >
+                                        <h3  id="procduct_quickview_title" style="font-size: 30px; font-weight: bold; border-bottom: 2px solid black; padding-bottom: 5px">
+                                        </h3>
+                                    </div>
+                                    <div class="price-box" style="margin-top: 40px">
+                                        <p class="quickview"><strong>Giá sản phẩm: </strong><span id="procduct_quickview_price"></span></p>
+                                        <p class="quickview"><strong>Trọng lượng: </strong><span id="procduct_quickview_tt"></span></p>
+                                        <p class="quickview"><strong>Xuất xứ: </strong><span id="procduct_quickview_xx"></span></p>
+                                        <p class="quickview"><strong>HSD: </strong><span id="procduct_quickview_hsd"></span></p>
+                                        <p class="quickview"><strong>Ý nghĩa sản phẩm: </strong><span id="procduct_quickview_content"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection()

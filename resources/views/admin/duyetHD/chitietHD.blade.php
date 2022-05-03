@@ -127,9 +127,11 @@
                             <td><button type="submit" class="btn btn-primary">Duyệt đơn hàng</button></td>
                         @elseif($ct->id_TT == 2)
                             <td><button type="button" class="btn btn-primary">Đã duyệt</button></td>
+                        @elseif($ct->id_TT == 1)
+                            <td><button type="button" class="btn btn-primary">Đã mua</button></td>
                         @endif
                 </form></span>
-                <span><a href="{{route('quanlyHD')}}" class="btn btn-secondary">Trở về đơn hàng</a></span>
+                <span><a href="{{route('da-duyet')}}" class="btn btn-secondary">Trở về đơn hàng</a></span>
             </div>
             @endforeach
         </div><!-- .row -->

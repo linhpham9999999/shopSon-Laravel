@@ -58,4 +58,29 @@ class DuyetHDController extends Controller
             );
         return back()->with('thongbao', '');
     }
+
+    function getDSChuaDuyet(){
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',3)->paginate(5);
+        return view('admin\duyetHD\danhsach',compact('hoadon'));
+    }
+    function getDSDaDuyet(){
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',2)->paginate(5);
+        return view('admin\duyetHD\danhsach',compact('hoadon'));
+    }
+    function getDSDaMua(){
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',1)->paginate(5);
+        return view('admin\duyetHD\danhsach',compact('hoadon'));
+    }
 }

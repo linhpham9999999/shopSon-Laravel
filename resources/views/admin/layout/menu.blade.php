@@ -49,17 +49,37 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="{{route('quanlyHD')}}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                            <span class="nk-menu-text">Quản lý đơn hàng</span>
-                        </a>
-                    </li>
-                    <li class="nk-menu-item">
                         <a href="{{route('dsNV')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
                             <span class="nk-menu-text">Quản lý nhân viên</span>
                         </a>
                     </li><!-- .nk-menu-item -->
+
+{{--                    <li class="nk-menu-item">--}}
+{{--                        <a href="{{route('quanlyHD')}}" class="nk-menu-link">--}}
+{{--                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>--}}
+{{--                            <span class="nk-menu-text">Quản lý đơn hàng</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+
+                    <li class="nk-menu-item has-sub">
+                        <a href="{{route('da-mua')}}" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
+                            <span class="nk-menu-text"> Quản lý đơn hàng</span>
+                        </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đã duyệt</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('da-mua')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>
+                            </li>
+                        </ul>
+                    </li><!-- .nk-menu-item -->
+
                     <li class="nk-menu-item">
                         <a href="{{route('get-sales')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>

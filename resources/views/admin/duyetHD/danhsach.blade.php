@@ -5,7 +5,7 @@
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title">Quản lý hóa đơn </h3>
+                    <h3 class="nk-block-title page-title">Quản lý đơn hàng</h3>
                     <div class="nk-block-des text-soft">
                         {{--                        <p>You have total 95 projects.</p>--}}
                     </div>
@@ -78,8 +78,7 @@
             </div><!-- .card -->
         </div><!-- .nk-block -->
     </div>
-    @include('admin.loaisp.them')
-    @include('admin.loaisp.sua')
+
 @endsection
 {{--@section('content')
     <!-- Page Content -->
