@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="card" style="padding: 15px 15px">
                     @if(session('thongbao'))
                         <div class="alert alert-success">
@@ -10,10 +10,10 @@
                         </div>
                     @endif
                     <div class="header">
-                        <h4 class="title">Thông tin cá nhân</h4>
+                        <h4 class="title">Quản lý kho hàng</h4>
                     </div>
                     <div class="content">
-                        <form action="{{route('update-info',['id'=>$users->id])}}"  method="POST">
+                        <form action="{{route('actionThemKhoHang')}}" enctype="multipart/form-data" method="POST">
                             {{csrf_field()}}
                             <div class="row" style="margin: 10px;">
                                 <div class="col-md-5">
@@ -33,8 +33,8 @@
                                         <label for="exampleInputEmail1" style="margin-bottom: unset;">Giới tính</label>
                                         <input type="text" class="form-control" disabled placeholder="Giới tính"
                                                value=" @if($users->gioitinh == 0) {{'Nữ'}}
-                                                        @else {{'Nam'}}
-                                                        @endif " >
+                                               @else {{'Nam'}}
+                                               @endif " >
                                     </div>
                                 </div>
                             </div>
@@ -62,38 +62,39 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row" style="margin: 10px;">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label style="margin-bottom: unset;">Số điện thoại</label>
-                                        <input type="text" name="sodth" class="form-control" placeholder="Số điện thoại" value="{{$users->sodth}}">
-                                        <div class="error">{{$errors->first('sodth')}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label style="margin-bottom: unset;">Căn cước công dân</label>
-                                        <input type="text" name="sodth" class="form-control" placeholder="Căn cước công dân" value="{{$users->cccd}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row" style="margin: 10px;">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label style="margin-bottom: unset;">Địa chỉ</label>
-                                        <input type="text" name="diachi" class="form-control" placeholder="Home Address" value="{{$users->diachi}}">
-                                        <div class="error">{{$errors->first('diachi')}}</div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <button type="submit" style="margin-left: 500px;" class="btn btn-info btn-fill pull-right">Cập nhật thông tin</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card card-bordered h-100">
+                    <div class="card-inner-group">
+                        <div class="card-inner card-inner-md">
+                            <div class="card-title-group">
+                                <div class="card-title">
+                                    <h6 class="title">Thông tin khách hàng</h6>
+                                </div>
+                            </div>
+                        </div><!-- .card-inner -->
+                        <div class="card-inner">
+                            <div class="nk-wg-action">
+
+                                    <div class="row">
+                                        <div class="col-md-12 col-custom">
+                                            <div class="checkout-form-list">
+                                                <label style="font-weight: bold">Tên khách hàng:</label>
+                                                <span class="formdetails">{{$ct->hoten}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div><!-- .card-inner -->
+                    </div><!-- .card-inner-group -->
+                </div><!-- .card -->
             </div>
         </div>
     </div>

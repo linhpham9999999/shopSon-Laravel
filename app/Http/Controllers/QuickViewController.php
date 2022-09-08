@@ -19,7 +19,7 @@ class QuickViewController extends Controller{
 
         $output['product_image'] = '<p><img width="100%" src="admin_asset/image_son/'.$product->hinhanhgoc.'" ></p>';
         $output['product_name'] = 'SON '.$product->ten_SP;
-        $output['product_price'] = number_format($product->giagoc-$product->giamgia,0,',','.').'VND';
+        $output['product_price'] = number_format($product->gia_ban_ra,0,',','.').'VND';
         $output['product_trluong'] = $product->trongluong.'g';
         $output['product_xuatxu'] = $product->xuatxu;
         $output['product_hsd'] = $product->hansudung_thang.' tháng';

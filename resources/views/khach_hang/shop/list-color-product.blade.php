@@ -39,21 +39,9 @@
                                     <h4 class="title-2"> {{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
                                 <div class="price-box">
-                                    <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }} </span>
-                                    <span class="old-price"><del>{{$msp->giagoc}}</del></span>
+                                    <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
+                                    {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                 </div>
-                                {{--<form action="{{route('add-cart')}}" method="post">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="productIdColor" value="{{$msp->id}}">
-                                    <button type="submit" class="btn product-cart add-to-cart" name="add-to-cart">Thêm giỏ hàng</button>
-                                </form>--}}
-
-                                {{--DOI QUA CAI BALDE XEM CHI TIET DE THEM CART <form>--}}{{--action="{{route('add-cart')}}" method="post"--}}{{--
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="productId" value="{{$msp->id_SP}}">
-                                    <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
-                                    <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$msp->id}}">Thêm giỏ hàng</button>
-                                </form>--}}
 
                                 <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT SẢN PHẨM</span> </a>
 
@@ -64,8 +52,8 @@
                                     <h4 class="title-2">{{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
                                 <div class="price-box">
-                                    <span class="regular-price ">{{ $msp->giagoc - $msp->giamgia }}</span>
-                                    <span class="old-price"><del>{{$msp->giagoc}}</del></span>
+                                    <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
+                                    {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                 </div>
                                 <p class="desc-content">{{$msp->thongTinMau}}</p>
                                 <div class="button-listview">

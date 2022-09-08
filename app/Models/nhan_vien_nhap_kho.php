@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class nhan_vien_nhap_kho extends Authenticatable
 {
     use HasFactory, Notifiable;
 
@@ -15,7 +15,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table='quan_tri';
+    protected $table='nhan_vien_nhap_kho';
+    protected $guard = 'nhan_vien_nhap_kho';
 
     protected $fillable = [
         'email',

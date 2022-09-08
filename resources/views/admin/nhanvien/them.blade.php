@@ -9,7 +9,7 @@
 
                 </div>
                 @if(session('thongbao'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success" style="margin-bottom: 5px;">
                         {{session('thongbao')}}
                     </div>
                 @endif
@@ -21,13 +21,6 @@
                             <div class="form-control-wrap">
                                 <input class="form-control" name="ten" placeholder="Tên phải có độ dài từ 5 đến 50 ký tự" />
                                 <div class="error"> {{$errors->first('ten')}}</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="phone-no">Địa chỉ</label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" name="diachi" placeholder="Địa chỉ phải có độ dài từ 5 đến 255 ký tự" />
-                                <div class="error"> {{$errors->first('diachi')}}</div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -61,6 +54,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="form-label" for="email-address">Căn cước công dân</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" name="cccd" placeholder="Căn cước công dân" />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="form-label" for="email-address">Ngày sinh</label>
                             <div class="form-control-wrap">
                                 <input class="form-control" name="nsinh" placeholder="Ngày sinh phải nhập theo dạng Năm-Tháng-Ngày" />
@@ -71,7 +70,6 @@
                             <label class="form-label" for="email-address">Hình ảnh nhân viên</label>
                             <div class="form-control-wrap">
                                 <input type="file" name="hinh_anh"/>
-                                <div class="error"> {{$errors->first('hinh_anh')}}</div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,12 +87,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="email-address">Thông tin (sở thích,...)</label>
+                            <label class="form-label" for="phone-no">Địa chỉ</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" name="info" placeholder="Thông tin nhân viên" />
+                                <input class="form-control" name="diachi" placeholder="Địa chỉ phải có độ dài từ 5 đến 255 ký tự" />
+                                <div class="error"> {{$errors->first('diachi')}}</div>
                             </div>
                         </div>
-                        <input class="form-control" type="hidden" name="quyen" value="1" />
+                        <div class="form-group">
+                            <label class="form-label" for="email-address">Chức vụ</label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" name="chuc_vu_id">
+                                    @foreach($chucvu as $cv)
+                                        <option value="{{$cv->id}}">{{$cv->CV_ten}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group" style="padding-left: 100px;">
                             <button type="submit" class="btn btn-lg btn-primary">Lưu thông tin</button>
                             <button type="reset" class="btn btn-lg btn-light">Làm mới</button>

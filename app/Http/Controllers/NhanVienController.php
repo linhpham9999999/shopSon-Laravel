@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\chuc_vu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
-use App\Models\nguoi_dung;
 
 use DB;
 
 class NhanVienController extends Controller
 {
     public function getDanhSach(){
-        $nhanvien = DB::table('nguoi_dung')->select('*')->where('quyen','=','1')->paginate(5);
-        return view('admin.nhanvien.danhsach',['nhanvien'=>$nhanvien]);
+        $nhanvien = DB::table('quan_tri')->join('chuc_vu','quan_tri.chuc_vu_id','=','chuc_vu.id')
+            ->select('quan_tri.id as id','hoten', 'sodth','email','diachi','ngay_vao_lam','chuc_vu.CV_ten')->paginate(5);
+        return view('admin.nhanvien.danhsach',compact('nhanvien'));
     }
     public  function getThem(){
-        return view('admin.nhanvien.them');
+        $chucvu = chuc_vu::all();
+        return view('admin.nhanvien.them',compact('chucvu'));
     }
     public  function postThem(Request  $request){
         $this->validate($request,
@@ -64,7 +66,7 @@ class NhanVienController extends Controller
             $name = $tenfile->getClientOriginalName();
             $tenfile->move('images', $name);
         }
-        DB::table('nguoi_dung')->insert(
+        DB::table('quan_tri')->insert(
             [
                 'password' => Hash::make($request->pass),
                 'hoten' => $request->ten,
@@ -73,10 +75,43 @@ class NhanVienController extends Controller
                 'gioitinh' => $request->gtinh,
                 'ngaysinh' => $request->nsinh,
                 'email' => $request->email,
-                'quyen'=>$request->quyen,
+                'chuc_vu_id'=>$request->chuc_vu_id,
                 'ngay_vao_lam'=>$request->date,
-                'thong_tin_user'=>$request->info,
-                'hinhanh_user'=>$name,
+                'cccd'=>$request->cccd,
+                'hinhanh'=>$name,
+                'created_at' => Carbon :: now ()
+            ]
+        );
+        DB::table('nhan_vien_nhap_kho')->insert(
+            [
+                'password' => Hash::make($request->pass),
+                'hoten' => $request->ten,
+                'diachi' => $request->diachi,
+                'sodth' => $request->sodth,
+                'gioitinh' => $request->gtinh,
+                'ngaysinh' => $request->nsinh,
+                'email' => $request->email,
+                'chuc_vu_id'=>$request->chuc_vu_id,
+                'ngay_vao_lam'=>$request->date,
+                'cccd'=>$request->cccd,
+                'hinhanh'=>$name,
+                'created_at' => Carbon :: now ()
+            ]
+        );
+        DB::table('nhan_vien_ban_hang')->insert(
+            [
+                'password' => Hash::make($request->pass),
+                'hoten' => $request->ten,
+                'diachi' => $request->diachi,
+                'sodth' => $request->sodth,
+                'gioitinh' => $request->gtinh,
+                'ngaysinh' => $request->nsinh,
+                'email' => $request->email,
+                'chuc_vu_id'=>$request->chuc_vu_id,
+                'ngay_vao_lam'=>$request->date,
+                'cccd'=>$request->cccd,
+                'hinhanh'=>$name,
+                'created_at' => Carbon :: now ()
             ]
         );
 
@@ -84,8 +119,10 @@ class NhanVienController extends Controller
     }
 
     public  function getSua($id){
-        $nhanvien = DB::table('nguoi_dung')->select('*')->where('id','=',$id)->first();
-        return view('admin.nhanvien.sua',compact('nhanvien'));
+        $nhanvien = DB::table('quan_tri')->select('*')->where('id', '=', $id)->first();
+        $chucvu = chuc_vu::all();
+//        dd($id, $nhanvien);
+        return view('admin.nhanvien.sua',compact('chucvu','nhanvien'));
     }
 
     public  function postSua(Request $request, $id){
@@ -95,7 +132,6 @@ class NhanVienController extends Controller
                 'diachi'=> 'bail|required|min:5|max:255',
                 'sodth' => 'bail|required|min:10|max:10',
                 'nsinh' => 'bail|required|date_format:Y-m-d',
-                'email' => 'bail|required|unique:nguoi_dung,email|min:5|max:50',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png',
                 'date'      => 'bail|required|date_format:Y-m-d'
             ],
@@ -111,10 +147,6 @@ class NhanVienController extends Controller
                 'sodth.max'             => 'Số điện thoại phải có độ dài 10 ký tự',
                 'nsinh.required'        => 'Bạn chưa nhập Thời gian bán sản phẩm',
                 'nsinh.date_format'     => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
-                'email.required'        => 'Bạn chưa nhập Email khách hàng',
-                'email.unique'          => 'Emai nhân viên đã tồn tại',
-                'email.min'             => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
-                'email.max'             => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh của sản phẩm',
                 'hinh_anh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
                 'date.required'    => 'Bạn chưa nhập Thời gian bán sản phẩm',
@@ -125,22 +157,55 @@ class NhanVienController extends Controller
             $name = $tenfile->getClientOriginalName();
             $tenfile->move('images', $name);
         }
-        DB::table('nguoi_dung')->select('*')->where('id','=',$id)->update([
-                'hoten'     => $request->ten,
-                'diachi'    => $request->diachi,
-                'sodth'     => $request->sodth,
-                'gioitinh'  => $request->gtinh,
-                'ngaysinh'  => $request->nsinh,
-                'email'     => $request->email,
-                'ngay_vao_lam'=>$request->date,
-                'thong_tin_user'=>$request->info,
-                'hinhanh_user'=>$name,
+        DB::table('quan_tri')->select('*')->where('id','=',$id)->update([
+            'hoten' => $request->ten,
+            'diachi' => $request->diachi,
+            'sodth' => $request->sodth,
+            'gioitinh' => $request->gtinh,
+            'ngaysinh' => $request->nsinh,
+            'chuc_vu_id'=>$request->chuc_vu_id,
+            'ngay_vao_lam'=>$request->date,
+            'cccd'=>$request->cccd,
+            'hinhanh'=>$name,
+            'updated_at'=>Carbon :: now ()
         ]);
+        DB::table('nhan_vien_nhap_kho')->insert(
+            [
+                'password' => Hash::make($request->pass),
+                'hoten' => $request->ten,
+                'diachi' => $request->diachi,
+                'sodth' => $request->sodth,
+                'gioitinh' => $request->gtinh,
+                'ngaysinh' => $request->nsinh,
+                'email' => $request->email,
+                'chuc_vu_id'=>$request->chuc_vu_id,
+                'ngay_vao_lam'=>$request->date,
+                'cccd'=>$request->cccd,
+                'hinhanh'=>$name,
+                'created_at' => Carbon :: now ()
+            ]
+        );
+        DB::table('nhan_vien_ban_hang')->insert(
+            [
+                'password' => Hash::make($request->pass),
+                'hoten' => $request->ten,
+                'diachi' => $request->diachi,
+                'sodth' => $request->sodth,
+                'gioitinh' => $request->gtinh,
+                'ngaysinh' => $request->nsinh,
+                'email' => $request->email,
+                'chuc_vu_id'=>$request->chuc_vu_id,
+                'ngay_vao_lam'=>$request->date,
+                'cccd'=>$request->cccd,
+                'hinhanh'=>$name,
+                'created_at' => Carbon :: now ()
+            ]
+        );
 
         return redirect('admin/nhanvien/sua/'.$id)->with('thongbao','Sửa thành công');
     }
     public  function postXoa($id){
-        DB::table('nguoi_dung')->where('id','=',$id)->delete();
+        DB::table('quan_tri')->where('id','=',$id)->delete();
         return response()->json([
                                     'message' => 'Data deleted successfully!'
                                 ]);

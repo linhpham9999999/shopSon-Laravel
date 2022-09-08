@@ -17,7 +17,7 @@ class CartController extends Controller
      */
 
     public function store(Request  $request){
-        $productIdColor = $request->productIdColor; // SESSION BTHuong
+        $productIdColor = $request->productIdColor;
         $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $productIdColor)->first();
         $sluong = $soluongton->soluongton;
         $number = $request->number;
@@ -36,7 +36,7 @@ class CartController extends Controller
             [
                 'number.required'      => 'Bạn chưa nhập số lượng sản phẩm',
                 'number.numeric'       => 'Số lượng sản phẩm phải là 1 số ',
-                'number.min'           => 'Số lượng sản phẩm phải lớn hơn 1',
+                'number.min'           => 'Số lượng sản phẩm phải từ 1',
             ]
         );
 //        dd($number);

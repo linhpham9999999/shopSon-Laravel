@@ -78,9 +78,9 @@ class LoaiSanPhamController extends Controller
 //        );
         $id = $request->id;
         DB::table('loai_san_pham')->where(['id' => $id])->update([
-                                            'Ma_LSP' => $request->idLSP,
-                                            'ten_LSP' => $request->tenLSP
-                                            ]);
+                                                                     'Ma_LSP' => $request->idLSP,
+                                                                     'ten_LSP' => $request->tenLSP
+                                                                 ]);
         return response()->json(['message'=>'Cập nhật thành công'],200);
     }
 

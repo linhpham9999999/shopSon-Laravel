@@ -62,19 +62,18 @@
                                 </div>
                                 <div class="user-info d-none d-md-block">
                                     <div class="user-status">
-                                        @if(\Illuminate\Support\Facades\Auth::check())
-                                            {{\Illuminate\Support\Facades\Auth::user()->hoten}}
+                                        @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
+                                            {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
+                                        @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
+                                        @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
+                                            {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
                                         @endif
                                     </div>
-{{--                                    <div class="user-name dropdown-indicator">--}}
-{{--                                        @if(\Illuminate\Support\Facades\Auth::check())--}}
-{{--                                            {{\Illuminate\Support\Facades\Auth::user()->hoten}}--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
                                     <div>
-                                        @if(\Illuminate\Support\Facades\Auth::check())
+
                                             <a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
-                                        @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -86,13 +85,22 @@
                                         <span>AB</span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">@if(\Illuminate\Support\Facades\Auth::check())
-                                                                    {{\Illuminate\Support\Facades\Auth::user()->hoten}}
-                                                                @endif
+                                        <span class="lead-text">
+                                               @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
+                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
+                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
+                                            @endif
                                         </span>
                                         <span class="sub-text">
-                                            @if(\Illuminate\Support\Facades\Auth::check())
-                                                {{\Illuminate\Support\Facades\Auth::user()->email}}
+                                            @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
+                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
+                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
                                             @endif
                                         </span>
                                     </div>
@@ -108,9 +116,9 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    @if(\Illuminate\Support\Facades\Auth::check())
+{{--                                    @if(\Illuminate\Support\Facades\Auth::guard('quan_tri')->check())--}}
                                         <li><a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
-                                            @endif
+                                     {{--  @endif--}}
                                         </li>
                                 </ul>
                             </div>

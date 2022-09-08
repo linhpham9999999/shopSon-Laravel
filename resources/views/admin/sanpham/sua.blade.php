@@ -8,7 +8,7 @@
                 <a href="{{route('dsSP')}}" class="btn btn-wider btn-primary"><span>Back</span><em class="icon ni ni-arrow-right"></em></a>
             </div>
             @if(session('thongbao'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" style="margin-bottom: 5px;">
                     {{session('thongbao')}}
                 </div>
             @endif
@@ -23,16 +23,6 @@
                                 @foreach($loaisp as $lsp)
                                 <option value="{{$lsp->id}}" id="idLSP-edit" >{{$lsp->ten_LSP}}</option>
                                 @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email-address">Nhà phân phối</label>
-                        <div class="form-control-wrap">
-                            <select class="form-control" name="idNPP" id="idNPP-edit">
-                                                                @foreach($nhapp as $npp)
-                                <option value="{{$npp->id}}" id="idNPP-edit" >{{$npp->ten_NPP}}</option>
-                                                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -65,25 +55,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="email-address">Gía gốc</label>
+                        <label class="form-label" for="email-address">Giá nhập vào</label>
                         <div class="form-control-wrap">
-                            <input class="form-control" value="{{$sanpham->giagoc}}" name="giagoc" id="giagoc-edit" placeholder="Nhập giá sản phẩm (VNĐ)" required />
-                            <div class="error"> {{$errors->first('giagoc')}}</div>
+                            <input class="form-control" value="{{$sanpham->gia_nhap_vao}}" name="gianhap" id="giagoc-edit" placeholder="Nhập giá sản phẩm (VNĐ)" required />
+                            <div class="error"> {{$errors->first('gianhap')}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="email-address">Giảm giá</label>
+                        <label class="form-label" for="email-address">Giá bán ra</label>
                         <div class="form-control-wrap">
-                            <input class="form-control" value="{{$sanpham->giamgia}}" name="giamgia" id="giamgia-edit" placeholder="Nhập giá giảm sản phẩm (VNĐ)" required />
-                            <div class="error"> {{$errors->first('giamgia')}}</div>
+                            <input class="form-control" value="{{$sanpham->gia_ban_ra}}" name="giaban" id="giamgia-edit" placeholder="Nhập giá giảm sản phẩm (VNĐ)" required />
+                            <div class="error"> {{$errors->first('giaban')}}</div>
                         </div>
                     </div>
-{{--                    <div class="form-group">--}}
-{{--                        <label class="form-label" for="email-address">Số lượng tồn</label>--}}
-{{--                        <div class="form-control-wrap">--}}
-{{--                            <input class="form-control" name="slton" id="slton-edit" placeholder="Nhập số lượng tồn của sản phẩm" required />--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <div class="form-group">
                         <label class="form-label" for="email-address">Hạn sử dụng</label>
                         <div class="form-control-wrap">
@@ -96,18 +80,6 @@
                         <div class="form-control-wrap">
                             <input class="form-control" value="{{$sanpham->gioithieu}}" name="gthieu" id="gthieu-edit" placeholder="Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự" required />
                             <div class="error"> {{$errors->first('gthieu')}}</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email-address">Số sao</label>
-                        <div class="form-control-wrap">
-                            <select class="form-control" name="sosao" id="sosao-edit">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
                         </div>
                     </div>
                     <div class="form-group">

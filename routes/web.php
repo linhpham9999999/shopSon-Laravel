@@ -19,29 +19,31 @@ Route::group(
     function () {
         Route::get('/', 'App\Http\Controllers\AD_AuthController@login')->name('login');
         Route::post('/test-login', 'App\Http\Controllers\AD_AuthController@check')->name('xy-ly-dang-nhap');
+
         Route::get('/trangchu',function () {
             return view('admin.trangchu');
-        })->name('homeAd')->middleware('login');
+        })->name('homeAd')->middleware('checkQuanTriVien');
+
         Route::get('logout', 'App\Http\Controllers\AD_AuthController@logout')->name('logoutAD');
 
-        // Quản lý nhà phân phối
+        // Quản lý khách hàng
         Route::group(
-            ['prefix' => 'nhaphanphoi', 'middleware' => 'login'],
+            ['prefix' => 'khach_hang', 'middleware' => 'checkQuanTriVien'],
             function () {
-                Route::get('danhsach', 'App\Http\Controllers\NhaPhanPhoiController@getDanhSach')->name('dsNPP');
+                Route::get('danhsach', 'App\Http\Controllers\AdminAddUserController@getDanhSach')->name('khach_hang');
 
-                Route::get('sua/{id}', 'App\Http\Controllers\NhaPhanPhoiController@getSua')->name('getSuaNPP');
-                Route::post('post-sua', 'App\Http\Controllers\NhaPhanPhoiController@postSua')->name('actionSuaNPP');
+                Route::get('them', 'App\Http\Controllers\AdminAddUserController@getThem')->name('getThemKH');
+                Route::post('them', 'App\Http\Controllers\AdminAddUserController@postThem')->name('actionThemKH');
 
-                Route::post('xoa/{id}', 'App\Http\Controllers\NhaPhanPhoiController@postXoa')->name('deleteNPP');
+                Route::post('xoa/{id}', 'App\Http\Controllers\AdminAddUserController@postXoa');
 
-//                Route::get('them', 'App\Http\Controllers\NhaPhanPhoiController@getThem')->name('getThemNPP');
-                Route::post('them', 'App\Http\Controllers\NhaPhanPhoiController@postThem')->name('actionThem');
+                Route::get('sua/{id}', 'App\Http\Controllers\AdminAddUserController@getSua')->name('getSuaKH');
+                Route::post('sua/{id}', 'App\Http\Controllers\AdminAddUserController@postSua')->name('postSuaKH');
             }
         );
         // Quản lý loại sản phẩm
         Route::group(
-            ['prefix' => 'loaisp', 'middleware' => 'login'],
+            ['prefix' => 'loaisp', 'middleware' => 'checkQuanTriVien'],
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\LoaiSanPhamController@getDanhSach')->name('dsLSP');
 
@@ -56,7 +58,7 @@ Route::group(
         );
         // Quản lý màu sản phẩm
         Route::group(
-            ['prefix' => 'mausp', 'middleware' => 'login'],
+            ['prefix' => 'mausp', 'middleware' => 'checkQuanTriVien'],
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\MauSpController@getDanhSach')->name('dsMSP');
 
@@ -71,7 +73,7 @@ Route::group(
         );
         // Quản lý sản phẩm
         Route::group(
-            ['prefix' => 'sanpham', 'middleware' => 'login'],
+            ['prefix' => 'sanpham', 'middleware' => 'checkQuanTriVien'],
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\ProductController@getDanhSach')->name('dsSP');
 
@@ -84,9 +86,19 @@ Route::group(
                 Route::post('them', 'App\Http\Controllers\ProductController@postThem')->name('actionThem4');
             }
         );
+        //Quản lý kho hàng
+        Route::group(
+            ['prefix' => 'khohang', 'middleware' => 'checkQuanTriVien'],
+            function () {
+                Route::get('danhsach', 'App\Http\Controllers\KhoHangController@getDanhSach')->name('dsKhoHang');
+
+                Route::get('them', 'App\Http\Controllers\KhoHangController@getThem');
+                Route::post('them', 'App\Http\Controllers\KhoHangController@postThem')->name('actionThemKhoHang');
+            }
+        );
         //  Quản lý nhân viên
         Route::group(
-            ['prefix' => 'nhanvien', 'middleware' => 'login'],
+            ['prefix' => 'nhanvien','middleware' => 'checkQuanTriVien'],
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\NhanVienController@getDanhSach')->name('dsNV');
 
@@ -100,7 +112,7 @@ Route::group(
             }
         );
         // Duyệt đơn hàng
-        Route::group(['prefix'=>'duyetHD','middleware' => 'login'],
+        Route::group(['prefix'=>'duyetHD','middleware' => 'checkQuanTriVien'],
             function (){
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach')->name('quanlyHD');
                 Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSach')->name('duyetHD1');
@@ -116,17 +128,17 @@ Route::group(
         );
         // Thông tin cá nhân
         Route::get('/information','App\Http\Controllers\InfoController@getInfo')->name('info')
-            ->middleware('login');
+            ->middleware('checkQuanTriVien');
         Route::post('/update-information/{id}','App\Http\Controllers\InfoController@postInfo')->name('update-info')
-            ->middleware('login');
+            ->middleware('checkQuanTriVien');
 
         //Thay đổi mật khẩu
         Route::get('/change-password','App\Http\Controllers\ADChangePasswordController@index')->name('change-password-admin')
-            ->middleware('login');
+            ->middleware('checkQuanTriVien');
         Route::post('/change-password','App\Http\Controllers\ADChangePasswordController@store')->name('post-change-password-admin');
 
         //Thống kê doanh thu
-        Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales')->middleware('login');
+        Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales')->middleware('checkQuanTriVien');
     }
 );
 
@@ -176,6 +188,7 @@ Route::group(
             function () {
                 Route::get('/view-account','App\Http\Controllers\AccountKHController@viewAccount')->name('view-account');
                 Route::post('/change-account/{id}','App\Http\Controllers\AccountKHController@postAccount')->name('change-account');
+
                 Route::get('/change-password','App\Http\Controllers\ChangePasswordController@index')->name('password');
                 Route::post('/change-password','App\Http\Controllers\ChangePasswordController@store')->name('change-password');
                 //Thêm địa chỉ giao hàng
@@ -208,7 +221,9 @@ Route::group(
         Route::group(
             ['prefix' => 'buy-products', 'middleware' => 'loginKH'],
             function () {
+                //Kiem tra truoc khi thanh toan
                 Route::get('/billing-details', 'App\Http\Controllers\BuyProductsController@proceedCheckout')->name('proceed-to-checkout');
+                //Trang thai dat hang
                 Route::get('/order', 'App\Http\Controllers\BuyProductsController@orderStatus')->name('order-status');
                 Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
                 //Huy don hang khi trang thai chua duyet
@@ -225,13 +240,19 @@ Route::group(
         );
         Route::post('/quickView','App\Http\Controllers\QuickViewController@quickView');
         Route::post('/quickViewColor','App\Http\Controllers\QuickViewController@quickViewColor');
-        Route::get('/billDetail/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail');
+        //Chi tiết từng hóa đơn
+        Route::get('/billDetail/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail')->middleware('loginKH');
         //KH xác nhận lấy hàng
         Route::post('/accept-order','App\Http\Controllers\DuyetHDController@confirm')->name('accept-order')->middleware('loginKH');
 
         //Thanh toán bằng MOMO
         Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
+
+
     }
+
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
+
 ?>
+

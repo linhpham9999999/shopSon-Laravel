@@ -51,7 +51,7 @@
                                         <span>{{$dt->mau}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
-                                        <span><img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="100px" height="100px"/></span>
+                                        <span><img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="50px" height="50px"/></span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$dt->soluongton}}</span>

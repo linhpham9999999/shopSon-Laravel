@@ -38,58 +38,58 @@
                         <div class="product-title">
                             <h4 class="title-2">{{$sp->ten_SP}}</h4>
                         </div>
-                            @if($sp->sosao == 0)
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                            @elseif($sp->sosao == 1)
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                            @elseif($sp->sosao == 2)
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                            @elseif($sp->sosao == 3)
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                            @elseif($sp->sosao == 4)
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                            @else($sp->sosao == 5)
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            @endif
+{{--                            @if($sp->sosao == 0)--}}
+{{--                                <div class="product-rating">--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                </div>--}}
+{{--                            @elseif($sp->sosao == 1)--}}
+{{--                                <div class="product-rating">--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                </div>--}}
+{{--                            @elseif($sp->sosao == 2)--}}
+{{--                                <div class="product-rating">--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                </div>--}}
+{{--                            @elseif($sp->sosao == 3)--}}
+{{--                                <div class="product-rating">--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                </div>--}}
+{{--                            @elseif($sp->sosao == 4)--}}
+{{--                                <div class="product-rating">--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star-o"></i>--}}
+{{--                                </div>--}}
+{{--                            @else($sp->sosao == 5)--}}
+{{--                                <div class="product-rating">--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
                         <div class="price-box">
-                            <span class="regular-price ">{{ $sp->giagoc - $sp->giamgia }} </span>
-                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>
+                            <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
+                            {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                         </div>
                         <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart">CHỌN MÀU SON</a>
                     </div>
@@ -97,58 +97,58 @@
                         <div class="product-title">
                             <h4 class="title-2">{{$sp->ten_SP}}</h4>
                         </div>
-                        @if($sp->sosao == 0)
-                            <div class="product-rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        @elseif($sp->sosao == 1)
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        @elseif($sp->sosao == 2)
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        @elseif($sp->sosao == 3)
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        @elseif($sp->sosao == 4)
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        @else
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        @endif
+{{--                        @if($sp->sosao == 0)--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                            </div>--}}
+{{--                        @elseif($sp->sosao == 1)--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                            </div>--}}
+{{--                        @elseif($sp->sosao == 2)--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                            </div>--}}
+{{--                        @elseif($sp->sosao == 3)--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                            </div>--}}
+{{--                        @elseif($sp->sosao == 4)--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o"></i>--}}
+{{--                            </div>--}}
+{{--                        @else--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                         <div class="price-box">
-                            <span class="regular-price ">{{ $sp->giagoc - $sp->giamgia }}</span>
-                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>
+                            <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
+                            {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                         </div>
                         <p class="desc-content">{{$sp->gioithieu}}</p>
                         <div class="button-listview">
@@ -180,77 +180,6 @@
     </div>
 </div>
 
-<!-- Modal -->
-{{--<div class="modal fade" id="xemnhanh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="border: 2px solid red; width: 800px; height: 500px;">
-            <div class="modal-header">
-                <h5 class="modal-title procduct_quickview_title" id="">
-                    <span id="procduct_quickview_title"></span>Modal title
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-5">
-                        <span id="procduct_quickview_image"></span>
-                    </div>
-                    <div class="col-md-7">
-                        <style type="text/css">
-                            h5.modal-title.procduct_quickview_title{
-                                text-align: center;
-                                font-size: 25px;
-                                color: brown;
-                            }
-                            p.quickview{
-                                font-size: 14px;
-                                color: brown;
-                            }
-                            span#procduct_quickview_content img{
-                                width: 100%;
-                            }
-                             @media screen and (min-width: 768px) {
-                                .modal-dialog{
-                                    width: 700px;
-                                    margin-left:420px;
-                                    margin-top: 100px;
-                                }
-                                .modal-sm{
-                                    width: 350px;
-                                }
-                            }
-                            @media screen and (min-width: 992px){
-                                .modal-lg{
-                                    width: 1200px;
-                                }
-                            }
-                        </style>
-                        <h2 class="quickview"><span id="procduct_quickview_title"></span></h2>
-                        <p>Ma ID: <span id="procduct_quickview_id"></span></p>
-                        <span>
-                            <p class="quickview">Gia goc san pham: <span id="procduct_quickview_price"></span></p>
-                            <p class="quickview">Giam gia: <span id="procduct_quickview_giamgia"></span></p>
-                            <p class="quickview">So luong ton: <span id="procduct_quickview_slton"></span></p>
-                            <p class="quickview">Trong luong: <span id="procduct_quickview_tt"></span></p>
-                            <p class="quickview">Xuat su: <span id="procduct_quickview_xx"></span></p>
-                            <p class="quickview">HSD: <span id="procduct_quickview_hsd"></span></p>
-                        </span>
-                        <p class="quickview">Mo ta san pham</p>
-                        <fieldset>
-                            <span id="procduct_quickview_content"></span>
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>--}}
 <div class="modal flosun-modal fade" id="xemnhanh" tabindex="-1" role="dialog" aria-hidden="true" style="font-family: cursive">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

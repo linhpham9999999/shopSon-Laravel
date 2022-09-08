@@ -189,8 +189,8 @@
                     </ul>
                     <p class="desc-content">
                         Chào bạn
-                        @if(\Illuminate\Support\Facades\Auth::check())
-                            {{\Illuminate\Support\Facades\Auth::user()->hoten}}
+                        @if(\Illuminate\Support\Facades\Auth::guard('nguoi_dung')->check())
+                            {{ \Illuminate\Support\Facades\Auth::guard('nguoi_dung')->user()->hoten }}
                         @endif !
                         <br> <br>
                         Chào mừng bạn đến với shop Son HLYNKLIPSTICKS của chúng tôi.

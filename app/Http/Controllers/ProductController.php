@@ -13,15 +13,13 @@ class ProductController extends Controller
     {
         $sanpham = DB::table('san_pham')->paginate(5);
         $loaisanpham = DB::table('loai_san_pham')->select('id', 'ten_LSP')->get();
-        $nhapp = DB::table('nha_phan_phoi')->select('id', 'ten_NPP')->get();
-        return view('admin.sanpham.danhsach', compact('sanpham', 'loaisanpham','nhapp'));
+        return view('admin.sanpham.danhsach', compact('sanpham', 'loaisanpham'));
     }
 
     public function getThem()
     {
         $loaisanpham = DB::table('loai_san_pham')->select('id', 'ten_LSP')->get();
-        $nhapp = DB::table('nha_phan_phoi')->select('id', 'ten_NPP')->get();
-        return view('admin.sanpham.them', compact('loaisanpham', 'nhapp'));
+        return view('admin.sanpham.them', compact('loaisanpham' ));
     }
 
     public function postThem(Request $request)
@@ -33,8 +31,8 @@ class ProductController extends Controller
                 'tenSP'       => 'bail|required|unique:san_pham,ten_SP',
                 'xuatxu'    => 'bail|required|min:3|max:50',
                 'trluong'   => 'bail|required|numeric|min:1',
-                'giagoc'    => 'bail|required|numeric|min:5',
-                'giamgia'   => 'bail|required|numeric|min:5',
+                'gianhap'    => 'bail|required|numeric|min:5',
+                'giaban'   => 'bail|required|numeric|min:5',
                 'hsd'       => 'bail|required|integer',
                 'gthieu'    => 'bail|required|min:5|max:500',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
@@ -52,12 +50,12 @@ class ProductController extends Controller
                 'trluong.required'      => 'Bạn chưa nhập Trọng lượng sản phẩm',
                 'trluong.numeric'       => 'Trọng lượng sản phẩm phải là 1 số',
                 'trluong.min'           => 'Trọng lượng sản phẩm phải lớn hơn 1',
-                'giagoc.required'       => 'Bạn chưa nhập Giá sản phẩm',
-                'giagoc.numeric'        => 'Giá sản phẩm phải là 1 số',
-                'giagoc.min'            => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
-                'giamgia.required'      => 'Bạn chưa nhập Giá sản phẩm',
-                'giamgia.numeric'       => 'Giá sản phẩm phải là 1 số',
-                'giamgia.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
+                'gianhap.required'       => 'Bạn chưa nhập Giá sản phẩm',
+                'gianhap.numeric'        => 'Giá sản phẩm phải là 1 số',
+                'gianhap.min'            => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
+                'giaban.required'      => 'Bạn chưa nhập Giá sản phẩm',
+                'giaban.numeric'       => 'Giá sản phẩm phải là 1 số',
+                'giaban.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
                 'gthieu.min'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
@@ -77,16 +75,14 @@ class ProductController extends Controller
             [
                 'Ma_SP' => $request->idSP,
                 'id_LSP' => $request->idLSP,
-                'id_NPP' => $request->idNPP,
                 'ten_SP' => $request->tenSP,
                 'xuatxu' => $request->xuatxu,
                 'trongluong' => $request->trluong,
-                'giagoc' => $request->giagoc,
-                'giamgia' => $request->giamgia,
+                'gia_nhap_vao' => $request->gianhap,
+                'gia_ban_ra' => $request->giaban,
                 'hansudung_thang' => $request->hsd,
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
-                'sosao' => $request->sosao,
                 'noibat' => $request->noibat,
             ]
         );
@@ -97,9 +93,7 @@ class ProductController extends Controller
     {
         $sanpham = DB::table('san_pham')->select('*')->where('id', '=', $id)->first();
         $loaisp = DB::table('loai_san_pham')->select('*')->get();
-        $nhapp = DB::table('nha_phan_phoi')->select('id', 'ten_NPP')->get();
-        return view('admin.sanpham.sua', compact('sanpham', 'loaisp', 'nhapp'));
-//        return response()->json($sanpham, $loaisp, $nhapp);
+        return view('admin.sanpham.sua', compact('sanpham', 'loaisp'));
     }
 
     public function postSua(Request $request, $id)
@@ -107,35 +101,35 @@ class ProductController extends Controller
         $this->validate(
             $request,
             [
-                'idSP'        => 'bail|required|min:3|max:8',
-                'tenSP'       => 'bail|required',
+                'idSP'        => 'bail|required|unique:san_pham,Ma_SP|min:3|max:8',
+                'tenSP'       => 'bail|required|unique:san_pham,ten_SP',
                 'xuatxu'    => 'bail|required|min:3|max:50',
                 'trluong'   => 'bail|required|numeric|min:1',
-                'giagoc'    => 'bail|required|numeric|min:5',
-                'giamgia'   => 'bail|required|numeric',
-//                'slton'     => 'bail|required|integer',
+                'gianhap'    => 'bail|required|numeric|min:5',
+                'giaban'   => 'bail|required|numeric|min:5',
                 'hsd'       => 'bail|required|integer',
                 'gthieu'    => 'bail|required|min:5|max:500',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
                 'idSP.required'           => 'Bạn chưa nhập Mã sản phẩm',
+                'idSP.unique'             => 'Mã sản phẩm đã tồn tại',
                 'idSP.min'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
                 'idSP.max'                => 'Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự',
                 'tenSP.required'          => 'Bạn chưa nhập Tên sản phẩm',
+                'tenSP.unique'            => 'Tên sản phẩm đã tồn tại',
                 'xuatxu.required'       => 'Bạn chưa nhập Xuất xứ sản phẩm',
                 'xuatxu.min'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
                 'xuatxu.max'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
                 'trluong.required'      => 'Bạn chưa nhập Trọng lượng sản phẩm',
                 'trluong.numeric'       => 'Trọng lượng sản phẩm phải là 1 số',
                 'trluong.min'           => 'Trọng lượng sản phẩm phải lớn hơn 1',
-                'giagoc.required'       => 'Bạn chưa nhập Giá sản phẩm',
-                'giagoc.numeric'        => 'Giá sản phẩm phải là 1 số',
-                'giagoc.min'            => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
-                'giamgia.required'      => 'Bạn chưa nhập Giá sản phẩm',
-                'giamgia.numeric'       => 'Giá sản phẩm phải là 1 số',
-//                'slton.required'        => 'Bạn chưa nhập Số lượng tồn của sản phẩm',
-//                'slton.integer'         => 'Số lượng tồn của sản phẩm phải là 1 số nguyên',
+                'gianhap.required'       => 'Bạn chưa nhập Giá sản phẩm',
+                'gianhap.numeric'        => 'Giá sản phẩm phải là 1 số',
+                'gianhap.min'            => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
+                'giaban.required'      => 'Bạn chưa nhập Giá sản phẩm',
+                'giaban.numeric'       => 'Giá sản phẩm phải là 1 số',
+                'giaban.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
                 'gthieu.min'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
@@ -153,19 +147,17 @@ class ProductController extends Controller
 
         DB::table('san_pham')->select('*')->where('id', '=', $id)->update(
             [
-                'Ma_SP'         => $request->idSP,
-                'id_LSP'        => $request->idLSP,
-                'id_NPP'        => $request->idNPP,
-                'ten_SP'        => $request->tenSP,
-                'xuatxu'        => $request->xuatxu,
-                'trongluong'    => $request->trluong,
-                'giagoc'        => $request->giagoc,
-                'giamgia'       => $request->giamgia,
-                'hansudung_thang'=> $request->hsd,
-                'gioithieu'     => $request->gthieu,
-                'hinhanhgoc'    => $name,
-                'sosao'         => $request->sosao,
-                'noibat'        => $request->noibat,
+                'Ma_SP' => $request->idSP,
+                'id_LSP' => $request->idLSP,
+                'ten_SP' => $request->tenSP,
+                'xuatxu' => $request->xuatxu,
+                'trongluong' => $request->trluong,
+                'gia_nhap_vao' => $request->gianhap,
+                'gia_ban_ra' => $request->giaban,
+                'hansudung_thang' => $request->hsd,
+                'gioithieu' => $request->gthieu,
+                'hinhanhgoc' => $name,
+                'noibat' => $request->noibat,
             ]
         );
 

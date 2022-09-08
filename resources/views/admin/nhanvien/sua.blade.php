@@ -43,10 +43,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="email-address">Địa chỉ</label>
+                            <label class="form-label" for="email-address">Căn cước công dân</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" value="{{$nhanvien->diachi}}" name="diachi"  placeholder="Địa chỉ phải có độ dài từ 5 đến 255 ký tự"  />
-                                <div class="error"> {{$errors->first('diachi')}}</div>
+                                <input class="form-control" value="{{$nhanvien->cccd}}" name="cccd" placeholder="Căn cước công dân" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -57,6 +56,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="form-label" for="email-address">Hình ảnh</label>
+                            <div class="form-control-wrap">
+                                <input type="file" name="hinh_anh" value="{{$nhanvien->hinhanh}}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="form-label" for="email-address">Ngày vào làm</label>
                             <div class="form-control-wrap">
                                 <input class="form-control" value="{{$nhanvien->ngay_vao_lam}}" name="date" placeholder="Ngày vào làm phải dạng Năm-Tháng-Ngày" required />
@@ -64,24 +69,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="email-address">Email</label>
+                            <label class="form-label" for="email-address">Địa chỉ</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" value="{{$nhanvien->email}}" name="email" placeholder="Email phải có độ dài từ 5 đến 50 ký tự"  />
-                                <div class="error"> {{$errors->first('email')}}</div>
+                                <input class="form-control" value="{{$nhanvien->diachi}}" name="diachi"  placeholder="Địa chỉ phải có độ dài từ 5 đến 255 ký tự"  />
+                                <div class="error"> {{$errors->first('diachi')}}</div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="email-address">Thông tin</label>
+                            <label class="form-label" for="email-address">Chức vụ</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" value="{{$nhanvien->thong_tin_user}}" name="info" placeholder="Thông tin nhân viên" />
-                                <div class="error"> {{$errors->first('info')}}</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="email-address">Hình ảnh</label>
-                            <div class="form-control-wrap">
-                                <input type="file" name="hinh_anh" value="{{$nhanvien->hinhanh_user}}"/>
-                                <div class="error"> {{$errors->first('hinh_anh')}}</div>
+                                <select class="form-control" name="chuc_vu_id">
+                                    @foreach($chucvu as $cv)
+                                        <option value="{{$cv->id}}">{{$cv->CV_ten}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group" style="padding-left: 100px;">

@@ -48,8 +48,16 @@ return [
         ],
         'nguoi_dung' => [
             'driver' => 'session',
-            'provider' => 'nguoi_dung',
+            'provider' => 'nguoi_dungs',
         ],
+        'nhan_vien_nhap_kho' => [
+            'driver' => 'session',
+            'provider' => 'nhan_vien_nhap_khos',
+        ],
+        'nhan_vien_ban_hang' => [
+            'driver' => 'session',
+            'provider' => 'nhan_vien_ban_hangs',
+        ]
     ],
 
     /*
@@ -74,10 +82,18 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'nguoi_dung' => [
+        'nguoi_dungs' => [
             'driver' => 'eloquent',
             'model' => App\Models\nguoi_dung::class,
         ],
+        'nhan_vien_nhap_khos' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\nhan_vien_nhap_kho::class,
+        ],
+        'nhan_vien_ban_hangs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\nhan_vien_ban_hang::class,
+        ]
     ],
 
     /*
@@ -102,7 +118,24 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-
+        'nguoi_dungs' => [
+            'provider' => 'nguoi_dungs',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'nhan_vien_nhap_khos' => [
+            'provider' => 'nhan_vien_nhap_khos',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'nhan_vien_ban_hangs' => [
+            'provider' => 'nhan_vien_ban_hangs',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*

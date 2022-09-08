@@ -33,7 +33,7 @@
 {{--                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ảnh</span></th>--}}
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Họ tên</span></th>
 {{--                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày sinh</span></th>--}}
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Giới tính</span></th>
+                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Chức vụ</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Địa chỉ</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Số điện thoại</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Email</span></th>
@@ -50,17 +50,8 @@
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$nv->hoten}}</span>
                                     </td>
-{{--                                    <td class="nk-tb-col tb-col-md">--}}
-{{--                                        <span>{{$nv->ngaysinh}}</span>--}}
-{{--                                    </td>--}}
                                     <td class="nk-tb-col tb-col-md">
-                                        <span>
-                                        @if($nv->gioitinh == 0)
-                                            {{'Nữ'}}
-                                        @else
-                                            {{'Nam'}}
-                                        @endif
-                                        </span>
+                                        <span>{{$nv->CV_ten}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$nv->diachi}}</span>

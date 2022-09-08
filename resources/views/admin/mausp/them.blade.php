@@ -13,7 +13,7 @@
 {{--                    </a>--}}
                 </div>
                 @if(session('thongbao'))
-                    <div class="alert alert-success" style="margin-bottom: 0px">
+                    <div class="alert alert-success" style="margin-bottom: 5px;">
                         {{session('thongbao')}}
                     </div>
                 @endif

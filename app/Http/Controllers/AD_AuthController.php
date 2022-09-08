@@ -30,30 +30,52 @@ class AD_AuthController extends Controller
         }*/
         //SESSION
         $user =  $request->email ;
-        $nhanvien = DB::table('nguoi_dung')->select('hoten')->where('email','=',$user)->get();
-        $authenticated = Auth::attempt([
-            'email'     => $request->email,
-            'password'  => $request->password,
-            'quyen'     => 1
-        ]);
-//    dd(Auth::user());
-        if ($authenticated) {
-            $request->session()->put('name', $nhanvien);
-            return redirect()->route('homeAd',compact('user','nhanvien'));
+        $chucvu = DB::table('quan_tri')->select('chuc_vu_id')->where('email','=',$user)->first();
+        $quantri = DB::table('quan_tri')->select('hoten')->where('email','=',$user)->first();
+        if($chucvu->chuc_vu_id == 1){
+            $authenticated = Auth::guard('web')->attempt(
+                ['email' => $request->email,
+                    'password' => $request->password,
+                    'chuc_vu_id'=> 1
+                ]
+            );
+            if ($authenticated) {
+                $request->session()->put('name', $quantri);
+                return redirect()->route('homeAd');
+            }
+        }
+        if($chucvu->chuc_vu_id == 2){
+            $authenticated = Auth::guard('nhan_vien_nhap_kho')->attempt(
+                ['email' => $request->email,
+                    'password' => $request->password,
+                    'chuc_vu_id'=> 2
+                ]
+            );
+            if ($authenticated) {
+                $request->session()->put('name', $quantri);
+                return redirect()->route('homeAd');
+            }
+        }
+        if($chucvu->chuc_vu_id == 3){
+            $authenticated = Auth::guard('nhan_vien_ban_hang')->attempt(
+                ['email' => $request->email,
+                    'password' => $request->password,
+                    'chuc_vu_id'=> 3
+                ]
+            );
+            if ($authenticated) {
+                $request->session()->put('name', $quantri);
+                return redirect()->route('homeAd');
+            }
         }
         $request->session()->flash('thongbao', 'Đăng nhập không thành công');
-
         return redirect()->route('login');
-
     }
 
     public function logout(Request $request){
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('admin/');
     }
 

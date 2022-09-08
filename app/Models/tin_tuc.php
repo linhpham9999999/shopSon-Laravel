@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class mau_san_pham extends Model
+class tin_tuc extends Authenticatable
 {
     use HasFactory;
-    protected $table = "mau_san_pham";
+    protected $table = "tin_tuc";
     const CREATED_AT = 'creation_date';
     const UPDATED_AT = 'updated_date';
-    public $timestamps=true; // Tắt/bật chế độ tự động quản lý ‘created_at’ và ‘update_at’
+    public $timestamps=true;
 }

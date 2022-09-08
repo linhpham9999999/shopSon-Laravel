@@ -3,15 +3,40 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class nguoi_dung extends Authenticatable
 {
-    use HasFactory;
-//    const UPDATED_AT = null;
-    protected $table = "nguoi_dung";
-    const CREATED_AT = 'creation_date';
-    const UPDATED_AT = 'updated_date';
-    public $timestamps=true; // Tắt/bật chế độ tự động quản lý ‘created_at’ và ‘update_at’
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $table='nguoi_dung';
+    protected $guard = 'nguoi_dung';
+
+    protected $fillable = [
+        'email', 'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

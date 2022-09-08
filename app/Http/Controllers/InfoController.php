@@ -13,7 +13,7 @@ class InfoController extends Controller
         if(Auth::check()){
             $email = Auth::user()->email;
         }
-        $users = DB::table('nguoi_dung')->select('*')->where('email','=',$email)->first();
+        $users = DB::table('quan_tri')->select('*')->where('email','=',$email)->first();
         return view('admin.profile.profile', compact('users'));
     }
     public function postInfo(Request  $request, $id){
@@ -45,7 +45,7 @@ class InfoController extends Controller
                 'info.min'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
                 'info.max'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
             ]);
-        DB::table('nguoi_dung')->select('*')->where('id','=',$id)
+        DB::table('quan_tri')->select('*')->where('id','=',$id)
             ->update([
                  'hoten'        =>$request->hoten,
                  'ngaysinh'     =>$request->ngaysinh,

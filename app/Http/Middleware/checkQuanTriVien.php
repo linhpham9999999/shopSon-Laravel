@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class checkLogin
+class checkQuanTriVien
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,9 @@ class checkLogin
      */
     public function handle(Request $request, Closure $next)
     {
-//    dd(Auth::user());
-
-        if (!Auth::check() || Auth::user()->quyen==0) {
+        if (!Auth::check()) {
             return redirect()->route('login');
         }
         return $next($request);
-
     }
 }

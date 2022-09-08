@@ -64,7 +64,7 @@ class BuyProductsController extends Controller
                      'email_nguoimua'       => $email,
                      'dia_chi_giao_hang'    => $request->diachi,
                      'ngaydat'              => Carbon :: now (),
-                     'ngaygiao'              => Carbon :: now ()->addDay(4),
+                     'ngaygiao'             => Carbon :: now ()->addDay(4),
                      'tongtien'             => $request->total,
                      'ghichu'               => $request->note,
                      'sodth_giao_hang'      => $request->sodth

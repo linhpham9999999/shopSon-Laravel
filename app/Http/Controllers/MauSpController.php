@@ -7,16 +7,18 @@ use App\Models\loai_san_pham;
 use App\Models\san_pham;
 
 use DB;
+use Illuminate\Support\Carbon;
 
 class MauSpController extends Controller
 {
     public function getDanhSach()
     {
-        $data = DB::table('san_pham')->join('loai_san_pham','san_pham.id_LSP','=','loai_san_pham.id')
-            ->join('mau_san_pham','mau_san_pham.id_SP','=','san_pham.id')
+        $data = DB::table('mau_san_pham')->join('loai_san_pham','mau_san_pham.id_LSP','=','loai_san_pham.id')
+            ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
+            ->select('mau_san_pham.*','mau_san_pham.id as id', 'loai_san_pham.ten_LSP as ten_LSP',
+                'san_pham.ten_SP as ten_SP')
             ->paginate(5);
 //        dd($data);
-//        dd($data->links());
         return view('admin.mausp.danhsach', compact('data'));
     }
 
@@ -68,7 +70,8 @@ class MauSpController extends Controller
                 'mau'       => $request->mau,
                 'hinhanh'   => $name,
                 'thongTinMau'=> $request->yn,
-                'soluongton'=>$request->slton
+                'soluongton'=>$request->slton,
+                'created_at' => Carbon :: now ()
             ]
         );
         return redirect('admin/mausp/them')->with('thongbao', 'Thêm thành công');
@@ -84,7 +87,7 @@ class MauSpController extends Controller
 
     public function postSua(Request $request, $id)
     {
-//        dd($request->idLSP);
+//        dd($request->idLSP, $request->idSP);
         $this->validate(
             $request,
             [
@@ -114,7 +117,6 @@ class MauSpController extends Controller
             $name = $tenfile->getClientOriginalName();
             $tenfile->move('admin_asset/image_son/mau_san_pham', $name);
         }
-//        return $name;
         DB::table('mau_san_pham')->select('*')->where('id', '=', $id)
             ->update(
                 [
@@ -124,7 +126,8 @@ class MauSpController extends Controller
                     'mau' => $request->mau,
                     'hinhanh' => $name,
                     'thongTinMau' => $request->yn,
-                    'soluongton'=>$request->slton
+                    'soluongton'=>$request->slton,
+                    'updated_at'=>Carbon :: now ()
                 ]
             );
 
