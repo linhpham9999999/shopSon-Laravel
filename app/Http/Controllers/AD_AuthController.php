@@ -30,43 +30,19 @@ class AD_AuthController extends Controller
         }*/
         //SESSION
         $user =  $request->email ;
-        $chucvu = DB::table('quan_tri')->select('chuc_vu_id')->where('email','=',$user)->first();
-        $quantri = DB::table('quan_tri')->select('hoten')->where('email','=',$user)->first();
-        if($chucvu->chuc_vu_id == 1){
-            $authenticated = Auth::guard('web')->attempt(
-                ['email' => $request->email,
-                    'password' => $request->password,
-                    'chuc_vu_id'=> 1
-                ]
-            );
-            if ($authenticated) {
-                $request->session()->put('name', $quantri);
-                return redirect()->route('homeAd');
-            }
+//        $chucvu = DB::table('quan_tri')->select('chuc_vu_id')->where('email','=',$user)->first();
+//        $quantri = DB::table('nhan_vien_nhap_kho')->select('hoten')->where('email','=',$user)->first();
+        if(Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 1])){
+            $request->session()->put('name', $user);
+            return redirect()->route('homeAd');
         }
-        if($chucvu->chuc_vu_id == 2){
-            $authenticated = Auth::guard('nhan_vien_nhap_kho')->attempt(
-                ['email' => $request->email,
-                    'password' => $request->password,
-                    'chuc_vu_id'=> 2
-                ]
-            );
-            if ($authenticated) {
-                $request->session()->put('name', $quantri);
-                return redirect()->route('homeAd');
-            }
+        elseif(Auth::guard('nhan_vien_nhap_kho')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 2])){
+            $request->session()->put('name', $user);
+            return redirect()->route('homeAd');
         }
-        if($chucvu->chuc_vu_id == 3){
-            $authenticated = Auth::guard('nhan_vien_ban_hang')->attempt(
-                ['email' => $request->email,
-                    'password' => $request->password,
-                    'chuc_vu_id'=> 3
-                ]
-            );
-            if ($authenticated) {
-                $request->session()->put('name', $quantri);
-                return redirect()->route('homeAd');
-            }
+        elseif(Auth::guard('nhan_vien_ban_hang')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 3])){
+            $request->session()->put('name', $user);
+            return redirect()->route('homeAd');
         }
         $request->session()->flash('thongbao', 'Đăng nhập không thành công');
         return redirect()->route('login');

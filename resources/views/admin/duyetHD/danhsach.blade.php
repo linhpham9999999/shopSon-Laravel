@@ -79,7 +79,7 @@
             </div><!-- .card -->
         </div><!-- .nk-block -->
         @else
-        <h3 style="text-align: center">Không có đơn hàng nào đang chờ duyệt</h3>
+        <h3 style="text-align: center">Hiện không có đơn hàng nào</h3>
         @endif
     </div>
 

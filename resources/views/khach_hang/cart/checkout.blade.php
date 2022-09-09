@@ -54,7 +54,7 @@
                                     <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
                                     <td class="pro-quantity">{{$product['name']}}</td>
                                     <td class="pro-quantity">{{$product['color']}}</td>
-                                    <td class="pro-title"><span>{{ $product['unit_price'] -  $product['promotion_price']}}</span></td>
+                                    <td class="pro-title"><span>{{ $product['unit_price']}}</span></td>
                                     <td class="pro-title">x{{ $product['quantity'] }}
 {{--                                        <div class="quantity">--}}
 {{--                                            <div class="cart-plus-minus">--}}
@@ -66,7 +66,7 @@
 {{--                                            </div>--}}
 {{--                                        </div>--}}
                                     </td>
-                                    <td class="pro-subtotal"><span>{{ $product['unit_price']*$product['quantity'] -  $product['promotion_price']*$product['quantity'] }}</span></td>
+                                    <td class="pro-subtotal"><span>{{ $product['unit_price']*$product['quantity'] }}</span></td>
                                     <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
                                 </tr>
                             @endforeach

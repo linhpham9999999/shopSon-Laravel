@@ -61,6 +61,13 @@
                                         <input class="formdetails" placeholder="Số điện thoại" type="text" name="sodth" value="{{$users->sodth}}" />
                                     </div>
                                 </div>
+
+{{--                                <div class="col-md-12 col-custom">--}}
+{{--                                    <div class="checkout-form-list">--}}
+{{--                                        <label>Address <span class="required">*</span></label>--}}
+{{--                                        <input class="formdetails" placeholder="địa chỉ" type="text" name="diachi" value="{{$users->diachi}}" />--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
                                         <label>Address <span class="required">*</span></label>
@@ -95,6 +102,7 @@
 
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-12 col-custom" style="float: right; " >
                         <div class="your-order">
                             <h3>Đơn hàng của bạn</h3>
@@ -111,7 +119,7 @@
                                         <tr class="cart_item">
                                             <td class="cart-product-name">{{ $product['name'] }} {{ $product['color'] }}<strong class="product-quantity">
                                                     × {{$product['quantity']}}</strong></td>
-                                            <td class="cart-product-total text-center" ><span class="amount">{{ ($product['unit_price'] - $product['promotion_price']) * $product['quantity'] }}</span></td>
+                                            <td class="cart-product-total text-center" ><span class="amount">{{ $product['unit_price']  * $product['quantity'] }}</span></td>
                                         </tr>
                                     @endforeach
                                     <tr class="cart_item">
@@ -139,8 +147,25 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </form>
+                        <div class="your-order">
+                            <h3>Thêm địa chỉ giao hàng</h3>
+                            <form method="post" action="{{route('add-address')}}" accept-charset="UTF-8">
+                                {{csrf_field()}}
+                                @if(session('alert2'))
+                                    <div class="alert alert-success" style="height: 50px">
+                                        {{session('alert2')}}
+                                    </div>
+                                @endif
+                                <div class="input-item mb-4">
+                                    <input class="border-0 rounded-0 w-100 input-area email gray-bg" type="text" name="diachinew"  placeholder="Nhập địa chỉ">
+                                    <div class="error">{{$errors->first('diachinew')}}</div>
+                                </div>
+                                <button type="submit" style=" margin-left: 170px;" class="btn flosun-button secondary-btn theme-color rounded-0">Thêm</button>
+                            </form>
+                        </div>
+                    </div>
+
                 @if(session('alert'))
                     <div class="alert alert-success" style="width: 600px">
                         {{session('alert')}}

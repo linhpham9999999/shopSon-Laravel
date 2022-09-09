@@ -76,7 +76,7 @@ class CheckoutController extends Controller
         $sub = 0;
         foreach ($products as $product)
         {
-            $sumPrice = $product['unit_price'] * $product['quantity'] - $product['promotion_price'] * $product['quantity'];
+            $sumPrice = $product['unit_price'] * $product['quantity'];
             $sub += $sumPrice;
         }
         return $sub;
@@ -88,7 +88,7 @@ class CheckoutController extends Controller
         $shipping = 0;
         foreach ($products as $product)
         {
-            $sumPrice = $product['unit_price'] * $product['quantity'] - $product['promotion_price'] * $product['quantity'];
+            $sumPrice = $product['unit_price'] * $product['quantity'];
             $total += $sumPrice;
 
             if($total < 500000)

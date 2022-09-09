@@ -88,7 +88,7 @@
 {{--                                </div>--}}
 {{--                            @endif--}}
                         <div class="price-box">
-                            <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
+                            <span class="regular-price ">{{ $sp->gia_ban_ra}} đ</span>
                             {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                         </div>
                         <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart">CHỌN MÀU SON</a>
@@ -97,57 +97,8 @@
                         <div class="product-title">
                             <h4 class="title-2">{{$sp->ten_SP}}</h4>
                         </div>
-{{--                        @if($sp->sosao == 0)--}}
-{{--                            <div class="product-rating">--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                            </div>--}}
-{{--                        @elseif($sp->sosao == 1)--}}
-{{--                            <div class="product-rating">--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                            </div>--}}
-{{--                        @elseif($sp->sosao == 2)--}}
-{{--                            <div class="product-rating">--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                            </div>--}}
-{{--                        @elseif($sp->sosao == 3)--}}
-{{--                            <div class="product-rating">--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                            </div>--}}
-{{--                        @elseif($sp->sosao == 4)--}}
-{{--                            <div class="product-rating">--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                            </div>--}}
-{{--                        @else--}}
-{{--                            <div class="product-rating">--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                                <i class="fa fa-star"></i>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
                         <div class="price-box">
-                            <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
+                            <span class="regular-price ">{{ $sp->gia_ban_ra}} đ</span>
                             {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                         </div>
                         <p class="desc-content">{{$sp->gioithieu}}</p>

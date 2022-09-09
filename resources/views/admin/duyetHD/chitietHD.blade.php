@@ -109,7 +109,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                             </div>
                         </div><!-- .card-inner -->
                     </div><!-- .card-inner-group -->

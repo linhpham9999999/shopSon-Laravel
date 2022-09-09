@@ -62,18 +62,14 @@
                                 </div>
                                 <div class="user-info d-none d-md-block">
                                     <div class="user-status">
-                                        @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
-                                            {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
-                                        @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                                            {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
-                                        @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
+                                        @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
                                             {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
                                         @endif
                                     </div>
                                     <div>
-{{--                                        @if( \Illuminate\Support\Facades\Auth::guard('web')->check())--}}
-                                            <a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
-{{--                                        @endif--}}
+                                        @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
+                                        <a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -86,20 +82,12 @@
                                     </div>
                                     <div class="user-info">
                                         <span class="lead-text">
-                                             @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
+                                             @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
                                                 {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
                                             @endif
                                         </span>
                                         <span class="sub-text">
-                                            @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
+                                            @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
                                                 {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
                                             @endif
                                         </span>
@@ -110,16 +98,16 @@
                                 <ul class="link-list">
                                     <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
                                     <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
-{{--                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>--}}
-{{--                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>--}}
+                                    {{--                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>--}}
+                                    {{--                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>--}}
                                 </ul>
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-{{--                                    @if(\Illuminate\Support\Facades\Auth::guard('quan_tri')->check())--}}
-                                        <li><a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
-                                     {{--  @endif--}}
-                                        </li>
+                                    {{--                                    @if(\Illuminate\Support\Facades\Auth::guard('quan_tri')->check())--}}
+                                    <li><a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                                        {{--  @endif--}}
+                                    </li>
                                 </ul>
                             </div>
                         </div>

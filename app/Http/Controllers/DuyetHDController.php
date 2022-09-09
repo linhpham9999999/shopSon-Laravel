@@ -10,14 +10,14 @@ class DuyetHDController extends Controller
 {
     function getDanhSach(){
         $hoadon = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')->paginate(5);
         return view('admin\duyetHD\danhsach',compact('hoadon'));
     }
     function postDanhSach(Request $request){
-        if(Auth::check()){
-            $email_nguoiban = Auth::user()->email;
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
         }
         $idHD = $request->idHD;
 //        dd($idHD);
@@ -25,7 +25,7 @@ class DuyetHDController extends Controller
             ->update(
                 [
                     'id_TT' => 2,
-                    'email_nguoiban' => $email_nguoiban,
+                    'email_nguoiban' => $email,
 //                    'ngaygiao'        => Carbon::now()->addDay(3)
                 ]
             );
@@ -37,7 +37,7 @@ class DuyetHDController extends Controller
     }
     function getChiTiet($id){
         $user = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('hinh_thuc_thanh_toan','hoa_don.id_HTTT','=','hinh_thuc_thanh_toan.id')
             ->where('hoa_don.id','=',$id)
@@ -62,13 +62,13 @@ class DuyetHDController extends Controller
 
     function getDSChuaDuyet(){
         $hoadon = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',3)->paginate(5);
 
         $isOrder = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',3)->get()->toArray();
@@ -77,12 +77,12 @@ class DuyetHDController extends Controller
     }
     function getDSDaDuyet(){
         $hoadon = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',2)->paginate(5);
         $isOrder = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',2)->get()->toArray();
@@ -90,12 +90,12 @@ class DuyetHDController extends Controller
     }
     function getDSDaMua(){
         $hoadon = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',1)->paginate(5);
         $isOrder = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
             ->where('hoa_don.id_TT','=',1)->get()->toArray();

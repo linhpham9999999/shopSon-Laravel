@@ -52,7 +52,8 @@ class InfoController extends Controller
                  'diachi'       =>$request->diachi,
                  'sodth'        =>$request->sodth,
                  'ngay_vao_lam' =>$request->ngay_vao_lam,
-                 'thong_tin_user'=>$request->info]);
+                'cccd' => $request->cccd
+                 ]);
 
         return redirect('admin/information')->with('thongbao','Sửa thành công');
     }

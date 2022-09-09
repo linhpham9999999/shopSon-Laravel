@@ -8,14 +8,12 @@ use DB;
 class AccountKHController extends Controller
 {
     public function viewAccount(){
-        if(Auth::check()){
-            $email = Auth::user()->email;
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
         }
         $users = DB::table('nguoi_dung')
             ->where('email','=',$email)->select('*')->first();
-//        dd($users->id);
-        $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('id_NGUOIDUNG_mua','=',$users->id)->get();
-//        dd($diachi);
+        $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('emailnguoidung','=',$email)->get();
         return view('khach_hang.account.sua-tai-khoan', compact('users','diachi'));
     }
     public function postAccount(Request $request, $id){
@@ -53,19 +51,20 @@ class AccountKHController extends Controller
     public function postAddress(Request $request){
         $this->validate($request,
             [
-                'diachinew'      => 'bail|required|min:5|max:500',
+                'diachinew'      => 'bail|min:5|max:500',
             ],
             [
-                'diachinew.required'         => 'Bạn chưa nhập địa chỉ',
                 'diachinew.min'              => 'Địa phải có độ dài từ 5 đến 500 ký tự',
                 'diachinew.max'              => 'Địa chỉ phải có độ dài từ 5 đến 500 ký tự'
             ]);
-
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
+        }
         DB::table('dia_chi_giao_hang')
             ->insert([
                          'Ma_DCGH'=>'DCGH'.rand(10,1000),
-                         'id_NGUOIDUNG_mua'=>$request->iduser,
-                         'dia_chi_giao_hang'=>$request->diachinew]);
+                         'emailnguoidung'   =>  $email,
+                         'dia_chi_giao_hang'=>  $request->diachinew]);
 
         return back()->with('alert2','Thêm thành công');
     }

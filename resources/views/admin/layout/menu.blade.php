@@ -42,71 +42,72 @@
                             <span class="nk-menu-text">Quản lý màu sản phẩm</span>
                         </a>
                     </li>
-
-                    @if(\Illuminate\Support\Facades\Auth::guard('web')->user()->chuc_vu_id == 1)
-                        <li class="nk-menu-item">
-                            <a href="{{route('dsNV')}}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                                <span class="nk-menu-text">Quản lý nhân viên</span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="{{route('khach_hang')}}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                                <span class="nk-menu-text">Quản lý khách hàng</span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="{{route('dsKhoHang')}}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>
-                                <span class="nk-menu-text">Quản lý kho hàng</span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item has-sub">
-                            <a href="{{route('da-mua')}}" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                                <span class="nk-menu-text"> Quản lý đơn hàng</span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item">
-                                    <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đã duyệt</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="{{route('da-mua')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="{{route('get-sales')}}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
-                                <span class="nk-menu-text">Thống kê doanh thu</span>
-                                {{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
-                            </a>
-                        </li><!-- .nk-menu-item -->
-                        <li class="nk-menu-item">
-                            <a href="#" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-offer"></em></span>
-                                <span class="nk-menu-text">Quản lý khuyến mãi</span>
-                            </a>
-                        </li>
+{{--                    quản trị viên--}}
+                    @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
+                    <li class="nk-menu-item">
+                        <a href="{{route('dsNV')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
+                            <span class="nk-menu-text">Quản lý nhân viên</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{route('khach_hang')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                            <span class="nk-menu-text">Quản lý khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{route('dsKhoHang')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>
+                            <span class="nk-menu-text">Quản lý kho hàng</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item has-sub">
+                        <a href="{{route('da-mua')}}" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
+                            <span class="nk-menu-text"> Quản lý đơn hàng</span>
+                        </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đã duyệt</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('da-mua')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{route('get-sales')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
+                            <span class="nk-menu-text">Thống kê doanh thu</span>
+                            {{--                            Doanh thu theo tuần, tháng, năm ; Sản phẩm bán chạy nhất, bán ít nhất--}}
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="#" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-offer"></em></span>
+                            <span class="nk-menu-text">Quản lý khuyến mãi</span>
+                        </a>
+                    </li>
 {{--                        <li class="nk-menu-item">--}}
 {{--                            <a href="#" class="nk-menu-link">--}}
 {{--                                <span class="nk-menu-icon"><em class="icon ni ni-notes-alt"></em></span>--}}
 {{--                                <span class="nk-menu-text">Quản lý tin tức</span>--}}
 {{--                            </a>--}}
 {{--                        </li>--}}
-                        <li class="nk-menu-item">
-                            <a href="#" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
-                                <span class="nk-menu-text">Quản lý bình luận</span>
-                            </a>
-                        </li>
+                    <li class="nk-menu-item">
+                        <a href="#" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
+                            <span class="nk-menu-text">Quản lý bình luận</span>
+                        </a>
+                    </li>
                     @endif
-{{--                        Nhân viên nhập kho hàng--}}
-                    @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->chuc_vu_id == 2)
+{{--                        Nhân viên nhập kho --}}
+
+                    @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
                         <li class="nk-menu-item">
                             <a href="{{route('dsKhoHang')}}" class="nk-menu-link">
                                 <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>
@@ -115,7 +116,7 @@
                         </li>
                     @endif
 {{--                        Nhân viên bán hàng--}}
-                    @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->chuc_vu_id == 3)
+                    @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
                         <li class="nk-menu-item has-sub">
                             <a href="{{route('da-mua')}}" class="nk-menu-link nk-menu-toggle">
                                 <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
@@ -155,8 +156,6 @@
                             </li>
                         </ul>
                     </li>
-
-
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

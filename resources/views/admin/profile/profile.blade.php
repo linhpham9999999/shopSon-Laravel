@@ -74,7 +74,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label style="margin-bottom: unset;">Căn cước công dân</label>
-                                        <input type="text" name="sodth" class="form-control" placeholder="Căn cước công dân" value="{{$users->cccd}}">
+                                        <input type="text" name="cccd" class="form-control" placeholder="Căn cước công dân" value="{{$users->cccd}}">
                                     </div>
                                 </div>
                             </div>

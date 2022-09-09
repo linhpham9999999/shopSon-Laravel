@@ -17,8 +17,8 @@ class BuyProductsController extends Controller
         $products = json_decode($cart, true);
 //        dd($products);
         $email = '';
-        if( Auth::check()){
-            $email = Auth::user()->email;
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
         }
         $users = DB::table('nguoi_dung')
             ->select('diachi', 'hoten', 'email', 'sodth','id')
@@ -28,7 +28,7 @@ class BuyProductsController extends Controller
         $ship = 0;
         foreach ($products as $product)
         {
-            $sumPrice = $product['unit_price'] * $product['quantity'] - $product['promotion_price'] * $product['quantity'];
+            $sumPrice = $product['unit_price'] * $product['quantity'];
             $total += $sumPrice;
 
             if($total < 500000)
@@ -41,16 +41,17 @@ class BuyProductsController extends Controller
 //        dd($total);
         $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
         $delivery = DB::table('hinh_thuc_giao_hang')->select('*')->get();
-        $diachi = DB::table('dia_chi_giao_hang')->select('*')
-            ->where('dia_chi_giao_hang.id_NGUOIDUNG_mua','=',$users->id)->get();
+//        $diachi = DB::table('dia_chi_giao_hang')->select('*')
+//            ->where('dia_chi_giao_hang.id_NGUOIDUNG_mua','=',$users->id)->get();
+        $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('emailnguoidung','=',$email)->get();
         return view('khach_hang.cart.proceed-to-checkout',
                     compact('users','products','ship','total','payments','delivery','diachi'));
     }
 
     public function orderSuccess(Request $request){
         $email = '' ;
-        if( Auth::check()) {
-            $email = Auth::user()->email;
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
         }
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
@@ -61,7 +62,7 @@ class BuyProductsController extends Controller
                      'id_TT'                => $request->trangthai,
                      'id_HTTT'              => $request->payment,
                      'id_HTGH'              => $request->delivery,
-                     'email_nguoimua'       => $email,
+                     'email_nguoidung'      => $email,
                      'dia_chi_giao_hang'    => $request->diachi,
                      'ngaydat'              => Carbon :: now (),
                      'ngaygiao'             => Carbon :: now ()->addDay(4),
@@ -74,12 +75,19 @@ class BuyProductsController extends Controller
         //Thêm dữ liệu vào bảng Chi tiết hóa đơn
         foreach ( $products as $product)
         {
+            $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $product['id'])->first();
+            $sluong = $soluongton->soluongton;
+
+            DB::table('mau_san_pham')->select('soluongton')
+                ->where('id','=', $product['id'])
+                ->update(['soluongton' => $sluong - $product['quantity']]);
+
             DB::table('chi_tiet_hoa_don')
                 ->insert(['id_HD'       => $id_HD,
                         'id_MSP'        => $product['id'],
                         'soluong'       => $product['quantity'],
-                        'don_gia'       => $product['unit_price'] - $product['promotion_price'],
-                        'thanh_tien'    => ($product['unit_price'] - $product['promotion_price'])*$product['quantity']
+                        'don_gia'       => $product['unit_price'],
+                        'thanh_tien'    => $product['unit_price']*$product['quantity']
                          ]);
 //            DB::table('mau_san_pham')
 //                ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
@@ -97,23 +105,23 @@ class BuyProductsController extends Controller
         // Chuyển đến xem trạng thái mua hàng
         $hoadon = DB::table('hoa_don')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('hoa_don.id','hoa_don.email_nguoimua','hoa_don.Ma_HD','ngaygiao','ngaydat'
+            ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
                 ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
-            ->where('hoa_don.email_nguoimua','=',$email)
+            ->where('hoa_don.email_nguoidung','=',$email)
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
     // Trạng thái đơn hàng đã đặt
     public function orderStatus(){
         $email = '' ;
-        if( Auth::check()) {
-            $email = Auth::user()->email;
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
         }
         $hoadon = DB::table('hoa_don')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('hoa_don.id','hoa_don.email_nguoimua','hoa_don.Ma_HD','ngaygiao','ngaydat'
+            ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
                        ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
-            ->where('hoa_don.email_nguoimua','=',$email)
+            ->where('hoa_don.email_nguoidung','=',$email)
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }

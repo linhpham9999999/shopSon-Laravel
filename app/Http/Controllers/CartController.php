@@ -24,9 +24,9 @@ class CartController extends Controller
         if($number > $sluong){
             return back()->with('testquantity', 'Số lượng sản phẩm tồn không đủ bán');
         }
-        DB::table('mau_san_pham')->select('soluongton')
-            ->where('id','=', $productIdColor)
-            ->update(['soluongton' => $sluong - $number]);
+//        DB::table('mau_san_pham')->select('soluongton')
+//            ->where('id','=', $productIdColor)
+//            ->update(['soluongton' => $sluong - $number]);
 
         $this->validate(
             $request,
@@ -36,7 +36,7 @@ class CartController extends Controller
             [
                 'number.required'      => 'Bạn chưa nhập số lượng sản phẩm',
                 'number.numeric'       => 'Số lượng sản phẩm phải là 1 số ',
-                'number.min'           => 'Số lượng sản phẩm phải từ 1',
+                'number.min'           => 'Số lượng sản phẩm ít nhất là  1',
             ]
         );
 //        dd($number);
@@ -69,7 +69,6 @@ class CartController extends Controller
         // Gán lại giỏ hàng
         Cookie::queue('cart',$json,3000000);
 
-
         return back()->with('thongbao', 'Đã thêm sản phẩm vào giỏ');
     }
 
@@ -94,16 +93,17 @@ class CartController extends Controller
             return false;
         }
         // trả về mảng sản phẩm trong cart
-        if( Auth::check())
+        if( Auth::guard('nguoi_dung')->check() )
         {
-            $email = Auth::user()->email;
+            $email = Auth::guard('nguoi_dung')->user()->email;
             return [
                 'id'                => $mausp->id,
                 'image'             => $mausp->hinhanh,
                 'name'              => $sanpham->ten_SP,
                 'color'             => $mausp->mau,
-                'unit_price'        => $sanpham->giagoc,
-                'promotion_price'   => $sanpham->giamgia,
+//                'unit_price'        => $sanpham->giagoc,
+//                'promotion_price'   => $sanpham->giamgia,
+                'unit_price'        => $sanpham->gia_ban_ra,
                 'email'             => $email
             ];
         }

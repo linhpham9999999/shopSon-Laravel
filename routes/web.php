@@ -98,7 +98,7 @@ Route::group(
         );
         //  Quản lý nhân viên
         Route::group(
-            ['prefix' => 'nhanvien','middleware' => 'checkQuanTriVien'],
+            ['prefix' => 'nhanvien'],
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\NhanVienController@getDanhSach')->name('dsNV');
 
@@ -171,10 +171,10 @@ Route::group(
         // Danh sách tất cả Màu sản phẩm
         Route::get('product-color-list/{id}', 'App\Http\Controllers\KhachHangController@listColorProduct')
             ->name('list-color-product');
-        //Xem chi tiet Mau SP
+        // Xem chi tiet Mau SP
         Route::get('product-color-detail/{id}', 'App\Http\Controllers\KhachHangController@listDetailColorProduct')
             ->name('product-color-detail');
-        //Contact
+        // Contact
         Route::group(
             ['prefix' => 'contact'],
             function () {

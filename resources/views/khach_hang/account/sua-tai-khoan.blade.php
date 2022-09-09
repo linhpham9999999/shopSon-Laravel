@@ -136,7 +136,6 @@
                                     <div class="input-item mb-4">
                                         <label>Thêm địa chỉ</label>
                                         <input class="border-0 rounded-0 w-100 input-area email gray-bg" type="text" name="diachinew"  placeholder="Nhập địa chỉ">
-                                        <input type="hidden" name="iduser" value="{{$users->id}}">
                                         <div class="error">{{$errors->first('diachinew')}}</div>
                                     </div>
                                 </div>
