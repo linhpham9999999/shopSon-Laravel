@@ -5,7 +5,6 @@
 @endsection()
 
 @section('content')
-
     <div class="breadcrumbs-area position-relative">
         <div class="container">
             <div class="row">
@@ -21,9 +20,6 @@
             </div>
         </div>
     </div>
-    <!-- Breadcrumb Area End Here -->
-    <!-- cart main wrapper start -->
-
     <div class="cart-main-wrapper mt-no-text">
         <div class="container custom-area">
             <div class="row">
@@ -62,6 +58,8 @@
                                     <td class="pro-subtotal">
                                         @if ($hd->idTT == 3)
                                             <a href="{{route('delete-order',['id'=>$hd->id])}}"><i class="lnr lnr-trash">Hủy</i></a>
+                                        @else
+                                            <a href="{{route('delete-order',['id'=>$hd->id])}}" style="pointer-events: none"><i class="lnr lnr-trash">Hủy</i></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -72,10 +70,8 @@
                             <h2>Bạn chưa đặt mua sản phẩm nào</h2>
                         @endif
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
     <div class="modal flosun-modal fade" id="chitietHD" tabindex="-1" role="dialog" aria-hidden="true" style="font-family: cursive">
@@ -112,7 +108,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

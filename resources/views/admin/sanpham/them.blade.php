@@ -97,7 +97,7 @@
                             <div class="error"> {{$errors->first('hinh_anh')}}</div>
                         </div>
                     </div>
-
+                    <input type="hidden" name="status" value = "1">
                     <div class="form-group" style="padding-left: 100px;">
                         <button type="submit" class="btn btn-lg btn-primary">Lưu thông tin</button>
                         <button type="reset" class="btn btn-lg btn-light">Làm mới</button>

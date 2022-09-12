@@ -11,14 +11,14 @@ class ProductController extends Controller
 {
     public function getDanhSach()
     {
-        $sanpham = DB::table('san_pham')->paginate(5);
-        $loaisanpham = DB::table('loai_san_pham')->select('id', 'ten_LSP')->get();
+        $sanpham = DB::table('san_pham')->where('trang_thai','=',1)->paginate(5);
+        $loaisanpham = DB::table('loai_san_pham')->where('trang_thai','=',1)->select('id', 'ten_LSP')->get();
         return view('admin.sanpham.danhsach', compact('sanpham', 'loaisanpham'));
     }
 
     public function getThem()
     {
-        $loaisanpham = DB::table('loai_san_pham')->select('id', 'ten_LSP')->get();
+        $loaisanpham = DB::table('loai_san_pham')->where('trang_thai','=',1)->select('id', 'ten_LSP')->get();
         return view('admin.sanpham.them', compact('loaisanpham' ));
     }
 
@@ -83,6 +83,7 @@ class ProductController extends Controller
                 'hansudung_thang' => $request->hsd,
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
+                'trang_thai'=> $request->status,
                 'noibat' => $request->noibat,
             ]
         );
@@ -91,7 +92,9 @@ class ProductController extends Controller
 
     public function getSua($id)
     {
-        $sanpham = DB::table('san_pham')->select('*')->where('id', '=', $id)->first();
+        $sanpham = DB::table('san_pham')->select('*')
+            ->where([['id', '=', $id],['trang_thai','=',1]])
+            ->first();
         $loaisp = DB::table('loai_san_pham')->select('*')->get();
         return view('admin.sanpham.sua', compact('sanpham', 'loaisp'));
     }
@@ -166,7 +169,8 @@ class ProductController extends Controller
 
     public function postXoa($id)
     {
-        DB::table('san_pham')->where('id','=',$id)->delete();
+        DB::table('san_pham')->where('id','=',$id)->update(['trang_thai' => 0]);
+        DB::table('mau_san_pham')->where('id_SP','=',$id)->update(['trang_thai' => 0]);
         return response()->json([
                                     'message' => 'Data deleted successfully!'
                                 ]);

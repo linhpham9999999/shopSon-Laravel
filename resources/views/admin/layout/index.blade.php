@@ -104,6 +104,7 @@
                 data: {
                     idLSP: $('#idLSP-add').val(),
                     tenLSP: $('#tenLSP-add').val(),
+                    trangthai: $('#trangthai-add').val(),
                 },
                 success: function (response) {
                     toastr.success(response.message)

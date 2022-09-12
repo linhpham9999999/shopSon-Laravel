@@ -17,7 +17,7 @@ class checkLoginUsers
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
+        if (!Auth::guard('nguoi_dung')->check()) {
             return redirect()->route('loginKH');
         }
         return $next($request);

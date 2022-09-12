@@ -14,7 +14,7 @@ class LoaiSanPhamController extends Controller
 {
     public function getDanhSach()
     {
-        $loaisp = DB::table('loai_san_pham')->paginate(5);
+        $loaisp = DB::table('loai_san_pham')->where('trang_thai','=',1)->paginate(5);
         return view('admin.loaisp.danhsach',compact('loaisp'));
     }
 
@@ -46,6 +46,7 @@ class LoaiSanPhamController extends Controller
         $loaisp = new loai_san_pham;
         $loaisp->Ma_LSP = $request->idLSP;
         $loaisp->ten_LSP = $request->tenLSP;
+        $loaisp->trang_thai = $request->trangthai;
         $loaisp->save();
         return response()->json([
                                     'message'=>'Thêm thành công'
@@ -86,7 +87,9 @@ class LoaiSanPhamController extends Controller
 
     public function postXoa($id)
     {
-        DB::table('loai_san_pham')->where('id','=',$id)->delete();
+        DB::table('loai_san_pham')->where('id','=',$id)->update(['trang_thai' => 0]);
+        DB::table('san_pham')->where('id_LSP','=',$id)->update(['trang_thai' => 0]);
+        DB::table('mau_san_pham')->where('id_LSP','=',$id)->update(['trang_thai' => 0]);
         return response()->json([
                                     'message' => 'Data deleted successfully!'
                                 ]);

@@ -17,15 +17,15 @@ class MauSpController extends Controller
             ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
             ->select('mau_san_pham.*','mau_san_pham.id as id', 'loai_san_pham.ten_LSP as ten_LSP',
                 'san_pham.ten_SP as ten_SP')
+            ->where([['mau_san_pham.trang_thai', '=', 1],['san_pham.trang_thai','=',1],['loai_san_pham.trang_thai','=',1]])
             ->paginate(5);
-//        dd($data);
         return view('admin.mausp.danhsach', compact('data'));
     }
 
     public function getThem()
     {
-        $loaisp = loai_san_pham::all();
-        $sanpham = san_pham::all();
+        $loaisp = DB::table('loai_san_pham')->select('*')->where('trang_thai','=',1)->get();
+        $sanpham = DB::table('san_pham')->select('*')->where('trang_thai','=',1)->get();
         return view('admin.mausp.them', compact('loaisp', 'sanpham'));
     }
 
@@ -71,6 +71,7 @@ class MauSpController extends Controller
                 'hinhanh'   => $name,
                 'thongTinMau'=> $request->yn,
                 'soluongton'=>$request->slton,
+                'trang_thai'=> $request->status,
                 'created_at' => Carbon :: now ()
             ]
         );
@@ -79,15 +80,14 @@ class MauSpController extends Controller
 
     public function getSua($id)
     {
-        $loaisp = loai_san_pham::all();
-        $sanpham = san_pham::all();
-        $mausanppham = DB::table('mau_san_pham')->select('*')->where('id', '=', $id)->first();
+        $loaisp = DB::table('loai_san_pham')->select('*')->where('trang_thai','=',1)->get();
+        $sanpham = DB::table('san_pham')->select('*')->where('trang_thai','=',1)->get();
+        $mausanppham = DB::table('mau_san_pham')->select('*')->where([['id', '=', $id],['trang_thai','=',1]])->first();
         return view('admin.mausp.sua', compact('mausanppham', 'loaisp', 'sanpham'));
     }
 
     public function postSua(Request $request, $id)
     {
-//        dd($request->idLSP, $request->idSP);
         $this->validate(
             $request,
             [
@@ -136,7 +136,7 @@ class MauSpController extends Controller
 
     public function postXoa($id)
     {
-        DB::table('mau_san_pham')->where('id','=',$id)->delete();
+        DB::table('mau_san_pham')->where('id','=',$id)->update(['trang_thai' => 0]);
         return response()->json([
                                     'message' => 'Data deleted successfully!'
                                 ]);

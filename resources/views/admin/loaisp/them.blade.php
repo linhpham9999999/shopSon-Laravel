@@ -22,6 +22,7 @@
                             <input class="form-control" name="tenLSP" id="tenLSP-add" placeholder="Tên loại sản phẩm phải có độ dài từ 5 đến 50 ký tự" required/>
                         </div>
                     </div>
+                    <input type="hidden" name="status" id="trangthai-add" value = "1">
                     <div class="form-group" style="padding-left: 100px;">
                         <button type="submit" class="btn btn-lg btn-primary">Lưu thông tin</button>
                         <button type="reset" class="btn btn-lg btn-light">Làm mới</button>
