@@ -73,8 +73,9 @@ class CheckoutController extends Controller
                     $product['promotion'] = $product['promotion'] + $data2->phan_tram;
 //                    dd($data2->gia_yeu_cau, $this->subPrice($products), $subPrice >= $data2->gia_yeu_cau, $product['promotion']);
                     $id = $product['id'];
+                    $products[$id] = $product;
                 }
-                $products[$id] = $product;
+
             }
             $json = json_encode($products);
             Cookie::queue('cart',$json,300000);
@@ -84,7 +85,7 @@ class CheckoutController extends Controller
             $shipping                       = $this->shipPrice($products);
             $subPrice = $this->subPrice($products);
         }
-        dd($subPrice2, $subPrice, $products);
+//        dd($subPrice2, $subPrice, $products);
         $isHasProductsCart = true;
         return view('khach_hang/cart/checkout',['products'   => $products,
                       'isHasProduct'  => $isHasProductsCart,
