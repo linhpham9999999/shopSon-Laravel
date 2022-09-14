@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use PHPUnit\Framework\Constraint\IsEmpty;
 
 class CheckoutController extends Controller
 {
@@ -46,9 +48,57 @@ class CheckoutController extends Controller
                                                     ]
         );
     }
+
+    public function applyPromo(Request $request){
+        $current = Carbon::now()->toDateString();
+        $data = DB::table('khuyen_mai')->select('*')
+            ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['Ma_KM','=',$request->maKM]])->get()->toArray();
+
+        $data2 = DB::table('khuyen_mai')->select('*')
+            ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['Ma_KM','=',$request->maKM]])->first();
+
+        if(!empty($data2)){
+            if(Cookie::has('cart')){
+                $cart = Cookie::get('cart');
+                $products = json_decode($cart, true);
+                $subPrice2 = $this->subPrice($products);
+
+                if($subPrice2 >= $data2->gia_yeu_cau){
+                    $subPrice = $this->subPrice($products) * (1 - $data2->phan_tram * 0.01);
+                }else{
+                    $subPrice = $subPrice2;
+                }
+
+                foreach ($products as $product){
+                    $product['promotion'] = $product['promotion'] + $data2->phan_tram;
+//                    dd($data2->gia_yeu_cau, $this->subPrice($products), $subPrice >= $data2->gia_yeu_cau, $product['promotion']);
+                    $id = $product['id'];
+                }
+                $products[$id] = $product;
+            }
+            $json = json_encode($products);
+            Cookie::queue('cart',$json,300000);
+            $shipping = $this->shipPrice($products);
+        } else {
+            [$products, $isHasProductsCart]  = $this->getProductsFromCart();
+            $shipping                       = $this->shipPrice($products);
+            $subPrice = $this->subPrice($products);
+        }
+        dd($subPrice2, $subPrice, $products);
+        $isHasProductsCart = true;
+        return view('khach_hang/cart/checkout',['products'   => $products,
+                      'isHasProduct'  => $isHasProductsCart,
+                      'subPrice'      => $subPrice,
+                      'shipping'      => $shipping,
+                      'data'          => $data
+                      ]
+        );
+    }
+
     /**
      * @return array<string, string>
      */
+
     public function getProductsFromCart(): array
     {
         // khởi tạo biến
@@ -66,7 +116,6 @@ class CheckoutController extends Controller
         }
         return [$products, $isHasProductsCart];
     }
-
     /**
      * @param array $products
      */
@@ -81,6 +130,7 @@ class CheckoutController extends Controller
         }
         return $sub;
     }
+
     //tính ship
     public function shipPrice(array $products)
     {
@@ -106,20 +156,19 @@ class CheckoutController extends Controller
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
 
-        foreach ($products as $value){
-            $quantity = $value['quantity'];
-        }
+//        foreach ($products as $value){
+//            $quantity = $value['quantity'];
+//        }
 
-        $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $id)->first();
-        $quantitycurent = $soluongton->soluongton;
+//        $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $id)->first();
+//        $quantitycurent = $soluongton->soluongton;
 
-        DB::table('mau_san_pham')->select('soluongton')
-            ->where('id','=',$id)
-            ->update(['soluongton' => $quantitycurent + $quantity]);
+//        DB::table('mau_san_pham')->select('soluongton')
+//            ->where('id','=',$id)
+//            ->update(['soluongton' => $quantitycurent + $quantity]);
 
         if (array_key_exists($id, $products)) {
             unset($products[$id]);
-
         }
 
         $json = json_encode($products);
@@ -165,7 +214,6 @@ class CheckoutController extends Controller
             $jsonResult = json_decode($result, true);  // decode json
 
              return redirect()->to($jsonResult['payUrl']);
-
-
     }
+
 }

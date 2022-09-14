@@ -64,12 +64,12 @@
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <button class="btn btn-sm  js-delete-mausanpham" data-id="{{ $dt->id }}">{{-- btn-outline-danger py-0--}}
-                                            <img src="admin_asset/delete.png" width="45px" />
+                                            <img src="admin_asset/delete.png" width="30px" />
                                         </button>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         {{--                                        <a data-id="{{$sp->id}}" class="btn btn-sm js-edit-btn-sp"><img src="admin_asset/edit.png" width="45px"/></a>--}}
-                                        <a href="admin/mausp/sua/{{$dt->id}}"><img src="admin_asset/edit.png" width="45px"/></a>
+                                        <a href="admin/mausp/sua/{{$dt->id}}"><img src="admin_asset/edit.png" width="30px"/></a>
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach

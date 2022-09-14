@@ -54,19 +54,18 @@
                                     <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
                                     <td class="pro-quantity">{{$product['name']}}</td>
                                     <td class="pro-quantity">{{$product['color']}}</td>
-                                    <td class="pro-title"><span>{{ $product['unit_price']}}</span></td>
-                                    <td class="pro-title">x{{ $product['quantity'] }}
-{{--                                        <div class="quantity">--}}
-{{--                                            <div class="cart-plus-minus">--}}
-{{--                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="qty">--}}
-{{--                                                <div class="dec qtybutton">-</div>--}}
-{{--                                                <div class="inc qtybutton">+</div>--}}
-{{--                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>--}}
-{{--                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                    <td class="pro-title"><span>{{ number_format($product['unit_price'],0,',','.')}}</span></td>
+{{--                                    <td class="pro-title"><input type="number" style="width:35px;" name="quantity" value="{{ $product['quantity'] }}"></td>--}}
+                                    <td class="pro-quantity">
+                                        <div class="quantity">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text">
+                                                <a href="{{route('increaseQuantity',['id'=>$product['id']])}}">+</a>
+                                                <a href="{{route('decreaseQuantity',['id'=>$product['id']])}}">+</a>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td class="pro-subtotal"><span>{{ $product['unit_price']*$product['quantity'] }}</span></td>
+                                    <td class="pro-subtotal"><span>{{ number_format($product['unit_price']*$product['quantity'],0,',','.') }}</span></td>
                                     <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
                                 </tr>
                             @endforeach
@@ -74,43 +73,77 @@
                         </table>
                     </div>
                     <!-- Cart Update Option -->
-{{--                    <div class="cart-update-option d-block d-md-flex justify-content-between">--}}
-{{--                        <div class="apply-coupon-wrapper">--}}
-{{--                            <form action="#" method="post" class=" d-block d-md-flex">--}}
-{{--                                <input type="text" placeholder="Enter Your Coupon Code" required />--}}
-{{--                                <button class="btn flosun-button primary-btn rounded-0 black-btn">Áp dụng giảm giá</button>--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
-{{--                        <div class="cart-update mt-sm-16">--}}
-{{--                            <a href="#" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</a> <!--chuyển đến danh sach giỏ hàng-->--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
+                        <div class="apply-coupon-wrapper" style=" width: 420px;margin-left: 710px;">
+                            <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</button>
+                            <a href="{{route('allSanPham')}}" class="btn flosun-button primary-btn rounded-0 black-btn">Tiếp tục mua hàng</a>
+                        </div>
+                    </div>
+                    <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
+                        <div class="apply-coupon-wrapper" style=" margin-left: 505px;">
+                            <form action="{{route('applyPromotion')}}" method="post" class=" d-block d-md-flex">
+                                {{csrf_field()}}
+                                <input type="text" name="maKM" style="width: 350px;margin-left: 205px;margin-bottom: 0px;" placeholder="Nhập mã giảm giá" required />
+                                <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Áp dụng</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 ml-auto col-custom">
                     <!-- Cart Calculation Area -->
                     <div class="cart-calculator-wrapper">
-                        <div class="cart-calculate-items">
-                            <h3>Cart Totals</h3>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tr>
-                                        <td>Sub Total</td>
-                                        <td>{{ $subPrice }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping</td>
-                                        <td>{{ $shipping }}</td>
-                                    </tr>
-                                    <tr class="total">
-                                        <td>Total</td>
-                                        <td class="total-amount">{{ $subPrice +  $shipping }}</td>
-                                    </tr>
-                                </table>
+                        @if(!empty($data) === true)
+                            <div class="cart-calculate-items">
+                                <h3>Cart Totals</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        @foreach($data as $dt)
+                                        <tr>
+                                            <td>Sub Total <span> ( -{{$dt->phan_tram}} % )</span></td>
+                                            <td>{{ number_format($subPrice ,0,',','.')  }}</td>
+{{--                                            - $subPrice * $dt->phan_tram*0.01--}}
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping</td>
+                                            <td>{{ $shipping }}</td>
+                                        </tr>
+                                        <tr class="total">
+                                            <td>Total</td>
+                                            <td class="total-amount">{{number_format( $subPrice +  $shipping,0,',','.') }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <a href="{{route('proceed-to-checkout')}}" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Kiểm tra trước khi đặt hàng</a>
+                            <a href="{{route('proceed-to-checkout')}}" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Kiểm tra trước khi đặt hàng</a>
+                        @elseif(!empty($data) === false)
+                            <div class="cart-calculate-items">
+                                <h3>Cart Totals</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+
+                                        <tr>
+                                            <td>Sub Total</td>
+                                            <td>{{ number_format($subPrice,0,',','.')  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping</td>
+                                            <td>{{ $shipping }}</td>
+                                        </tr>
+                                        <tr class="total">
+                                            <td>Total</td>
+                                            <td class="total-amount">{{number_format($subPrice +  $shipping,0,',','.') }}</td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                            <a href="{{route('proceed-to-checkout')}}" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Kiểm tra trước khi đặt hàng</a>
+
+                        @endif
+
                     </div>
                 </div>
             </div>

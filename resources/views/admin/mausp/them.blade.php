@@ -69,10 +69,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="email-address">Hình ảnh</label>
+                            <label class="form-label" for="default-06">Hình ảnh</label>
                             <div class="form-control-wrap">
-                                <input type="file" name="hinh_anh" id="hinh_anh-add"/>
-                                <div class="error"> {{$errors->first('hinh_anh')}}</div>
+                                <div class="custom-file">
+                                    <input type="file" multiple class="custom-file-input" name="hinh_anh" id="customFile">
+                                    <div class="error"> {{$errors->first('hinh_anh')}}</div>
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" name="status" value = "1">

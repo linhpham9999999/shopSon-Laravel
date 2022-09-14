@@ -67,7 +67,7 @@ class CartController extends Controller
         // encode mảng thành chuỗi json
         $json = json_encode($products);
         // Gán lại giỏ hàng
-        Cookie::queue('cart',$json,3000000);
+        Cookie::queue('cart',$json,300000);
 
         return back()->with('thongbao', 'Đã thêm sản phẩm vào giỏ');
     }
@@ -102,7 +102,7 @@ class CartController extends Controller
                 'name'              => $sanpham->ten_SP,
                 'color'             => $mausp->mau,
 //                'unit_price'        => $sanpham->giagoc,
-//                'promotion_price'   => $sanpham->giamgia,
+                'promotion'         => 0,
                 'unit_price'        => $sanpham->gia_ban_ra,
                 'email'             => $email
             ];

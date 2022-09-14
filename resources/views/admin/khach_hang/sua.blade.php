@@ -42,17 +42,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="email-address">Ngày sinh</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" value="{{$khach_hang->ngaysinh}}" name="nsinh"  placeholder="Ngày sinh phải dạng Năm-Tháng-Ngày" />
-                                <div class="error"> {{$errors->first('nsinh')}}</div>
+                                <div class="form-icon form-icon-right xl">
+                                    <em class="icon ni ni-calendar-alt"></em>
+                                </div>
+                                <input name="nsinh" class="form-control form-control-xl form-control-outlined date-picker" id="outlined-date-picker">
+                                <label class="form-label-outlined" for="outlined-date-picker">Ngày sinh</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="email-address">Hình ảnh</label>
+                            <label class="form-label" for="default-06">Hình ảnh</label>
                             <div class="form-control-wrap">
-                                <input type="file" name="hinh_anh" value="{{$khach_hang->hinhanh_user}}"/>
-                                <div class="error"> {{$errors->first('hinh_anh')}}</div>
+                                <div class="custom-file">
+                                    <input type="file" multiple class="custom-file-input" name="hinh_anh" value="{{$khach_hang->hinhanh_user}}" id="customFile">
+                                    <div class="error"> {{$errors->first('hinh_anh')}}</div>
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

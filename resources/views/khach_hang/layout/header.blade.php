@@ -26,6 +26,7 @@
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('allSanPham')}}">Sản phẩm </a></li>
                                     <li><a href="{{route('wishList')}}">Sản phẩm yêu thích</a></li>
+                                    <li><a href="{{route('getDataKM')}}">Khuyến mãi</a></li>
                                 </ul>
                             </li>
                             <li>

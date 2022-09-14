@@ -35,7 +35,7 @@
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Địa chỉ</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Số điện thoại</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Email</span></th>
-                                <th class="nk-tb-col tb-col-mb" colspan="2" style="text-align: center"><span class="sub-text">Action</span></th>
+                                <th class="nk-tb-col tb-col-mb" style="text-align: center"><span class="sub-text">Action</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
                             <tbody>
@@ -54,7 +54,7 @@
                                         </span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$kh->ngaysinh}}</span>
+                                        <span>{{DateTime::createFromFormat('Y-m-d', $kh->ngaysinh)->format('m/d/Y')}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$kh->diachi}}</span>
@@ -65,13 +65,13 @@
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$kh->email}}</span>
                                     </td>
+{{--                                    <td class="nk-tb-col tb-col-mb">--}}
+{{--                                        <button class="btn btn-sm  js-delete-khachhang" data-id="{{ $kh->id }}">--}}
+{{--                                            <img src="admin_asset/delete.png" width="45px" />--}}
+{{--                                        </button>--}}
+{{--                                    </td>--}}
                                     <td class="nk-tb-col tb-col-mb">
-                                        <button class="btn btn-sm  js-delete-khachhang" data-id="{{ $kh->id }}">
-                                            <img src="admin_asset/delete.png" width="45px" />
-                                        </button>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-mb">
-                                        <a href="admin/khach_hang/sua/{{$kh->id}}"><img src="admin_asset/edit.png" width="45px"/></a>
+                                        <a href="admin/khach_hang/sua/{{$kh->id}}"><img src="admin_asset/edit.png" width="30px"/></a>
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach

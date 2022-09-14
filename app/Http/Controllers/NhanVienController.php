@@ -13,7 +13,8 @@ class NhanVienController extends Controller
 {
     public function getDanhSach(){
         $nhanvien = DB::table('quan_tri')->join('chuc_vu','quan_tri.chuc_vu_id','=','chuc_vu.id')
-            ->select('quan_tri.id as id','hoten', 'sodth','email','diachi','ngay_vao_lam','chuc_vu.CV_ten')->paginate(5);
+            ->select('quan_tri.id as id','hoten', 'sodth','email','diachi','ngay_vao_lam','chuc_vu.CV_ten')
+            ->where('trang_thai','=',1)->paginate(5);
         return view('admin.nhanvien.danhsach',compact('nhanvien'));
     }
     public  function getThem(){
@@ -29,10 +30,8 @@ class NhanVienController extends Controller
                 'diachi'    => 'bail|required|min:5|max:255',
                 'sodth'     => 'bail|required|min:10|max:10',
                 'gtinh'     => 'bail|required',
-                'nsinh'     => 'bail|required|date_format:Y-m-d',
-                'email'     => 'bail|required|unique:nguoi_dung,email|min:5|max:50',
+                'email'     => 'bail|required|unique:quan_tri,email|min:5|max:50',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png',
-                'date'      => 'bail|required|date_format:Y-m-d'
             ],
             [
                 'pass.required'     => 'Bạn chưa nhập Mật khẩu nhân viên',
@@ -50,16 +49,12 @@ class NhanVienController extends Controller
                 'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
                 'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
                 'gtinh.required'    => 'Bạn chưa nhập Giới tính khách hàng',
-                'nsinh.required'    => 'Bạn chưa nhập Thời gian bán sản phẩm',
-                'nsinh.date_format' => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
                 'email.required'    => 'Bạn chưa nhập Email khách hàng',
                 'email.unique'      => 'Emai nhân viên đã tồn tại',
                 'email.min'         => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'email.max'         => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh của sản phẩm',
                 'hinh_anh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
-                'date.required'    => 'Bạn chưa nhập Thời gian bán sản phẩm',
-                'date.date_format' => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
             ]);
         if ($request->hasFile('hinh_anh')) {
             $tenfile = $request->hinh_anh;
@@ -73,11 +68,12 @@ class NhanVienController extends Controller
                 'diachi' => $request->diachi,
                 'sodth' => $request->sodth,
                 'gioitinh' => $request->gtinh,
-                'ngaysinh' => $request->nsinh,
+                'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
                 'email' => $request->email,
                 'chuc_vu_id'=>$request->chuc_vu_id,
-                'ngay_vao_lam'=>$request->date,
+                'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
                 'cccd'=>$request->cccd,
+                'trang_thai'=>$request->trangthai,
                 'hinhanh'=>$name,
                 'created_at' => Carbon :: now ()
             ]
@@ -131,9 +127,7 @@ class NhanVienController extends Controller
                 'ten'   => 'bail|required|min:5|max:50',
                 'diachi'=> 'bail|required|min:5|max:255',
                 'sodth' => 'bail|required|min:10|max:10',
-                'nsinh' => 'bail|required|date_format:Y-m-d',
-                'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png',
-                'date'      => 'bail|required|date_format:Y-m-d'
+                'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
                 'ten.required'          => 'Bạn chưa nhập Tên nhân viên',
@@ -145,12 +139,8 @@ class NhanVienController extends Controller
                 'sodth.required'        => 'Bạn chưa nhập Số điện thoại nhân viên',
                 'sodth.min'             => 'Số điện thoại phải có độ dài 10 ký tự',
                 'sodth.max'             => 'Số điện thoại phải có độ dài 10 ký tự',
-                'nsinh.required'        => 'Bạn chưa nhập Thời gian bán sản phẩm',
-                'nsinh.date_format'     => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
                 'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh của sản phẩm',
                 'hinh_anh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
-                'date.required'    => 'Bạn chưa nhập Thời gian bán sản phẩm',
-                'date.date_format' => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
             ]);
         if ($request->hasFile('hinh_anh')) {
             $tenfile = $request->hinh_anh;
@@ -162,9 +152,9 @@ class NhanVienController extends Controller
             'diachi' => $request->diachi,
             'sodth' => $request->sodth,
             'gioitinh' => $request->gtinh,
-            'ngaysinh' => $request->nsinh,
+            'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
             'chuc_vu_id'=>$request->chuc_vu_id,
-            'ngay_vao_lam'=>$request->date,
+            'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
             'cccd'=>$request->cccd,
             'hinhanh'=>$name,
             'updated_at'=>Carbon :: now ()
@@ -205,7 +195,7 @@ class NhanVienController extends Controller
         return redirect('admin/nhanvien/sua/'.$id)->with('thongbao','Sửa thành công');
     }
     public  function postXoa($id){
-        DB::table('quan_tri')->where('id','=',$id)->delete();
+        DB::table('quan_tri')->where('id','=',$id)->update(['trang_thai'=>0]);
         return response()->json([
                                     'message' => 'Data deleted successfully!'
                                 ]);

@@ -92,6 +92,16 @@
         }
     });
 </script>
+<script>
+    $( document ).ready(function() {
+        $("#outlined-date-picker").datepicker({
+            format: 'yyyy-mm-dd' //can also use format: 'dd-mm-yyyy'
+        });
+        $("#outlined-date-picker2").datepicker({
+            format: 'yyyy-mm-dd' //can also use format: 'dd-mm-yyyy'
+        });
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         //Thêm Loại sản phẩm

@@ -46,11 +46,11 @@
                                     </td>
                                     <td class="nk-tb-col tb-col-sm">
                                         <button class="btn btn-sm  js-delete-lsp" data-id="{{ $lsp->id }}">{{-- btn-outline-danger py-0--}}
-                                            <img src="admin_asset/delete.png" width="45px" />
+                                            <img src="admin_asset/delete.png" width="30px" />
                                         </button>
                                     </td>
                                     <td class="nk-tb-col tb-col-sm">
-                                        <a data-id="{{$lsp->id}}" class="btn btn-sm js-edit-btn"><img src="admin_asset/edit.png" width="45px"/></a>
+                                        <a data-id="{{$lsp->id}}" class="btn btn-sm js-edit-btn"><img src="admin_asset/edit.png" width="30px"/></a>
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach

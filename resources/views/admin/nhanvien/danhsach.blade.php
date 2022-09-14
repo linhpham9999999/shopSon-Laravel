@@ -63,16 +63,16 @@
                                         <span>{{$nv->email}} </span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$nv->ngay_vao_lam}}</span>
+                                        <span>{{DateTime::createFromFormat('Y-m-d', $nv->ngay_vao_lam)->format('m/d/Y')}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <button class="btn btn-sm  js-delete-nhanvien" data-id="{{ $nv->id }}">{{-- btn-outline-danger py-0--}}
-                                            <img src="admin_asset/delete.png" width="45px" />
+                                            <img src="admin_asset/delete.png" width="30px" />
                                         </button>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         {{--                                        <a data-id="{{$sp->id}}" class="btn btn-sm js-edit-btn-sp"><img src="admin_asset/edit.png" width="45px"/></a>--}}
-                                        <a href="admin/nhanvien/sua/{{$nv->id}}"><img src="admin_asset/edit.png" width="45px"/></a>
+                                        <a href="admin/nhanvien/sua/{{$nv->id}}"><img src="admin_asset/edit.png" width="30px"/></a>
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach

@@ -28,8 +28,9 @@ class BuyProductsController extends Controller
         $ship = 0;
         foreach ($products as $product)
         {
+//            dd($products);
             $sumPrice = $product['unit_price'] * $product['quantity'];
-            $total += $sumPrice;
+            $total += $sumPrice * (1 - $product['promotion']*0.01);
 
             if($total < 500000)
             {
@@ -38,6 +39,7 @@ class BuyProductsController extends Controller
                 $ship = 0;
             }
         }
+
 //        dd($total);
         $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
         $delivery = DB::table('hinh_thuc_giao_hang')->select('*')->get();
@@ -137,5 +139,31 @@ class BuyProductsController extends Controller
             ->where('hoa_don.id','=',$id)->get();
 //        dd($cthd);
         return view('khach_hang.cart.bill-details', compact('cthd'));
+    }
+
+    public function increaseQuantity($id){
+        $cart = Cookie::get('cart');
+        $products = json_decode($cart, true);
+        foreach ( $products as $product){
+            if($product['id'] == $id){
+                $product['quantity'] += 1;
+            }
+        }
+        $json = json_encode($products);
+        Cookie::queue('cart', $json, 60);
+        return back()->with('message','update thành công!');
+    }
+
+    public function decreaseQuantity($id){
+        $cart = Cookie::get('cart');
+        $products = json_decode($cart, true);
+        foreach ( $products as $product){
+            if($product['id'] == $id){
+                $product['quantity'] -= 1;
+            }
+        }
+        $json = json_encode($products);
+        Cookie::queue('cart', $json, 60);
+        return back()->with('message','update thành công!');
     }
 }

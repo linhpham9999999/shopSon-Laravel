@@ -126,6 +126,18 @@ Route::group(
                 Route::get('da-mua', 'App\Http\Controllers\DuyetHDController@getDSDaMua')->name('da-mua');
             }
         );
+        // Quản lý thông tin khuyến mãi
+        Route::group(['prefix'=>'khuyenmai','middleware' => 'checkQuanTriVien'],
+            function (){
+                Route::get('danhsach', 'App\Http\Controllers\KhuyenMaiController@getDanhSach')->name('dsKhuyenMai');
+
+                Route::get('them', 'App\Http\Controllers\KhuyenMaiController@getThem')->name('getThemKM');
+                Route::post('them', 'App\Http\Controllers\KhuyenMaiController@postThem')->name('actionThemKM');
+
+                Route::get('sua/{id}', 'App\Http\Controllers\KhuyenMaiController@getSua');
+                Route::post('sua/{id}', 'App\Http\Controllers\KhuyenMaiController@postSua')->name('actionSuaKM');
+            }
+        );
         // Thông tin cá nhân
         Route::get('/information','App\Http\Controllers\InfoController@getInfo')->name('info')
             ->middleware('checkQuanTriVien');
@@ -205,6 +217,8 @@ Route::group(
                 Route::post('/add-cart', 'App\Http\Controllers\CartController@store')->name('add-cart');
                 Route::get('/view-cart', 'App\Http\Controllers\CheckoutController@showView')->name('view-cart');
                 Route::get('delete/{id}', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
+                // Ap dung khuyen mai
+                Route::post('/app-promotion','App\Http\Controllers\CheckoutController@applyPromo')->name('applyPromotion');
             }
         );
 
@@ -223,6 +237,10 @@ Route::group(
             function () {
                 //Kiem tra truoc khi thanh toan
                 Route::get('/billing-details', 'App\Http\Controllers\BuyProductsController@proceedCheckout')->name('proceed-to-checkout');
+//                Route::get('/billing-detail', 'App\Http\Controllers\BuyProductsController@proceedCheckoutPromo')->name('proceed-to-checkout-promotion');
+                // Update cart
+                Route::get('/increaseQuantity/{id}','App\Http\Controllers\BuyProductsController@increaseQuantity')->name('increaseQuantity');
+                Route::get('/decreaseQuantity/{id}','App\Http\Controllers\BuyProductsController@decreaseQuantity')->name('decreaseQuantity');
                 //Trang thai dat hang
                 Route::get('/order', 'App\Http\Controllers\BuyProductsController@orderStatus')->name('order-status');
                 Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
@@ -230,6 +248,8 @@ Route::group(
                 Route::get('/delete-order/{id}', 'App\Http\Controllers\DeleteOrderController@delete')->name('delete-order');
             }
         );
+        //Khuyên mãi
+        Route::get('/khuyenMai','App\Http\Controllers\KhuyenMaiController@getData')->name('getDataKM');
 
         //Thông tin về shop
         Route::group(
@@ -244,11 +264,8 @@ Route::group(
         Route::get('/billDetail/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail')->middleware('loginKH');
         //KH xác nhận lấy hàng
         Route::post('/accept-order','App\Http\Controllers\DuyetHDController@confirm')->name('accept-order')->middleware('loginKH');
-
         //Thanh toán bằng MOMO
         Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
-
-
     }
 
 );

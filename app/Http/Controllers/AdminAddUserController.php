@@ -13,7 +13,8 @@ class AdminAddUserController extends Controller
 {
     public function getDanhSach(){
         $khachhang = DB::table('nguoi_dung')
-            ->select('hoten','gioitinh','ngaysinh','diachi','sodth','email','nguoi_dung.id as id')->paginate(5);
+            ->select('hoten','gioitinh','ngaysinh','diachi','sodth','email','nguoi_dung.id as id')
+            ->where('trang_thai','=',1)->paginate(5);
         return view('admin.khach_hang.danhsach',compact('khachhang'));
     }
     public  function getThem(){
@@ -27,7 +28,6 @@ class AdminAddUserController extends Controller
                 'ten' => 'bail|required|min:5|max:50',
                 'diachi' => 'bail|required|min:5|max:255',
                 'sodth' => 'bail|required|min:10|max:10',
-                'nsinh' => 'bail|required|date_format:Y-m-d',
                 'hinh_anh' => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
@@ -45,8 +45,6 @@ class AdminAddUserController extends Controller
                 'sodth.required' => 'Bạn chưa nhập Số điện',
                 'sodth.min' => 'Số điện thoại phải có độ dài 10 ký tự',
                 'sodth.max' => 'Số điện thoại phải có độ dài 10 ký tự',
-                'nsinh.required' => 'Bạn chưa nhập ngày sinh',
-                'nsinh.date_format' => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
                 'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh',
                 'hinh_anh.mimes' => 'File chọn phải là file hình ảnh (*.jpg, *png)'
             ]
@@ -63,10 +61,11 @@ class AdminAddUserController extends Controller
                 'diachi' => $request->diachi,
                 'sodth' => $request->sodth,
                 'gioitinh' => $request->gtinh,
-                'ngaysinh' => $request->nsinh,
+                'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
                 'email' => $request->email,
                 'chuc_vu_id'=>$request->chuc_vu_id,
                 'hinhanh_user'=>$name,
+                'trang_thai'=> $request->trangthai,
                 'created_at' => Carbon :: now ()
             ]
         );
@@ -86,7 +85,6 @@ class AdminAddUserController extends Controller
                 'ten' => 'bail|required|min:5|max:50',
                 'diachi' => 'bail|required|min:5|max:255',
                 'sodth' => 'bail|required|min:10|max:10',
-                'nsinh' => 'bail|required|date_format:Y-m-d',
                 'hinh_anh' => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
@@ -99,8 +97,6 @@ class AdminAddUserController extends Controller
                 'sodth.required' => 'Bạn chưa nhập Số điện',
                 'sodth.min' => 'Số điện thoại phải có độ dài 10 ký tự',
                 'sodth.max' => 'Số điện thoại phải có độ dài 10 ký tự',
-                'nsinh.required' => 'Bạn chưa nhập ngày sinh',
-                'nsinh.date_format' => 'Thời gian phải có định dạng Năm-Tháng-Ngày',
                 'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh',
                 'hinh_anh.mimes' => 'File chọn phải là file hình ảnh (*.jpg, *png)'
             ]
@@ -116,7 +112,7 @@ class AdminAddUserController extends Controller
                     'diachi' => $request->diachi,
                     'sodth' => $request->sodth,
                     'gioitinh' => $request->gtinh,
-                    'ngaysinh' => $request->nsinh,
+                    'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
                     'hinhanh_user' => $name,
                     'updated_at'=>Carbon :: now ()
                 ]);
@@ -125,7 +121,7 @@ class AdminAddUserController extends Controller
 
     public function postXoa($id)
     {
-        DB::table('nguoi_dung')->where('id','=',$id)->delete();
+        DB::table('nguoi_dung')->where('id','=',$id)->update(['trang_thai'=>0]);
         return response()->json([
                                     'message' => 'Data deleted successfully!'
                                 ]);

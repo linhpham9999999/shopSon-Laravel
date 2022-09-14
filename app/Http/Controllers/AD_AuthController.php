@@ -32,6 +32,11 @@ class AD_AuthController extends Controller
         $user =  $request->email ;
 //        $chucvu = DB::table('quan_tri')->select('chuc_vu_id')->where('email','=',$user)->first();
 //        $quantri = DB::table('nhan_vien_nhap_kho')->select('hoten')->where('email','=',$user)->first();
+//        dd(Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 1]),
+//           Auth::guard('nhan_vien_nhap_kho')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 2]),
+//           Auth::guard('nhan_vien_ban_hang')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 3])
+//        );
+
         if(Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 1])){
             $request->session()->put('name', $user);
             return redirect()->route('homeAd');
