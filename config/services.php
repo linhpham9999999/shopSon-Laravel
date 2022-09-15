@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '452529721412-0gu11topopl58pku912ivp7vgkb0a4lp.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://localhost:8999/shopSon/public/khach_hang/google/callback'
+    ],
+
+
 ];

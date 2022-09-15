@@ -27,8 +27,7 @@
             </div>
         </div>
     </div>
-    <!-- Breadcrumb Area End Here -->
-    <!-- Register Area Start Here -->
+
     <div class="login-register-area mt-no-text">
         <div class="container container-default-2 custom-area">
             <div class="row">
@@ -80,7 +79,7 @@
                                 <div class="error"> {{$errors->first('diachi')}}</div>
                             </div>
                             <div class="single-input-item mb-3">
-                                <input type="hidden" name="quyen" value="0"> {{--0 là quyền khách hàng--}}
+                                <input type="hidden" name="chuc_vu_id" value="4">
                             </div>
                             <div class="single-input-item mb-3">
                                 <button type="submit" style="margin-left: 180px"
@@ -93,6 +92,6 @@
             </div>
         </div>
     </div>
-    <!-- Register Area End Here -->
+
 @endsection()
 

@@ -159,6 +159,10 @@ Route::group(
     ['prefix' => 'khach_hang'],
     function () {
         Route::get('/', 'App\Http\Controllers\KH_AuthController@login')->name('loginKH');
+        //LOGIN GOOGLE
+        Route::get('/login-google','App\Http\Controllers\KH_AuthController@login_google')->name('login-gg');
+        Route::get('/google/callback','App\Http\Controllers\KH_AuthController@callback_google');
+
         Route::post('/', 'App\Http\Controllers\KH_AuthController@check')->name('xu-ly-dang-nhap-KH');
 
         Route::get('/create_account', 'App\Http\Controllers\KH_AuthController@create_account')->name('create_account');
@@ -267,6 +271,7 @@ Route::group(
         //Thanh toán bằng MOMO
         Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
     }
+
 
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
