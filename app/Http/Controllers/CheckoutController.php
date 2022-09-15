@@ -37,14 +37,13 @@ class CheckoutController extends Controller
     public function showView(): View
     {
         // lấy thông tin product
-        [$product, $isHasProductsCart]  = $this->getProductsFromCart();
-        $subPrice                       = $this->subPrice($product);
-        $shipping                       = $this->shipPrice($product);
-//        dd($isHasProductsCart);
-        return view('khach_hang/cart/checkout',['products'     => $product,
+        [$products, $isHasProductsCart]  = $this->getProductsFromCart();
+        $subPrice = $this->subPrice($products);
+        $shipping = $this->shipPrice($products);
+        return view('khach_hang/cart/viewCart',['products'     => $products,
                                                     'isHasProduct'  => $isHasProductsCart,
                                                     'subPrice'      => $subPrice,
-                                                    'shipping'      => $shipping,
+                                                    'shipping'      => $shipping
                                                     ]
         );
     }
@@ -56,44 +55,41 @@ class CheckoutController extends Controller
 
         $data2 = DB::table('khuyen_mai')->select('*')
             ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['Ma_KM','=',$request->maKM]])->first();
+        $check = false;
+        if(!empty($data2) && Cookie::has('cart')){
+            $cart = Cookie::get('cart');
+            $products = json_decode($cart, true);
+            $subPriceUnit = $this->subPrice($products);
 
-        if(!empty($data2)){
-            if(Cookie::has('cart')){
-                $cart = Cookie::get('cart');
-                $products = json_decode($cart, true);
-                $subPrice2 = $this->subPrice($products);
-
-                if($subPrice2 >= $data2->gia_yeu_cau){
-                    $subPrice = $this->subPrice($products) * (1 - $data2->phan_tram * 0.01);
-                }else{
-                    $subPrice = $subPrice2;
-                }
-
-                foreach ($products as $product){
-                    $product['promotion'] = $product['promotion'] + $data2->phan_tram;
-//                    dd($data2->gia_yeu_cau, $this->subPrice($products), $subPrice >= $data2->gia_yeu_cau, $product['promotion']);
-                    $id = $product['id'];
-                    $products[$id] = $product;
-                }
-
+            if($subPriceUnit >= $data2->gia_yeu_cau){
+                $subPrice = $this->subPrice($products) * (1 - $data2->phan_tram * 0.01);
+            }else{
+                $subPrice = $subPriceUnit;
             }
+
+            foreach ($products as $product) {
+                if ($product['promotion'] == 0) {
+                    $product['promotion'] = $product['promotion'] + $data2->phan_tram;
+                }
+                $id = $product['id'];
+                $products[$id] = $product;
+            }
+
             $json = json_encode($products);
             Cookie::queue('cart',$json,300000);
-            $shipping = $this->shipPrice($products);
+            $check = true;
         } else {
             [$products, $isHasProductsCart]  = $this->getProductsFromCart();
-            $shipping                       = $this->shipPrice($products);
             $subPrice = $this->subPrice($products);
         }
-//        dd($subPrice2, $subPrice, $products);
         $isHasProductsCart = true;
+        $shipping = $this->shipPrice($products);
         return view('khach_hang/cart/checkout',['products'   => $products,
-                      'isHasProduct'  => $isHasProductsCart,
-                      'subPrice'      => $subPrice,
-                      'shipping'      => $shipping,
-                      'data'          => $data
-                      ]
-        );
+                                                  'isHasProduct'  => $isHasProductsCart,
+                                                  'subPrice'      => $subPrice,
+                                                  'shipping'      => $shipping,
+                                                  'data'          => $data,
+                                                  'check'         => $check ]);
     }
 
     /**

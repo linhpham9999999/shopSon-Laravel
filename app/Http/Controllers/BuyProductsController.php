@@ -15,7 +15,6 @@ class BuyProductsController extends Controller
     {
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
-//        dd($products);
         $email = '';
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
@@ -28,10 +27,8 @@ class BuyProductsController extends Controller
         $ship = 0;
         foreach ($products as $product)
         {
-//            dd($products);
             $sumPrice = $product['unit_price'] * $product['quantity'];
             $total += $sumPrice * (1 - $product['promotion']*0.01);
-
             if($total < 500000)
             {
                 $ship = 50000;
@@ -39,12 +36,8 @@ class BuyProductsController extends Controller
                 $ship = 0;
             }
         }
-
-//        dd($total);
         $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
         $delivery = DB::table('hinh_thuc_giao_hang')->select('*')->get();
-//        $diachi = DB::table('dia_chi_giao_hang')->select('*')
-//            ->where('dia_chi_giao_hang.id_NGUOIDUNG_mua','=',$users->id)->get();
         $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('emailnguoidung','=',$email)->get();
         return view('khach_hang.cart.proceed-to-checkout',
                     compact('users','products','ship','total','payments','delivery','diachi'));

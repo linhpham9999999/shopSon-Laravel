@@ -83,11 +83,15 @@
                         <div class="apply-coupon-wrapper" style=" margin-left: 505px;">
                             <form action="{{route('applyPromotion')}}" method="post" class=" d-block d-md-flex">
                                 {{csrf_field()}}
-                                <input type="text" name="maKM" style="width: 350px;margin-left: 205px;margin-bottom: 0px;" placeholder="Nhập mã giảm giá" required />
+                                <input type="text" name="maKM" style="width: 350px;margin-left: 205px;" placeholder="Nhập mã giảm giá" required />
                                 <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Áp dụng</button>
                             </form>
                         </div>
+
                     </div>
+                    @if($check === false)
+                        <div class="error" style="padding-left: 740px;">Không thể áp dụng khuyến mãi</div>
+                    @endif
                 </div>
             </div>
             <div class="row">
@@ -111,7 +115,7 @@
                                         </tr>
                                         <tr class="total">
                                             <td>Total</td>
-                                            <td class="total-amount">{{number_format( $subPrice +  $shipping,0,',','.') }}</td>
+                                            <td class="total-amount">{{number_format( $subPrice  +  $shipping,0,',','.') }}</td>
                                         </tr>
                                         @endforeach
                                     </table>
