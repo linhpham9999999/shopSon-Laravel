@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Social;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Session;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class KH_AuthController extends Controller
@@ -110,48 +112,42 @@ class KH_AuthController extends Controller
 
     public function callback_google(){
         $users = Socialite::driver('google')->stateless()->user();
-        dd($users);
         $authUser = $this->findOrCreateUser($users,'google');
-        $account_name = Login::where('admin_id',$authUser->user)->first();
-        Session::put('admin_login',$account_name->admin_name);
-        Session::put('admin_id',$account_name->admin_id);
-        return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
-
-
+        $account_name = DB::table('nguoi_dung')->where('id','=',$authUser->user)->first();
+        Session::put('user_login',$account_name->hoten);
+        Session::put('user_id',$account_name->id);
+        return redirect('/khach_hang/trangchu')->with('message', 'Đăng nhập thành công');
     }
-    public function findOrCreateUser($users,$provider){
-        $authUser = Social::where('provider_user_id', $users->id)->first();
-        if($authUser){
 
+    public function findOrCreateUser($users,$provider){
+        $authUser = DB::table('social')->where('provider_user_id', $users->id)->first();
+        if($authUser){
             return $authUser;
         }
-
-        $hieu = new Social([
-                               'provider_user_id' => $users->id,
-                               'provider' => strtoupper($provider)
-                           ]);
-
-        $orang = Login::where('admin_email',$users->email)->first();
+        $orang = DB::table('nguoi_dung')->where('email','=',$users->email)->first();
 
         if(!$orang){
-            $orang = Login::create([
-                                       'admin_name' => $users->name,
-                                       'admin_email' => $users->email,
-                                       'admin_password' => '',
-
-                                       'admin_phone' => '',
-                                       'admin_status' => 1
+            $orang = DB::table('nguoi_dung')->insert([
+                                       'hoten' => $users->name,
+                                       'email' => $users->email,
+                                       'password' => '',
+                                       'diachi' => '',
+                                       'hinhanh_user'=>'',
+                                       'chuc_vu_id'=> 4,
+                                       'sodth' => '',
+                                       'trang_thai' => 1
                                    ]);
         }
-        $hieu->login()->associate($orang);
-        $hieu->save();
-
-        $account_name = Login::where('admin_id',$authUser->user)->first();
-        Session::put('admin_login',$account_name->admin_name);
-        Session::put('admin_id',$account_name->admin_id);
-        return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
+        $id_nguoidung = DB::getPdo()->lastInsertId();
+        DB::table('social')->insert([
+                                                'user' => $id_nguoidung,
+                                                'provider_user_id' => $users->id,
+                                                'provider' => strtoupper($provider)
+                                            ]);
+        $account_name = DB::table('nguoi_dung')->where('id','=',$authUser->user)->first();
+        Session::put('user_login',$account_name->hoten);
+        Session::put('user_id',$account_name->id);
+        return redirect('/khach_hang/trangchu')->with('message', 'Đăng nhập thành công');
 
     }
-
-
 }
