@@ -10,6 +10,8 @@ class AccountKHController extends Controller
     public function viewAccount(){
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
         }
         $users = DB::table('nguoi_dung')
             ->where('email','=',$email)->select('*')->first();
@@ -59,6 +61,8 @@ class AccountKHController extends Controller
             ]);
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
         }
         DB::table('dia_chi_giao_hang')
             ->insert([

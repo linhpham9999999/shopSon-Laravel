@@ -96,17 +96,19 @@ class CartController extends Controller
         if( Auth::guard('nguoi_dung')->check() )
         {
             $email = Auth::guard('nguoi_dung')->user()->email;
-            return [
-                'id'                => $mausp->id,
-                'image'             => $mausp->hinhanh,
-                'name'              => $sanpham->ten_SP,
-                'color'             => $mausp->mau,
-//                'unit_price'        => $sanpham->giagoc,
-                'promotion'         => 0,
-                'unit_price'        => $sanpham->gia_ban_ra,
-                'email'             => $email
-            ];
+        }else{
+            $email = session('email_user_login');
         }
+        return [
+            'id'                => $mausp->id,
+            'image'             => $mausp->hinhanh,
+            'name'              => $sanpham->ten_SP,
+            'color'             => $mausp->mau,
+//                'unit_price'        => $sanpham->giagoc,
+            'promotion'         => 0,
+            'unit_price'        => $sanpham->gia_ban_ra,
+            'email'             => $email
+        ];
     }
     /**
      * @param  array  $products

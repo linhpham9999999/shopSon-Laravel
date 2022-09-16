@@ -16,8 +16,8 @@ class DuyetHDController extends Controller
         return view('admin\duyetHD\danhsach',compact('hoadon'));
     }
     function postDanhSach(Request $request){
-        if( Auth::guard('nguoi_dung')->check()) {
-            $email = Auth::guard('nguoi_dung')->user()->email;
+        if( Auth::guard('web')->check()) {
+            $email = Auth::guard('web')->user()->email;
         }
         $idHD = $request->idHD;
 //        dd($idHD);

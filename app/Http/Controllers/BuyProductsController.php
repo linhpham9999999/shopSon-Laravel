@@ -18,6 +18,8 @@ class BuyProductsController extends Controller
         $email = '';
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
         }
         $users = DB::table('nguoi_dung')
             ->select('diachi', 'hoten', 'email', 'sodth','id')
@@ -47,6 +49,8 @@ class BuyProductsController extends Controller
         $email = '' ;
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
         }
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
@@ -111,6 +115,8 @@ class BuyProductsController extends Controller
         $email = '' ;
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
         }
         $hoadon = DB::table('hoa_don')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')

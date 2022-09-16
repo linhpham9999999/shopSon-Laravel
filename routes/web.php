@@ -145,9 +145,9 @@ Route::group(
             ->middleware('checkQuanTriVien');
 
         //Thay đổi mật khẩu
-        Route::get('/change-password','App\Http\Controllers\ADChangePasswordController@index')->name('change-password-admin')
+        Route::get('/changePassword','App\Http\Controllers\ADChangePasswordController@index')->name('change-password-admin')
             ->middleware('checkQuanTriVien');
-        Route::post('/change-password','App\Http\Controllers\ADChangePasswordController@store')->name('post-change-password-admin');
+        Route::post('/changePassword','App\Http\Controllers\ADChangePasswordController@store')->name('post-change-password-admin');
 
         //Thống kê doanh thu
         Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales')->middleware('checkQuanTriVien');
@@ -205,7 +205,7 @@ Route::group(
                 Route::get('/view-account','App\Http\Controllers\AccountKHController@viewAccount')->name('view-account');
                 Route::post('/change-account/{id}','App\Http\Controllers\AccountKHController@postAccount')->name('change-account');
 
-                Route::get('/change-password','App\Http\Controllers\ChangePasswordController@index')->name('password');
+                Route::get('/change-password','App\Http\Controllers\ChangePasswordController@index')->name('passwordKH');
                 Route::post('/change-password','App\Http\Controllers\ChangePasswordController@store')->name('change-password');
                 //Thêm địa chỉ giao hàng
                 Route::post('/add-address','App\Http\Controllers\AccountKHController@postAddress')->name('add-address');

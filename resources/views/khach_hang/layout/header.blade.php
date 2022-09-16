@@ -56,7 +56,7 @@
                                 </a>
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('view-account')}}">Thông tin tài khoản</a></li>
-                                    <li><a href="{{route('password')}}">Đổi mật khẩu</a></li>
+                                    <li><a href="{{route('passwordKH')}}">Đổi mật khẩu</a></li>
                                     <li><a href="{{route('create_account')}}">Đăng ký thành viên</a></li>
                                     <li><a href="{{route('loginKH')}}">Login</a></li>
                                     <li><a href="{{route('logoutKH')}}">Logout</a></li>
@@ -192,7 +192,9 @@
                         Chào bạn
                         @if(\Illuminate\Support\Facades\Auth::guard('nguoi_dung')->check())
                             {{ \Illuminate\Support\Facades\Auth::guard('nguoi_dung')->user()->hoten }}
-                        @endif !
+                        @else
+                            {{ session('user_login') }}
+                        @endif
                         <br> <br>
                         Chào mừng bạn đến với shop Son HLYNKLIPSTICKS của chúng tôi.
                         <br>

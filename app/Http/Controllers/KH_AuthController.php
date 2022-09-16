@@ -115,7 +115,9 @@ class KH_AuthController extends Controller
         $authUser = $this->findOrCreateUser($users,'google');
         $account_name = DB::table('nguoi_dung')->where('id','=',$authUser->user)->first();
         Session::put('user_login',$account_name->hoten);
+        Session::put('email_user_login',$account_name->email);
         Session::put('user_id',$account_name->id);
+//        dd(session('email_user_login'));
         return redirect('/khach_hang/trangchu')->with('message', 'Đăng nhập thành công');
     }
 
@@ -147,6 +149,7 @@ class KH_AuthController extends Controller
         $account_name = DB::table('nguoi_dung')->where('id','=',$authUser->user)->first();
         Session::put('user_login',$account_name->hoten);
         Session::put('user_id',$account_name->id);
+//        dd(session('email_user_login'));
         return redirect('/khach_hang/trangchu')->with('message', 'Đăng nhập thành công');
 
     }
