@@ -18,6 +18,7 @@ class MauSpController extends Controller
             ->select('mau_san_pham.*','mau_san_pham.id as id', 'loai_san_pham.ten_LSP as ten_LSP',
                 'san_pham.ten_SP as ten_SP')
             ->where([['mau_san_pham.trang_thai', '=', 1],['san_pham.trang_thai','=',1],['loai_san_pham.trang_thai','=',1]])
+            ->orderBy('mau_san_pham.id','desc')
             ->paginate(5);
         return view('admin.mausp.danhsach', compact('data'));
     }

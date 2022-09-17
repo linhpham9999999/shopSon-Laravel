@@ -46,7 +46,7 @@
                                             <span>{{$hd->hoten}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
-                                            <span>{{$hd->ngaydat}}</span>
+                                            <span>{{DateTime::createFromFormat('Y-m-d', $hd->ngaydat)->format('m/d/Y')}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{ number_format($hd->tongtien)}}</span>

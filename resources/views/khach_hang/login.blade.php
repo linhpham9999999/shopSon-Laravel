@@ -70,7 +70,9 @@
                         <span class="single-input-item mb-3" style="margin-left: 130px">
                             <a href="{{route('create_account')}}" class="btn flosun-button secondary-btn theme-color rounded-0">Tạo tài khoản mới</a>
                         </span>
-                        <div><a href="{{route('login-gg')}}">Login Google</a></div>
+                        <div style="width: 145px;margin-top: 25px; padding: 2px 2px; text-align: center; background-color: #ffb6c1;">
+                            <a href="{{route('login-gg')}}">Login Google</a>
+                        </div>
                     </form>
                 </div>
             </div>

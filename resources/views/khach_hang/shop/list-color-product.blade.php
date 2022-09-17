@@ -44,7 +44,6 @@
                                 </div>
 
                                 <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT SẢN PHẨM</span> </a>
-
                             </div>
                             <div class="product-content-listview">
                                 <div class="product-title">

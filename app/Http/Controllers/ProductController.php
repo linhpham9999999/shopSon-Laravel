@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function getDanhSach()
     {
-        $sanpham = DB::table('san_pham')->where('trang_thai','=',1)->paginate(5);
+        $sanpham = DB::table('san_pham')->where('trang_thai','=',1)->orderBy('san_pham.id','desc')->paginate(5);
         $loaisanpham = DB::table('loai_san_pham')->where('trang_thai','=',1)->select('id', 'ten_LSP')->get();
         return view('admin.sanpham.danhsach', compact('sanpham', 'loaisanpham'));
     }

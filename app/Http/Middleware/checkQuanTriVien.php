@@ -17,6 +17,12 @@ class checkQuanTriVien
      */
     public function handle(Request $request, Closure $next)
     {
+//        dd(!Auth::guard('web')->check() || !Auth::guard('nhan_vien_ban_hang') || !Auth::guard('nhan_vien_ban_hang'),
+//           !Auth::guard('web')->check(),
+//           !Auth::guard('nhan_vien_ban_hang'),
+//           !Auth::guard('nhan_vien_ban_hang')
+//        );
+
         if (!Auth::guard('web')->check() || !Auth::guard('nhan_vien_ban_hang') || !Auth::guard('nhan_vien_ban_hang')) {
             return redirect()->route('login');
         }

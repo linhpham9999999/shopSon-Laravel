@@ -11,7 +11,7 @@ class WishlistController extends Controller
 {
     public function wishList(Request  $request)
     {
-        dd($request->get('lish_product_id_wish'));
+//        dd($request->get('lish_product_id_wish'));
         $this->validate($request,
             [
                 'lish_product_id_wish'=>'unique:wish_list,id_MSP',

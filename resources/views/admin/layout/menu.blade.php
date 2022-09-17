@@ -63,9 +63,9 @@
                         </a>
                     </li>
                     <li class="nk-menu-item has-sub">
-                        <a href="{{route('da-mua')}}" class="nk-menu-link nk-menu-toggle">
+                        <a href="{{route('quanlyHD')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                            <span class="nk-menu-text"> Quản lý đơn hàng</span>
+                            <span class="nk-menu-text">Quản lý đơn hàng</span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
@@ -118,9 +118,9 @@
 {{--                        Nhân viên bán hàng--}}
                     @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
                         <li class="nk-menu-item has-sub">
-                            <a href="{{route('da-mua')}}" class="nk-menu-link nk-menu-toggle">
+                            <a href="{{route('quanlyHD')}}" class="nk-menu-link nk-menu-toggle">
                                 <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                                <span class="nk-menu-text"> Quản lý đơn hàng</span>
+                                <span class="nk-menu-text"> <a href="{{route('quanlyHD')}}">Quản lý đơn hàng</a></span>
                             </a>
                             <ul class="nk-menu-sub">
                                 <li class="nk-menu-item">

@@ -17,6 +17,7 @@ class KhoHangController extends Controller
             ->join('mau_san_pham','mau_san_pham.id_SP','=','san_pham.id')
             ->select('san_pham.ten_SP as tenSP','mau_san_pham.mau as tenMauSP','hinhanh',
                      'nha_cung_cap','soluongton','loi_nhuan','gia_ban_ra','phieu_nhap_hang.created_at as ngaytao')
+            ->orderBy('phieu_nhap_hang.id','desc')
             ->paginate(5);
 //            ->sortBy('phieu_nhap_hang.id','desc');
         return view('admin.khohang.danhsach', compact('data'));

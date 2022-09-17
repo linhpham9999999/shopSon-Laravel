@@ -38,15 +38,15 @@ class AD_AuthController extends Controller
 //        );
 
         if(Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 1])){
-            $request->session()->put('name', $user);
+            $request->session()->put('nameAD', $user);
             return redirect()->route('homeAd');
         }
         elseif(Auth::guard('nhan_vien_nhap_kho')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 2])){
-            $request->session()->put('name', $user);
+            $request->session()->put('nameAD', $user);
             return redirect()->route('homeAd');
         }
         elseif(Auth::guard('nhan_vien_ban_hang')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 3])){
-            $request->session()->put('name', $user);
+            $request->session()->put('nameAD', $user);
             return redirect()->route('homeAd');
         }
         $request->session()->flash('thongbao', 'Đăng nhập không thành công');
@@ -54,10 +54,11 @@ class AD_AuthController extends Controller
     }
 
     public function logout(Request $request){
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('admin/');
+//        Auth::logout();
+//        $request->session()->invalidate();
+//        $request->session()->regenerateToken();
+        $request->session()->forget('nameAD');
+        return redirect()->route('login');
     }
 
 }

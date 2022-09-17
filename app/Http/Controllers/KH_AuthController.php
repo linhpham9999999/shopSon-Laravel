@@ -34,7 +34,7 @@ class KH_AuthController extends Controller
         $tenKH = DB::table('nguoi_dung')->select('hoten')->where('email','=',$request->email)->first();
         $authenticated = Auth::guard('nguoi_dung')->attempt(['email' => $request->email, 'password' => $request->password]);
         if ($authenticated) {
-            $request->session()->put('name', $tenKH);
+            $request->session()->put('nameKH', $tenKH);
             return redirect()->route('trangchuKH');
         }
         $request->session()->flash('error', 'Đăng nhập không thành công');
@@ -42,12 +42,7 @@ class KH_AuthController extends Controller
     }
 
     public function logoutKH(Request $request){
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
+        $request->session()->forget('nameKH');
         return redirect()->route('loginKH');
     }
 
