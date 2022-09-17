@@ -50,12 +50,12 @@
                             <span class="nk-menu-text">Quản lý nhân viên</span>
                         </a>
                     </li>
-                    <li class="nk-menu-item">
-                        <a href="{{route('khach_hang')}}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                            <span class="nk-menu-text">Quản lý khách hàng</span>
-                        </a>
-                    </li>
+{{--                    <li class="nk-menu-item">--}}
+{{--                        <a href="{{route('khach_hang')}}" class="nk-menu-link">--}}
+{{--                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>--}}
+{{--                            <span class="nk-menu-text">Quản lý khách hàng</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="nk-menu-item">
                         <a href="{{route('dsKhoHang')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>

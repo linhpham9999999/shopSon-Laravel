@@ -30,6 +30,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="form-label" for="email-address">Giá yêu cầu</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" name="gia_yc" placeholder="Giá yêu cầu" />
+                                <div class="error"> {{$errors->first('gia_yc')}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="form-control-wrap">
                                 <div class="form-icon form-icon-right xl">
                                     <em class="icon ni ni-calendar-alt"></em>

@@ -114,7 +114,7 @@ class AdminAddUserController extends Controller
                     'gioitinh' => $request->gtinh,
                     'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
                     'hinhanh_user' => $name,
-                    'updated_at'=>Carbon :: now ()
+                    'updated_at'=>Carbon::now()
                 ]);
         return redirect('admin/khach_hang/sua/' . $id)->with('thongbao', 'Sửa thành công');
     }

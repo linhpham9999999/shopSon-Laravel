@@ -63,10 +63,10 @@
                                         <span>{{$sp->trongluong}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$sp->gia_nhap_vao}} VNĐ</span>
+                                        <span>{{number_format($sp->gia_nhap_vao,0,',','.')}} VNĐ</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$sp->gia_ban_ra}} VNĐ</span>
+                                        <span>{{number_format($sp->gia_ban_ra,0,',','.')}} VNĐ</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$sp->hansudung_thang}} tháng</span>

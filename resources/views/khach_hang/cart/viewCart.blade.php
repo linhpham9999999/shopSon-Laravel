@@ -64,7 +64,7 @@
                                         <td class="pro-subtotal"><span>{{ number_format($product['unit_price']*$product['quantity'],0,',','.') }}</span></td>
                                         <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
                                     </tr>
-
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+
             @elseif($isHasProduct === false)
                 <h2>Không có sản phẩm</h2>
             @endif

@@ -31,6 +31,7 @@
                             <tr class="nk-tb-item nk-tb-head">
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Mã</span></th>
                                 <th class="nk-tb-col tb-col-lg"><span class="sub-text">Phần trăm</span></th>
+                                <th class="nk-tb-col tb-col-lg"><span class="sub-text">Giá yêu cầu</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày bắt đầu</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày kết thúc</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Nội dung</span></th>
@@ -45,6 +46,9 @@
                                     </td>
                                     <td class="nk-tb-col tb-col-lg">
                                         <span>{{$km->phan_tram}} %</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-lg">
+                                        <span>{{number_format($km->gia_yeu_cau,0,',','.')}} VNĐ</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{DateTime::createFromFormat('Y-m-d', $km->ngay_bat_dau)->format('m/d/Y')}}</span>

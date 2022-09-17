@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use DB;
@@ -85,6 +86,7 @@ class ProductController extends Controller
                 'hinhanhgoc' => $name,
                 'trang_thai'=> $request->status,
                 'noibat' => $request->noibat,
+                'created_at' => Carbon::now()
             ]
         );
         return redirect('admin/sanpham/them')->with('thongbao', 'Thêm thành công');
@@ -161,6 +163,7 @@ class ProductController extends Controller
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
                 'noibat' => $request->noibat,
+                'updated_at'=>Carbon::now()
             ]
         );
 

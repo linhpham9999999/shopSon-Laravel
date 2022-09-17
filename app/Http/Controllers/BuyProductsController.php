@@ -68,6 +68,7 @@ class BuyProductsController extends Controller
                      'tongtien'             => $request->total,
                      'ghichu'               => $request->note,
                      'sodth_giao_hang'      => $request->sodth
+//                      'id_KM'               => $request
                      ]);
         $id_HD = DB::getPdo()->lastInsertId();
 

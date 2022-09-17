@@ -31,7 +31,8 @@ class KhuyenMaiController extends Controller
                 'phantram'  => 'bail|required|numeric|min:1',
                 'ngaybd'    => 'bail|required',
                 'ngaykt'    => 'bail|required',
-                'info'      => 'bail|required|min:10'
+                'info'      => 'bail|required|min:10',
+                'gia_yc'    => 'bail|required|numeric|min:1'
             ],
             [
                 'maKM.required'           => 'Bạn chưa nhập Mã khuyến mãi',
@@ -43,7 +44,10 @@ class KhuyenMaiController extends Controller
                 'ngaybd.min'              => 'Bạn chưa nhập ngày bắt đầu',
                 'ngaykt.max'              => 'Bạn chưa nhập ngày kết thúc',
                 'info.required'           => 'Bạn chưa nhập nội dung khuyến mãi',
-                'info.min'                => 'Nội dung khuyến mãi phải có độ dài từ 10 ký tự'
+                'info.min'                => 'Nội dung khuyến mãi phải có độ dài từ 10 ký tự',
+                'gia_yc.required'         => 'Bạn chưa nhập giá yêu cầu',
+                'gia_yc.numeric'          => 'Giá yêu cầu phải là một số ',
+                'gia_yc.min'              => 'Giá yêu cầu không hợp lệ',
             ]
         );
         DB::table('khuyen_mai')->insert(
@@ -53,6 +57,7 @@ class KhuyenMaiController extends Controller
                 'ngay_bat_dau' => Carbon::createFromFormat(config('app.date_format'), $request->ngaybd)->format('Y-m-d'),
                 'ngay_ket_thuc' => Carbon::createFromFormat(config('app.date_format'), $request->ngaykt)->format('Y-m-d'),
                 'thong_tin' => $request->info,
+                'gia_yeu_cau' => $request->gia_yc,
                 'created_at'=> Carbon::now()
             ]
         );
@@ -72,23 +77,27 @@ class KhuyenMaiController extends Controller
         $this->validate(
             $request,
             [
-                'maKM' => 'bail|required|unique:khuyen_mai,Ma_KM|min:5',
-                'phantram' => 'bail|required|numeric|min:1',
-                'ngaybd' => 'bail|required',
-                'ngaykt' => 'bail|required',
-                'info' => 'bail|required|min:10'
+                'maKM'      => 'bail|required|unique:khuyen_mai,Ma_KM|min:5',
+                'phantram'  => 'bail|required|numeric|min:1',
+                'ngaybd'    => 'bail|required',
+                'ngaykt'    => 'bail|required',
+                'info'      => 'bail|required|min:10',
+                'gia_yc'    => 'bail|required|numeric|min:1'
             ],
             [
-                'maKM.required' => 'Bạn chưa nhập Mã khuyến mãi',
-                'maKM.unique' => 'Mã khuyến mãi đã tồn tại',
-                'maKM.min' => 'Mã khuyến mãi phải có độ dài ít nhất 5 ký tự',
-                'phantram.required' => 'Bạn chưa nhập phần trăm khuyến mãi',
-                'phantram.numeric' => 'Phần trăm khuyến mãi phải là 1 số',
-                'phantram.min' => 'Phần trăm khuyến mãi phải lớn hơn 1',
-                'ngaybd.min' => 'Bạn chưa nhập ngày bắt đầu',
-                'ngaykt.max' => 'Bạn chưa nhập ngày kết thúc',
-                'info.required' => 'Bạn chưa nhập nội dung khuyến mãi',
-                'info.min' => 'Nội dung khuyến mãi phải có độ dài từ 10 ký tự'
+                'maKM.required'           => 'Bạn chưa nhập Mã khuyến mãi',
+                'maKM.unique'             => 'Mã khuyến mãi đã tồn tại',
+                'maKM.min'                => 'Mã khuyến mãi phải có độ dài ít nhất 5 ký tự',
+                'phantram.required'       => 'Bạn chưa nhập phần trăm khuyến mãi',
+                'phantram.numeric'        => 'Phần trăm khuyến mãi phải là 1 số',
+                'phantram.min'            => 'Phần trăm khuyến mãi phải lớn hơn 1',
+                'ngaybd.min'              => 'Bạn chưa nhập ngày bắt đầu',
+                'ngaykt.max'              => 'Bạn chưa nhập ngày kết thúc',
+                'info.required'           => 'Bạn chưa nhập nội dung khuyến mãi',
+                'info.min'                => 'Nội dung khuyến mãi phải có độ dài từ 10 ký tự',
+                'gia_yc.required'         => 'Bạn chưa nhập giá yêu cầu',
+                'gia_yc.numeric'          => 'Giá yêu cầu phải là một số ',
+                'gia_yc.min'              => 'Giá yêu cầu không hợp lệ',
             ]
         );
         DB::table('khuyen_mai')->select('*')->where('id', '=', $id)->update(
@@ -98,6 +107,7 @@ class KhuyenMaiController extends Controller
                 'ngay_bat_dau' => Carbon::createFromFormat(config('app.date_format'), $request->ngaybd)->format('Y-m-d'),
                 'ngay_ket_thuc' => Carbon::createFromFormat(config('app.date_format'), $request->ngaykt)->format('Y-m-d'),
                 'thong_tin' => $request->info,
+                'gia_yeu_cau' => $request->gia_yc,
                 'updated_at'=> Carbon::now()
             ]
         );

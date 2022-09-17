@@ -95,15 +95,17 @@ class KH_AuthController extends Controller
             'gioitinh' => $request->gtinh,
             'ngaysinh' => $request->nsinh,
             'email' => $request->email,
-            'quyen' => $request->quyen
+            'chuc_vu_id' => $request->chuc_vu_id,
+            'trang_thai' => 1,
+            'created_at'=> Carbon::now()
         ]);
         //Tự động thêm địa chỉ mặc định vào đc giao hàng
-        $id_nguoidung = DB::getPdo()->lastInsertId();
-        DB::table('dia_chi_giao_hang')->insert([
-            'id_NGUOIDUNG_mua'  =>$id_nguoidung,
-            'Ma_DCGH'           =>'DCGH'.rand(10,1000),
-            'dia_chi_giao_hang' =>$request->diachi
-                                               ]);
+//        $id_nguoidung = DB::getPdo()->lastInsertId();
+//        DB::table('dia_chi_giao_hang')->insert([
+//            'emailnguoidung'  =>$request->email,
+//            'Ma_DCGH'           =>'DCGH'.rand(10,1000),
+//            'dia_chi_giao_hang' =>$request->diachi
+//                                               ]);
         return redirect()->route('loginKH')->with('alert','Đăng ký thành công');
     }
     public function login_google(){

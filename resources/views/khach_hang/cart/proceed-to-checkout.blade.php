@@ -152,11 +152,6 @@
                             <h3>Thêm địa chỉ giao hàng</h3>
                             <form method="post" action="{{route('add-address')}}" accept-charset="UTF-8">
                                 {{csrf_field()}}
-                                @if(session('alert2'))
-                                    <div class="alert alert-success" style="height: 50px">
-                                        {{session('alert2')}}
-                                    </div>
-                                @endif
                                 <div class="input-item mb-4">
                                     <input class="border-0 rounded-0 w-100 input-area email gray-bg" type="text" name="diachinew"  placeholder="Nhập địa chỉ">
                                     <div class="error">{{$errors->first('diachinew')}}</div>

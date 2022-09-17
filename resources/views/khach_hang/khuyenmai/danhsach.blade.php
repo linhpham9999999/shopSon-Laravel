@@ -48,7 +48,7 @@
                                 </tbody>
                             </table>
                         @else
-                            <h2>Bạn chứ có mã giảm giá nào</h2>
+                            <h2>Bạn chưa có mã giảm giá nào</h2>
                         @endif
                     </div>
                 </div>
