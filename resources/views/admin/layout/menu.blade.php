@@ -56,11 +56,20 @@
 {{--                            <span class="nk-menu-text">Quản lý khách hàng</span>--}}
 {{--                        </a>--}}
 {{--                    </li>--}}
-                    <li class="nk-menu-item">
-                        <a href="{{route('dsKhoHang')}}" class="nk-menu-link">
+
+                    <li class="nk-menu-item has-sub">
+                        <a href="{{route('dsKhoHang')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>
                             <span class="nk-menu-text">Quản lý kho hàng</span>
                         </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('dsKhoHang')}}" class="nk-menu-link"><span class="nk-menu-text">Danh sách</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('formSanPham')}}" class="nk-menu-link"><span class="nk-menu-text">Thêm</span></a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('quanlyHD')}}" class="nk-menu-link nk-menu-toggle">

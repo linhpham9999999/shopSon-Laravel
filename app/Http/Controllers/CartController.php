@@ -31,11 +31,11 @@ class CartController extends Controller
         $this->validate(
             $request,
             [
-                'number'                => 'bail|required|numeric|min:1'
+                'number'                => 'bail|required|integer|min:1'
             ],
             [
                 'number.required'      => 'Bạn chưa nhập số lượng sản phẩm',
-                'number.numeric'       => 'Số lượng sản phẩm phải là 1 số ',
+                'number.integer'       => 'Số lượng sản phẩm phải là 1 số nguyên',
                 'number.min'           => 'Số lượng sản phẩm ít nhất là  1',
             ]
         );

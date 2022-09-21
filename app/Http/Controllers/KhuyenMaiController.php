@@ -89,7 +89,7 @@ class KhuyenMaiController extends Controller
                 'maKM.unique'             => 'Mã khuyến mãi đã tồn tại',
                 'maKM.min'                => 'Mã khuyến mãi phải có độ dài ít nhất 5 ký tự',
                 'phantram.required'       => 'Bạn chưa nhập phần trăm khuyến mãi',
-                'phantram.numeric'        => 'Phần trăm khuyến mãi phải là 1 số',
+                'phantram.numeric'        => 'Phần trăm khuyến mãi phải là 1 số lớn hơn 0',
                 'phantram.min'            => 'Phần trăm khuyến mãi phải lớn hơn 1',
                 'ngaybd.min'              => 'Bạn chưa nhập ngày bắt đầu',
                 'ngaykt.max'              => 'Bạn chưa nhập ngày kết thúc',

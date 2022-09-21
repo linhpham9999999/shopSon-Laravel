@@ -91,8 +91,9 @@ Route::group(
             ['prefix' => 'khohang', 'middleware' => 'checkQuanTriVien'],
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\KhoHangController@getDanhSach')->name('dsKhoHang');
-
-                Route::get('them', 'App\Http\Controllers\KhoHangController@getThem');
+                Route::get('them', 'App\Http\Controllers\KhoHangController@getThem')->name('formSanPham');
+                Route::post('tim-kiem', 'App\Http\Controllers\KhoHangController@search')->name('searchProduct');
+                Route::get('chi-tiet-nhap/{id}','App\Http\Controllers\KhoHangController@detail')->name('chiTietNhapKho');
                 Route::post('them', 'App\Http\Controllers\KhoHangController@postThem')->name('actionThemKhoHang');
             }
         );
