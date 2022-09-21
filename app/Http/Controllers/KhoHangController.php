@@ -41,13 +41,13 @@ class KhoHangController extends Controller
     {
         $data = DB::table('phieu_nhap_hang')
             ->join('chi_tiet_nhap_hang','chi_tiet_nhap_hang.phieu_nhap_hang_id','=','phieu_nhap_hang.id')
+            ->join('mau_san_pham','mau_san_pham.id','=','chi_tiet_nhap_hang.id_MSP')
             ->join('san_pham','san_pham.id','=','chi_tiet_nhap_hang.id_SP')
-            ->join('mau_san_pham','mau_san_pham.id_SP','=','san_pham.id')
-            ->select('san_pham.ten_SP as tenSP','mau_san_pham.mau as tenMauSP','hinhanh',
-                     'nha_cung_cap','soluongton','loi_nhuan','gia_ban_ra','phieu_nhap_hang.created_at as ngaytao')
+            ->select('mau','hinhanh','soluongton','nha_cung_cap','loi_nhuan','phieu_nhap_hang.created_at','gia_ban_ra','ten_SP')
             ->orderBy('phieu_nhap_hang.id','desc')
             ->paginate(5);
 //            ->sortBy('phieu_nhap_hang.id','desc');
+//        dd($data);
         return view('admin.khohang.danhsach', compact('data'));
     }
 

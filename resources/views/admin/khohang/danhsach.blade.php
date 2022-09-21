@@ -43,10 +43,10 @@
                             @foreach($data as $dt)
                                 <tr class="nk-tb-item">
                                     <td class="nk-tb-col tb-col-md">
-                                        <span>{{$dt->tenSP}}</span>
+                                        <span>{{$dt->ten_SP}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-lg">
-                                        <span>{{$dt->tenMauSP}}</span>
+                                        <span>{{$dt->mau}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span><img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="50px" height="50px"/></span>
@@ -58,13 +58,13 @@
                                         <span>{{$dt->soluongton}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$dt->loi_nhuan}}</span>
+                                        <span>{{$dt->loi_nhuan}} %</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$dt->gia_ban_ra}}</span>
+                                        <span>{{number_format($dt->gia_ban_ra,0,',','.')}} VND</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$dt->ngaytao}}</span>
+                                        <span>{{DateTime::createFromFormat('Y-m-d', $dt->created_at)->format('m/d/Y')}}</span>
                                     </td>
                                 </tr>
                             @endforeach

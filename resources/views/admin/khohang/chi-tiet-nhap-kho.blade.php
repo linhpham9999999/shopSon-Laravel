@@ -22,7 +22,7 @@
                                         <input type="text" class="form-control" disabled placeholder="Tên sản phẩm" value="{{$sanpham->ten_SP}}">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label style="margin-bottom: unset;">Mã màu sản phẩm</label>
                                         <input type="text" class="form-control" disabled placeholder="Mã màu sản phẩm" value="{{$mausanpham->Ma_MSP}}">
@@ -34,10 +34,16 @@
                                         <input type="email" class="form-control" disabled placeholder="Màu" value="{{$mausanpham->mau}}">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" style="margin-bottom: unset;">Số lượng tồn</label>
                                         <input type="text" class="form-control" disabled placeholder="Số lượng tồn" value="{{$mausanpham->soluongton}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" style="margin-bottom: unset;">Giá gốc hiện tại</label>
+                                        <input type="text" class="form-control" disabled placeholder="Giá gốc hiện tại" value="{{$sanpham->gia_nhap_vao}}">
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +90,8 @@
                             </div>
                             <input type="hidden" name="idSP" value="{{$sanpham->id}}">
                             <input type="hidden" name="idMSP" value="{{$mausanpham->id}}">
-                            <button type="submit" style="margin-left: 1000px;" class="btn btn-info btn-fill pull-right">Lưu</button>
+                            <button type="submit" style="margin-left: 900px;" class="btn btn-info btn-fill pull-right">Lưu</button>
+                            <a href="{{route('dsKhoHang')}}" class="btn btn-secondary">Xem</a>
                             <div class="clearfix"></div>
                         </form>
                     </div>
