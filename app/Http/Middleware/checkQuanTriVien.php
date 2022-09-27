@@ -15,17 +15,12 @@ class checkQuanTriVien
      * @param  \Closure  $next
      * @return mixed
      */
+    // cac route chi co quan tri vien co quyen
     public function handle(Request $request, Closure $next)
     {
-//        dd(!Auth::guard('web')->check() || !Auth::guard('nhan_vien_ban_hang') || !Auth::guard('nhan_vien_ban_hang'),
-//           !Auth::guard('web')->check(),
-//           !Auth::guard('nhan_vien_ban_hang'),
-//           !Auth::guard('nhan_vien_ban_hang')
-//        );
-
-        if (!Auth::guard('web')->check() || !Auth::guard('nhan_vien_ban_hang') || !Auth::guard('nhan_vien_ban_hang')) {
-            return redirect()->route('login');
+        if (Auth::guard('web')->check() ) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->route('login');
     }
 }

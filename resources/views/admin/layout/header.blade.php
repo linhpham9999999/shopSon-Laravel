@@ -64,16 +64,12 @@
                                     <div class="user-status">
                                         @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
                                             {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
-                                        @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                                            {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
-                                        @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                                            {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
                                         @endif
                                     </div>
                                     <div>
-{{--                                        @if( \Illuminate\Support\Facades\Auth::guard('web')->check())--}}
+                                        @if( \Illuminate\Support\Facades\Auth::guard('web')->check())
                                             <a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
-{{--                                        @endif--}}
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -88,20 +84,12 @@
                                         <span class="lead-text">
                                              @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
                                                 {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
                                             @endif
                                         </span>
                                         <span class="sub-text">
                                             @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
                                                 {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
-                                            @elseif(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
-                                            @endif
+                                           @endif
                                         </span>
                                     </div>
                                 </div>
@@ -116,9 +104,9 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-{{--                                    @if(\Illuminate\Support\Facades\Auth::guard('quan_tri')->check())--}}
+                                    @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
                                         <li><a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
-                                     {{--  @endif--}}
+                                       @endif
                                         </li>
                                 </ul>
                             </div>

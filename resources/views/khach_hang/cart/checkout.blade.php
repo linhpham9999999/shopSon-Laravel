@@ -59,9 +59,7 @@
                                     <td class="pro-quantity">
                                         <div class="quantity">
                                             <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text">
-                                                <a href="{{route('increaseQuantity',['id'=>$product['id']])}}">+</a>
-                                                <a href="{{route('decreaseQuantity',['id'=>$product['id']])}}">+</a>
+                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="quantity">
                                             </div>
                                         </div>
                                     </td>

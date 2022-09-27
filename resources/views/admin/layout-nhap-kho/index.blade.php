@@ -47,12 +47,12 @@
     <!-- main @s -->
     <div class="nk-main ">
         <!-- sidebar @s -->
-    @include('admin.layoutNVNhapKho.menu')
+    @include('admin.layout-nhap-kho.menu')
     <!-- sidebar @e -->
         <!-- wrap @s -->
         <div class="nk-wrap ">
             <!-- main header @s -->
-        @include('admin.layoutNVNhapKho.header')
+        @include('admin.layout-nhap-kho.header')
         <!-- main header @e -->
             <!-- content @s -->
             <div class="nk-content ">
@@ -64,7 +64,7 @@
             </div>
             <!-- content @e -->
             <!-- footer @s -->
-        @include('admin.layoutNVNhapKho.footer')
+        @include('admin.layout-nhap-kho.footer')
         <!-- footer @e -->
         </div>
         <!-- wrap @e -->
@@ -126,7 +126,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/loaisp/xoa/" + id,
+                    url: "admin/loaisp-kho-hang/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,
@@ -161,7 +161,7 @@
         $('.js-btn-update-lsp').on('click',function (e) {
             e.preventDefault();
             $.ajax({
-                url: "admin/loaisp/post-sua",
+                url: "admin/loaisp-kho-hang/post-sua",
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -197,7 +197,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/sanpham/xoa/" + id,
+                    url: "admin/sanpham-kho-hang/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,
@@ -214,61 +214,7 @@
                 });
             return false;
         })
-        // Xóa Nhân viên
-        $('.js-delete-nhanvien').on('click', function(e){
-            if(!confirm("Bạn có chắc xóa không?")) {
-                return false;
-            }
-            e.preventDefault();
-            var id = $(this).attr('data-id');
-            var token = $("meta[name='csrf-token']").attr("content");
-            $.ajax(
-                {
-                    url: "admin/nhanvien/xoa/" + id,
-                    method: 'POST',
-                    data: {
-                        _token: token,
-                        id: id
-                    },
-                    success: function (response){
-                        $("#success").html(response.message)
-                        Swal.fire('Remind!',
-                            'Xóa thành công Nhân viên!',
-                            'success').then(function() {
-                            location.reload();
-                        })
-                    }
-                });
-            return false;
-        })
 
-        // Xóa Khách hàng
-        $('.js-delete-khachhang').on('click', function(e){
-            if(!confirm("Bạn có chắc xóa không?")) {
-                return false;
-            }
-            e.preventDefault();
-            var id = $(this).attr('data-id');
-            var token = $("meta[name='csrf-token']").attr("content");
-            $.ajax(
-                {
-                    url: "admin/khach_hang/xoa/" + id,
-                    method: 'POST',
-                    data: {
-                        _token: token,
-                        id: id
-                    },
-                    success: function (response){
-                        $("#success").html(response.message)
-                        Swal.fire('Remind!',
-                            'Xóa thành công Khách hàng!',
-                            'success').then(function() {
-                            location.reload();
-                        })
-                    }
-                });
-            return false;
-        })
         // Xóa Màu sản phẩm
         $('.js-delete-mausanpham').on('click', function(e){
             if(!confirm("Bạn có chắc xóa không?")) {
@@ -279,7 +225,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/mausp/xoa/" + id,
+                    url: "admin/mausp-kho-hang/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,

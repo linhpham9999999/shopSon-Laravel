@@ -78,38 +78,44 @@ class NhanVienController extends Controller
                 'created_at' => Carbon :: now ()
             ]
         );
-//        DB::table('nhan_vien_nhap_kho')->insert(
-//            [
-//                'password' => Hash::make($request->pass),
-//                'hoten' => $request->ten,
-//                'diachi' => $request->diachi,
-//                'sodth' => $request->sodth,
-//                'gioitinh' => $request->gtinh,
-//                'ngaysinh' => $request->nsinh,
-//                'email' => $request->email,
-//                'chuc_vu_id'=>$request->chuc_vu_id,
-//                'ngay_vao_lam'=>$request->date,
-//                'cccd'=>$request->cccd,
-//                'hinhanh'=>$name,
-//                'created_at' => Carbon :: now ()
-//            ]
-//        );
-//        DB::table('nhan_vien_ban_hang')->insert(
-//            [
-//                'password' => Hash::make($request->pass),
-//                'hoten' => $request->ten,
-//                'diachi' => $request->diachi,
-//                'sodth' => $request->sodth,
-//                'gioitinh' => $request->gtinh,
-//                'ngaysinh' => $request->nsinh,
-//                'email' => $request->email,
-//                'chuc_vu_id'=>$request->chuc_vu_id,
-//                'ngay_vao_lam'=>$request->date,
-//                'cccd'=>$request->cccd,
-//                'hinhanh'=>$name,
-//                'created_at' => Carbon :: now ()
-//            ]
-//        );
+        if($request->chuc_vu_id == 2) {
+            DB::table('nhan_vien_nhap_kho')->insert(
+                [
+                    'password' => Hash::make($request->pass),
+                    'hoten' => $request->ten,
+                    'diachi' => $request->diachi,
+                    'sodth' => $request->sodth,
+                    'gioitinh' => $request->gtinh,
+                    'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                    'email' => $request->email,
+                    'chuc_vu_id'=>$request->chuc_vu_id,
+                    'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                    'cccd'=>$request->cccd,
+                    'trang_thai'=>$request->trangthai,
+                    'hinhanh'=>$name,
+                    'created_at' => Carbon :: now ()
+                ]
+            );
+        }
+        if($request->chuc_vu_id == 3) {
+            DB::table('nhan_vien_ban_hang')->insert(
+                [
+                    'password' => Hash::make($request->pass),
+                    'hoten' => $request->ten,
+                    'diachi' => $request->diachi,
+                    'sodth' => $request->sodth,
+                    'gioitinh' => $request->gtinh,
+                    'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                    'email' => $request->email,
+                    'chuc_vu_id'=>$request->chuc_vu_id,
+                    'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                    'cccd'=>$request->cccd,
+                    'trang_thai'=>$request->trangthai,
+                    'hinhanh'=>$name,
+                    'created_at' => Carbon :: now ()
+                ]
+            );
+        }
 
         return redirect('admin/nhanvien/them')->with('thongbao','Thêm thành công');
     }
@@ -159,39 +165,36 @@ class NhanVienController extends Controller
             'hinhanh'=>$name,
             'updated_at'=>Carbon :: now ()
         ]);
-//        DB::table('nhan_vien_nhap_kho')->insert(
-//            [
-//                'password' => Hash::make($request->pass),
-//                'hoten' => $request->ten,
-//                'diachi' => $request->diachi,
-//                'sodth' => $request->sodth,
-//                'gioitinh' => $request->gtinh,
-//                'ngaysinh' => $request->nsinh,
-//                'email' => $request->email,
-//                'chuc_vu_id'=>$request->chuc_vu_id,
-//                'ngay_vao_lam'=>$request->date,
-//                'cccd'=>$request->cccd,
-//                'hinhanh'=>$name,
-//                'created_at' => Carbon :: now ()
-//            ]
-//        );
-//        DB::table('nhan_vien_ban_hang')->insert(
-//            [
-//                'password' => Hash::make($request->pass),
-//                'hoten' => $request->ten,
-//                'diachi' => $request->diachi,
-//                'sodth' => $request->sodth,
-//                'gioitinh' => $request->gtinh,
-//                'ngaysinh' => $request->nsinh,
-//                'email' => $request->email,
-//                'chuc_vu_id'=>$request->chuc_vu_id,
-//                'ngay_vao_lam'=>$request->date,
-//                'cccd'=>$request->cccd,
-//                'hinhanh'=>$name,
-//                'created_at' => Carbon :: now ()
-//            ]
-//        );
 
+        if($request->chuc_vu_id == 2){
+            DB::table('nhan_vien_nhap_kho')->select('*')->where('id','=',$id)->update([
+                'hoten' => $request->ten,
+                'diachi' => $request->diachi,
+                'sodth' => $request->sodth,
+                'gioitinh' => $request->gtinh,
+                'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                'chuc_vu_id'=>$request->chuc_vu_id,
+                'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                'cccd'=>$request->cccd,
+                'hinhanh'=>$name,
+                'updated_at'=>Carbon :: now ()
+            ]);
+        }
+
+        if($request->chuc_vu_id == 3){
+            DB::table('nhan_vien_ban_hang')->select('*')->where('id','=',$id)->update([
+                  'hoten' => $request->ten,
+                  'diachi' => $request->diachi,
+                  'sodth' => $request->sodth,
+                  'gioitinh' => $request->gtinh,
+                  'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                  'chuc_vu_id'=>$request->chuc_vu_id,
+                  'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                  'cccd'=>$request->cccd,
+                  'hinhanh'=>$name,
+                  'updated_at'=>Carbon :: now ()
+              ]);
+        }
         return redirect('admin/nhanvien/sua/'.$id)->with('thongbao','Sửa thành công');
     }
     public  function postXoa($id){

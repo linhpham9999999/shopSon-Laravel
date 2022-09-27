@@ -12,7 +12,7 @@
             </div><!-- .nk-header-brand -->
             <div class="nk-header-news d-none d-xl-block">
                 <div class="nk-news-list">
-                    <a class="nk-news-item" href="{{route('homeAd')}}">
+                    <a class="nk-news-item" href="{{route('homeBanHang')}}">
                         <div class="nk-news-icon">
                             <em class="icon ni ni-card-view"></em>
                         </div>
@@ -62,13 +62,13 @@
                                 </div>
                                 <div class="user-info d-none d-md-block">
                                     <div class="user-status">
-                                        @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                                            {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
+                                        @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                            {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
                                         @endif
                                     </div>
                                     <div>
-                                        @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                                        <a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                                        @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                        <a href="{{route('logoutBH')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
                                         @endif
                                     </div>
                                 </div>
@@ -82,13 +82,13 @@
                                     </div>
                                     <div class="user-info">
                                         <span class="lead-text">
-                                             @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
+                                             @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
                                             @endif
                                         </span>
                                         <span class="sub-text">
-                                            @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->user()->hoten }}
+                                            @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                                {{ \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->user()->hoten }}
                                             @endif
                                         </span>
                                     </div>
@@ -105,7 +105,7 @@
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     {{--                                    @if(\Illuminate\Support\Facades\Auth::guard('quan_tri')->check())--}}
-                                    <li><a href="{{route('logoutAD')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                                    <li><a href="{{route('logoutBH')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
                                         {{--  @endif--}}
                                     </li>
                                 </ul>

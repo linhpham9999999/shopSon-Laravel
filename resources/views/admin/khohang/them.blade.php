@@ -8,7 +8,7 @@
                         <div class="nk-block-head-content">
                             <h3 class="nk-block-title page-title">Quản lý kho hàng</h3>
                             <div class="nk-block-des text-soft">
-                                <p>Lưu ý: Đơn giá và lợi nhuận của các màu sản phẩm thuộc một sản phẩm phải giống nhau</p>
+{{--                                <p>Lưu ý: Đơn giá và lợi nhuận của các màu sản phẩm thuộc một sản phẩm phải giống nhau</p>--}}
                             </div>
                         </div>
                         <div class="nk-block-head-content">

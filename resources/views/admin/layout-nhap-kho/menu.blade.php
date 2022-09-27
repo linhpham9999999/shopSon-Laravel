@@ -19,52 +19,50 @@
                         <h6 class="overline-title text-primary-alt">Dashboards</h6>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
-                        <a href="{{route('homeNVNhapKho')}}" class="nk-menu-link">
+                        <a href="{{route('homeNK')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-home-fill"></em></span>
                             <span class="nk-menu-text">Trang chủ</span>
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
-                        <a href="{{route('dsLSP')}}" class="nk-menu-link">
+                        <a href="{{route('dsLSP-nhap-kho')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-view-panel"></em></span>
                             <span class="nk-menu-text">Quản lý loại sản phẩm</span>
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="{{route('dsSP')}}" class="nk-menu-link">
+                        <a href="{{route('dsSP-nhap-kho')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-view-row"></em></span>
                             <span class="nk-menu-text">Quản lý sản phẩm</span>
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="{{route('dsMSP')}}" class="nk-menu-link">
+                        <a href="{{route('dsMSP-nhap-kho')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-view-group-wd"></em></span>
                             <span class="nk-menu-text">Quản lý màu sản phẩm</span>
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="{{route('dsKhoHang')}}" class="nk-menu-link">
+                        <a href="{{route('dsKhoHang-nhap-kho')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>
                             <span class="nk-menu-text">Quản lý kho hàng</span>
                         </a>
                     </li>
 
                     <li class="nk-menu-item has-sub">
-                        <a href="{{route('info')}}" class="nk-menu-link nk-menu-toggle">
+                        <a href="{{route('info-nhap-kho')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
                             <span class="nk-menu-text"> Quản lý tài khoản</span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="{{route('info')}}" class="nk-menu-link"><span class="nk-menu-text">Chỉnh sửa thông tin</span></a>
+                                <a href="{{route('info-nhap-kho')}}" class="nk-menu-link"><span class="nk-menu-text">Chỉnh sửa thông tin</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('change-password-admin')}}" class="nk-menu-link"><span class="nk-menu-text">Đổi mật khẩu</span></a>
+                                <a href="{{route('change-password-admin-nhap-kho')}}" class="nk-menu-link"><span class="nk-menu-text">Đổi mật khẩu</span></a>
                             </li>
                         </ul>
                     </li>
-
-
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

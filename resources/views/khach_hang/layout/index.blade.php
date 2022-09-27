@@ -169,6 +169,27 @@
         })
     })
 </script>
+
+<script>
+    const $quantity = $('input[name="quantity"]');
+    $('.dec').on('click', function() {
+        const quantityString = $quantity.attr('value');
+        const quantity = parseInt(quantityString)
+        if(quantity === 1 ) {
+            return;
+        }
+        const newQuantity = quantity - 1;
+        $quantity.attr('value', newQuantity);
+    })
+
+    $('.inc').on('click', function() {
+        const quantityString = $quantity.attr('value');
+        const quantity = parseInt(quantityString)
+        const newQuantity = quantity + 1;
+        $quantity.attr('value', newQuantity);
+    })
+</script>
+
 </body>
 
 </html>

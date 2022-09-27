@@ -42,8 +42,7 @@
                             <span class="nk-menu-text">Quản lý màu sản phẩm</span>
                         </a>
                     </li>
-{{--                    quản trị viên--}}
-                    @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
+
                     <li class="nk-menu-item">
                         <a href="{{route('dsNV')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
@@ -113,43 +112,6 @@
                             <span class="nk-menu-text">Quản lý bình luận</span>
                         </a>
                     </li>
-                    @endif
-{{--                        Nhân viên nhập kho --}}
-
-                    @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_nhap_kho')->check())
-                        <li class="nk-menu-item">
-                            <a href="{{route('dsKhoHang')}}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>
-                                <span class="nk-menu-text">Quản lý kho hàng</span>
-                            </a>
-                        </li>
-                    @endif
-{{--                        Nhân viên bán hàng--}}
-                    @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                        <li class="nk-menu-item has-sub">
-                            <a href="{{route('quanlyHD')}}" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                                <span class="nk-menu-text"> <a href="{{route('quanlyHD')}}">Quản lý đơn hàng</a></span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item">
-                                    <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đã duyệt</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="{{route('da-mua')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="{{route('khach_hang')}}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                                <span class="nk-menu-text">Quản lý khách hàng</span>
-                            </a>
-                        </li>
-                    @endif
 
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('info')}}" class="nk-menu-link nk-menu-toggle">
