@@ -23,6 +23,9 @@
                                 <div class="d-block" > {{--Chi tiết sản phẩm--}}
                                     <img src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" alt="" class="product-image-1 w-100" width="350px" height="300px">
                                 </div>
+                                @if($msp->soluongton < 1)
+                                    <span class="onsale">Hết!</span>
+                                @endif
                                 <div class="add-action d-flex flex-column position-absolute">
                                     <form>  {{--action="{{route('add-wishlist')}}" method="post"--}}
                                         {{csrf_field()}}
@@ -42,7 +45,6 @@
                                     <span class="regular-price ">{{ $msp->gia_ban_ra}} đ</span>
                                     {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                 </div>
-
                                 <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT SẢN PHẨM</span> </a>
                             </div>
                             <div class="product-content-listview">

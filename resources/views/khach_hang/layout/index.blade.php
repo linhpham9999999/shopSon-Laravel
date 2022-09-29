@@ -190,6 +190,23 @@
     })
 </script>
 
+<script>
+    function Huydonhang(id){
+        var id = id;
+        var lydo = $('.lydohuydon').val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+            url:"{{url('/khach_hang/delete-order')}}",
+            method:"POST",
+            dataType:"JSON",
+            data:{id:id, lydo:lydo, _token:_token},
+            success:function(data){
+                alert('Hủy đơn hàng thành công');
+            }
+        })
+    }
+</script>
+
 </body>
 
 </html>

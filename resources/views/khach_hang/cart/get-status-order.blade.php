@@ -21,45 +21,79 @@
         </div>
     </div>
     <div class="cart-main-wrapper mt-no-text">
-        <div class="container custom-area">
+        <div class="container custom-area" style="margin-right: 220px;">
             <div class="row">
-                <div class="col-lg-12 col-custom">
+                <div class="col-lg-12">
                     @if(session('alert'))
                         <div class="alert alert-success">
                             {{session('alert')}}
                         </div>
                     @endif
                     <!-- Cart Table Area -->
-                    <div class="cart-table table-responsive">
+                    <div class="cart-table table-responsive" style="border:10px solid lightpink; border-radius: 25px; padding: 40px;width: 1300px;">
                         @if(!empty($hoadon))
                         <p ><strong>Lưu ý: Hóa đơn từ 300.000đ trở lên được freeship. Còn lại phí ship: 50.000đ</strong></p>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" style=" margin: 10px 10px 10px 50px;width: 1100px; border:hidden;">
                             <thead>
-                            <tr>
-                                <th class="pro-thumbnail">Mã hóa đơn</th>
-                                <th class="pro-title">Ngày đặt</th>
-                                <th class="pro-thumbnail">Ngày giao</th>
-                                <th class="pro-subtotal">Trạng thái</th>
-                                <th class="pro-subtotal">Xem chi tiết</th>
-                                <th class="pro-subtotal"></th>
+                            <tr style="background-color: gainsboro; border-radius:20px">
+                                <th style="border: hidden" class="pro-thumbnail">Mã hóa đơn</th>
+                                <th style="border: hidden" class="pro-title">Ngày đặt</th>
+                                <th style="border: hidden" class="pro-thumbnail">Ngày giao</th>
+                                <th style="border: hidden" class="pro-subtotal">Trạng thái</th>
+                                <th style="border: hidden" class="pro-subtotal">Xem chi tiết</th>
+                                <th style="border: hidden;" class="pro-subtotal">Chỉnh sửa</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($hoadon as $hd)
-                                <tr>
-                                    <td class="pro-title">{{$hd->Ma_HD }}</td>
-                                    <td class="pro-thumbnail">{{ $hd->ngaydat }}</td>
-{{--                                    <td class="pro-title"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{ $hd->hinhanh }}" alt="Product" /></a></td>--}}
-                                    <td class="pro-subtotal">{{ $hd->ngaygiao}}</td>
-                                    <td class="pro-subtotal">{{ $hd->trangthai}}</td>
-                                    <td class="pro-subtotal">
+                                <tr style="border: hidden">
+                                    <td style="border: hidden; background-color: lavenderblush" class="pro-title">{{$hd->Ma_HD }}</td>
+                                    <td style="border: hidden; background-color: lavenderblush" class="pro-thumbnail">{{DateTime::createFromFormat('Y-m-d', $hd->ngaydat)->format('m/d/Y')}}</td>
+                                    <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">{{DateTime::createFromFormat('Y-m-d', $hd->ngaygiao)->format('m/d/Y')}}</td>
+                                    <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">{{ $hd->trangthai}}</td>
+
+                                    <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">
                                         <a href="{{route('bill-detail',['id'=>$hd->id])}}" >Chi tiết</a>
                                     </td>
-                                    <td class="pro-subtotal">
+                                    <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">
                                         @if ($hd->idTT == 3)
-                                            <a href="{{route('delete-order',['id'=>$hd->id])}}"><i class="lnr lnr-trash">Hủy</i></a>
+{{--                                            <a href="{{route('delete-order',['id'=>$hd->id])}}" style=" border-radius: 5px;padding: 5px; background-color: deeppink;">--}}
+{{--                                                <i class="lnr lnr-trash">Hủy</i>--}}
+{{--                                            </a>--}}
+                                            <button type="button" data-toggle="modal" data-target="#huydon" style=" border-radius: 5px;padding: 5px; background-color: deeppink;" >Hủy</button>
+                                                                                        <!-- Modal -->
+                                            <div id="huydon" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <form>
+                                                    {{csrf_field()}}
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Lý do hủy đơn hàng</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p style="text-align: left;">
+                                                                <textarea class="lydohuydon" rows="5" cols="65" required placeholder="Lý do hủy đơn hàng...(bắt buộc)"></textarea>
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                            <button type="button" id="{{$hd->Ma_HD}}" onclick="Huydonhang(this.id)" style=" border-radius: 5px;padding: 5px; background-color: forestgreen;">Gửi lý do hủy</button>
+                                                        </div>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                            <a href="#" style=" border-radius: 5px;padding: 7px; background-color: deeppink;">
+                                                <i class="lnr lnr-trash">Sửa</i>
+                                            </a>
                                         @else
-                                            <a href="{{route('delete-order',['id'=>$hd->id])}}" style="pointer-events: none"><i class="lnr lnr-trash">Hủy</i></a>
+                                            <button style=" border-radius: 5px;padding: 5px; background-color: deeppink;" >Hủy</button>
+                                            <a href="#" style="pointer-events: none;border-radius: 5px;padding: 5px; background-color: gainsboro;">
+                                                <i class="lnr lnr-trash">Sửa</i>
+                                            </a>
                                         @endif
                                     </td>
                                 </tr>

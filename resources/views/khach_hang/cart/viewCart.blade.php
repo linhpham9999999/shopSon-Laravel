@@ -44,6 +44,8 @@
                                     <th class="pro-remove">Xóa</th>
                                 </tr>
                                 </thead>
+                                <form action="{{route('updateCart')}}" method="POST">
+                                    {{csrf_field()}}
                                 <tbody>
                                 @foreach($products as $product)
                                     <tr>
@@ -55,7 +57,7 @@
                                         <td class="pro-quantity">
                                             <div class="quantity">
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="quantity">
+                                                    <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="quantitys[][quantity]">
                                                 </div>
                                             </div>
                                         </td>
@@ -72,6 +74,7 @@
                                 <a href="{{route('allSanPham')}}" class="btn flosun-button primary-btn rounded-0 black-btn">Tiếp tục mua hàng</a>
                             </div>
                         </div>
+                        </form>
                         <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
                             <div class="apply-coupon-wrapper" style=" margin-left: 505px;">
                                 <form action="{{route('applyPromotion')}}" method="post" class=" d-block d-md-flex">

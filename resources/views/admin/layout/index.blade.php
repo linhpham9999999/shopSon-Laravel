@@ -137,7 +137,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/loaisp/xoa/" + id,
+                    url: "admin/loaisp-ban-hang/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,

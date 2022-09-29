@@ -59,7 +59,7 @@
                                     <td class="pro-quantity">
                                         <div class="quantity">
                                             <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="quantity">
+                                                <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="quantitys[][quantity]">
                                             </div>
                                         </div>
                                     </td>

@@ -50,7 +50,7 @@ Route::group(
             function () {
                 Route::get('danhsach', 'App\Http\Controllers\AdminAddUserController@getDanhSach')->name('khach_hang');
 
-                Route::get('them', 'App\Http\Controllers\AdminAddUserController@getThem')->name('getThemKH');
+                Route::get('them', 'App\Http\Controllers\AdminAddUserController@getThem')->name('getThemShipper');
                 Route::post('them', 'App\Http\Controllers\AdminAddUserController@postThem')->name('actionThemKH');
 
                 Route::post('xoa/{id}', 'App\Http\Controllers\AdminAddUserController@postXoa');
@@ -183,7 +183,7 @@ Route::group(
 
                 Route::post('xoa/{id}', 'App\Http\Controllers\LoaiSanPhamController@postXoaBanHang');
 
-                Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThemBanHang')->name('actionThem2-ban-hang');
+                Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThemBanHang')->name('actionThemLSP-ban-hang');
             }
         );
         // Quản lý màu sản phẩm
@@ -255,7 +255,7 @@ Route::group(
 
                 Route::post('xoa/{id}', 'App\Http\Controllers\LoaiSanPhamController@postXoaNhapKho');
 
-                Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThemNhapKho')->name('actionThem2-nhap-kho');
+                Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThemNhapKho')->name('actionThemLSP-nhap-kho');
             }
         );
         // Quản lý màu sản phẩm
@@ -310,6 +310,23 @@ Route::group(
                 Route::post('them', 'App\Http\Controllers\KhoHangController@postThemKhoHang')->name('actionThemKhoHang-nhap-kho');
             }
         );
+    }
+);
+//SHIPPER
+Route::group(
+    ['prefix' => 'nguoi-giao-hang'],
+    function () {
+        Route::get('/','App\Http\Controllers\ShipperController@login')->name('loginShipper');
+        Route::post('/test-login-shipper', 'App\Http\Controllers\ShipperController@check')->name('xy-ly-dang-nhap-shipper');
+
+        Route::get('/trangchu',function () {
+            return view('shipper.trangchu');
+        })->name('homeShipper');
+
+        Route::get('logout', 'App\Http\Controllers\ShipperController@logout')->name('logoutSP');
+        Route::get('/status', 'App\Http\Controllers\ShipperController@status')->name('statusShipper');
+        Route::post('/chuyen-ban-giao-hang', 'App\Http\Controllers\ShipperController@chuyenBanGiaoHang')->name('chuyen-ban-giao-hang');
+        Route::post('/chuyen-trong-don-hang', 'App\Http\Controllers\ShipperController@chuyenTrongDonHang')->name('chuyen-trong-don-hang');
     }
 );
 
@@ -382,6 +399,8 @@ Route::group(
                 Route::get('delete/{id}', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
                 // Ap dung khuyen mai
                 Route::post('/app-promotion','App\Http\Controllers\CheckoutController@applyPromo')->name('applyPromotion');
+                // Update cart
+                Route::post('/update-cart','App\Http\Controllers\CheckoutController@updateCart')->name('updateCart');
             }
         );
 
@@ -404,8 +423,8 @@ Route::group(
                 //Trang thai dat hang
                 Route::get('/order', 'App\Http\Controllers\BuyProductsController@orderStatus')->name('order-status');
                 Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
-                //Huy don hang khi trang thai chua duyet
-                Route::get('/delete-order/{id}', 'App\Http\Controllers\DeleteOrderController@delete')->name('delete-order');
+                //Sửa đơn hàng trước khi duyệt
+
             }
         );
         //Khuyên mãi
@@ -426,6 +445,9 @@ Route::group(
         Route::post('/accept-order','App\Http\Controllers\DuyetHDController@confirm')->name('accept-order')->middleware('loginKH');
         //Thanh toán bằng MOMO
         Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
+
+        //Huy don hang khi trang thai chua duyet
+        Route::post('/delete-order', 'App\Http\Controllers\DeleteOrderController@delete');
     }
 
 

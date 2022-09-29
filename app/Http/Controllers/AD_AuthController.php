@@ -30,7 +30,6 @@ class AD_AuthController extends Controller
 
     public function checkBanHang(Request $request){
         $user =  $request->email ;
-//        dd(Auth::guard('nhan_vien_ban_hang')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 3]));
         if(Auth::guard('nhan_vien_ban_hang')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 3])){
             $request->session()->put('nameBH', $user);
             return redirect()->route('homeBanHang');

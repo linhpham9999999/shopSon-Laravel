@@ -95,7 +95,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         //Thêm Loại sản phẩm
-        $('#form-add-lsp-ban-hang').submit(function (e) {
+        $('#form-add-lsp').submit(function (e) {
             e.preventDefault();
             var url = $(this).attr('data-url');
             $.ajax({
@@ -104,6 +104,7 @@
                 data: {
                     idLSP: $('#idLSP-add').val(),
                     tenLSP: $('#tenLSP-add').val(),
+                    trangthai: $('#trangthai-add').val(),
                 },
                 success: function (response) {
                     toastr.success(response.message)
@@ -117,7 +118,7 @@
             })
         })
         //Xóa loại sản phẩm
-        $('.js-delete-lsp-ban-hang').on('click', function(e){
+        $('.js-delete-lsp').on('click', function(e){
             if(!confirm("Bạn có chắc xóa không?")) {
                 return false;
             }
@@ -126,7 +127,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/loaisp-ban-hang/xoa/" + id,
+                    url: "admin/loaisp/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,

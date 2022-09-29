@@ -45,7 +45,7 @@
                                         <span>{{$lsp->ten_LSP}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-sm">
-                                        <button class="btn btn-sm  js-delete-lsp-ban-hang" data-id="{{ $lsp->id }}">{{-- btn-outline-danger py-0--}}
+                                        <button class="btn btn-sm  js-delete-lsp" data-id="{{ $lsp->id }}">{{-- btn-outline-danger py-0--}}
                                             <img src="admin_asset/delete.png" width="30px" />
                                         </button>
                                     </td>

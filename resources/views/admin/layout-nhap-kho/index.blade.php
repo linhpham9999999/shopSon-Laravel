@@ -104,6 +104,7 @@
                 data: {
                     idLSP: $('#idLSP-add').val(),
                     tenLSP: $('#tenLSP-add').val(),
+                    trangthai: $('#trangthai-add').val(),
                 },
                 success: function (response) {
                     toastr.success(response.message)
@@ -126,7 +127,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/loaisp-kho-hang/xoa/" + id,
+                    url: "admin/loaisp-nhap-kho/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,

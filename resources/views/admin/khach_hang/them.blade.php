@@ -63,14 +63,23 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="default-06">Hình ảnh</label>
                             <div class="form-control-wrap">
-                                <div class="custom-file">
-                                    <input type="file" multiple class="custom-file-input" name="hinh_anh" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                <div class="form-icon form-icon-right xl">
+                                    <em class="icon ni ni-calendar-alt"></em>
                                 </div>
+                                <input name="ngayvaolam" class="form-control form-control-xl form-control-outlined date-picker" id="outlined-date-picker2">
+                                <label class="form-label-outlined" for="outlined-date-picker2">Ngày vào làm</label>
                             </div>
                         </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label class="form-label" for="default-06">Hình ảnh</label>--}}
+{{--                            <div class="form-control-wrap">--}}
+{{--                                <div class="custom-file">--}}
+{{--                                    <input type="file" multiple class="custom-file-input" name="hinh_anh" id="customFile">--}}
+{{--                                    <label class="custom-file-label" for="customFile">Choose file</label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <label class="form-label" for="email-address">Email</label>
                             <div class="form-control-wrap">
@@ -85,8 +94,14 @@
                                 <div class="error"> {{$errors->first('diachi')}}</div>
                             </div>
                         </div>
-                        <input type="hidden" name="chuc_vu_id" value="4">
-                        <input type="hidden" name="trangthai" value="1">
+                        <div class="form-group">
+                            <label class="form-label" for="email-address">Căn cước công dân</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" name="cccd" placeholder="Căn cước công dân" />
+                            </div>
+                        </div>
+{{--                        <input type="hidden" name="chuc_vu_id" value="4">--}}
+{{--                        <input type="hidden" name="trangthai" value="1">--}}
                         <div class="form-group" style="padding-left: 100px;">
                             <button type="submit" class="btn btn-lg btn-primary">Lưu thông tin</button>
                             <button type="reset" class="btn btn-lg btn-light">Làm mới</button>

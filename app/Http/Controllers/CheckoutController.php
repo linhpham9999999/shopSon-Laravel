@@ -7,7 +7,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use PHPUnit\Framework\Constraint\IsEmpty;
 
 class CheckoutController extends Controller
 {
@@ -213,4 +212,20 @@ class CheckoutController extends Controller
              return redirect()->to($jsonResult['payUrl']);
     }
 
+    public function updateCart(Request $request){
+        $intput_quantity = $request->input('quantitys');
+        $cart = Cookie::get('cart');
+        $products = json_decode($cart, true);
+        foreach ($products as $product){
+            foreach ($intput_quantity as $value){
+                $product['quantity'] = (int)$value['quantity'];
+            }
+            $id = $product['id'];
+            $products[$id] = $product;
+
+        }
+        $json = json_encode($products);
+        Cookie::queue('cart',$json,300000);
+        dd($products, $intput_quantity); die;
+    }
 }

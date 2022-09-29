@@ -67,7 +67,8 @@ class BuyProductsController extends Controller
                      'ngaygiao'             => Carbon :: now ()->addDay(4),
                      'tongtien'             => $request->total,
                      'ghichu'               => $request->note,
-                     'sodth_giao_hang'      => $request->sodth
+                     'sodth_giao_hang'      => $request->sodth,
+                     'trang_thai'           => 1
 //                      'id_KM'               => $request
                      ]);
         $id_HD = DB::getPdo()->lastInsertId();
@@ -87,7 +88,8 @@ class BuyProductsController extends Controller
                         'id_MSP'        => $product['id'],
                         'soluong'       => $product['quantity'],
                         'don_gia'       => $product['unit_price'],
-                        'thanh_tien'    => $product['unit_price']*$product['quantity']
+                        'thanh_tien'    => $product['unit_price']*$product['quantity'],
+                        'trang_thai'    => 1
                          ]);
 //            DB::table('mau_san_pham')
 //                ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
@@ -107,6 +109,7 @@ class BuyProductsController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
                 ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
+            ->orderBy('hoa_don.id','desc')
             ->where('hoa_don.email_nguoidung','=',$email)
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
@@ -123,6 +126,7 @@ class BuyProductsController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
                        ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
+            ->orderBy('hoa_don.id','desc')
             ->where('hoa_don.email_nguoidung','=',$email)
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));

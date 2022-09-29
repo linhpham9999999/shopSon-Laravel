@@ -57,6 +57,10 @@ return [
         'nhan_vien_ban_hang' => [
             'driver' => 'session',
             'provider' => 'nhan_vien_ban_hangs',
+        ],
+        'nguoi_giao_hang' => [
+            'driver' => 'session',
+            'provider' => 'nguoi_giao_hangs',
         ]
     ],
 
@@ -93,7 +97,11 @@ return [
         'nhan_vien_ban_hangs' => [
             'driver' => 'eloquent',
             'model' => App\Models\nhan_vien_ban_hang::class,
-        ]
+        ],
+        'nguoi_giao_hangs'=> [
+            'driver' => 'eloquent',
+            'model' => App\Models\nguoi_giao_hang::class,
+        ],
     ],
 
     /*
@@ -132,6 +140,12 @@ return [
         ],
         'nhan_vien_ban_hangs' => [
             'provider' => 'nhan_vien_ban_hangs',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'nguoi_giao_hangs' => [
+            'provider' => 'nguoi_giao_hangs',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

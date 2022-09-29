@@ -8,7 +8,7 @@
                 </a>
             </div>
             <div class="modal-body">
-                <form action="" data-url="{{ route('actionThem2-ban-hang') }}" id="form-add-lsp-ban-hang" method="POST" role="form" class="form-validate is-alter">
+                <form action="" data-url="{{ route('actionThemLSP-ban-hang') }}" id="form-add-lsp" method="POST" role="form" class="form-validate is-alter">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="form-label" for="full-name">Mã loại sản phẩm</label>
