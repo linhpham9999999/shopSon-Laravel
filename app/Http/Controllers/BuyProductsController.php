@@ -67,8 +67,7 @@ class BuyProductsController extends Controller
                      'ngaygiao'             => Carbon :: now ()->addDay(4),
                      'tongtien'             => $request->total,
                      'ghichu'               => $request->note,
-                     'sodth_giao_hang'      => $request->sodth,
-                     'trang_thai'           => 1
+                     'sodth_giao_hang'      => $request->sodth
 //                      'id_KM'               => $request
                      ]);
         $id_HD = DB::getPdo()->lastInsertId();
@@ -111,6 +110,7 @@ class BuyProductsController extends Controller
                 ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->orderBy('hoa_don.id','desc')
             ->where('hoa_don.email_nguoidung','=',$email)
+            ->whereIn('hoa_don.id_TT', [1, 2, 3])
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
@@ -128,6 +128,7 @@ class BuyProductsController extends Controller
                        ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->orderBy('hoa_don.id','desc')
             ->where('hoa_don.email_nguoidung','=',$email)
+            ->whereIn('hoa_don.id_TT', [1, 2, 3])
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }

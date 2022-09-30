@@ -1,4 +1,4 @@
-@extends('shipper.layout.index')
+@extends('nguoi-giao-hang.layout.index')
 @section('content')
     <div class="container-fluid">
         <div class="row">

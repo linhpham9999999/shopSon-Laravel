@@ -47,12 +47,12 @@
     <!-- main @s -->
     <div class="nk-main ">
         <!-- sidebar @s -->
-        @include('shipper.layout.menu')
+        @include('nguoi-giao-hang.layout.menu')
         <!-- sidebar @e -->
         <!-- wrap @s -->
         <div class="nk-wrap ">
             <!-- main header @s -->
-            @include('shipper.layout.header')
+            @include('nguoi-giao-hang.layout.header')
             <!-- main header @e -->
             <!-- content @s -->
             <div class="nk-content ">
@@ -64,7 +64,7 @@
             </div>
             <!-- content @e -->
             <!-- footer @s -->
-            @include('shipper.layout.footer')
+            @include('nguoi-giao-hang.layout.footer')
             <!-- footer @e -->
         </div>
         <!-- wrap @e -->

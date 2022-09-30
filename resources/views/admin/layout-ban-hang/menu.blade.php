@@ -57,6 +57,9 @@
                             <li class="nk-menu-item">
                                 <a href="{{route('da-mua-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>
                             </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('da-huy-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đã hủy</span></a>
+                            </li>
                         </ul>
                     </li>
 {{--                    <li class="nk-menu-item">--}}

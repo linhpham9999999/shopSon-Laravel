@@ -30,6 +30,23 @@
                             <span class="nk-menu-text">Thông tin cá nhân</span>
                         </a>
                     </li>
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
+                            <span class="nk-menu-text">Danh sách các đơn hàng</span>
+                        </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('don-hang-can-giao')}}" class="nk-menu-link"><span class="nk-menu-text">ĐH cần giao</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('don-hang-dang-giao')}}" class="nk-menu-link"><span class="nk-menu-text">ĐH đang giao</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('don-hang-da-giao')}}" class="nk-menu-link"><span class="nk-menu-text">ĐH đã giao</span></a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

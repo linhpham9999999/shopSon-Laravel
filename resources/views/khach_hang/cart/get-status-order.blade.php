@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     @if(session('alert'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success" style="width: 240px;">
                             {{session('alert')}}
                         </div>
                     @endif
@@ -57,34 +57,34 @@
                                     </td>
                                     <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">
                                         @if ($hd->idTT == 3)
-{{--                                            <a href="{{route('delete-order',['id'=>$hd->id])}}" style=" border-radius: 5px;padding: 5px; background-color: deeppink;">--}}
-{{--                                                <i class="lnr lnr-trash">Hủy</i>--}}
-{{--                                            </a>--}}
-                                            <button type="button" data-toggle="modal" data-target="#huydon" style=" border-radius: 5px;padding: 5px; background-color: deeppink;" >Hủy</button>
-                                                                                        <!-- Modal -->
-                                            <div id="huydon" class="modal fade" role="dialog">
-                                                <div class="modal-dialog">
-                                                    <form>
-                                                    {{csrf_field()}}
-                                                    <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Lý do hủy đơn hàng</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p style="text-align: left;">
-                                                                <textarea class="lydohuydon" rows="5" cols="65" required placeholder="Lý do hủy đơn hàng...(bắt buộc)"></textarea>
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                            <button type="button" id="{{$hd->Ma_HD}}" onclick="Huydonhang(this.id)" style=" border-radius: 5px;padding: 5px; background-color: forestgreen;">Gửi lý do hủy</button>
-                                                        </div>
-                                                    </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                            <a href="{{route('delete-order',['id'=>$hd->id])}}" style=" border-radius: 5px;padding: 5px; background-color: deeppink;">
+                                                <i class="lnr lnr-trash">Hủy</i>
+                                            </a>
+{{--                                            <button type="button" data-toggle="modal" data-target="#huydon" style=" border-radius: 5px;padding: 5px; background-color: deeppink;" >Hủy</button>--}}
+{{--                                                                                        <!-- Modal -->--}}
+{{--                                            <div id="huydon" class="modal fade" role="dialog">--}}
+{{--                                                <div class="modal-dialog">--}}
+{{--                                                    <form>--}}
+{{--                                                    {{csrf_field()}}--}}
+{{--                                                    <!-- Modal content-->--}}
+{{--                                                    <div class="modal-content">--}}
+{{--                                                        <div class="modal-header">--}}
+{{--                                                            <h4 class="modal-title">Lý do hủy đơn hàng</h4>--}}
+{{--                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="modal-body">--}}
+{{--                                                            <p style="text-align: left;">--}}
+{{--                                                                <textarea class="lydohuydon" rows="5" cols="65" required placeholder="Lý do hủy đơn hàng...(bắt buộc)"></textarea>--}}
+{{--                                                            </p>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="modal-footer">--}}
+{{--                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>--}}
+{{--                                                            <button type="button" id="{{$hd->id}}" onclick="Huydonhang(this.id)" style=" border-radius: 5px;padding: 5px; background-color: forestgreen;">Gửi lý do hủy</button>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    </form>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 
                                             <a href="#" style=" border-radius: 5px;padding: 7px; background-color: deeppink;">
                                                 <i class="lnr lnr-trash">Sửa</i>

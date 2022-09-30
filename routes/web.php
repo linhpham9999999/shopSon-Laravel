@@ -134,7 +134,7 @@ Route::group(
         Route::group(['prefix'=>'duyetHD','middleware' => 'checkBanHang'],
             function (){
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach')->name('quanlyHD');
-                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSach')->name('duyetHD1');
+//                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSach')->name('duyetHD1');
 
                 Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTiet')->name('chi_tiet_hd');
 
@@ -143,6 +143,10 @@ Route::group(
 
                 Route::get('da-duyet', 'App\Http\Controllers\DuyetHDController@getDSDaDuyet')->name('da-duyet');
                 Route::get('da-mua', 'App\Http\Controllers\DuyetHDController@getDSDaMua')->name('da-mua');
+                Route::get('da-huy', 'App\Http\Controllers\DuyetHDController@getDSDaHuy')->name('da-huy');
+
+                // chọn nguoi-giao-hang giao hàng
+                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@chonShipper')->name('chon-nguoi-giao-hang');
             }
         );
         // Quản lý thông tin khuyến mãi
@@ -240,6 +244,7 @@ Route::group(
 
                 Route::get('da-duyet', 'App\Http\Controllers\DuyetHDController@getDSDaDuyetBanHang')->name('da-duyet-ban-hang');
                 Route::get('da-mua', 'App\Http\Controllers\DuyetHDController@getDSDaMuaBanHang')->name('da-mua-ban-hang');
+                Route::get('da-huy', 'App\Http\Controllers\DuyetHDController@getDSDaHuyBanHang')->name('da-huy-ban-hang');
             }
         );
 
@@ -317,16 +322,31 @@ Route::group(
     ['prefix' => 'nguoi-giao-hang'],
     function () {
         Route::get('/','App\Http\Controllers\ShipperController@login')->name('loginShipper');
-        Route::post('/test-login-shipper', 'App\Http\Controllers\ShipperController@check')->name('xy-ly-dang-nhap-shipper');
+        Route::post('/test-login-nguoi-giao-hang', 'App\Http\Controllers\ShipperController@check')->name('xy-ly-dang-nhap-nguoi-giao-hang');
 
         Route::get('/trangchu',function () {
-            return view('shipper.trangchu');
+            return view('nguoi-giao-hang.trangchu');
         })->name('homeShipper');
 
         Route::get('logout', 'App\Http\Controllers\ShipperController@logout')->name('logoutSP');
         Route::get('/status', 'App\Http\Controllers\ShipperController@status')->name('statusShipper');
         Route::post('/chuyen-ban-giao-hang', 'App\Http\Controllers\ShipperController@chuyenBanGiaoHang')->name('chuyen-ban-giao-hang');
         Route::post('/chuyen-trong-don-hang', 'App\Http\Controllers\ShipperController@chuyenTrongDonHang')->name('chuyen-trong-don-hang');
+
+        Route::group(
+            ['prefix' => 'hoadon'],
+            function () {
+                Route::get('/don-can-giao', 'App\Http\Controllers\ShipperController@danhSachDonCanGiao')->name('don-hang-can-giao');
+                Route::get('/chi-tiet-don-can-giao/{id}', 'App\Http\Controllers\ShipperController@chiTietDonCanGiao')->name('chi-tiet-don-can-giao');
+                Route::post('/xac-nhan-giao-hang', 'App\Http\Controllers\ShipperController@xacNhan')->name('xac-nhan-giao-hang');
+                Route::post('/tu-choi-giao-hang', 'App\Http\Controllers\ShipperController@tuChoi')->name('tu-choi-giao-hang');
+                Route::get('/don-dang-giao', 'App\Http\Controllers\ShipperController@danhSachDonDangGiao')->name('don-hang-dang-giao');
+                Route::get('/chi-tiet-don-dang-giao/{id}', 'App\Http\Controllers\ShipperController@chiTietDonDangGiao')->name('chi-tiet-don-dang-giao');
+                Route::post('/don-da-giao', 'App\Http\Controllers\ShipperController@daGiaoThanhCong')->name('giao-hang-thanh-cong');
+                Route::get('/don-da-giao', 'App\Http\Controllers\ShipperController@danhSachDonDaGiao')->name('don-hang-da-giao');
+                Route::get('/chi-tiet-don-da-giao/{id}', 'App\Http\Controllers\ShipperController@chiTietDonDaGiao')->name('chi-tiet-don-da-giao');
+            }
+        );
     }
 );
 
@@ -423,6 +443,8 @@ Route::group(
                 //Trang thai dat hang
                 Route::get('/order', 'App\Http\Controllers\BuyProductsController@orderStatus')->name('order-status');
                 Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
+                //Huy don hang khi trang thai chua duyet
+                Route::get('/delete-order/{id}', 'App\Http\Controllers\DeleteOrderController@delete')->name('delete-order');
                 //Sửa đơn hàng trước khi duyệt
 
             }
@@ -446,8 +468,6 @@ Route::group(
         //Thanh toán bằng MOMO
         Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
 
-        //Huy don hang khi trang thai chua duyet
-        Route::post('/delete-order', 'App\Http\Controllers\DeleteOrderController@delete');
     }
 
 

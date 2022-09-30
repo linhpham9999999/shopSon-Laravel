@@ -21,25 +21,34 @@ class DuyetHDController extends Controller
             ->get()->toArray();
         return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
-    function postDanhSach(Request $request){
+//    function postDanhSach(Request $request){
+//        if( Auth::guard('web')->check()) {
+//            $email = Auth::guard('web')->user()->email;
+//        }
+//        $idHD = $request->idHD;
+//        DB::table('hoa_don')->select('*')->where('id', '=', $idHD)
+//            ->update(
+//                [
+//                    'id_TT' => 2,
+//                    'email_nguoiban' => $email
+//                ]
+//            );
+//        return back()->with('thongbao', '');
+//    }
+    function chonShipper(Request $request){
+//        dd($request->nguoi-giao-hang, $request->idHD);
         if( Auth::guard('web')->check()) {
             $email = Auth::guard('web')->user()->email;
         }
         $idHD = $request->idHD;
-//        dd($idHD);
         DB::table('hoa_don')->select('*')->where('id', '=', $idHD)
             ->update(
                 [
-                    'id_TT' => 2,
-                    'email_nguoiban' => $email,
-//                    'ngaygiao'        => Carbon::now()->addDay(3)
+                    'nguoi_giao_hang_id' => $request->shipper,
+                    'email_nguoiban' => $email
                 ]
             );
-//        $hoadon = DB::table('hoa_don')
-//            ->join('nguoi_dung','hoa_don.email_nguoimua','=','nguoi_dung.email')
-//            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-//            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')->paginate(5);
-        return back()->with('thongbao', '');
+        return back()->with('thongbao', 'Đơn hàng đã chọn người vận chuyển');
     }
     function getChiTiet($id){
         $user = DB::table('hoa_don')
@@ -52,8 +61,8 @@ class DuyetHDController extends Controller
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
             ->select('hinhanh','Ma_MSP','soluong','thanh_tien')->get();
-//        dd($products);
-        return view('admin\duyetHD\chitietHD',compact('user','products'));
+        $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
+        return view('admin\duyetHD\chitietHD',compact('user','products','shipper'));
     }
     function confirm(Request $request){
 //        dd($request->idHD);
@@ -106,6 +115,20 @@ class DuyetHDController extends Controller
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->where('hoa_don.id_TT','=',1)->get()->toArray();
+        return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
+    }
+
+    function getDSDaHuy(){
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',4)->orderBy('hoa_don.id','desc')->paginate(5);
+
+        $isOrder = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->where('hoa_don.id_TT','=',4)->get()->toArray();
         return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
 
@@ -194,6 +217,19 @@ class DuyetHDController extends Controller
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->where('hoa_don.id_TT','=',1)->get()->toArray();
+        return view('admin\duyetHD-ban-hang\danhsach',compact('hoadon','isOrder'));
+    }
+    function getDSDaHuyBanHang(){
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',4)->orderBy('hoa_don.id','desc')->paginate(5);
+
+        $isOrder = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->where('hoa_don.id_TT','=',4)->get()->toArray();
         return view('admin\duyetHD-ban-hang\danhsach',compact('hoadon','isOrder'));
     }
 }

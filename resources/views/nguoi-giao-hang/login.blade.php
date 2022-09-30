@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="">
 
-    <title>Đăng nhập hệ thống quản lý</title>
+    <title>Đăng nhập hệ thống giao hàng</title>
     <base href="{{asset('')}}">
     <link rel="shortcut icon" type="image/x-icon" href="khach_hang_asset/assets/images/favicon.ico">
     <!-- Bootstrap Core CSS -->
@@ -42,7 +42,7 @@
                             {{session('thongbao')}}
                         </div>
                     @endif
-                    <form action="{{route('xy-ly-dang-nhap-shipper')}}" method="POST">
+                    <form action="{{route('xy-ly-dang-nhap-nguoi-giao-hang')}}" method="POST">
                         {{csrf_field()}}
                         <fieldset>
                             <img class="profile-img" src="{{asset('images/user.png')}}" alt="User" width="325px" height="150px">

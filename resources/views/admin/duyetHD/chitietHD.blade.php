@@ -2,6 +2,11 @@
 @section('content')
     <div class="nk-content-body">
         <div class="nk-block">
+            @if(session('thongbao'))
+                <div class="alert alert-success">
+                    {{session('thongbao')}}
+                </div>
+            @endif
         <div class="row g-gs">
             <div class="col-lg-8">
                 <div class="card card-bordered h-100">
@@ -104,8 +109,22 @@
                                         </div>
                                         <div class="col-md-12 col-custom">
                                             <div class="checkout-form-list">
-                                                <label style="font-weight: bold">Địa chỉ: </label>
+                                                <label style="font-weight: bold; height: 0px">Địa chỉ: </label>
                                                 <span class="formdetails">{{$ct->dia_chi_giao_hang}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-custom">
+                                            <div class="checkout-form-list">
+                                                <label style="font-weight: bold; margin-top: 15px;">Chọn người giao hàng: </label>
+                                                <form action="{{route('chon-nguoi-giao-hang')}}" method="POST">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" name="idHD" value="{{$ct->id}}">
+                                                    <select class="form-control" name="shipper">
+                                                        @foreach($shipper as $sp)
+                                                            <option value="" selected disabled hidden>Chọn ở đây</option>
+                                                            <option value="{{$sp->id}}" data-value="{{$sp->hoten}}">{{$sp->hoten}}</option>
+                                                        @endforeach
+                                                    </select>
                                             </div>
                                         </div>
                                     </div>
@@ -114,20 +133,29 @@
                     </div><!-- .card-inner-group -->
                 </div><!-- .card -->
             </div><!-- .col -->
-
-            <div class="col-lg-12" style="margin-left: 850px;">
+            <div class="col-lg-12" style="margin-left: 815px;">
                 <span style="float: left">
-                <form action="{{route('duyetHD1')}}" method="POST">
-                    {{csrf_field()}}
-                    <input type="hidden" name="idHD" value="{{$ct->id}}">
-                        @if($ct->id_TT == 3)
-                            <td><button type="submit" class="btn btn-primary">Duyệt đơn hàng</button></td>
-                        @elseif($ct->id_TT == 2)
-                            <td><button type="button" class="btn btn-primary">Đã duyệt</button></td>
-                        @elseif($ct->id_TT == 1)
-                            <td><button type="button" class="btn btn-primary">Đã mua</button></td>
-                        @endif
-                </form></span>
+                    @if($ct->id_TT == 3)
+                        <td><button type="submit" class="btn btn-primary">Chọn shipper giao hàng</button></td>
+                    @elseif($ct->id_TT == 2)
+                        <td><button type="button" class="btn btn-primary">Đã duyệt</button></td>
+                    @elseif($ct->id_TT == 1)
+                        <td><button type="button" class="btn btn-primary">Đã mua</button></td>
+                    @endif
+                </form>
+{{--                <form action="{{route('duyetHD1')}}" method="POST">--}}
+{{--                    {{csrf_field()}}--}}
+{{--                    <input type="hidden" name="idHD" value="{{$ct->id}}">--}}
+{{--                        @if($ct->id_TT == 3)--}}
+{{--                            <td><button type="submit" class="btn btn-primary">Chọn nguoi-giao-hang giao hàng</button></td>--}}
+{{--                        @elseif($ct->id_TT == 2)--}}
+{{--                            <td><button type="button" class="btn btn-primary">Đã duyệt</button></td>--}}
+{{--                        @elseif($ct->id_TT == 1)--}}
+{{--                            <td><button type="button" class="btn btn-primary">Đã mua</button></td>--}}
+{{--                        @endif--}}
+{{--                </form>--}}
+
+                </span>
                 <span><a href="{{route('da-duyet')}}" class="btn btn-secondary">Trở về đơn hàng</a></span>
             </div>
             @endforeach

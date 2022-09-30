@@ -1,4 +1,3 @@
-
 @extends('admin.layout.index')
 @section('content')
     <div class="nk-content-body">
