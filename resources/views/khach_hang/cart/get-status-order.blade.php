@@ -86,14 +86,14 @@
 {{--                                                </div>--}}
 {{--                                            </div>--}}
 
-                                            <a href="#" style=" border-radius: 5px;padding: 7px; background-color: deeppink;">
-                                                <i class="lnr lnr-trash">Sửa</i>
-                                            </a>
+{{--                                            <a href="#" style=" border-radius: 5px;padding: 7px; background-color: deeppink;">--}}
+{{--                                                <i class="lnr lnr-trash">Sửa</i>--}}
+{{--                                            </a>--}}
                                         @else
-                                            <button style=" border-radius: 5px;padding: 5px; background-color: deeppink;" >Hủy</button>
-                                            <a href="#" style="pointer-events: none;border-radius: 5px;padding: 5px; background-color: gainsboro;">
-                                                <i class="lnr lnr-trash">Sửa</i>
-                                            </a>
+                                            <button style=" border-radius: 5px;padding: 5px; background-color: silver;" >Hủy</button>
+{{--                                            <a href="#" style="pointer-events: none;border-radius: 5px;padding: 5px; background-color: gainsboro;">--}}
+{{--                                                <i class="lnr lnr-trash">Sửa</i>--}}
+{{--                                            </a>--}}
                                         @endif
                                     </td>
                                 </tr>

@@ -30,7 +30,6 @@
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Tổng tiền</span></th>
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Trạng thái</span></th>
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Xem</span></th>
-
                                 </tr><!-- .nk-tb-item -->
                                 </thead>
                                 <tbody>

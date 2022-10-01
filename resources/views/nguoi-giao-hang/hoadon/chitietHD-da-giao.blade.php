@@ -113,6 +113,12 @@
                                                     <span class="formdetails">{{$ct->dia_chi_giao_hang}}</span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12 col-custom">
+                                                <div class="checkout-form-list">
+                                                    <label style="font-weight: bold; height: 0px">Ảnh giao hàng: </label>
+                                                    <span class="formdetails"><img src="admin_asset/hinh-anh-giao-hang/{{$ct->hinh_anh_giao_hang}}" width="70px" height="70px"/></span>
+                                                </div>
+                                            </div>
                                         </div>
                                 </div>
                             </div><!-- .card-inner -->

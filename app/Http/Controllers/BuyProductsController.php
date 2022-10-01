@@ -110,7 +110,7 @@ class BuyProductsController extends Controller
                 ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->orderBy('hoa_don.id','desc')
             ->where('hoa_don.email_nguoidung','=',$email)
-            ->whereIn('hoa_don.id_TT', [1, 2, 3])
+            ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
@@ -128,7 +128,7 @@ class BuyProductsController extends Controller
                        ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->orderBy('hoa_don.id','desc')
             ->where('hoa_don.email_nguoidung','=',$email)
-            ->whereIn('hoa_don.id_TT', [1, 2, 3])
+            ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
             ->get()->toArray();
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }

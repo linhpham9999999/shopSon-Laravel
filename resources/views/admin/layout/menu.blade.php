@@ -80,7 +80,7 @@
                                 <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đã duyệt</span></a>
+                                <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đang xử lý</span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('da-mua')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>

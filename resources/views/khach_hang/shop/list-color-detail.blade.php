@@ -95,7 +95,6 @@
                                                     </div>
                                                 </li>
                                             </ul>
-
                                         </div>
                                         <div class="product-meta">
 

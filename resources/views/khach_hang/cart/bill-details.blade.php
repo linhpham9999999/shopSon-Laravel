@@ -58,10 +58,10 @@
                                                     text-align: center; text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;
                                                     ">{{$ct->trangthai}}</span>
                                                 @endif
-{{--                                                Khi Admin đã duyệt thì nút 'Nhận đc hàng' -> giao hàng rồi thì ấn vào -> 'Đã mua"--}}
+{{--                                                Khi Shipper đã giao thành công thì nút 'Nhận đc hàng' -> giao hàng rồi thì ấn vào -> 'Đã mua"--}}
                                                 <form action="{{route('accept-order')}}" method="POST">
                                                     {{csrf_field()}}
-                                                @if ( $ct->idTT == '2')
+                                                @if ( $ct->idTT == '5')
                                                         <input type="hidden" name="idHD" value="{{$ct->idHD}}">
                                                     <span class="buy_now_btn">
                                                     <button type="submit" style="background-color: #4CAF50;  border: none; color: white;
