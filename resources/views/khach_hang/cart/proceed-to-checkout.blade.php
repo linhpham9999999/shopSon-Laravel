@@ -119,7 +119,7 @@
                                         <tr class="cart_item">
                                             <td class="cart-product-name">{{ $product['name'] }} {{ $product['color'] }}<strong class="product-quantity">
                                                     × {{$product['quantity']}}</strong></td>
-                                            <td class="cart-product-total text-center" ><span class="amount">{{number_format($product['unit_price']  * $product['quantity'],0,',','.')}}</span></td>
+                                            <td class="cart-product-total text-center" ><span class="amount">{{number_format($product['unit_price']  * $product['quantity'] * (1 - $product['promotion']*0.01),0,',','.')}}</span></td>
                                         </tr>
                                     @endforeach
                                     <tr class="cart_item">

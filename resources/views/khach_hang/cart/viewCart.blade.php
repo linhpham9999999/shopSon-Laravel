@@ -46,8 +46,8 @@
                                 </thead>
                                 <form action="{{route('updateCart')}}" method="POST">
                                     {{csrf_field()}}
+                                    @foreach($products as $product)
                                 <tbody>
-                                @foreach($products as $product)
                                     <tr>
                                         <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
                                         <td class="pro-quantity">{{$product['name']}}</td>
@@ -64,8 +64,8 @@
                                         <td class="pro-subtotal"><span>{{ number_format($product['unit_price']*$product['quantity'],0,',','.') }}</span></td>
                                         <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
                                     </tr>
-                                @endforeach
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                         <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
@@ -93,6 +93,7 @@
                                 <h3>Cart Totals</h3>
                                 <div class="table-responsive">
                                     <table class="table">
+                                        @foreach($products as $product)
                                         <tr>
                                             <td>Sub Total</td>
                                             <td>{{ number_format( $subPrice * (1 - $product['promotion']*0.01) ,0,',','.')  }}</td>
@@ -105,6 +106,7 @@
                                             <td>Total</td>
                                             <td class="total-amount">{{number_format( ($subPrice * (1 - $product['promotion']*0.01)) +  $shipping,0,',','.') }}</td>
                                         </tr>
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>

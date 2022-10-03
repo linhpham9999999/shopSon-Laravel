@@ -39,6 +39,7 @@ class CheckoutController extends Controller
         [$products, $isHasProductsCart]  = $this->getProductsFromCart();
         $subPrice = $this->subPrice($products);
         $shipping = $this->shipPrice($products);
+//        dd($products, $isHasProductsCart);
         return view('khach_hang/cart/viewCart',['products'     => $products,
                                                     'isHasProduct'  => $isHasProductsCart,
                                                     'subPrice'      => $subPrice,
@@ -54,6 +55,7 @@ class CheckoutController extends Controller
 
         $data2 = DB::table('khuyen_mai')->select('*')
             ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['Ma_KM','=',$request->maKM]])->first();
+//        dd($data2->id);
         $check = false;
         if(!empty($data2) && Cookie::has('cart')){
             $cart = Cookie::get('cart');
@@ -69,6 +71,7 @@ class CheckoutController extends Controller
             foreach ($products as $product) {
                 if ($product['promotion'] == 0) {
                     $product['promotion'] = $product['promotion'] + $data2->phan_tram;
+                    $product['id_KM'] = $data2->id;
                 }
                 $id = $product['id'];
                 $products[$id] = $product;
@@ -98,7 +101,7 @@ class CheckoutController extends Controller
     public function getProductsFromCart(): array
     {
         // khởi tạo biến
-        $isHasProductsCart = false;
+//        $isHasProductsCart = false;
         // kiểm có giỏ hàng chưa
         if(Cookie::has('cart')){
             //Lấy giỏ hàng
@@ -109,6 +112,7 @@ class CheckoutController extends Controller
         }
         else {
             $products = [];
+            $isHasProductsCart = false;
         }
         return [$products, $isHasProductsCart];
     }
@@ -127,7 +131,7 @@ class CheckoutController extends Controller
         return $sub;
     }
 
-    //tính ship
+    //tính ship: gia ship tinh luc chua ap dung KM
     public function shipPrice(array $products)
     {
         $total = 0;

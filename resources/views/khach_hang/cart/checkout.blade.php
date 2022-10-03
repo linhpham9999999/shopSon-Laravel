@@ -125,7 +125,7 @@
                                 <h3>Cart Totals</h3>
                                 <div class="table-responsive">
                                     <table class="table">
-
+                                        @foreach($products as $product)
                                         <tr>
                                             <td>Sub Total</td>
                                             <td>{{ number_format($subPrice,0,',','.')  }}</td>
@@ -138,7 +138,7 @@
                                             <td>Total</td>
                                             <td class="total-amount">{{number_format($subPrice +  $shipping,0,',','.') }}</td>
                                         </tr>
-
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>

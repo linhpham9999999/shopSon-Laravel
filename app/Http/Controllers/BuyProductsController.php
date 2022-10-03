@@ -26,18 +26,27 @@ class BuyProductsController extends Controller
             ->where('email','=',$email)->first();
          // Tính tổng tiền, phí ship
         $total = 0;
+        $total_test = 0;
         $ship = 0;
         foreach ($products as $product)
         {
             $sumPrice = $product['unit_price'] * $product['quantity'];
             $total += $sumPrice * (1 - $product['promotion']*0.01);
-            if($total < 500000)
+        }
+        // Phí ship tính theo lúc chưa apply Promotion
+        foreach ($products as $product)
+        {
+            $sumPrice = $product['unit_price'] * $product['quantity'];
+            $total_test += $sumPrice;
+            if($total_test < 500000)
             {
                 $ship = 50000;
             } else {
                 $ship = 0;
             }
         }
+
+//        dd($products);
         $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
         $delivery = DB::table('hinh_thuc_giao_hang')->select('*')->get();
         $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('emailnguoidung','=',$email)->get();
@@ -68,7 +77,6 @@ class BuyProductsController extends Controller
                      'tongtien'             => $request->total,
                      'ghichu'               => $request->note,
                      'sodth_giao_hang'      => $request->sodth
-//                      'id_KM'               => $request
                      ]);
         $id_HD = DB::getPdo()->lastInsertId();
 
@@ -90,13 +98,13 @@ class BuyProductsController extends Controller
                         'thanh_tien'    => $product['unit_price']*$product['quantity'],
                         'trang_thai'    => 1
                          ]);
+            DB::table('hoa_don')->where('id','=',$id_HD)
+                ->update(['id_KM'=>$product['id_KM']]);
 //            DB::table('mau_san_pham')
 //                ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
 //                ->select('san_pham.soluongton')->where('mau_san_pham.id','=',$product['id'])
 //                ->update(['san_pham.soluongton' =>  - 1]);
         }
-
-
         // Xóa sản phẩm trong giỏ sau khi mua
         session_unset();
         Cookie::queue(
