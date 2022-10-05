@@ -468,11 +468,15 @@ Route::group(
         //Thanh toán bằng MOMO
         Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
 
+        Route::group(
+            ['prefix' => 'mail'],
+            function () {
+                Route::get('/mail-order','App\Http\Controllers\MailController@getData')->name('getMail');
+            }
+        );
+
     }
-
-
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
-
 ?>
 

@@ -24,9 +24,6 @@ class CartController extends Controller
         if($number > $sluong){
             return back()->with('testquantity', 'Số lượng sản phẩm tồn không đủ bán');
         }
-//        DB::table('mau_san_pham')->select('soluongton')
-//            ->where('id','=', $productIdColor)
-//            ->update(['soluongton' => $sluong - $number]);
 
         $this->validate(
             $request,

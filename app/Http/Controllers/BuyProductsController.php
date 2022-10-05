@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 
 class BuyProductsController extends Controller
@@ -66,7 +68,7 @@ class BuyProductsController extends Controller
 
         //Thêm dữ liệu vào bảng Hóa đơn
         DB::table('hoa_don')
-            ->insert(['Ma_HD'               => 'HD'.rand(10,1000),
+            ->insert(['Ma_HD'               => Str::random(6),
                      'id_TT'                => $request->trangthai,
                      'id_HTTT'              => $request->payment,
                      'id_HTGH'              => $request->delivery,
@@ -105,6 +107,61 @@ class BuyProductsController extends Controller
 //                ->select('san_pham.soluongton')->where('mau_san_pham.id','=',$product['id'])
 //                ->update(['san_pham.soluongton' =>  - 1]);
         }
+
+        // SEND MAIL XAC NHAN DA DAT HANG
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
+        $title_mail = "Đơn hàng xác nhận ngày".' '.$now;
+
+        $customer = DB::table('nguoi_dung')->where('email','=',$email)->first();
+        $data['email'][] = $customer->email;
+
+        $promotion_id='';
+        $total = 0;
+        if(Cookie::has('cart')){
+            $cart_mail = Cookie::get('cart');
+            $products_mail = json_decode($cart_mail, true);
+            foreach ($products_mail as $value){
+                $cart_array[] = array(
+                    'product_name' => $value['name'],
+                    'product_color' => $value['color'],
+                    'product_quantity' => $value['quantity'],
+                    'product_price' => $value['unit_price'] * (1 - $value['promotion']*0.01),
+                    'product_price_total' => $value['unit_price']  * $value['quantity'] * (1 - $value['promotion']*0.01)
+                );
+                $promotion_id = $value['id_KM'];
+                $sumPrice = $value['unit_price'] * $value['quantity'];
+                $total += $sumPrice * (1 - $value['promotion']*0.01);
+            }
+        }
+        $data_order = DB::table('hoa_don')->select('*')->where('id','=',$id_HD)->first();
+        // lay thong tin khach hang
+        $shipping_array = array(
+            'customer_name' => $customer->hoten,
+            'customer_email' => $customer->email,
+            'customer_phone' => $data_order->sodth_giao_hang,
+            'customer_address' => $data_order->dia_chi_giao_hang
+        );
+        // lay hinh thuc thanh toan
+        $payment_method = DB::table('hinh_thuc_thanh_toan')->select('ten_HTTT')->where('id','=',$data_order->id_HTTT)->first();
+        // lay ma giam gia
+        if($promotion_id != NULL){
+            $promotion = DB::table('khuyen_mai')->where('id','=',$promotion_id)->first();
+            $promotion_code = $promotion->Ma_KM;
+        }
+        else{
+            $promotion_code = 'Không có mã giảm giá';
+        }
+        // Lay ma hoa don
+        $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id_HD)->first();
+
+        Mail::send('khach_hang.mail.mail-order',
+            ['cart_array'=>$cart_array, 'shipping_array'=>$shipping_array,'promotion_code'=>$promotion_code,
+                'order_code'=>$order_code,'total'=>$total,'payment_method'=>$payment_method],
+            function ($message) use ($title_mail, $data){
+                $message->to($data['email'])->subject($title_mail);
+                $message->from($data['email'],$title_mail);
+            }
+        );
         // Xóa sản phẩm trong giỏ sau khi mua
         session_unset();
         Cookie::queue(
@@ -120,6 +177,8 @@ class BuyProductsController extends Controller
             ->where('hoa_don.email_nguoidung','=',$email)
             ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
             ->get()->toArray();
+
+
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
     // Trạng thái đơn hàng đã đặt
