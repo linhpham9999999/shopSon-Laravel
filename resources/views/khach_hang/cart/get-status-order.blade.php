@@ -38,7 +38,7 @@
                             <tr style="background-color: gainsboro; border-radius:20px">
                                 <th style="border: hidden" class="pro-thumbnail">Mã hóa đơn</th>
                                 <th style="border: hidden" class="pro-title">Ngày đặt</th>
-                                <th style="border: hidden" class="pro-thumbnail">Ngày giao</th>
+{{--                                <th style="border: hidden" class="pro-thumbnail">Ngày giao</th>--}}
                                 <th style="border: hidden" class="pro-subtotal">Trạng thái</th>
                                 <th style="border: hidden" class="pro-subtotal">Xem chi tiết</th>
                                 <th style="border: hidden;" class="pro-subtotal">Chỉnh sửa</th>
@@ -49,7 +49,7 @@
                                 <tr style="border: hidden">
                                     <td style="border: hidden; background-color: lavenderblush" class="pro-title">{{$hd->Ma_HD }}</td>
                                     <td style="border: hidden; background-color: lavenderblush" class="pro-thumbnail">{{DateTime::createFromFormat('Y-m-d', $hd->ngaydat)->format('m/d/Y')}}</td>
-                                    <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">{{DateTime::createFromFormat('Y-m-d', $hd->ngaygiao)->format('m/d/Y')}}</td>
+{{--                                    <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">{{DateTime::createFromFormat('Y-m-d', $hd->ngaygiao)->format('m/d/Y')}}</td>--}}
                                     <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">{{ $hd->trangthai}}</td>
 
                                     <td style="border: hidden; background-color: lavenderblush" class="pro-subtotal">
@@ -133,7 +133,7 @@
                                         <div class="price-box" style="margin-top: 40px">
                                             <p class="quickview"><strong>Địa chỉ giao hàng: </strong><span id="diachiGH"></span></p>
                                             <p class="quickview"><strong>Ngày đặt: </strong><span id="ngaydat"></span></p>
-                                            <p class="quickview"><strong>Ngày giao: </strong><span id="ngaygiao"></span></p>
+{{--                                            <p class="quickview"><strong>Ngày giao: </strong><span id="ngaygiao"></span></p>--}}
                                             <p class="quickview"><strong>Số điện thoại: </strong><span id="sodth"></span></p>
                                             <p class="quickview"><strong>Tổng tiền: </strong><span id="tongtien"></span></p>
                                             <p class="quickview"><strong>Trạng thái đơn hàng: </strong><span id="trangthai"></span></p>

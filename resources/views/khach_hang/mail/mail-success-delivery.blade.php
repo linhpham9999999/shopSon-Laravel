@@ -1,10 +1,10 @@
 @extends('khach_hang.mail.layout.index')
 @section('content')
-    <div class="nk-content-body">
+    <div class="nk-content-body" >
         <div class="content-page wide-md m-auto">
             <div class="nk-block">
-                <div class="card card-bordered">
-                    <div class="card-inner" style="background-color: moccasin; width: 750px">
+                <div class="card card-bordered" >
+                    <div class="card-inner" style="background-color: palegreen; width: 750px" >
                         <h4 class="title text-soft mb-4 overline-title" style="padding: 15px">Đây là email tự động. Qúy khách hàng vui lòng không trả lời email này</h4>
                         <table class="email-wraper">
                             <tr>
@@ -20,7 +20,8 @@
                                     </table>
                                     <div class="col-md-12" style="margin: 20px 40px;">
                                         <h3 class="email-heading email-heading-s1 mb-4">Chào bạn {{$shipping_array['customer_name']}},
-                                            <i style="color: midnightblue;">Bạn đã đặt hàng thành công và chờ xác nhận từ người bán</i></h3>
+                                            <i style="color: midnightblue;">Đơn hàng đã giao thành công. Vui lòng <a
+                                                    href="{{route('bill-detail',['id'=>$order_id])}}">BẤM</a> đã nhận hàng</i></h3>
                                         <h4 class="fs-16px text-base" style="text-transform: uppercase;">Thông tin đơn hàng</h4>
                                         <p>Mã đơn hàng : {{$order_code->Ma_HD}}</p>
                                         <p>Mã Khuyến mãi (nếu có) : {{$promotion_code}}</p>
@@ -45,13 +46,13 @@
                                                 <td class="nk-tb-col tb-col-md" style="text-align: center">Thành tiền</td>
                                             </tr>
                                             @foreach($cart_array as $cart)
-                                            <tr class="nk-tb-item">
-                                                <td class="nk-tb-col tb-col-md" style="text-align: center">{{$cart['product_name']}}</td>
-                                                <td class="nk-tb-col tb-col-md" style="text-align: center">{{$cart['product_color']}}</td>
-                                                <td class="nk-tb-col tb-col-md"style="text-align: center">{{$cart['product_quantity']}}</td>
-                                                <td class="nk-tb-col tb-col-md" style="text-align: center">{{number_format($cart['product_price'],0,',','.')}}</td>
-                                                <td class="nk-tb-col tb-col-md" style="text-align: center">{{number_format($cart['product_price_total'],0,',','.')}}</td>
-                                            </tr>
+                                                <tr class="nk-tb-item">
+                                                    <td class="nk-tb-col tb-col-md" style="text-align: center">{{$cart['product_name']}}</td>
+                                                    <td class="nk-tb-col tb-col-md" style="text-align: center">{{$cart['product_color']}}</td>
+                                                    <td class="nk-tb-col tb-col-md"style="text-align: center">{{$cart['product_quantity']}}</td>
+                                                    <td class="nk-tb-col tb-col-md" style="text-align: center">{{number_format($cart['product_price'],0,',','.')}}</td>
+                                                    <td class="nk-tb-col tb-col-md" style="text-align: center">{{number_format($cart['product_price_total'],0,',','.')}}</td>
+                                                </tr>
                                             @endforeach
                                             <tr class="nk-tb-item">
                                                 <td class="nk-tb-col tb-col-md" colspan="5" align="right">Tổng tiền thanh toán: <strong>{{number_format($total,0,',','.')}}</strong>

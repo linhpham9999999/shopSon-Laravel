@@ -74,19 +74,19 @@
                                     </div>
                                 </div>
                             </div>
-                            @if($data->trang_thai == 1)
-                                <form action="{{route('chuyen-ban-giao-hang')}}"  method="POST">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="id" value="{{$data->id}}">
-                                    <button type="submit" style="margin-left: 500px;height: 50px;" class="btn btn-info btn-fill pull-right">Đang trống đơn hàng</button>
-                                </form>
-                            @else
-                                <form action="{{route('chuyen-trong-don-hang')}}"  method="POST">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="id" value="{{$data->id}}">
-                                    <button type="submit" style="margin-left: 500px;height: 50px; " class="btn btn-danger btn-fill pull-right">Đang bận giao hàng</button>
-                                </form>
-                            @endif
+{{--                            @if($data->trang_thai == 1)--}}
+{{--                                <form action="{{route('chuyen-ban-giao-hang')}}"  method="POST">--}}
+{{--                                    {{csrf_field()}}--}}
+{{--                                    <input type="hidden" name="id" value="{{$data->id}}">--}}
+{{--                                    <button type="submit" style="margin-left: 500px;height: 50px;" class="btn btn-info btn-fill pull-right">Đang trống đơn hàng</button>--}}
+{{--                                </form>--}}
+{{--                            @else--}}
+{{--                                <form action="{{route('chuyen-trong-don-hang')}}"  method="POST">--}}
+{{--                                    {{csrf_field()}}--}}
+{{--                                    <input type="hidden" name="id" value="{{$data->id}}">--}}
+{{--                                    <button type="submit" style="margin-left: 500px;height: 50px; " class="btn btn-danger btn-fill pull-right">Đang bận giao hàng</button>--}}
+{{--                                </form>--}}
+{{--                            @endif--}}
                     </div>
                     </div>
                 </div>

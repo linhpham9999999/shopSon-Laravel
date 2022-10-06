@@ -9,6 +9,7 @@ class MailController extends Controller
 {
     public function getData(){
 
+
         return view('khach_hang.mail.mail-order');
     }
 }

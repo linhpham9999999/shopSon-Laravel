@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="admin_asset_new/images/favicon.png">
+    <link rel="shortcut icon" href="admin_asset_new/images/title-shipper.JPG">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">

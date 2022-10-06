@@ -75,7 +75,7 @@ class BuyProductsController extends Controller
                      'email_nguoidung'      => $email,
                      'dia_chi_giao_hang'    => $request->diachi,
                      'ngaydat'              => Carbon :: now (),
-                     'ngaygiao'             => Carbon :: now ()->addDay(4),
+                     'ngaygiao'             => NULL,
                      'tongtien'             => $request->total,
                      'ghichu'               => $request->note,
                      'sodth_giao_hang'      => $request->sodth
@@ -109,8 +109,9 @@ class BuyProductsController extends Controller
         }
 
         // SEND MAIL XAC NHAN DA DAT HANG
+        $data_order = DB::table('hoa_don')->select('*')->where('id','=',$id_HD)->first();
         $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
-        $title_mail = "Đơn hàng xác nhận ngày".' '.$now;
+        $title_mail = "BẠN ĐÃ ĐẶT ĐƠN HÀNG MÃ #"."$data_order->Ma_HD". " ngày".' '.$now;
 
         $customer = DB::table('nguoi_dung')->where('email','=',$email)->first();
         $data['email'][] = $customer->email;
@@ -133,7 +134,7 @@ class BuyProductsController extends Controller
                 $total += $sumPrice * (1 - $value['promotion']*0.01);
             }
         }
-        $data_order = DB::table('hoa_don')->select('*')->where('id','=',$id_HD)->first();
+
         // lay thong tin khach hang
         $shipping_array = array(
             'customer_name' => $customer->hoten,

@@ -330,8 +330,8 @@ Route::group(
 
         Route::get('logout', 'App\Http\Controllers\ShipperController@logout')->name('logoutSP');
         Route::get('/status', 'App\Http\Controllers\ShipperController@status')->name('statusShipper');
-        Route::post('/chuyen-ban-giao-hang', 'App\Http\Controllers\ShipperController@chuyenBanGiaoHang')->name('chuyen-ban-giao-hang');
-        Route::post('/chuyen-trong-don-hang', 'App\Http\Controllers\ShipperController@chuyenTrongDonHang')->name('chuyen-trong-don-hang');
+//        Route::post('/chuyen-ban-giao-hang', 'App\Http\Controllers\ShipperController@chuyenBanGiaoHang')->name('chuyen-ban-giao-hang');
+//        Route::post('/chuyen-trong-don-hang', 'App\Http\Controllers\ShipperController@chuyenTrongDonHang')->name('chuyen-trong-don-hang');
 
         Route::group(
             ['prefix' => 'hoadon'],
