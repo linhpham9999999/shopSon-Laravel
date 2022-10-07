@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Mail;
+
+use function Sodium\add;
 
 class ShipperController extends Controller
 {
@@ -229,7 +230,6 @@ class ShipperController extends Controller
                                     'id_TT'=>5,
                                     'ngaygiao'=>Carbon :: now ()
                                 ]);
-
         // GỬI MAIL ĐƠN HANG ĐÃ GIAO THÀNH CÔNG
         $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
         $data_order = DB::table('hoa_don')->where('id', '=', $idHD)->first();

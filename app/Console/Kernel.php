@@ -4,7 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\AutoUpdateStatusOrder::class,
     ];
 
     /**
@@ -26,14 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->call( function (){
-            $hoa_don = DB::table('hoa_don')->select('id_TT')->get()->toArray();
-            foreach ($hoa_don as $value){
-                if($value->id_TT == 5) {
-                    DB::table('hoa_don')->where('id_TT','=',5)->update(['id_TT'=>1]);
-                }
-            }
-        })->daily();
+        $schedule->command('update:cron')->everyMinute();
+        // php artisan schedule:run
     }
 
     /**
