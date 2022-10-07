@@ -75,7 +75,7 @@
                                         <div class="nk-tb-col tb-col-md"><span>Số lượng tồn</span></div>
                                         <div class="nk-tb-col tb-col-md"><span>Ý nghĩa</span></div>
                                         <div class="nk-tb-col tb-col-md"><span>Nhập thêm</span></div>
-                                    </div><!-- .nk-tb-item -->
+                                    </div>
                                     @foreach($productColor as $data)
                                     <div class="nk-tb-item">
 

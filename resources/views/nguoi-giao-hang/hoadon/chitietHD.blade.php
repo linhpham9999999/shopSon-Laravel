@@ -13,7 +13,7 @@
                         <div class="card-inner">
                             <div class="card-title-group align-start mb-3">
                                 <div class="card-title">
-                                    <h6 class="title">Chi tiết đơn hàng</h6>
+                                    <h6 class="title">Chi tiết đơn hàng MÃ #{{$order_code->Ma_HD}}</h6>
                                 </div>
                                 <div class="card-tools mt-n1 mr-n1" >
 

@@ -3,19 +3,38 @@
     <div class="nk-content-body">
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
-                <div class="nk-block-head-content">
+                <div class="nk-block-head-content" >
                     <h3 class="nk-block-title page-title">Quản lý đơn hàng</h3>
                     <div class="nk-block-des text-soft">
                         {{--                        <p>You have total 95 projects.</p>--}}
                     </div>
                 </div><!-- .nk-block-head-content -->
-                <div class="nk-block-head-content">
+                <div class="nk-block-head-content" style="margin-right: 730px;margin-bottom: 3px; border-radius: 5px;border: 2px solid dimgray;">
                     <div class="toggle-wrap nk-block-tools-toggle">
-                        <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
+                        <form action="{{route('search-order')}}" method="POST">
+                            {{csrf_field()}}
+                            <input type="text" name="order_code_input" class="form-control border-transparent form-focus-none" placeholder="Nhập mã hóa đơn...">
+                            <button class="search-submit btn btn-icon" type="submit"><em class="icon ni ni-search" style="padding-bottom: 30px;margin-right: 740px;"></em>
+                            </button>
+                        </form>
                     </div><!-- .toggle-wrap -->
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
+        <div>
+
+            <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 25px; margin-left: 910px">
+                <input name="nsinh" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker" placeholder="Từ ngày" id="outlined-date-picker">
+                    <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
+                </label>
+        </div>
+        <div>
+
+            <label class="form-label-outlined" for="outlined-date-picker2"  style="margin-top: 25px; margin-left: 1050px">
+                <input name="nsinh" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker" placeholder="Đến ngày" id="outlined-date-picker2">
+                <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
+            </label>
+        </div>
         @if( !empty($isOrder) )
         <div class="nk-block">
             <div class="card card-bordered card-stretch">
@@ -70,9 +89,8 @@
                     </div><!-- .card-inner -->
                     <div class="card-inner">
                         <div class="navi">
-                            {!! $hoadon->links() !!}
+{{--                            {!! $hoadon->links() !!}--}}
                         </div>
-                        {{--                        Showing {!! $nha_phan_phoi->firstItem() !!} - {!! $nha_phan_phoi->lastItem() !!}--}}
                     </div><!-- .card-inner -->
                 </div><!-- .card-inner-group -->
             </div><!-- .card -->
@@ -83,73 +101,3 @@
     </div>
 
 @endsection
-{{--@section('content')
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title">Quản lý hóa đơn
-                            </h4>
-                        </div>
-
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">
-                                {{session('thongbao')}}
-                            </div>
-                        @endif
-                    <!-- /.col-lg-12 -->
-                        <div class="content table-responsive table-full-width">
-                            <table class="table table-hover table-striped" >
-                            <thead>
-                            <tr align="center">
-                                <th>Mã hóa đơn</th>
-                                <th>Khách hàng</th>
-                                <th>Ngày đặt</th>
-                                <th>Tổng tiền</th>
-                                <th>Trạng thái</th>
-                                <th>Xem chi tiết</th>
-                                <th>Duyệt hóa đơn</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($hoadon as $hd)
-                                <tr class="odd gradeX" align="center">
-                                    <form action="{{route('duyetHD1')}}" method="POST">
-                                        {{csrf_field()}}
-                                        <td>{{$hd->Ma_HD}}</td>
-                                        <td>{{$hd->hoten}}</td>
-                                        <td>{{$hd->ngaydat}}</td>
-                                        <td>{{$hd->tongtien}}</td>
-                                        <td class="js_status_{{$hd->id}}">{{$hd->trangthai}}</td>
-                                        <td><a href="{{route('chi_tiet_hd',['id'=>$hd->id])}}" style="text-decoration: none">Xem chi tiết</a></td>
-                                        <input type="hidden" name="idHD" value="{{$hd->id}}">
-
-                                        @if($hd->id_TT == 3)
-                                            <td><button type="submit">Duyệt</button></td>
-                                        @elseif($hd->id_TT == 2)
-                                            <td><button type="button">Đã duyệt</button></td>
-                                        @endif
-
-                                    </form>
-                                    --}}{{--@if($hd->id_TT == 3)
-                                        <td><button type="button" class="js_button_confirm" data-status="2" data-id="{{$hd->id}}">Duyệt</button></td>
-                                    @else
-                                        <td><button type="button">Đã duyệt</button></td>
-                                    @endif--}}{{--
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                </div>
-                <span style="padding-left: 1080px">{!! $hoadon->links() !!} Showing {!! $hoadon->firstItem() !!} - {!! $hoadon->lastItem() !!}</span>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-@endsection--}}

@@ -133,20 +133,19 @@ Route::group(
         // Duyệt đơn hàng
         Route::group(['prefix'=>'duyetHD','middleware' => 'checkBanHang'],
             function (){
+                // tất cả hóa đơn
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach')->name('quanlyHD');
-//                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSach')->name('duyetHD1');
-
-                Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTiet')->name('chi_tiet_hd');
-
                 //Xem theo trang thai
                 Route::get('chua-duyet', 'App\Http\Controllers\DuyetHDController@getDSChuaDuyet')->name('chua-duyet');
-
                 Route::get('da-duyet', 'App\Http\Controllers\DuyetHDController@getDSDaDuyet')->name('da-duyet');
                 Route::get('da-mua', 'App\Http\Controllers\DuyetHDController@getDSDaMua')->name('da-mua');
                 Route::get('da-huy', 'App\Http\Controllers\DuyetHDController@getDSDaHuy')->name('da-huy');
-
+                // Chi tiết hóa đơn
+                Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTiet')->name('chi_tiet_hd');
                 // chọn nguoi-giao-hang giao hàng
                 Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@chonShipper')->name('chon-nguoi-giao-hang');
+                // Tìm kiếm HĐ theo mã
+                Route::post('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@search')->name('search-order');
             }
         );
         // Quản lý thông tin khuyến mãi

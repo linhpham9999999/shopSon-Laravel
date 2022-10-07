@@ -89,7 +89,8 @@ class ShipperController extends Controller
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
             ->select('hinhanh','Ma_MSP','soluong','thanh_tien')->get();
         $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
-        return view('nguoi-giao-hang\hoadon\chitietHD',compact('user','products','shipper'));
+        $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id)->first();
+        return view('nguoi-giao-hang\hoadon\chitietHD',compact('user','products','shipper','order_code'));
     }
 
     function xacNhan(Request $request){
@@ -204,7 +205,8 @@ class ShipperController extends Controller
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
             ->select('hinhanh','Ma_MSP','soluong','thanh_tien')->get();
         $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
-        return view('nguoi-giao-hang\hoadon\chitietHD-dang-giao',compact('user','products','shipper'));
+        $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id)->first();
+        return view('nguoi-giao-hang\hoadon\chitietHD-dang-giao',compact('user','products','shipper','order_code'));
     }
 
     public function daGiaoThanhCong(Request $request){
@@ -325,7 +327,8 @@ class ShipperController extends Controller
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
             ->select('hinhanh','Ma_MSP','soluong','thanh_tien')->get();
         $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
-        return view('nguoi-giao-hang\hoadon\chitietHD-da-giao',compact('user','products','shipper'));
+        $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id)->first();
+        return view('nguoi-giao-hang\hoadon\chitietHD-da-giao',compact('user','products','shipper','order_code'));
     }
 
 }

@@ -77,6 +77,9 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
+                                <a href="{{route('quanlyHD')}}" class="nk-menu-link"><span class="nk-menu-text">Tất cả</span></a>
+                            </li>
+                            <li class="nk-menu-item">
                                 <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
                             </li>
                             <li class="nk-menu-item">

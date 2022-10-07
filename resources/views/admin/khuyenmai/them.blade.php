@@ -38,10 +38,10 @@
                         </div>
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <div class="form-icon form-icon-right xl">
+                                <div class="form-icon form-icon-right ">
                                     <em class="icon ni ni-calendar-alt"></em>
                                 </div>
-                                <input name="ngaybd" class="form-control form-control-xl form-control-outlined date-picker" id="outlined-date-picker">
+                                <input name="ngaybd" class="form-control form-control-outlined date-picker" id="outlined-date-picker">
                                 <label class="form-label-outlined" for="outlined-date-picker">Ngày bắt đầu</label>
                             </div>
                         </div>
