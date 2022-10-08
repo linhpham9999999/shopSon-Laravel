@@ -20,6 +20,7 @@
 {{--    thêm--}}
 {{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         .error{
             color: red;
@@ -41,7 +42,6 @@
 
     </style>
 </head>
-
 <body class="nk-body bg-lighter npc-general has-sidebar ">
 <div class="nk-app-root">
     <!-- main @s -->

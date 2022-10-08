@@ -87,6 +87,8 @@ Route::group(
 
                 Route::get('them', 'App\Http\Controllers\MauSpController@getThem')->name('getThemMSP');
                 Route::post('them', 'App\Http\Controllers\MauSpController@postThem')->name('actionThem3');
+                // tìm theo mã, màu sp
+                Route::post('/danhsach', 'App\Http\Controllers\SearchColorProductController@search')->name('search-color-product');
             }
         );
         // Quản lý sản phẩm
@@ -143,9 +145,10 @@ Route::group(
                 // Chi tiết hóa đơn
                 Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTiet')->name('chi_tiet_hd');
                 // chọn nguoi-giao-hang giao hàng
-                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@chonShipper')->name('chon-nguoi-giao-hang');
-                // Tìm kiếm HĐ theo mã
-                Route::post('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@search')->name('search-order');
+                Route::post('chitietHD', 'App\Http\Controllers\DuyetHDController@chonShipper')->name('chon-nguoi-giao-hang');
+                // Tìm kiếm HĐ theo mã, tên khách hàng
+                Route::post('/danhsach', 'App\Http\Controllers\SearchOrderController@search')->name('search-order');
+//                Route::post('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@searchDate')->name('search-order-date');
             }
         );
         // Quản lý thông tin khuyến mãi

@@ -9,34 +9,34 @@
                         {{--                        <p>You have total 95 projects.</p>--}}
                     </div>
                 </div><!-- .nk-block-head-content -->
-                <div class="nk-block-head-content" style="margin-right: 730px;margin-bottom: 3px; border-radius: 5px;border: 2px solid dimgray;">
+                <div class="nk-block-head-content" style="margin-right: 770px;">
                     <div class="toggle-wrap nk-block-tools-toggle">
                         <form action="{{route('search-order')}}" method="POST">
                             {{csrf_field()}}
-                            <input type="text" name="order_code_input" class="form-control border-transparent form-focus-none" placeholder="Nhập mã hóa đơn...">
-                            <button class="search-submit btn btn-icon" type="submit"><em class="icon ni ni-search" style="padding-bottom: 30px;margin-right: 740px;"></em>
+                            <input type="text" name="order_code_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
+                            <button class="search-submit btn btn-icon" type="submit"><em class="icon ni ni-search" style="padding-bottom: 28px;margin-right: 775px;"></em>
                             </button>
                         </form>
                     </div><!-- .toggle-wrap -->
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
-        <div>
-
-            <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 25px; margin-left: 910px">
-                <input name="nsinh" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker" placeholder="Từ ngày" id="outlined-date-picker">
-                    <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
-                </label>
-        </div>
-        <div>
-
-            <label class="form-label-outlined" for="outlined-date-picker2"  style="margin-top: 25px; margin-left: 1050px">
-                <input name="nsinh" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker" placeholder="Đến ngày" id="outlined-date-picker2">
-                <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
-            </label>
-        </div>
+{{--        <form action="{{route('search-order-date')}}" method="POST">--}}
+{{--            {{csrf_field()}}--}}
+{{--            <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 33px; margin-left: 880px">--}}
+{{--                <input name="first_date" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Từ ngày" id="outlined-date-picker">--}}
+{{--                    <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>--}}
+{{--                </label>--}}
+{{--            <label class="form-label-outlined" for="outlined-date-picker2"  style="margin-top: 33px; margin-left: 1020px">--}}
+{{--                <input name="end_date" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Đến ngày" id="outlined-date-picker2">--}}
+{{--                <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>--}}
+{{--            </label>--}}
+{{--            <button class="search-submit btn btn-icon" type="submit" style="padding-bottom: 470px; padding-right: 40px;margin-right: 20px;">--}}
+{{--                <em style=" background-color: gainsboro;border-radius: 50px;" class="icon ni ni-search"></em>--}}
+{{--            </button>--}}
+{{--        </form>--}}
         @if( !empty($isOrder) )
-        <div class="nk-block">
+        <div class="nk-block" style="position: relative">
             <div class="card card-bordered card-stretch">
                 <div class="card-inner-group">
                     <div class="card-inner p-0">
@@ -89,7 +89,7 @@
                     </div><!-- .card-inner -->
                     <div class="card-inner">
                         <div class="navi">
-{{--                            {!! $hoadon->links() !!}--}}
+                            {!! $hoadon->links() !!}
                         </div>
                     </div><!-- .card-inner -->
                 </div><!-- .card-inner-group -->

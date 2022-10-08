@@ -31,7 +31,7 @@
                 <input name="end_date" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Đến ngày" id="outlined-date-picker2">
                 <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
             </label>
-            <button class="search-submit btn btn-icon" type="submit" style="padding-bottom: 600px; padding-right: 40px">
+            <button class="search-submit btn btn-icon" type="submit" style="padding-bottom: 185px; padding-right: 40px;margin-right: 20px;">
                 <em style=" background-color: gainsboro;border-radius: 50px;" class="icon ni ni-search"></em>
             </button>
         </form>
@@ -73,14 +73,24 @@
                                             <span>{{$hd->trangthai}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
-                                            <a href="{{route('chi_tiet_hd',['id'=>$hd->id])}}" class="btn btn-dim btn-sm btn-primary">
-                                                Chi tiết
-                                            </a>
-                                        </td>
+                                            <a href="{{route('chi_tiet_hd',['id'=>$hd->id])}}" class="btn btn-dim btn-sm btn-primary">Chi tiết</a></td>
+                                        {{--                                            <input type="hidden" name="idHD" value="{{$hd->id}}">--}}
+
+                                        {{--                                            @if($hd->id_TT == 3)--}}
+                                        {{--                                                <td><button type="submit">Duyệt</button></td>--}}
+                                        {{--                                            @elseif($hd->id_TT == 2)--}}
+                                        {{--                                                <td><button type="button">Đã duyệt</button></td>--}}
+                                        {{--                                            @endif--}}
+                                        {{--                                    </form>--}}
                                     </tr><!-- .nk-tb-item -->
                                 @endforeach
                                 </tbody>
                             </table><!-- .nk-tb-list -->
+                        </div><!-- .card-inner -->
+                        <div class="card-inner">
+                            <div class="navi">
+                                {!! $hoadon->links() !!}
+                            </div>
                         </div><!-- .card-inner -->
                     </div><!-- .card-inner-group -->
                 </div><!-- .card -->

@@ -113,6 +113,7 @@
                                                 <span class="formdetails">{{$ct->dia_chi_giao_hang}}</span>
                                             </div>
                                         </div>
+                                        @if($ct->id_TT == 3)
                                         <div class="col-md-12 col-custom">
                                             <div class="checkout-form-list">
                                                 <label style="font-weight: bold; margin-top: 15px;">Chọn người giao hàng: </label>
@@ -127,6 +128,7 @@
                                                     </select>
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
                             </div>
                         </div><!-- .card-inner -->
