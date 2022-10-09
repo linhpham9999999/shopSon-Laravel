@@ -10,31 +10,22 @@
                     </div>
                 </div><!-- .nk-block-head-content -->
                 <div class="nk-block-head-content" style="margin-right: 770px;">
-                    <div class="toggle-wrap nk-block-tools-toggle">
-                        <form action="{{route('search-order')}}" method="POST">
-                            {{csrf_field()}}
-                            <input type="text" name="order_code_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
-                            <button class="search-submit btn btn-icon" type="submit"><em class="icon ni ni-search" style="padding-bottom: 28px;margin-right: 775px;"></em>
-                            </button>
-                        </form>
+                    <div class="toggle-wrap nk-block-tools-toggle search">
+                        <input type="search" id="search-order" name="order_code_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
                     </div><!-- .toggle-wrap -->
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
-{{--        <form action="{{route('search-order-date')}}" method="POST">--}}
-{{--            {{csrf_field()}}--}}
-{{--            <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 33px; margin-left: 880px">--}}
-{{--                <input name="first_date" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Từ ngày" id="outlined-date-picker">--}}
-{{--                    <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>--}}
-{{--                </label>--}}
-{{--            <label class="form-label-outlined" for="outlined-date-picker2"  style="margin-top: 33px; margin-left: 1020px">--}}
-{{--                <input name="end_date" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Đến ngày" id="outlined-date-picker2">--}}
-{{--                <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>--}}
-{{--            </label>--}}
-{{--            <button class="search-submit btn btn-icon" type="submit" style="padding-bottom: 470px; padding-right: 40px;margin-right: 20px;">--}}
-{{--                <em style=" background-color: gainsboro;border-radius: 50px;" class="icon ni ni-search"></em>--}}
-{{--            </button>--}}
-{{--        </form>--}}
+
+        <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 33px; margin-left: 880px">
+            <input name="first_date" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Từ ngày" id="outlined-date-picker">
+                <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
+            </label>
+        <label class="form-label-outlined" for="outlined-date-picker2"  style="margin-top: 33px; margin-left: 1020px">
+            <input name="end_date" style="width: 105px;float: left;" class="form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Đến ngày" id="outlined-date-picker2">
+            <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
+        </label>
+
         @if( !empty($isOrder) )
         <div class="nk-block" style="position: relative">
             <div class="card card-bordered card-stretch">
@@ -52,7 +43,7 @@
 
                             </tr><!-- .nk-tb-item -->
                             </thead>
-                            <tbody>
+                            <tbody class="all-data-order">
                             @foreach($hoadon as $hd)
                                 <tr class="nk-tb-item" > {{--id="npp_{{$lsp->id}}"--}}
 {{--                                    <form action="{{route('duyetHD1')}}" method="POST">--}}
@@ -84,6 +75,8 @@
 {{--                                    </form>--}}
                                 </tr><!-- .nk-tb-item -->
                             @endforeach
+                            </tbody>
+                            <tbody id="Content" class="search-data-order">
                             </tbody>
                         </table><!-- .nk-tb-list -->
                     </div><!-- .card-inner -->

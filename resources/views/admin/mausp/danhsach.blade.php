@@ -11,12 +11,7 @@
                 </div><!-- .nk-block-head-content -->
                 <div class="nk-block-head-content" style="margin-right: 650px;">
                     <div class="toggle-wrap nk-block-tools-toggle">
-                        <form action="{{route('search-color-product')}}" method="POST">
-                            {{csrf_field()}}
-                            <input type="text" name="product_color_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
-                            <button class="search-submit btn btn-icon" type="submit"><em class="icon ni ni-search" style="padding-bottom: 27px;margin-right: 785px;"></em>
-                            </button>
-                        </form>
+                        <input type="search" id="search-color-product" name="product_color_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
                     </div><!-- .toggle-wrap -->
                 </div>
                 <div class="nk-block-head-content">
@@ -51,7 +46,7 @@
                                 <th class="nk-tb-col tb-col-mb" colspan="2" style="text-align: center"><span class="sub-text">Action</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
-                            <tbody>
+                            <tbody class="all-data-color-product">
                             @foreach($data as $dt)
                                 <tr class="nk-tb-item">
                                     <td class="nk-tb-col tb-col-md">
@@ -61,7 +56,7 @@
                                         <span>{{$dt->mau}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
-                                        <span><img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="50px" height="50px"/></span>
+                                       <img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="50px" height="50px"/>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$dt->soluongton}}</span>
@@ -83,6 +78,8 @@
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach
+                            </tbody>
+                            <tbody id="ContentColorProduct" class="search-data-color-product">
                             </tbody>
                         </table><!-- .nk-tb-list -->
                     </div><!-- .card-inner -->

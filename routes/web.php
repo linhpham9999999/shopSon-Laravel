@@ -88,7 +88,7 @@ Route::group(
                 Route::get('them', 'App\Http\Controllers\MauSpController@getThem')->name('getThemMSP');
                 Route::post('them', 'App\Http\Controllers\MauSpController@postThem')->name('actionThem3');
                 // tìm theo mã, màu sp
-                Route::post('/danhsach', 'App\Http\Controllers\SearchColorProductController@search')->name('search-color-product');
+                Route::get('/tim-kiem', 'App\Http\Controllers\SearchColorProductController@search')->name('search-color-product');
             }
         );
         // Quản lý sản phẩm
@@ -147,7 +147,7 @@ Route::group(
                 // chọn nguoi-giao-hang giao hàng
                 Route::post('chitietHD', 'App\Http\Controllers\DuyetHDController@chonShipper')->name('chon-nguoi-giao-hang');
                 // Tìm kiếm HĐ theo mã, tên khách hàng
-                Route::post('/danhsach', 'App\Http\Controllers\SearchOrderController@search')->name('search-order');
+                Route::get('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@search')->name('search-order');
 //                Route::post('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@searchDate')->name('search-order-date');
             }
         );

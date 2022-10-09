@@ -41,6 +41,7 @@
         }
 
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -245,6 +246,28 @@
             return false;
         })
     });
+</script>
+<script type="text/javascript">
+    $('#search-order').on('keyup',function (){
+        $value = $(this).val();
+        if($value){
+            $('.all-data-order').hide();
+            $('.search-data-order').show();
+        }
+        else{
+            $('.all-data-order').show();
+            $('.search-data-order').hide();
+        }
+        $.ajax({
+            type:'get',
+            url:'{{route('search-order')}}',
+            data:{'order_code_input':$value},
+            success:function(data){
+                console.log(data);
+                $('#Content').html(data);
+            }
+        });
+    })
 </script>
 </body>
 </html>
