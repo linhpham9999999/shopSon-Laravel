@@ -14,7 +14,7 @@
                 <div class="intro11-content-2 text-center">
                     <h1 class="different-title" style="color: black">Welcome</h1>
                     <h2 class="title" style="color: blanchedalmond">HLYNK LIPSTICKS</h2>
-                    <a href="{{route('allSanPham')}}" class="btn flosun-button  secondary-btn theme-color rounded-0">Shop Collection</a>
+                    <a href="{{route('allSanPham')}}" class="btn flosun-button  secondary-btn theme-color rounded-0">Bộ sưu tập</a>
                 </div>
                 <!-- Intro Content End -->
             </div>
@@ -23,7 +23,7 @@
                 <div class="intro11-content-2 text-center">
                     <h1 class="different-title">Welcome</h1>
                     <h2 class="title">HLYNK LIPSTICKS</h2>
-                    <a href="{{route('allSanPham')}}" class="btn flosun-button  secondary-btn theme-color rounded-0">Shop Collection</a>
+                    <a href="{{route('allSanPham')}}" class="btn flosun-button  secondary-btn theme-color rounded-0">Bộ sưu tập</a>
                 </div>
                 <!-- Intro Content End -->
             </div>
@@ -46,7 +46,7 @@
             <div class="col-12 col-custom">
                 <div class="section-title text-center mb-30">
                     <span class="section-title-1">The Most Trendy</span>
-                    <h3 class="section-title-3">Sản phẩm nổi bật</h3>
+                    <h3 class="section-title-3">Sản phẩm bán chạy</h3>
                 </div>
             </div>
             <!--Section Title End-->
@@ -140,6 +140,74 @@
                     </div>
                     <!-- Slider pagination -->
                     <div class="swiper-pagination default-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="brand-logo-area gray-bg pt-no-text pb-no-text mt-text-5">
+    <div class="container custom-area">
+        <div class="row">
+            <!--Section Title Start-->
+            <div class="col-12 col-custom">
+                <div class="section-title text-center mb-30">
+                    <span class="section-title-1">Our Branchs</span>
+                    <h3 class="section-title-3">Các thương hiệu</h3>
+                </div>
+            </div>
+            <!--Section Title End-->
+        </div>
+        <div class="row">
+            <div class="col-12 col-custom">
+                <div class="brand-logo-carousel swiper-container intro11-carousel-wrap arrow-style-3">
+                    <div class="swiper-wrapper">
+{{--                        @foreach($sanpham as $sp)--}}
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/1">
+                                <img src="khach_hang_asset/assets/images/brand/black-rouge.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/4">
+                                <img src="khach_hang_asset/assets/images/brand/mac.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/2">
+                                <img src="khach_hang_asset/assets/images/brand/3ce.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/9">
+                                <img src="khach_hang_asset/assets/images/brand/philo.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/7">
+                                <img src="khach_hang_asset/assets/images/brand/vavachi.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/8">
+                                <img src="khach_hang_asset/assets/images/brand/dhc.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/6">
+                                <img src="khach_hang_asset/assets/images/brand/ysl.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="single-brand swiper-slide product-image">
+                            <a href="http://localhost:8999/shopSon/public/khach_hang/product-color-list/5">
+                                <img src="khach_hang_asset/assets/images/brand/dior.JPG" alt="Brand Logo">
+                            </a>
+                        </div>
+{{--                        @endforeach--}}
+                    </div>
+                    <!-- Slider Navigation -->
+                    <div class="home1-slider-prev swiper-button-prev main-slider-nav"><i class="lnr lnr-arrow-left"></i></div>
+                    <div class="home1-slider-next swiper-button-next main-slider-nav"><i class="lnr lnr-arrow-right"></i></div>
                 </div>
             </div>
         </div>

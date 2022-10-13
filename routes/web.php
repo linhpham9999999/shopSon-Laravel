@@ -148,7 +148,7 @@ Route::group(
                 Route::post('chitietHD', 'App\Http\Controllers\DuyetHDController@chonShipper')->name('chon-nguoi-giao-hang');
                 // Tìm kiếm HĐ theo mã, tên khách hàng
                 Route::get('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@search')->name('search-order');
-//                Route::post('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@searchDate')->name('search-order-date');
+                Route::post('/tim-kiem-hoa-don-ngay', 'App\Http\Controllers\SearchOrderController@fetch_data')->name('search-order-date');
             }
         );
         // Quản lý thông tin khuyến mãi

@@ -55,7 +55,7 @@
                                 <label> Khác&nbsp;&nbsp;&nbsp;</label>
                             </div>
                             <div class="single-input-item mb-3">
-                                <input type="text" name="nsinh" placeholder="Ngày sinh Năm-Tháng-Ngày">
+                                <input type="date" name="nsinh" placeholder="Ngày sinh Năm-Tháng-Ngày">
                                 <div class="error"> {{$errors->first('nsinh')}}</div>
                             </div>
                             <div class="single-input-item mb-3">

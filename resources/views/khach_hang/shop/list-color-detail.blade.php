@@ -40,7 +40,7 @@
                                 <div class="col-lg-6">
                                     <div class="product-gallery mr-xl-1 mr-xxl-5">
                                         <div class="slider-init">
-                                            <div class="slider-item rounded">
+                                            <div class="slider-item rounded product-image">
                                                 <img src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" style=" padding-left: 10px" class="w-100" alt="" >
                                             </div>
                                         </div>

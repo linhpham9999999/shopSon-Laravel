@@ -48,19 +48,24 @@ class SearchOrderController extends Controller
         return($output);
     }
     // tìm kiếm theo ngày
-    public function searchDate(Request $request){
-        $order_first_date = Carbon::createFromFormat(config('app.date_format'), $request->first_date)->format('Y-m-d');
-        $order_end_date = Carbon::createFromFormat(config('app.date_format'), $request->end_date)->format('Y-m-d');
-        $hoadon = DB::table('hoa_don')
-            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
-            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
-            ->orderBy('hoa_don.id','desc')
-            ->whereBetween('hoa_don.ngaydat',[$order_first_date, $order_end_date])
-            ->get();
-        $isOrder = DB::table('hoa_don')
-            ->whereBetween('hoa_don.ngaydat',[$order_first_date, $order_end_date])
-            ->get()->toArray();
-        return view('admin\duyetHD\search-order',compact('hoadon','isOrder'));
+    public function fetch_data(Request $request){
+        if($request->ajax())
+        {
+            if($request->from_date != '' && $request->to_date != '')
+            {
+                $data = DB::table('hoa_don')
+                    ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+                    ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+                    ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+                    ->orderBy('hoa_don.id','desc')
+                    ->whereBetween('hoa_don.ngaydat',[$request->from_date, $request->to_date])
+                    ->get();
+            }
+            else
+            {
+                $data = DB::table('hoa_don')->orderBy('id', 'desc')->get();
+            }
+            echo json_encode($data);
+        }
     }
 }

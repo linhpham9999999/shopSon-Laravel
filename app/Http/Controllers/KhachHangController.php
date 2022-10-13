@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\contact;
 
 class KhachHangController extends Controller
 {
@@ -16,6 +12,10 @@ class KhachHangController extends Controller
         $sanpham  = DB::table('san_pham')->select('*')
             ->where([['noibat','=',1],['trang_thai','=',1]])
             ->get();
+        $data = DB::table('chi_tiet_hoa_don')
+            ->join('mau_san_pham','mau_san_pham.id','=','chi_tiet_hoa_don.id_MSP')
+            ->select('chi_tiet_hoa_don.id_MSP','mau_san_pham.id_SP' )->get()->toArray();
+//        dd($data);
         return view('khach_hang.trangchu', compact('sanpham'));
     }
     // Thông tin tất cả sản phẩm trong bảng SAN_PHAM

@@ -8,7 +8,10 @@ class SearchProductController extends Controller
 {
     public function search(Request $request){
         $keywords = $request->keywords_submit;
-        $product = DB::table('san_pham')->where([['ten_SP','like','%'.$keywords.'%'],['trang_thai','=',1]])->get();
+        $product = DB::table('san_pham')
+            ->where([['ten_SP','like','%'.$keywords.'%'],['trang_thai','=',1]])
+            ->orWhere([['Ma_SP','like','%'.$keywords.'%'],['trang_thai','=',1]])
+            ->get();
         $loaisp = DB::table('loai_san_pham')->select('id','ten_LSP')->where('trang_thai','=',1)->get();
 
         return view('khach_hang.shop.search',compact('product','loaisp'));

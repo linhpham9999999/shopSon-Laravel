@@ -41,6 +41,13 @@
             font-style: italic;
             font-family: Florence, cursive;
         }
+        .product-image {
+            transition: transform .2s; /* Animation */
+        }
+
+        .product-image:hover {
+            transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
     </style>
 </head>
 

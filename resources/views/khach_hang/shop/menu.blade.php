@@ -41,7 +41,7 @@
                                 <div class="search-box">
                                     <div class="input-group" >
                                         <span>
-                                            <input type="text" name="keywords_submit" style="height: 50px; width: 200px" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Search Our Store">
+                                            <input type="search" name="keywords_submit" style="height: 50px; width: 200px" class="form-control" placeholder="Bạn cần tìm..." aria-label="Search Our Store">
                                         </span>
                                         <span>
                                             <button class="btn btn-outline-secondary" type="submit">
