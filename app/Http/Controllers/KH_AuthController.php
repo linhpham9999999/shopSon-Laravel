@@ -43,6 +43,12 @@ class KH_AuthController extends Controller
 
     public function logoutKH(Request $request){
         $request->session()->forget('nameKH');
+        $request->session()->forget('user_login');
+        $request->session()->forget('user_id');
+        $request->session()->forget('email_user_login');
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('loginKH');
     }
 

@@ -30,9 +30,9 @@
                         </div>
                     @endif
                     <!-- Cart Table Area -->
-                    <div class="cart-table table-responsive" style="border:10px solid lightpink; border-radius: 25px; padding: 40px;width: 1300px;">
+                    <div class="cart-table table-responsive" style="width: 1300px;">
                         @if(!empty($hoadon))
-                        <p ><strong>Lưu ý: Hóa đơn từ 300.000đ trở lên được freeship. Còn lại phí ship: 50.000đ</strong></p>
+{{--                        <p ><strong>Lưu ý: Hóa đơn từ 300.000đ trở lên được freeship. Còn lại phí ship: 50.000đ</strong></p>--}}
                         <table class="table table-bordered" style=" margin: 10px 10px 10px 50px;width: 1100px; border:hidden;">
                             <thead>
                             <tr style="background-color: gainsboro; border-radius:20px">

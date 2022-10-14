@@ -59,6 +59,7 @@
                                     <div class="checkout-form-list">
                                         <label>Phone <span class="required">*</span></label>
                                         <input class="formdetails" style="height: 50px" placeholder="Số điện thoại" type="text" name="sodth" value="{{$users->sodth}}" />
+                                        <div class="error"> {{$errors->first('sodth')}}</div>
                                     </div>
                                 </div>
 
@@ -73,9 +74,11 @@
                                         <label>Address <span class="required">*</span></label>
                                         <p class="formdetails" style="height: 50px"><select style="height: 30px; border: 1px solid crimson;" name="diachi">
                                         @foreach($diachi as $dc)
+                                            <option value="" selected disabled hidden>Chọn địa chỉ giao hàng</option>
                                             <option value="{{$dc->dia_chi_giao_hang}}">{{$dc->dia_chi_giao_hang}}</option>
                                         @endforeach
                                         </select></p>
+                                        <div class="error"> {{$errors->first('diachi')}}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-custom">
@@ -91,10 +94,10 @@
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
                                         <label>Hình thức thanh toán <span class="required">*</span></label>
-                                        <p class="formdetails" style="height: 50px"><select style="height: 30px;border: 1px solid crimson;" name="payment">
-                                            @foreach($payments as $payment)
-                                                <option  value="{{$payment->id}}">{{$payment->ten_HTTT}}</option>
-                                            @endforeach
+                                        <p class="formdetails" style="height: 50px">
+                                            <select style="height: 30px;border: 1px solid crimson;" id="thanhtoanmomo" name="payment" onchange="showDiv('payment_momo', this)">
+                                           <option value="2">Thanh toán khi nhận hàng</option>
+                                           <option value="1">Thanh toán bằng ATM MOMO</option>
                                         </select></p>
                                     </div>
                                 </div>
@@ -166,14 +169,12 @@
                         {{session('alert')}}
                     </div>
                 @endif
-                <div style="border: 8px dotted crimson;margin: 0px 50px;padding: 10px;background-color: mistyrose;width: 660px;margin-left: 60px;margin-top: 50px;">
+                <div id="payment_momo" style="display: none; margin: 10px 50px 0px 60px;width: 660px">
                     <form action="{{route('thanh-toan-MOMO')}}" method="POST">
                         {{csrf_field()}}
-                        <p><label for="">Phương thức thanh toán</label></p>
                         <input type="hidden" name="total_momo" value="{{ $total + $ship }}">
                         <button type="submit" style="background-color: aqua;height: 50px;width: 200px;" class="btn btn-warning check_out" name="payUrl">Thanh toán MOMO</button>
                     </form>
-                    <p style="margin-top: 50px"><b>Lưu ý: </b>Cần chọn đúng hình thức cần thanh toán</p>
                 </div>
 
             </div>

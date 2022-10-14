@@ -447,10 +447,18 @@ Route::group(
                 Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
                 //Huy don hang khi trang thai chua duyet
                 Route::get('/delete-order/{id}', 'App\Http\Controllers\DeleteOrderController@delete')->name('delete-order');
-                //Sửa đơn hàng trước khi duyệt
 
             }
         );
+        //Thông tin đơn hàng
+        Route::group(
+            ['prefix' => 'don-hang'],
+            function () {
+                //Don hang chua xac nhan
+                Route::get('/chi-tiet/{id}', 'App\Http\Controllers\OrderHistoryController@getData');
+            }
+        );
+
         //Khuyên mãi
         Route::get('/khuyenMai','App\Http\Controllers\KhuyenMaiController@getData')->name('getDataKM');
 

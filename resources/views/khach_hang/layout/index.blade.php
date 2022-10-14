@@ -176,6 +176,27 @@
         })
     })
 </script>
+<script type="text/javascript">
+    function showDiv(divId, element)
+    {
+        document.getElementById(divId).style.display = element.value == 1 ? 'block' : 'none';
+    }
+</script>
+<script type="text/javascript">
+    function choXacNhan()
+    {
+        const id = 1;
+        $.ajax({
+            url: "{{url('khach_hang/don-hang/chi-tiet/')}}"+id,
+            method:"GET",
+            dataType:"JSON",
+            success:function(id){
+                $('#idHD').html(data.id);
+            }
+
+        })
+    }
+</script>
 
 <script>
     const $quantity = $('input[name="quantity"]');

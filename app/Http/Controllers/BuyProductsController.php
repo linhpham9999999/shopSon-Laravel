@@ -57,6 +57,23 @@ class BuyProductsController extends Controller
     }
 
     public function orderSuccess(Request $request){
+//        dd($request->payment);
+        $this->validate(
+            $request,
+            [
+                'sodth'     => 'bail|required|min:10|max:10',
+                'diachi'    => 'bail|required|min:5|max:255',
+            ],
+            [
+                'sodth.required'    => 'Bạn chưa nhập Số điện thoại',
+                'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
+                'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
+                'diachi.required'   => 'Bạn chưa chọn địa chỉ giao hàng',
+                'diachi.min'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+                'diachi.max'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+            ]
+        );
+
         $email = '' ;
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
@@ -183,6 +200,23 @@ class BuyProductsController extends Controller
         return view('khach_hang.cart.get-status-order', compact('hoadon'));
     }
     // Trạng thái đơn hàng đã đặt
+//    public function orderStatus(){
+//        $email = '' ;
+//        if( Auth::guard('nguoi_dung')->check()) {
+//            $email = Auth::guard('nguoi_dung')->user()->email;
+//        }else{
+//            $email = session('email_user_login');
+//        }
+//        $hoadon = DB::table('hoa_don')
+//            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+//            ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
+//                       ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
+//            ->orderBy('hoa_don.id','desc')
+//            ->where('hoa_don.email_nguoidung','=',$email)
+//            ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
+//            ->get()->toArray();
+//        return view('khach_hang.cart.get-status-order', compact('hoadon'));
+//    }
     public function orderStatus(){
         $email = '' ;
         if( Auth::guard('nguoi_dung')->check()) {
@@ -193,12 +227,12 @@ class BuyProductsController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
-                       ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
+                ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->orderBy('hoa_don.id','desc')
             ->where('hoa_don.email_nguoidung','=',$email)
             ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
             ->get()->toArray();
-        return view('khach_hang.cart.get-status-order', compact('hoadon'));
+        return view('khach_hang.don-hang.lich-su-mua-hang', compact('hoadon'));
     }
     public function billDetailView(Request $request,$id){
         $cthd = DB::table('hoa_don')
