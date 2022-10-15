@@ -48,26 +48,27 @@
                                 <th class="pro-remove">Xóa</th>
                             </tr>
                             </thead>
-                            <tbody>
                             @foreach($products as $product)
+                                <tbody>
                                 <tr>
                                     <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
                                     <td class="pro-quantity">{{$product['name']}}</td>
                                     <td class="pro-quantity">{{$product['color']}}</td>
                                     <td class="pro-title"><span>{{ number_format($product['unit_price'],0,',','.')}}</span></td>
-{{--                                    <td class="pro-title"><input type="number" style="width:35px;" name="quantity" value="{{ $product['quantity'] }}"></td>--}}
+                                    {{--                                    <td class="pro-title"><input type="number" style="width:35px;" name="quantity" value="{{ $product['quantity'] }}"></td>--}}
                                     <td class="pro-quantity">
                                         <div class="quantity">
                                             <div class="cart-plus-minus">
                                                 <input class="cart-plus-minus-box" value="{{ $product['quantity'] }}" type="text" name="quantitys[][quantity]">
+                                                <input class="js-product-id" value="{{ $product['id'] }}" type="text">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="pro-subtotal"><span>{{ number_format($product['unit_price']*$product['quantity'],0,',','.') }}</span></td>
                                     <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
                                 </tr>
+                                </tbody>
                             @endforeach
-                            </tbody>
                         </table>
                     </div>
                     <!-- Cart Update Option -->

@@ -10,6 +10,7 @@
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="khach_hang_asset/assets/images/title-KH.JPG">
 
@@ -110,6 +111,8 @@
 <!-- Main JS -->
 <script src="khach_hang_asset/assets/js/main.js"></script>
 <script src="khach_hang_asset/assets/js/sweetalert.min.js"></script>
+<script src="{{ asset('khach_hang_asset/assets/js/custom_js/cart.js') }}"></script>
+{{--<script src="{{ asset('khach_hang_asset/assets/js/custom_js/promotion.js') }}"></script>--}}
 
 <script type="text/javascript">
     $(document).ready(function (){
@@ -182,59 +185,5 @@
         document.getElementById(divId).style.display = element.value == 1 ? 'block' : 'none';
     }
 </script>
-<script type="text/javascript">
-    function choXacNhan()
-    {
-        const id = 1;
-        $.ajax({
-            url: "{{url('khach_hang/don-hang/chi-tiet/')}}"+id,
-            method:"GET",
-            dataType:"JSON",
-            success:function(id){
-                $('#idHD').html(data.id);
-            }
-
-        })
-    }
-</script>
-
-<script>
-    const $quantity = $('input[name="quantity"]');
-    $('.dec').on('click', function() {
-        const quantityString = $quantity.attr('value');
-        const quantity = parseInt(quantityString)
-        if(quantity === 1 ) {
-            return;
-        }
-        const newQuantity = quantity - 1;
-        $quantity.attr('value', newQuantity);
-    })
-
-    $('.inc').on('click', function() {
-        const quantityString = $quantity.attr('value');
-        const quantity = parseInt(quantityString)
-        const newQuantity = quantity + 1;
-        $quantity.attr('value', newQuantity);
-    })
-</script>
-
-<script>
-    function Huydonhang(id){
-        var id = id;
-        var lydo = $('.lydohuydon').val();
-        var _token = $('input[name="_token"]').val();
-        $.ajax({
-            url:"{{url('/khach_hang/delete-order')}}",
-            method:"POST",
-            dataType:"JSON",
-            data:{id:id, lydo:lydo, _token:_token},
-            success:function(data){
-                alert('Hủy đơn hàng thành công');
-            }
-        })
-    }
-</script>
-
 </body>
-
 </html>

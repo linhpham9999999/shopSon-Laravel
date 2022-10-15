@@ -39,11 +39,11 @@
             @endif
             <div class="row">
                 <div class="col-md-12 col-custom">
+                    {{--@foreach ($errors->all() as $error)
+                        <p class="text-danger">{{ $error }}</p>
+                    @endforeach--}}
                     <form method="post" action="{{route('change-password')}}" accept-charset="UTF-8" class="contact-form">
                         {{csrf_field()}}
-                        {{--@foreach ($errors->all() as $error)
-                            <p class="text-danger">{{ $error }}</p>
-                        @endforeach--}}
                         <div class="comment-box mt-5">
                             <h5 class="text-uppercase">Thay đổi mật khẩu</h5>
                             <div class="row mt-3" style="margin-left: 280px;">
@@ -61,7 +61,6 @@
                                         <div class="error">{{$errors->first('new_confirm_password')}}</div>
                                     </div>
                                 </div>
-
                                 <div class="col-12 col-custom mt-40">
                                     <button type="submit" class="btn flosun-button secondary-btn theme-color rounded-0">Lưu thay đổi</button>
                                 </div>

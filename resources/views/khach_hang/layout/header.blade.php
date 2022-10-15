@@ -46,17 +46,18 @@
                                 </a>
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('view-cart')}}">Giỏ hàng</a></li>
-                                    <li><a href="{{route('order-status')}}">Lịch sử mua hàng</a></li>
+                                    <li><a href="{{route('lich-su-mua-hang')}}">Lịch sử mua hàng</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{route('view-account')}}">
+                                <a href="{{route('lich-su-mua-hang')}}">
                                     <span class="menu-text"> Tài khoản </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-submenu dropdown-hover">
-                                    <li><a href="{{route('view-account')}}">Thông tin tài khoản</a></li>
-                                    <li><a href="{{route('passwordKH')}}">Đổi mật khẩu</a></li>
+                                    @if( session('user_login') == null)
+                                        <li><a href="{{route('passwordKH')}}">Đổi mật khẩu</a></li>
+                                    @endif
                                     <li><a href="{{route('create_account')}}">Đăng ký thành viên</a></li>
                                     <li><a href="{{route('loginKH')}}">Login</a></li>
                                     <li><a href="{{route('logoutKH')}}">Logout</a></li>

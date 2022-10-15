@@ -186,53 +186,7 @@ class BuyProductsController extends Controller
             Cookie::forget('cart')
         );
 
-        // Chuyển đến xem trạng thái mua hàng
-        $hoadon = DB::table('hoa_don')
-            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
-                ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
-            ->orderBy('hoa_don.id','desc')
-            ->where('hoa_don.email_nguoidung','=',$email)
-            ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
-            ->get()->toArray();
-
-
-        return view('khach_hang.cart.get-status-order', compact('hoadon'));
-    }
-    // Trạng thái đơn hàng đã đặt
-//    public function orderStatus(){
-//        $email = '' ;
-//        if( Auth::guard('nguoi_dung')->check()) {
-//            $email = Auth::guard('nguoi_dung')->user()->email;
-//        }else{
-//            $email = session('email_user_login');
-//        }
-//        $hoadon = DB::table('hoa_don')
-//            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-//            ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
-//                       ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
-//            ->orderBy('hoa_don.id','desc')
-//            ->where('hoa_don.email_nguoidung','=',$email)
-//            ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
-//            ->get()->toArray();
-//        return view('khach_hang.cart.get-status-order', compact('hoadon'));
-//    }
-    public function orderStatus(){
-        $email = '' ;
-        if( Auth::guard('nguoi_dung')->check()) {
-            $email = Auth::guard('nguoi_dung')->user()->email;
-        }else{
-            $email = session('email_user_login');
-        }
-        $hoadon = DB::table('hoa_don')
-            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
-                ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
-            ->orderBy('hoa_don.id','desc')
-            ->where('hoa_don.email_nguoidung','=',$email)
-            ->whereIn('hoa_don.id_TT', [1, 2, 3, 5])
-            ->get()->toArray();
-        return view('khach_hang.don-hang.lich-su-mua-hang', compact('hoadon'));
+        return redirect()->route('lich-su-mua-hang');
     }
     public function billDetailView(Request $request,$id){
         $cthd = DB::table('hoa_don')
@@ -246,31 +200,5 @@ class BuyProductsController extends Controller
             ->where('hoa_don.id','=',$id)->get();
 //        dd($cthd);
         return view('khach_hang.cart.bill-details', compact('cthd'));
-    }
-
-    public function increaseQuantity($id){
-        $cart = Cookie::get('cart');
-        $products = json_decode($cart, true);
-        foreach ( $products as $product){
-            if($product['id'] == $id){
-                $product['quantity'] += 1;
-            }
-        }
-        $json = json_encode($products);
-        Cookie::queue('cart', $json, 60);
-        return back()->with('message','update thành công!');
-    }
-
-    public function decreaseQuantity($id){
-        $cart = Cookie::get('cart');
-        $products = json_decode($cart, true);
-        foreach ( $products as $product){
-            if($product['id'] == $id){
-                $product['quantity'] -= 1;
-            }
-        }
-        $json = json_encode($products);
-        Cookie::queue('cart', $json, 60);
-        return back()->with('message','update thành công!');
     }
 }

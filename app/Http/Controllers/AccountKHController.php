@@ -7,17 +7,17 @@ use DB;
 
 class AccountKHController extends Controller
 {
-    public function viewAccount(){
-        if( Auth::guard('nguoi_dung')->check()) {
-            $email = Auth::guard('nguoi_dung')->user()->email;
-        }else{
-            $email = session('email_user_login');
-        }
-        $users = DB::table('nguoi_dung')
-            ->where('email','=',$email)->select('*')->first();
-        $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('emailnguoidung','=',$email)->get();
-        return view('khach_hang.account.sua-tai-khoan', compact('users','diachi'));
-    }
+//    public function viewAccount(){
+//        if( Auth::guard('nguoi_dung')->check()) {
+//            $email = Auth::guard('nguoi_dung')->user()->email;
+//        }else{
+//            $email = session('email_user_login');
+//        }
+//        $users = DB::table('nguoi_dung')
+//            ->where('email','=',$email)->select('*')->first();
+//        $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('emailnguoidung','=',$email)->get();
+//        return view('khach_hang.account.sua-tai-khoan', compact('users','diachi'));
+//    }
     public function postAccount(Request $request, $id){
         $this->validate($request,
         [
@@ -48,7 +48,7 @@ class AccountKHController extends Controller
             'diachi'=>$request->diachi,
             'sodth'=>$request->sodth ]);
 
-        return redirect('khach_hang/account/view-account')->with('alert','Sửa thành công');
+        return back()->with('alert','Sửa thành công');
     }
     public function postAddress(Request $request){
         $this->validate($request,

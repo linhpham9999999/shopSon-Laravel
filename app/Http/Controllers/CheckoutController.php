@@ -86,12 +86,13 @@ class CheckoutController extends Controller
         }
         $isHasProductsCart = true;
         $shipping = $this->shipPrice($products);
-        return view('khach_hang/cart/checkout',['products'   => $products,
-                                                  'isHasProduct'  => $isHasProductsCart,
-                                                  'subPrice'      => $subPrice,
-                                                  'shipping'      => $shipping,
-                                                  'data'          => $data,
-                                                  'check'         => $check ]);
+        return back()->with('alert','Ap dung thanh cong');
+//        return view('khach_hang/cart/checkout',['products'   => $products,
+//                                                  'isHasProduct'  => $isHasProductsCart,
+//                                                  'subPrice'      => $subPrice,
+//                                                  'shipping'      => $shipping,
+//                                                  'data'          => $data,
+//                                                  'check'         => $check ]);
     }
 
     /**
@@ -152,21 +153,8 @@ class CheckoutController extends Controller
     }
 
     public function deleteCart($id){
-//        dd($quantity);
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
-
-//        foreach ($products as $value){
-//            $quantity = $value['quantity'];
-//        }
-
-//        $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $id)->first();
-//        $quantitycurent = $soluongton->soluongton;
-
-//        DB::table('mau_san_pham')->select('soluongton')
-//            ->where('id','=',$id)
-//            ->update(['soluongton' => $quantitycurent + $quantity]);
-
         if (array_key_exists($id, $products)) {
             unset($products[$id]);
         }

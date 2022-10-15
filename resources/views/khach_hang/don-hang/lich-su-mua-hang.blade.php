@@ -2,6 +2,13 @@
 
 @section('title')
     <title>Shop son HLYNK Lipsticks</title>
+    <style>
+        .error{
+            color: red;
+            font-style: italic;
+            font-family: Florence, cursive;
+        }
+    </style>
 @endsection()
 
 @section('content')
@@ -36,6 +43,8 @@
                                 <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Đang giao hàng</a>
                                 <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Đã mua</a>
                                 <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> Đơn đã hủy</a>
+                                <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Thông tin tài khoản</a>
+                                <a href="{{route('logoutKH')}}"><i class="fa fa-sign-out"></i> Đăng xuất</a>
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -48,9 +57,15 @@
                                     <div class="myaccount-content">
                                         <h3>Dashboard</h3>
                                         <div class="welcome">
-                                            <p>Hello, <strong>Alex Aya</strong> (If Not <strong>Aya !</strong><a href="login-register.html" class="logout"> Logout</a>)</p>
+                                            <p>Xin chào, <strong>
+                                                    @if(\Illuminate\Support\Facades\Auth::guard('nguoi_dung')->check())
+                                                        {{ \Illuminate\Support\Facades\Auth::guard('nguoi_dung')->user()->hoten }}
+                                                    @else
+                                                        {{ session('user_login') }}
+                                                    @endif
+                                                </strong></p>
                                         </div>
-                                        <p class="mb-0">From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
+                                        <p class="mb-0">Đây là trang thông tin cá nhân và lịch sử mua hàng của bạn. Bạn có thể quản lý đơn hàng của mình tại đây</p>
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
@@ -58,43 +73,43 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="orders" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Orders</h3>
+                                        @if( !empty($cho_xac_nhan) )
                                         <div class="myaccount-table table-responsive text-center">
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
                                                 <tr>
-                                                    <th>Order</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
-                                                    <th>Total</th>
-                                                    <th>Action</th>
+                                                    <th>Mã hóa đơn</th>
+                                                    <th>Ngày đặt</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th colspan="2">Action</th>
                                                 </tr>
                                                 </thead>
+                                                @foreach($cho_xac_nhan as $cxn)
                                                 <tbody>
                                                 <tr>
-                                                    <td id="idHD"></td>
-                                                    <td>Aug 22, 2018</td>
-                                                    <td>Pending</td>
-                                                    <td>$3000</td>
-                                                    <td><a href="cart.html" class="btn flosun-button secondary-btn theme-color  rounded-0">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td id="idHD"></td>
-                                                    <td>July 22, 2018</td>
-                                                    <td>Approved</td>
-                                                    <td>$200</td>
-                                                    <td><a href="cart.html" class="btn flosun-button secondary-btn theme-color  rounded-0">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>June 12, 2019</td>
-                                                    <td>On Hold</td>
-                                                    <td>$990</td>
-                                                    <td><a href="cart.html" class="btn flosun-button secondary-btn theme-color  rounded-0">View</a></td>
+                                                    <td>{{$cxn->Ma_HD }}</td>
+                                                    <td>{{DateTime::createFromFormat('Y-m-d', $cxn->ngaydat)->format('m/d/Y')}}</td>
+                                                    <td>{{ $cxn->trangthai}}</td>
+                                                    <td>{{ $cxn->tongtien}}</td>
+                                                    <td><a href="{{route('bill-detail',['id'=>$cxn->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">Xem</a></td>
+                                                    <td>
+                                                        @if ($cxn->idTT == 3)
+                                                            <a href="{{route('delete-order',['id'=>$cxn->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">
+                                                                Hủy
+                                                            </a>
+                                                        @else
+                                                            <span></span>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 </tbody>
+                                                @endforeach
                                             </table>
                                         </div>
+                                        @else
+                                            <h3>Hiện không có đơn hàng nào</h3>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
@@ -102,33 +117,34 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="download" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Downloads</h3>
+                                        @if( !empty($dang_giao_hang))
                                         <div class="myaccount-table table-responsive text-center">
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
                                                 <tr>
-                                                    <th>Product</th>
-                                                    <th>Date</th>
-                                                    <th>Expire</th>
-                                                    <th>Download</th>
+                                                    <th>Mã hóa đơn</th>
+                                                    <th>Ngày đặt</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th>Action</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>Haven - Free Real Estate PSD Template</td>
-                                                    <td>Aug 22, 2018</td>
-                                                    <td>Yes</td>
-                                                    <td><a href="#" class="btn flosun-button secondary-btn theme-color  rounded-0"><i class="fa fa-cloud-download mr-2"></i>Download File</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>HasTech - Profolio Business Template</td>
-                                                    <td>Sep 12, 2018</td>
-                                                    <td>Never</td>
-                                                    <td><a href="#" class="btn flosun-button secondary-btn theme-color  rounded-0"><i class="fa fa-cloud-download mr-2"></i>Download File</a></td>
-                                                </tr>
-                                                </tbody>
+                                                @foreach($dang_giao_hang as $dgh)
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{$dgh->Ma_HD }}</td>
+                                                        <td>{{DateTime::createFromFormat('Y-m-d', $dgh->ngaydat)->format('m/d/Y')}}</td>
+                                                        <td>{{ $dgh->trangthai}}</td>
+                                                        <td>{{ $dgh->tongtien}}</td>
+                                                        <td><a href="{{route('bill-detail',['id'=>$dgh->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">Xem</a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                @endforeach
                                             </table>
                                         </div>
+                                        @else
+                                            <h3>Hiện không có đơn hàng nào</h3>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
@@ -136,8 +152,34 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="payment-method" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Payment Method</h3>
-                                        <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
+                                        @if( !empty($da_mua))
+                                        <div class="myaccount-table table-responsive text-center">
+                                            <table class="table table-bordered">
+                                                <thead class="thead-light">
+                                                <tr>
+                                                    <th>Mã hóa đơn</th>
+                                                    <th>Ngày đặt</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                @foreach($da_mua as $dm)
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{$dm->Ma_HD }}</td>
+                                                        <td>{{DateTime::createFromFormat('Y-m-d', $dm->ngaydat)->format('m/d/Y')}}</td>
+                                                        <td>{{ $dm->trangthai}}</td>
+                                                        <td>{{ $dm->tongtien}}</td>
+                                                        <td><a href="{{route('bill-detail',['id'=>$dm->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">Xem</a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                        @else
+                                            <h3>Hiện không có đơn hàng nào</h3>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
@@ -145,17 +187,141 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="address-edit" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Billing Address</h3>
-                                        <address>
-                                            <p><strong>Alex Aya</strong></p>
-                                            <p>1234 Market ##, Suite 900 <br>
-                                                Lorem Ipsum, ## 12345</p>
-                                            <p>Mobile: (123) 123-456789</p>
-                                        </address>
-                                        <a href="#" class="btn flosun-button secondary-btn theme-color  rounded-0"><i class="fa fa-edit mr-2"></i>Edit Address</a>
+                                        @if( !empty($da_huy))
+                                        <div class="myaccount-table table-responsive text-center">
+                                            <table class="table table-bordered">
+                                                <thead class="thead-light">
+                                                <tr>
+                                                    <th>Mã hóa đơn</th>
+                                                    <th>Ngày đặt</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                @foreach($da_huy as $dh)
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{$dh->Ma_HD }}</td>
+                                                        <td>{{DateTime::createFromFormat('Y-m-d', $dh->ngaydat)->format('m/d/Y')}}</td>
+                                                        <td>{{ $dh->trangthai}}</td>
+                                                        <td>{{ $dh->tongtien}}</td>
+                                                        <td><a href="{{route('bill-detail',['id'=>$dh->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">Xem</a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                        @else
+                                            <h3>Hiện không có đơn hàng nào</h3>
+                                        @endif
                                     </div>
                                 </div>
-                                <!-- Single Tab Content End -->
+                                <!-- Single Tab Content Start -->
+                                <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                    <div class="myaccount-content">
+                                        <h3>Thông tin tài khoản</h3>
+                                        <div class="account-details-form">
+                                            @if(session('alert'))
+                                                <div class="alert alert-success" style="margin-bottom: 25px;">
+                                                    {{session('alert')}}
+                                                </div>
+                                            @endif
+                                            <form method="post" action="{{route('change-account',['id'=>$users->id])}}" accept-charset="UTF-8" >
+                                                {{csrf_field()}}
+                                                <div class="single-input-item mb-3">
+                                                    <label class="required mb-1">Họ tên</label>
+                                                    <input type="text" name="name" value="{{$users->hoten}}" placeholder="Họ tên" />
+                                                    <div class="error"> {{$errors->first('name')}}</div>
+                                                </div>
+                                                <div class="single-input-item mb-3">
+                                                    <label  class="required mb-1">Ngày sinh</label>
+                                                    <input value="{{$users->ngaysinh}}" type="date" name="ngaysinh" placeholder="Ngày sinh" />
+                                                    <div class="error"> {{$errors->first('ngaysinh')}}</div>
+                                                </div>
+                                                <div class="single-input-item mb-3">
+                                                    <label class="required mb-1">Số điện thoại</label>
+                                                    <input type="text" name="sodth" placeholder="Số điện thoại" value="{{$users->sodth}}" />
+                                                    <div class="error"> {{$errors->first('sodth')}}</div>
+                                                </div>
+                                                <div class="single-input-item mb-3">
+                                                    <label class="required mb-1">Email</label>
+                                                    <input type="text" disabled placeholder="Email" value="{{$users->email}}" />
+                                                </div>
+                                                <div class="single-input-item mb-3">
+                                                    <label class="required mb-1">Địa chỉ</label>
+                                                    <input type="text" name="diachi" placeholder="Địa chỉ" value="{{$users->diachi}}" />
+                                                    <div class="error">{{$errors->first('diachi')}}</div>
+                                                </div>
+                                                <div class="single-input-item single-item-button">
+                                                    <button type="submit" class="btn flosun-button secondary-btn theme-color  rounded-0">Lưu</button>
+                                                </div>
+                                            </form>
+                                                {{--                                                <fieldset>--}}
+{{--                                                    <legend>Password change</legend>--}}
+{{--                                                    <div class="single-input-item mb-3">--}}
+{{--                                                        <label for="current-pwd" class="required mb-1">Current Password</label>--}}
+{{--                                                        <input type="password" id="current-pwd" placeholder="Current Password" />--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="row">--}}
+{{--                                                        <div class="col-lg-6 col-custom">--}}
+{{--                                                            <div class="single-input-item mb-3">--}}
+{{--                                                                <label for="new-pwd" class="required mb-1">New Password</label>--}}
+{{--                                                                <input type="password" id="new-pwd" placeholder="New Password" />--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="col-lg-6 col-custom">--}}
+{{--                                                            <div class="single-input-item mb-3">--}}
+{{--                                                                <label for="confirm-pwd" class="required mb-1">Confirm Password</label>--}}
+{{--                                                                <input type="password" id="confirm-pwd" placeholder="Confirm Password" />--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </fieldset>--}}
+                                        <form method="post" action="{{route('add-address')}}" accept-charset="UTF-8" class="contact-form">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <legend>Thêm đia chỉ giao hàng</legend>
+                                                @if(session('alert2'))
+                                                    <div class="alert alert-success" style=" margin-bottom: 25px;">
+                                                        {{session('alert2')}}
+                                                    </div>
+                                                @endif
+                                                <div class="single-input-item mb-3">
+                                                    <input type="text" name="diachinew"  placeholder="Nhập địa chỉ">
+                                                    <div class="error">{{$errors->first('diachinew')}}</div>
+                                                </div>
+                                                <div class="single-input-item single-item-button">
+                                                    <button type="submit" class="btn flosun-button secondary-btn theme-color  rounded-0">Lưu</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                        </div>
+                                        @if(session('alert3'))
+                                            <div class="alert alert-success" style=" margin-bottom: 25px;">
+                                                {{session('alert3')}}
+                                            </div>
+                                        @endif
+                                        <div class="myaccount-table table-responsive text-center" style=" margin-top: 20px;">
+                                            <table class="table table-bordered">
+                                                <thead class="thead-light">
+                                                <tr>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                @foreach($diachi as $dc)
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{$dc->dia_chi_giao_hang}}</td>
+                                                        <td><a href="{{route('delete-address',['id'=>$dc->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">Xóa</a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div> <!-- Single Tab Content End -->
                             </div>
                         </div> <!-- My Account Tab Content End -->
                     </div>

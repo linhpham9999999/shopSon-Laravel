@@ -400,9 +400,7 @@ Route::group(
         Route::group(
             ['prefix' => 'account', 'middleware' => 'loginKH'],
             function () {
-                Route::get('/view-account','App\Http\Controllers\AccountKHController@viewAccount')->name('view-account');
                 Route::post('/change-account/{id}','App\Http\Controllers\AccountKHController@postAccount')->name('change-account');
-
                 Route::get('/change-password','App\Http\Controllers\ChangePasswordController@index')->name('passwordKH');
                 Route::post('/change-password','App\Http\Controllers\ChangePasswordController@store')->name('change-password');
                 //Thêm địa chỉ giao hàng
@@ -441,21 +439,19 @@ Route::group(
             function () {
                 //Kiem tra truoc khi thanh toan
                 Route::get('/billing-details', 'App\Http\Controllers\BuyProductsController@proceedCheckout')->name('proceed-to-checkout');
-//                Route::get('/billing-detail', 'App\Http\Controllers\BuyProductsController@proceedCheckoutPromo')->name('proceed-to-checkout-promotion');
-                //Trang thai dat hang
-                Route::get('/order', 'App\Http\Controllers\BuyProductsController@orderStatus')->name('order-status');
-                Route::post('/order', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
                 //Huy don hang khi trang thai chua duyet
                 Route::get('/delete-order/{id}', 'App\Http\Controllers\DeleteOrderController@delete')->name('delete-order');
-
+                // cap nhat gio hàng
+                Route::post('/api/update-cart', 'App\Http\Controllers\CartApiController@updateCart')->name('getProductDetailApi');
             }
         );
         //Thông tin đơn hàng
         Route::group(
-            ['prefix' => 'don-hang'],
+            ['prefix' => 'don-hang', 'middleware' => 'loginKH'],
             function () {
-                //Don hang chua xac nhan
-                Route::get('/chi-tiet/{id}', 'App\Http\Controllers\OrderHistoryController@getData');
+                //lịch sử mua hàng
+                Route::post('/chi-tiet', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
+                Route::get('/chi-tiet', 'App\Http\Controllers\OrderHistoryController@getData')->name('lich-su-mua-hang');
             }
         );
 
