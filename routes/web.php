@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -488,5 +489,6 @@ Route::group(
     }
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
+Route::post('/api/update-cart', [CartApiController::class, 'updateCart'])->name('getProductDetailApi')
 ?>
 
