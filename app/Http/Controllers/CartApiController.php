@@ -12,15 +12,13 @@ class CartApiController extends Controller
         $quantity = $request->quantity;;
         $cartRaw = Cookie::get('cart');
         $cart = json_decode($cartRaw, true);
-        $newCart = [];
         foreach ($cart as $item) {
             if ($item['id'] === (int)$productId) {
                 $item['quantity'] = $quantity;
-                $newCart[] = $item;
-            } else {
-                $newCart[] = $item;
             }
+            $id = $item['id'];
+            $cart[$id] = $item;
         }
-        Cookie::queue('cart', json_encode($newCart));
+        Cookie::queue('cart', json_encode($cart),300000);
     }
 }

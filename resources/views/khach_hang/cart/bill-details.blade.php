@@ -90,7 +90,7 @@
                     </div>
             </div>
             <div style="width: 150px;margin-left: 500px;">
-                <a href="{{route('order-status')}}" class="btn flosun-button secondary-btn black-color rounded-0 w-100">Trở về</a>
+                <a href="{{route('lich-su-mua-hang')}}" class="btn flosun-button secondary-btn black-color rounded-0 w-100">Trở về</a>
             </div>
         </div>
     </div>

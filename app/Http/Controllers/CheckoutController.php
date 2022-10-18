@@ -50,24 +50,14 @@ class CheckoutController extends Controller
 
     public function applyPromo(Request $request){
         $current = Carbon::now()->toDateString();
-        $data = DB::table('khuyen_mai')->select('*')
-            ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['Ma_KM','=',$request->maKM]])->get()->toArray();
-
+        if($request->maKM == null){
+            return back()->with('message','Chưa nhập mã khuyến mãi');
+        }
         $data2 = DB::table('khuyen_mai')->select('*')
             ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['Ma_KM','=',$request->maKM]])->first();
-//        dd($data2->id);
-        $check = false;
         if(!empty($data2) && Cookie::has('cart')){
             $cart = Cookie::get('cart');
             $products = json_decode($cart, true);
-            $subPriceUnit = $this->subPrice($products);
-
-            if($subPriceUnit >= $data2->gia_yeu_cau){
-                $subPrice = $this->subPrice($products) * (1 - $data2->phan_tram * 0.01);
-            }else{
-                $subPrice = $subPriceUnit;
-            }
-
             foreach ($products as $product) {
                 if ($product['promotion'] == 0) {
                     $product['promotion'] = $product['promotion'] + $data2->phan_tram;
@@ -76,23 +66,12 @@ class CheckoutController extends Controller
                 $id = $product['id'];
                 $products[$id] = $product;
             }
-
             $json = json_encode($products);
             Cookie::queue('cart',$json,300000);
-            $check = true;
         } else {
-            [$products, $isHasProductsCart]  = $this->getProductsFromCart();
-            $subPrice = $this->subPrice($products);
+            return back()->with('message','Mã khuyến mãi không hợp lệ');
         }
-        $isHasProductsCart = true;
-        $shipping = $this->shipPrice($products);
-        return back()->with('alert','Ap dung thanh cong');
-//        return view('khach_hang/cart/checkout',['products'   => $products,
-//                                                  'isHasProduct'  => $isHasProductsCart,
-//                                                  'subPrice'      => $subPrice,
-//                                                  'shipping'      => $shipping,
-//                                                  'data'          => $data,
-//                                                  'check'         => $check ]);
+        return back()->with('message','Áp dụng khuyến mãi thành công');
     }
 
     /**
