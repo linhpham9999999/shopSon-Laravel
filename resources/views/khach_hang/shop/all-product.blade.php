@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row shop_wrapper grid_3">
-        @foreach($allSP as $sp)
+        @foreach($sanpham as $sp)
         <div class="col-md-6 col-sm-6 col-lg-4 col-custom product-area">
             <div class="product-item">
                 <div class="single-product position-relative mr-0 ml-0">
@@ -88,7 +88,7 @@
 {{--                                </div>--}}
 {{--                            @endif--}}
                         <div class="price-box">
-                            <span class="regular-price ">{{ $sp->gia_ban_ra}} đ</span>
+                            <span class="regular-price ">{{ number_format( $sp->gia_ban_ra ,0,',','.')  }} đ</span>
                             {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                         </div>
                         <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart">CHỌN MÀU SON</a>
@@ -122,10 +122,10 @@
             <div class="toolbar-bottom">
                 <div class="pagination">
                     <ul>
-                        {!! $allSP->links() !!}
+                        {!! $sanpham->links() !!}
                     </ul>
                 </div>
-                <p class="desc-content text-center text-sm-right mb-0">Showing {!! $allSP->firstItem() !!} - {!! $allSP->lastItem() !!}</p>
+                <p class="desc-content text-center text-sm-right mb-0">Showing {!! $sanpham->firstItem() !!} - {!! $sanpham->lastItem() !!}</p>
             </div>
         </div>
     </div>

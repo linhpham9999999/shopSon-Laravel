@@ -419,11 +419,8 @@ Route::group(
                 Route::get('delete/{id}', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
                 // Ap dung khuyen mai
                 Route::post('/app-promotion','App\Http\Controllers\CheckoutController@applyPromo')->name('applyPromotion');
-                // Update cart
-                Route::post('/update-cart','App\Http\Controllers\CheckoutController@updateCart')->name('updateCart');
             }
         );
-
         //WishList
         Route::group(
             ['prefix' => 'wishlist', 'middleware' => 'loginKH'],

@@ -107,11 +107,11 @@
             & textarea {
                 height: 140px;
             }
-            
+
         }
         & label {
             display: block;
-            margin-bottom: 3px; 
+            margin-bottom: 3px;
         }
     }
     .shipping-policy{
@@ -183,7 +183,9 @@
         }
     }
 }
-
+.product-details-img .single-product-thumb{
+    container-type: size;
+}
 .product-details-img{
     .single-product-img{
         a{
@@ -205,7 +207,6 @@
                 border: 1px solid $border-color-3;
             }
         }
-        margin-top: 40px;
         .swiper-button-prev, .swiper-button-next{
             &:focus{
                 border: 0px;
@@ -214,7 +215,7 @@
             &:after{
                 display: none;
             }
-            i{ 
+            i{
                 opacity: 0;
                 visibility: hidden;
                 font-size: 20px;

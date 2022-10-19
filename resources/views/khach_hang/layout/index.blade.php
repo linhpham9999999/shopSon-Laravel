@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="khach_hang_asset/assets/css/plugins/nice-select.min.css">
     <!-- Magnific Popup -->
     <link rel="stylesheet" href="khach_hang_asset/assets/css/plugins/magnific-popup.css">
-
+    <link rel="stylesheet" href="khach_hang_asset/assets/scss/3-pages/_single-product.scss">
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="khach_hang_asset/assets/css/style.css">
     <link rel="stylesheet" href="khach_hang_asset/assets/js/sweetalert.css">
@@ -47,7 +47,7 @@
         }
 
         .product-image:hover {
-            transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            transform: scale(1.25); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
         }
     </style>
 </head>

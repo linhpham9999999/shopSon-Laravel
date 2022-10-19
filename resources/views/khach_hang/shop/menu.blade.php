@@ -51,21 +51,6 @@
                                     </div>
                                 </div>
                             </form>
-{{--                            <form action="{{route('search-product-price')}}" method="POST">--}}
-{{--                                {{csrf_field()}}--}}
-{{--                                <div class="search-box">--}}
-{{--                                    <div class="input-group" >--}}
-{{--                                        <span>--}}
-{{--                                            <input type="text" name="price_submit" style="height: 50px; width: 200px" class="form-control" placeholder="Nhập giá sản phẩm" aria-label="Search Our Store">--}}
-{{--                                        </span>--}}
-{{--                                        <span>--}}
-{{--                                            <button class="btn btn-outline-secondary" type="submit">--}}
-{{--                                                <i class="fa fa-search" style="height: 35px; padding-top: 10px "></i>--}}
-{{--                                            </button>--}}
-{{--                                        </span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </form>--}}
                         </div>
 {{--                        <div class="widget-list widget-mb-1">--}}
 {{--                            <h3 class="widget-title">Giá</h3>--}}
@@ -77,31 +62,42 @@
 {{--                            </form>--}}
 {{--                            <!-- Widget Menu End -->--}}
 {{--                        </div>--}}
-                    </div>
-
-                    <div class="widget-list widget-mb-1"  style="font-size: 20px; color: black;margin-bottom: 0px">
-                        <h3 class="widget-title" style="margin-bottom: 0px">Danh mục</h3>
-                        <div ><hr style="background-color: #B1BDB2; height: 2px; margin-top: 15px;margin-bottom: 0px" ></div>
-                        <div class="sidebar-body" style=" padding: 3px 0px 3px 0px;">
-                            <a href="{{route('allSanPham')}}" style=" text-decoration: none; color: black;margin-top: 10px" >Tất cả sản phẩm</a></li>
+                        <div class="widget-list widget-mb-1">
+                            <h3 class="widget-title">Danh mục loại sản phẩm</h3>
+                            <div class="sidebar-body">
+                                <ul class="sidebar-list">
+                                    <li><a href="{{route('allSanPham')}}">Tất cả</a></li>
+                                    @foreach($loaisp as $lsp)
+                                    <li><a href="khach_hang/shop/product-type/{{$lsp->id}}">{{$lsp->ten_LSP}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget-list mb-0">
+                            <h3 class="widget-title">Sản phẩm mới nhất</h3>
+                            <div class="sidebar-body">
+                                @foreach($sanphamnew as $spn)
+                                <div class="sidebar-product align-items-center">
+                                    <a href="product-details.html" class="image">
+                                        <img src="admin_asset/image_son/{{$spn->hinhanhgoc}}" alt="product">
+                                    </a>
+                                    <div class="product-content">
+                                        <div class="product-title">
+                                            <h4 class="title-2"> <a href="{{route('list-color-product',['id' => $spn->id])}}">{{$spn->ten_SP}}</a></h4>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="regular-price ">{{ number_format( $spn->gia_ban_ra ,0,',','.')  }} đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                    <div id="menu" style="margin-top: 20px" >
-                        <ul>
-                            @foreach($loaisp as $lsp)
-                                <li>
-                                    <a href="khach_hang/shop/product-type/{{$lsp->id}}" style="background-color: #B3BDBD; padding: 5px 0px 5px 0px">{{$lsp->ten_LSP}}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
                 </aside>
                 <!-- Sidebar Widget End -->
             </div>
-
         </div>
-
     </div>
 </div>
 <!-- Shop Main Area End Here -->

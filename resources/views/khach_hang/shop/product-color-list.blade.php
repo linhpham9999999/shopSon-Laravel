@@ -42,17 +42,17 @@
                                     <h4 class="title-2"> {{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
                                 <div class="price-box">
-                                    <span class="regular-price ">{{ $msp->gia_ban_ra}} đ</span>
+                                    <span class="regular-price ">{{ number_format( $msp->gia_ban_ra ,0,',','.')  }} đ</span>
                                     {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                 </div>
-                                <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT SẢN PHẨM</span> </a>
+                                <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT</span> </a>
                             </div>
                             <div class="product-content-listview">
                                 <div class="product-title">
                                     <h4 class="title-2">{{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
                                 <div class="price-box">
-                                    <span class="regular-price "> {{ $msp->gia_ban_ra }} đ</span>
+                                    <span class="regular-price ">{{ number_format( $msp->gia_ban_ra ,0,',','.')  }} đ</span>
                                     {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                 </div>
                                 <p class="desc-content">{{$msp->thongTinMau}}</p>
