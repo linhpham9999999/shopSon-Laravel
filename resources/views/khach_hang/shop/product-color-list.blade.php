@@ -27,14 +27,20 @@
                                     <span class="onsale">Hết!</span>
                                 @endif
                                 <div class="add-action d-flex flex-column position-absolute">
-                                    <form>  {{--action="{{route('add-wishlist')}}" method="post"--}}
-                                        {{csrf_field()}}
-                                        {{--<input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
-                                        <input type="hidden" name="productIdColor" class="lish_product_id_wish_{{$msp->id}}" value="{{$msp->id}}">
+                                    <input type="hidden" class="product_id_wish" value="{{$msp->id}}">
+                                    @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
                                         <a title="Add To Wishlist">
-                                            <button type="button" class="add-wish-list" name="add-wish-list" data-id_product_wish="{{$msp->id}}"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i></button>
+                                            <button type="button" class="add-wish-list-to-btn" name="add-wish-list">
+                                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
+                                            </button>
                                         </a>
-                                    </form>
+                                    @else
+                                        <a title="Add To Wishlist" class="request-login">
+                                            <button type="button">
+                                                <i class="lnr lnr-heart" class="request-login" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
+                                            </button>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="product-content">
@@ -52,12 +58,26 @@
                                     <h4 class="title-2">{{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
                                 <div class="price-box">
-                                    <span class="regular-price ">{{ number_format( $msp->gia_ban_ra ,0,',','.')  }} đ</span>
+                                    <span class="regular-price ">{{ number_format( $msp->gia_ban_ra ,0,',','.')  }} VND</span>
                                     {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                 </div>
                                 <p class="desc-content">{{$msp->thongTinMau}}</p>
                                 <div class="button-listview">
-                                    <a href="{{route('product-color-detail',['id' => $msp->id])}}" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top"> <span>XEM CHI TIẾT SẢN PHẨM</span> </a>
+                                    <a href="{{route('product-color-detail',['id' => $msp->id])}}" class="btn product-cart button-icon flosun-button dark-btn" data-toggle="tooltip" data-placement="top"> <span>XEM CHI TIẾT</span> </a>
+                                    <input type="hidden" class="product_id_wish" value="{{$msp->id}}">
+                                    @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
+                                        <a title="Add To Wishlist" class="list-icon">
+                                            <button type="button" class="add-wish-list-to-btn" name="add-wish-list">
+                                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top" title="Wishlist"></i>
+                                            </button>
+                                        </a>
+                                    @else
+                                        <a title="Add To Wishlist" class="request-login list-icon">
+                                            <button type="button">
+                                                <i class="lnr lnr-heart" class="request-login" data-toggle="tooltip" data-placement="top" title="Wishlist"></i>
+                                            </button>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

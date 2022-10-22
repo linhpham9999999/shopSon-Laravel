@@ -36,6 +36,9 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="khach_hang_asset/assets/css/style.css">
     <link rel="stylesheet" href="khach_hang_asset/assets/js/sweetalert.css">
+
+    <!--alertify  CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <style>
         .error{
             color: red;
@@ -112,35 +115,9 @@
 <script src="khach_hang_asset/assets/js/main.js"></script>
 <script src="khach_hang_asset/assets/js/sweetalert.min.js"></script>
 <script src="{{ asset('khach_hang_asset/assets/js/custom_js/cart.js') }}"></script>
-{{--<script src="{{ asset('khach_hang_asset/assets/js/custom_js/promotion.js') }}"></script>--}}
-
-<script type="text/javascript">
-    $(document).ready(function (){
-        //Them SP yeu thich
-        $('.add-wish-list').click(function (){
-            var id = $(this).data('id_product_wish');
-            var lish_product_id_wish = $('.lish_product_id_wish_'+id).val();
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: '{{url('/khach_hang/wishlist/add-wishlist')}}',
-                method: 'POST',
-                middleware: 'loginKH',
-                data:{lish_product_id_wish:lish_product_id_wish, _token:_token},/*ten dat: bien var*/
-                success:function (data) {
-                    swal({
-                            title: "Đã thêm sản phẩm yêu thích",
-                            // showCancelButton: true,
-                            // confirmButtonClass: "btn-success",
-                            // closeOnConfirm: false
-                        },
-                        function () {
-                            //window.location.href = "{{url('/khach_hang/wishlist/view-list')}}";
-                        });
-                }
-            });
-        });
-    });
-</script>
+<script src="{{ asset('khach_hang_asset/assets/js/custom_js/wishlist.js') }}"></script>
+<!-- alertify JS -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
 <script type="text/javascript">
     $('.xemnhanh').click(function(){
@@ -184,6 +161,15 @@
     {
         document.getElementById(divId).style.display = element.value == 1 ? 'block' : 'none';
     }
+</script>
+<script>
+    $(document).ready(function (){
+        //Thông báo cho khách hàng khi họ chưa login
+        $('.request-login').click(function (e){
+            alertify.set('notifier','position','top-right');
+            alertify.error('Vui lòng đăng nhập website!');
+        });
+    });
 </script>
 </body>
 </html>

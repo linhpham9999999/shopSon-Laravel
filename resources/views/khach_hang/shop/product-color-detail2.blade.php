@@ -74,12 +74,9 @@
                         <div class="quantity-with_btn mb-5">
                             <div class="quantity">
 {{--                                <div class="cart-plus-minus">--}}
-                                    <input class="cart-plus-minus-box" value="1" type="text" name="number">
+                                    <input class="cart-plus-minus-box" value="1" type="number" style=" width: 100px;height: 45px;text-align: center;" name="number">
 {{--                                </div>--}}
-                                <div class="error"> {{$errors->first('number')}}</div>
-                                @if(session('testquantity'))
-                                    <div class="error">{{session('testquantity')}}</div>
-                                @endif
+
                                 <input type="hidden" name="productId" value="{{$msp->id_SP}}">
                                 <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
                             </div>
@@ -88,6 +85,10 @@
                                 <a class="btn flosun-button secondary-btn secondary-border rounded-0" href="{{route('allSanPham')}}">Tiếp tục mua hàng</a>
                             </div>
                         </div>
+                        <div class="error"> {{$errors->first('number')}}</div>
+                        @if(session('testquantity'))
+                            <div class="error">{{session('testquantity')}}</div>
+                        @endif
                         </form>
                     </div>
                 </div>
@@ -116,13 +117,13 @@
                                     <!-- Start Single Review -->
                                     <div class="pro_review mb-5">
                                         <div class="review_thumb">
-                                            <img alt="review images" src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}">
+                                            <img alt="review images" style="width: 200px; height: 200px" src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}">
                                         </div>
                                         <div class="review_details">
                                             <div class="review_info mb-2">
                                                 <h5>Admin - <span>{{DateTime::createFromFormat('Y-m-d',$msp->created_at)->format('m/d/Y')}}</span></h5>
                                             </div>
-                                            <p>{{$msp->gioithieu}}</p>
+                                            <p>{{$msp->thongTinMau}}</p>
                                         </div>
                                     </div>
                                     <!-- End Single Review -->

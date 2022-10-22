@@ -39,5 +39,4 @@ $(function () {
             window.location.reload();
         });
     })
-
 })

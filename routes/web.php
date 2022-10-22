@@ -416,7 +416,7 @@ Route::group(
             function () {
                 Route::post('/add-cart', 'App\Http\Controllers\CartController@store')->name('add-cart');
                 Route::get('/view-cart', 'App\Http\Controllers\CheckoutController@showView')->name('view-cart');
-                Route::get('delete/{id}', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
+                Route::post('delete', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
                 // Ap dung khuyen mai
                 Route::post('/app-promotion','App\Http\Controllers\CheckoutController@applyPromo')->name('applyPromotion');
             }
@@ -425,9 +425,9 @@ Route::group(
         Route::group(
             ['prefix' => 'wishlist', 'middleware' => 'loginKH'],
             function () {
-                Route::post('/add-wishlist', 'App\Http\Controllers\WishlistController@wishList')->name('add-wishlist');
+                Route::post('/add', 'App\Http\Controllers\WishlistController@wishList')->name('add-wishlist');
                 Route::get('/view-list', 'App\Http\Controllers\WishlistController@viewList')->name('wishList');
-                Route::get('delete/{id}', 'App\Http\Controllers\WishlistController@deleteList')->name('detele-wish-list');
+                Route::post('delete', 'App\Http\Controllers\WishlistController@deleteList')->name('detele-wish-list');
             }
         );
         // Mua hàng

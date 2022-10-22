@@ -54,10 +54,10 @@
                             <tbody>
                             @foreach($wishlist as $list)
                             <tr>
-                                <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$list->hinhanh_wl}}" alt="Product" /></a></td>
-                                <td class="pro-price">{{$list->ten_san_pham_wl}}</td>
-                                <td class="pro-title">{{$list->mau_wl}}</td>
-                                <td class="pro-price"><span>{{$list->gia_wl}} VND</span></td>
+                                <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$list->hinhanh}}" alt="Product" /></a></td>
+                                <td class="pro-price">{{$list->ten_SP}}</td>
+                                <td class="pro-title">{{$list->mau}}</td>
+                                <td class="pro-price"><span>{{ number_format( $list->gia_ban_ra ,0,',','.')  }} VND</span></td>
                                 <td class="pro-cart">
 {{--                                    <form action="{{route('add-cart')}}" method="post">--}}
 {{--                                        {{csrf_field()}}--}}
@@ -67,7 +67,18 @@
 {{--                                    </form>--}}
                                     <a href="{{route('product-color-detail',['id' => $list->id_MSP])}}"> <span>CHI TIẾT</span> </a>
                                 </td>
-                                <td class="pro-remove"><a href="{{route('detele-wish-list',['id'=>$list->id])}}"><i class="lnr lnr-trash"></i></a></td>
+                                <td class="pro-remove">
+                                    <input type="hidden" class="product_id_wish_delete" value="{{$list->id}}">
+                                    @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
+                                    <a class="delete-wish-list-to-btn">
+                                        <i class="lnr lnr-trash"></i>
+                                    </a>
+                                    @else
+                                        <a class="request-login">
+                                            <i class="lnr lnr-trash"></i>
+                                        </a>
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>
@@ -80,5 +91,4 @@
             </div>
         </div>
     </div>
-
 @endsection

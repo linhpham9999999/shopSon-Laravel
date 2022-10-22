@@ -27,7 +27,7 @@
     @endif
     <div class="cart-main-wrapper mt-no-text">
         <div class="container custom-area">
-            @if($isHasProduct === true)
+            @if( !empty($products) === true)
                 <div class="row">
                     <div class="col-lg-12 col-custom">
                         <!-- Cart Table Area -->
@@ -61,7 +61,17 @@
                                             </div>
                                         </td>
                                         <td class="pro-subtotal"><span>{{ number_format($product['unit_price']*$product['quantity'],0,',','.') }}</span></td>
-                                        <td class="pro-remove"><a href="{{route('delete-cart',['id' => $product['id']])}}"><i class="lnr lnr-trash"></i></a></td>
+                                        <td class="pro-remove">
+                                            <input type="hidden" class="product_id_cart_delete" value="{{$product['id']}}">
+                                            @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
+                                            <a class="delete-cart-to-btn">
+                                                <i class="lnr lnr-trash"></i>
+                                            </a></td>
+                                            @else
+                                                <a class="request-login" href="{{route('loginKH')}}">
+                                                    <i class="lnr lnr-trash"></i>
+                                                </a>
+                                            @endif
                                     </tr>
                                 </tbody>
                                 @endforeach
@@ -113,7 +123,7 @@
                     </div>
                 </div>
 
-            @elseif($isHasProduct === false)
+            @elseif( empty($products) === true)
                 <h2>Không có sản phẩm</h2>
             @endif
         </div>

@@ -39,7 +39,7 @@ class CheckoutController extends Controller
         [$products, $isHasProductsCart]  = $this->getProductsFromCart();
         $subPrice = $this->subPrice($products);
         $shipping = $this->shipPrice($products);
-//        dd($products, $isHasProductsCart);
+//        dd(empty($products) , $isHasProductsCart);
         return view('khach_hang/cart/viewCart',['products'     => $products,
                                                     'isHasProduct'  => $isHasProductsCart,
                                                     'subPrice'      => $subPrice,
@@ -131,16 +131,17 @@ class CheckoutController extends Controller
         return $shipping;
     }
 
-    public function deleteCart($id){
+    public function deleteCart(Request $request){
+        $id = $request->product_color_id;
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
         if (array_key_exists($id, $products)) {
             unset($products[$id]);
         }
-
         $json = json_encode($products);
         Cookie::queue('cart', $json, 60);
-        return back()->with('message','Đã xóa khỏi giỏ!');
+        return response()->json(['status'=>'Xóa sản phẩm thành công']);
+//        return back()->with('message','Đã xóa khỏi giỏ!');
     }
 
     function momoPayment(Request $request)
