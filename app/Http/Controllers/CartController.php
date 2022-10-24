@@ -22,22 +22,21 @@ class CartController extends Controller
         $sluong = $soluongton->soluongton;
         $number = $request->number;
         if($number > $sluong){
-            return back()->with('testquantity', 'Số lượng sản phẩm tồn không đủ bán');
+//            return back()->with('testquantity', 'Số lượng sản phẩm tồn không đủ bán');
+            return response()->json(['error'=>'Số lượng mua vượt quá số lượng tồn']);
         }
 
-        $this->validate(
-            $request,
-            [
-                'number'                => 'bail|required|integer|min:1'
-            ],
-            [
-                'number.required'      => 'Bạn chưa nhập số lượng sản phẩm',
-                'number.integer'       => 'Số lượng sản phẩm phải là 1 số nguyên',
-                'number.min'           => 'Số lượng sản phẩm ít nhất là  1',
-            ]
-        );
-//        dd($number);
-//        $productIdColor = $request->get('cart_product_id'); //AJAX
+//        $validate = $this->validate(
+//                        $request,
+//                        [
+//                            'number'                => 'bail|required|integer|min:1'
+//                        ],
+//                        [
+//                            'number.required'      => 'Bạn chưa nhập số lượng sản phẩm',
+//                            'number.integer'       => 'Số lượng sản phẩm phải là 1 số nguyên',
+//                            'number.min'           => 'Số lượng sản phẩm ít nhất là  1',
+//                        ]
+//                    );
 
         // Lấy sản phẩm từ DB dựa vào id
         $product = $this->getProduct($productIdColor);
@@ -66,7 +65,7 @@ class CartController extends Controller
         // Gán lại giỏ hàng
         Cookie::queue('cart',$json,300000);
 
-        return back()->with('thongbao', 'Đã thêm sản phẩm vào giỏ');
+        return response()->json(['status'=>'Thêm sản phẩm vào giỏ thành công']);
     }
 
     /**

@@ -414,7 +414,7 @@ Route::group(
         Route::group(
             ['prefix' => 'cart', 'middleware' => 'loginKH'],
             function () {
-                Route::post('/add-cart', 'App\Http\Controllers\CartController@store')->name('add-cart');
+                Route::post('/add', 'App\Http\Controllers\CartController@store')->name('add-cart');
                 Route::get('/view-cart', 'App\Http\Controllers\CheckoutController@showView')->name('view-cart');
                 Route::post('delete', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
                 // Ap dung khuyen mai

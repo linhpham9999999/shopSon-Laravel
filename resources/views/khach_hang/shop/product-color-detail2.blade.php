@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-custom">
-                    <div class="product-summery position-relative">
+                    <div class="product-summery position-relative product-data-add-cart">
                         <div class="product-head mb-3">
                             <h2 class="product-title">{{$msp->Ma_MSP}} {{$msp->mau}}</h2>
                         </div>
@@ -69,27 +69,27 @@
                         <p class="desc-content mb-2">Khối lượng tinh: {{$msp->trongluong}}gram</p>
                         <p class="desc-content mb-2">Số lượng tồn: {{$msp->soluongton}}</p>
                         <p class="desc-content mb-5">{{$msp->gioithieu}}</p>
-                        <form action="{{route('add-cart')}}" method="post">
-                            {{csrf_field()}}
+
                         <div class="quantity-with_btn mb-5">
                             <div class="quantity">
 {{--                                <div class="cart-plus-minus">--}}
-                                    <input class="cart-plus-minus-box" value="1" type="number" style=" width: 100px;height: 45px;text-align: center;" name="number">
+                                    <input class="cart-plus-minus-box number_product" value="1" type="number" style=" width: 100px;height: 45px;text-align: center;" name="number">
 {{--                                </div>--}}
 
-                                <input type="hidden" name="productId" value="{{$msp->id_SP}}">
-                                <input type="hidden" name="productIdColor" class="cart_product_id_{{$msp->id}}" value="{{$msp->id}}">
+{{--                                <input type="hidden" name="productId" value="{{$msp->id_SP}}">--}}
+                                <input type="hidden" class="cart_product_id_color" value="{{$msp->id}}">
                             </div>
                             <div class="add-to_cart">
-                                <input class="btn product-cart button-icon flosun-button dark-btn" type="submit" value="Thêm vào giỏ">
+                                @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
+                                    <button class="btn product-cart button-icon flosun-button dark-btn add-product-cart" value="">Thêm vào giỏ</button>
+                                @else
+                                    <button class="btn product-cart button-icon flosun-button dark-btn request-login" value="">Thêm vào giỏ</button>
+                                @endif
                                 <a class="btn flosun-button secondary-btn secondary-border rounded-0" href="{{route('allSanPham')}}">Tiếp tục mua hàng</a>
                             </div>
                         </div>
-                        <div class="error"> {{$errors->first('number')}}</div>
-                        @if(session('testquantity'))
-                            <div class="error">{{session('testquantity')}}</div>
-                        @endif
-                        </form>
+                        <div class="error">{{$errors->first('number')}}</div>
+
                     </div>
                 </div>
             </div>
