@@ -74,7 +74,7 @@
                                         <label>Address <span class="required">*</span></label>
                                         <p class="formdetails" style="height: 50px"><select style="height: 30px; border: 1px solid crimson;" name="diachi">
                                         @foreach($diachi as $dc)
-                                            <option value="" selected disabled hidden>Chọn địa chỉ giao hàng</option>
+{{--                                            <option value="" selected disabled hidden>Chọn địa chỉ giao hàng</option>--}}
                                             <option value="{{$dc->dia_chi_giao_hang}}">{{$dc->dia_chi_giao_hang}}</option>
                                         @endforeach
                                         </select></p>
@@ -96,8 +96,9 @@
                                         <label>Hình thức thanh toán <span class="required">*</span></label>
                                         <p class="formdetails" style="height: 50px">
                                             <select style="height: 30px;border: 1px solid crimson;" id="thanhtoanmomo" name="payment" onchange="showDiv('payment_momo', this)">
-                                           <option value="2">Thanh toán khi nhận hàng</option>
+
                                            <option value="1">Thanh toán bằng ATM MOMO</option>
+                                           <option value="2">Thanh toán khi nhận hàng</option>
                                         </select></p>
                                     </div>
                                 </div>
@@ -105,7 +106,6 @@
 
                         </div>
                     </div>
-
                     <div class="col-lg-6 col-12 col-custom" style="float: right; " >
                         <div class="your-order" style="border: 5px solid crimson;margin-right: 50px;background-color: mistyrose; padding-top: 10px;">
                             <h3 style="text-align: center">Đơn hàng của bạn</h3>
@@ -169,7 +169,7 @@
                         {{session('alert')}}
                     </div>
                 @endif
-                <div id="payment_momo" style="display: none; margin: 10px 50px 0px 60px;width: 660px">
+                <div id="payment_momo" style="display: block; margin: 10px 50px 0px 60px;width: 660px">
                     <form action="{{route('thanh-toan-MOMO')}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="total_momo" value="{{ $total + $ship }}">
