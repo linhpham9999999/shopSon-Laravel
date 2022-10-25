@@ -193,12 +193,15 @@ class BuyProductsController extends Controller
             ->join('chi_tiet_hoa_don','hoa_don.id','=','chi_tiet_hoa_don.id_HD')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
-            ->select('hoa_don.id as idHD','mau_san_pham.hinhanh','mau_san_pham.mau','mau_san_pham.thongTinMau',
-                     'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong',
+            ->select('hoa_don.id as idHD','mau_san_pham.hinhanh','mau_san_pham.Ma_MSP','mau_san_pham.mau','mau_san_pham.thongTinMau',
+                     'chi_tiet_hoa_don.don_gia','chi_tiet_hoa_don.soluong','chi_tiet_hoa_don.thanh_tien',
                      'hoa_don.tongtien','trang_thai.trangthai','trang_thai.id as idTT',
-                     'ngaygiao','ngaydat')
-            ->where('hoa_don.id','=',$id)->get();
+                     'ngaygiao','ngaydat','hoa_don.id_KM','mau_san_pham.id as idMSP')
+            ->where('hoa_don.id','=',$id)->get()->toArray();
 //        dd($cthd);
-        return view('khach_hang.cart.bill-details', compact('cthd'));
+        $khuyenmai = DB::table('hoa_don')->join('khuyen_mai','hoa_don.id_KM','=','khuyen_mai.id')
+            ->select('khuyen_mai.Ma_KM','phan_tram')->where('hoa_don.id','=',$id)->first();
+        $tongtien = DB::table('hoa_don')->select('tongtien')->where('id','=',$id)->first();
+        return view('khach_hang.cart.bill-details', compact('cthd','khuyenmai','tongtien'));
     }
 }

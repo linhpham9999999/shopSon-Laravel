@@ -117,6 +117,7 @@
 <script src="{{ asset('khach_hang_asset/assets/js/custom_js/cart.js') }}"></script>
 <script src="{{ asset('khach_hang_asset/assets/js/custom_js/wishlist.js') }}"></script>
 <script src="{{asset('khach_hang_asset/assets/js/custom_js/add-cart.js')}}"></script>
+<script src="{{ asset('khach_hang_asset/assets/js/custom_js/accept-order.js') }}"></script>
 <!-- alertify JS -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 

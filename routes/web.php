@@ -449,6 +449,8 @@ Route::group(
                 //lịch sử mua hàng
                 Route::post('/chi-tiet', 'App\Http\Controllers\BuyProductsController@orderSuccess')->name('order');
                 Route::get('/chi-tiet', 'App\Http\Controllers\OrderHistoryController@getData')->name('lich-su-mua-hang');
+                //Chi tiết từng hóa đơn
+                Route::get('/chi-tiet-hoa-don/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail');
             }
         );
 
@@ -464,8 +466,7 @@ Route::group(
         );
         Route::post('/quickView','App\Http\Controllers\QuickViewController@quickView');
         Route::post('/quickViewColor','App\Http\Controllers\QuickViewController@quickViewColor');
-        //Chi tiết từng hóa đơn
-        Route::get('/billDetail/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail')->middleware('loginKH');
+
         //KH xác nhận lấy hàng
         Route::post('/accept-order','App\Http\Controllers\DuyetHDController@confirm')->name('accept-order')->middleware('loginKH');
         //Thanh toán bằng MOMO

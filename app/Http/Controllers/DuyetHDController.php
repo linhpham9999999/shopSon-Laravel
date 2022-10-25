@@ -54,13 +54,14 @@ class DuyetHDController extends Controller
     }
     function confirm(Request $request){
 //        dd($request->idHD);
-        DB::table('hoa_don')->select('*')->where('id', '=',$request->idHD)
+        DB::table('hoa_don')->select('*')->where('id', '=',$request->input('idHD'))
             ->update(
                 [
                     'id_TT' => 1,
                 ]
             );
-        return back()->with('thongbao', '');
+        return response()->json(['status'=>'Xác nhận lấy hàng thành công']);
+//        return back()->with('thongbao', '');
     }
 
     function getDSChuaDuyet(){

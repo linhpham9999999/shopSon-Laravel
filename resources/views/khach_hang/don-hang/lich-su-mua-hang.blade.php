@@ -159,6 +159,7 @@
                                                 <tr>
                                                     <th>Mã hóa đơn</th>
                                                     <th>Ngày đặt</th>
+                                                    <th>Ngày giao</th>
                                                     <th>Trạng thái</th>
                                                     <th>Tổng tiền</th>
                                                     <th>Action</th>
@@ -169,6 +170,7 @@
                                                     <tr>
                                                         <td>{{$dm->Ma_HD }}</td>
                                                         <td>{{DateTime::createFromFormat('Y-m-d', $dm->ngaydat)->format('m/d/Y')}}</td>
+                                                        <td>{{DateTime::createFromFormat('Y-m-d', $dm->ngaygiao)->format('m/d/Y')}}</td>
                                                         <td>{{ $dm->trangthai}}</td>
                                                         <td>{{ $dm->tongtien}}</td>
                                                         <td><a href="{{route('bill-detail',['id'=>$dm->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">Xem</a></td>
