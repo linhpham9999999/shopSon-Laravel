@@ -40,10 +40,14 @@ class CheckoutController extends Controller
         $subPrice = $this->subPrice($products);
         $shipping = $this->shipPrice($products);
 //        dd(empty($products) , $isHasProductsCart);
+        $current = Carbon::now()->toDateString();
+        $promotion = DB::table('khuyen_mai')->select('*')
+            ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current]])->get()->toArray();
         return view('khach_hang/cart/viewCart',['products'     => $products,
                                                     'isHasProduct'  => $isHasProductsCart,
                                                     'subPrice'      => $subPrice,
-                                                    'shipping'      => $shipping
+                                                    'shipping'      => $shipping,
+                                                    'promotion'=>$promotion
                                                     ]
         );
     }
@@ -69,9 +73,31 @@ class CheckoutController extends Controller
             $json = json_encode($products);
             Cookie::queue('cart',$json,300000);
         } else {
-            return back()->with('message','Mã khuyến mãi không hợp lệ');
+//            return back()->with('message','Mã khuyến mãi không hợp lệ');
+            return response()->json(['error'=>'Mã khuyến mãi không hợp lệ']);
         }
-        return back()->with('message','Áp dụng khuyến mãi thành công');
+        return response()->json(['status'=>'Áp dụng khuyến mãi thành công']);
+//        return back()->with('message','Áp dụng khuyến mãi thành công');
+    }
+
+    public function deletePromo(Request $request){
+        if(Cookie::has('cart')){
+            $cart = Cookie::get('cart');
+            $products = json_decode($cart, true);
+            foreach ($products as $product) {
+                if ($product['promotion'] != 0) {
+                    $product['promotion'] = null;
+                    $product['id_KM'] = null;
+                }else {
+                    return response()->json(['error'=>'Chưa áp dụng khuyến mãi']);
+                }
+                $id = $product['id'];
+                $products[$id] = $product;
+            }
+            $json = json_encode($products);
+            Cookie::queue('cart',$json,300000);
+        }
+        return response()->json(['status'=>'Xóa mã khuyến mãi thành công']);
     }
 
     /**
@@ -131,8 +157,8 @@ class CheckoutController extends Controller
         return $shipping;
     }
 
-    public function deleteCart(Request $request){
-        $id = $request->product_color_id;
+    public function deleteCart($id){
+//        $id = $request->product_color_id;
         $cart = Cookie::get('cart');
         $products = json_decode($cart, true);
         if (array_key_exists($id, $products)) {

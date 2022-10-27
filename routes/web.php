@@ -416,9 +416,13 @@ Route::group(
             function () {
                 Route::post('/add', 'App\Http\Controllers\CartController@store')->name('add-cart');
                 Route::get('/view-cart', 'App\Http\Controllers\CheckoutController@showView')->name('view-cart');
-                Route::post('delete', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
+                Route::post('delete/{id}', 'App\Http\Controllers\CheckoutController@deleteCart')->name('delete-cart');
                 // Ap dung khuyen mai
                 Route::post('/app-promotion','App\Http\Controllers\CheckoutController@applyPromo')->name('applyPromotion');
+                // delete khuyến mãi
+                Route::post('/delete-promotion','App\Http\Controllers\CheckoutController@deletePromo')->name('applyPromotion');
+                // load cart
+                Route::get('/load-cart-data','App\Http\Controllers\CartController@loadcount');
             }
         );
         //WishList
@@ -427,7 +431,7 @@ Route::group(
             function () {
                 Route::post('/add', 'App\Http\Controllers\WishlistController@wishList')->name('add-wishlist');
                 Route::get('/view-list', 'App\Http\Controllers\WishlistController@viewList')->name('wishList');
-                Route::post('delete', 'App\Http\Controllers\WishlistController@deleteList')->name('detele-wish-list');
+                Route::post('delete/{id}', 'App\Http\Controllers\WishlistController@deleteList')->name('detele-wish-list');
             }
         );
         // Mua hàng
@@ -437,7 +441,7 @@ Route::group(
                 //Kiem tra truoc khi thanh toan
                 Route::get('/billing-details', 'App\Http\Controllers\BuyProductsController@proceedCheckout')->name('proceed-to-checkout');
                 //Huy don hang khi trang thai chua duyet
-                Route::get('/delete-order/{id}', 'App\Http\Controllers\DeleteOrderController@delete')->name('delete-order');
+                Route::post('/delete-order/{id}', 'App\Http\Controllers\DeleteOrderController@delete')->name('delete-order');
                 // cap nhat gio hàng
                 Route::post('/api/update-cart', 'App\Http\Controllers\CartApiController@updateCart')->name('getProductDetailApi');
             }
@@ -478,7 +482,6 @@ Route::group(
                 Route::get('/mail-order','App\Http\Controllers\MailController@getData')->name('getMail');
             }
         );
-
     }
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');

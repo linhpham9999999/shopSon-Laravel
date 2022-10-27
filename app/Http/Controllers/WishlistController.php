@@ -51,9 +51,9 @@ class WishlistController extends Controller
         return view('khach_hang.wish_list.wish-list',compact('wishlist'));
     }
 
-    public function deleteList(Request $request)
+    public function deleteList($id)
     {
-        $idmsp = $request->product_id;
+        $idmsp = $id;
         DB::table('yeu_thich')->where('id','=',$idmsp)->delete();
         return response()->json(['status'=>'Xóa màu son yêu thích thành công']);
     }

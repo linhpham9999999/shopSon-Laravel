@@ -64,7 +64,7 @@
                                         <td class="pro-remove">
                                             <input type="hidden" class="product_id_cart_delete" value="{{$product['id']}}">
                                             @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
-                                            <a class="delete-cart-to-btn">
+                                            <a class="delete-cart-to-btn" onclick="deleleProductFromCart('{{route('delete-cart',['id'=>$product['id']])}}')">
                                                 <i class="lnr lnr-trash"></i>
                                             </a></td>
                                             @else
@@ -79,16 +79,21 @@
                         </div>
                         <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
                             <div class="apply-coupon-wrapper" style=" width: 420px;margin-left: 710px;">
-                                <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</button>
-                                <a href="{{route('allSanPham')}}" class="btn flosun-button primary-btn rounded-0 black-btn">Tiếp tục mua hàng</a>
+{{--                                <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</button>--}}
+{{--                                <a href="{{route('allSanPham')}}" class="btn flosun-button primary-btn rounded-0 black-btn">Tiếp tục mua hàng</a>--}}
+                                <span style="padding-right:10px "> <strong>Mã khuyến mãi: </strong></span>
+                                @foreach($promotion as $promo)
+                                    <span style="border: 2px none slategray;border-right-style: solid;padding-right:7px;padding-left:7px">#{{$promo->Ma_KM}} (-{{$promo->phan_tram}}%)</span>
+                                @endforeach
                             </div>
                         </div>
                         <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
                             <div class="apply-coupon-wrapper" style=" margin-left: 505px;">
-                                <form action="{{route('applyPromotion')}}" method="post" class=" d-block d-md-flex">
+                                <form action="#" method="post" class=" d-block d-md-flex">
                                     {{csrf_field()}}
-                                    <input type="text" name="maKM" style="width: 350px;margin-left: 205px;" placeholder="Nhập mã giảm giá" required />
-                                    <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Áp dụng</button>
+                                    <input class="promotion_code" type="text" name="maKM" style="width: 350px;margin-left: 205px;" placeholder="Nhập mã giảm giá" required />
+                                    <button class="btn flosun-button primary-btn rounded-0 black-btn apply-promotion-code">Áp dụng</button>
+                                    <button style="margin-left: 2px" class="btn flosun-button primary-btn rounded-0 black-btn delete-promotion-code">Xóa</button>
                                 </form>
                             </div>
                         </div>
@@ -103,7 +108,9 @@
                                     <table class="table">
 {{--                                        @foreach($products as $product)--}}
                                         <tr>
-                                            <td>Sub Total</td>
+                                            <td>Sub Total
+                                                -{{$product['promotion']}}%
+                                            </td>
                                             <td>{{ number_format( $subPrice * (1 - $product['promotion']*0.01) ,0,',','.')  }}</td>
                                         </tr>
                                         <tr>

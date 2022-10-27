@@ -43,7 +43,8 @@ class OrderHistoryController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
                 ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
-            ->where([['hoa_don.email_nguoidung','=',$email],['hoa_don.id_TT','=',2]])->orderBy('hoa_don.id','desc')
+            ->where([['hoa_don.email_nguoidung','=',$email],['hoa_don.id_TT','=',4]])
+            ->orderBy('hoa_don.id','desc')
             ->get()->toArray();
 
         $users = DB::table('nguoi_dung')

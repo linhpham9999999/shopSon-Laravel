@@ -95,7 +95,7 @@
                                                     <td><a href="{{route('bill-detail',['id'=>$cxn->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">Xem</a></td>
                                                     <td>
                                                         @if ($cxn->idTT == 3)
-                                                            <a href="{{route('delete-order',['id'=>$cxn->id])}}" class="btn flosun-button secondary-btn theme-color  rounded-0">
+                                                            <a onclick="deleteOrder('{{route('delete-order',['id'=>$cxn->id])}}')" class="btn flosun-button secondary-btn theme-color  rounded-0">
                                                                 Hủy
                                                             </a>
                                                         @else

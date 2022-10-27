@@ -59,22 +59,16 @@
                                 <td class="pro-title">{{$list->mau}}</td>
                                 <td class="pro-price"><span>{{ number_format( $list->gia_ban_ra ,0,',','.')  }} VND</span></td>
                                 <td class="pro-cart">
-{{--                                    <form action="{{route('add-cart')}}" method="post">--}}
-{{--                                        {{csrf_field()}}--}}
-{{--                                        <input type="hidden" name="productIdColor" class="cart_product_id_{{$list->id_MSP}}" value="{{$list->id_MSP}}">--}}
-{{--                                        <button type="button" class="btn product-cart add-to-cart" name="add-to-cart" data-id_product="{{$list->id_MSP}}">Thêm giỏ hàng</button>--}}
-{{--                                        <button type="submit" class="btn product-cart add-to-cart" name="add-to-cart">Thêm giỏ hàng</button>--}}
-{{--                                    </form>--}}
                                     <a href="{{route('product-color-detail',['id' => $list->id_MSP])}}"> <span>CHI TIẾT</span> </a>
                                 </td>
                                 <td class="pro-remove">
-                                    <input type="hidden" class="product_id_wish_delete" value="{{$list->id}}">
                                     @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
-                                    <a class="delete-wish-list-to-btn">
+                                    <input type="hidden" class="product_id_wish_delete" value="{{$list->id}}">
+                                    <a class="delete-wish-list-to-btn" onclick="deleteWishList('{{route('detele-wish-list',['id'=>$list->id])}}') ">
                                         <i class="lnr lnr-trash"></i>
                                     </a>
                                     @else
-                                        <a class="request-login">
+                                        <a class="request-login" href="{{route('loginKH')}}">
                                             <i class="lnr lnr-trash"></i>
                                         </a>
                                     @endif

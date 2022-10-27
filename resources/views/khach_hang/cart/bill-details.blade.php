@@ -75,6 +75,8 @@
         <button style="float: left;margin-left: 600px;" class="btn product-cart button-icon flosun-button dark-btn">{{$ct->trangthai}}</button>
         @elseif($ct->idTT === 2)
             <button style="float: left;margin-left: 470px;" class="btn product-cart button-icon flosun-button dark-btn">{{$ct->trangthai}}</button>
+        @elseif($ct->idTT === 4)
+            <button style="float: left;margin-left: 500px;" class="btn product-cart button-icon flosun-button dark-btn">{{$ct->trangthai}}</button>
         @endif
         <a style="float: left;margin-left: 48px;" class="btn flosun-button secondary-btn secondary-border rounded-0" href="{{route('product-color-detail',['id'=>$ct->idMSP])}}">Mua lại</a>
     </div>

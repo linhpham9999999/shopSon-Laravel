@@ -134,5 +134,22 @@ class CartController extends Controller
         return $products;
     }
 
+    public function loadcount(){
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
+        }
+        $countcart = 0;
+        $cart = Cookie::get('cart');
+        $products = json_decode($cart, true);
+        foreach ($products as $product){
+            if($email === $product['email']){
+                $countcart++;
+            }
+        }
+//        dd($count);
+        return response()->json(['count'=>$countcart]);
+    }
 
 }

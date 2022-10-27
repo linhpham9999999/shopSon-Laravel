@@ -44,7 +44,8 @@ class DeleteOrderController extends Controller
         }
         DB::table('hoa_don')->where('id','=',$id)->update(['id_TT' => 4]);
         DB::table('chi_tiet_hoa_don')->where('id_HD','=',$id)->update(['trang_thai' => 0]);
-        return redirect()->back()->with('alert','Hủy đơn hàng thành công');
+        return response()->json(['status'=>'Hủy đơn hàng thành công']);
+//        return redirect()->back()->with('alert','Hủy đơn hàng thành công');
     }
 }
 
