@@ -53,7 +53,9 @@ class KhachHangController extends Controller
         $sanphamnew = DB::table('san_pham')->select('*')
             ->where('trang_thai','=',1)
             ->orderBy('id','desc')->take(3)->get();
-        return view('khach_hang.shop.product-color-list',compact('listColorProduct','loaisp','sanpham','sanphamnew'));
+
+        return view('khach_hang.shop.product-color-list',
+                    compact('listColorProduct','loaisp','sanpham','sanphamnew'));
     }
     // Xem chi tiet san pham de them cart
     public function listDetailColorProduct($id){
@@ -78,8 +80,13 @@ class KhachHangController extends Controller
         $sanphamnew = DB::table('san_pham')->select('*')
             ->where('trang_thai','=',1)
             ->orderBy('id','desc')->take(3)->get();
+        $rating = DB::table('binh_luan')->where('id_MSP','=',$id)->avg('so_sao');
+        $rating = round($rating);
+        $comment = DB::table('binh_luan')->select('id_MSP','noi_dung','create_at','emailnguoidung')
+            ->where([['id_MSP','=',$id],['hien_thi','=',1]])->get()->toArray();
+//        dd($rating);
         return view('khach_hang.shop.product-color-detail2',
-                    compact('mausp','loaisp','sanpham','sanphamnew','san_pham_tuong_tu'));
+                    compact('mausp','loaisp','sanpham','sanphamnew','san_pham_tuong_tu','rating','comment'));
     }
     // View Lien He
     public function contact()

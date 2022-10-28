@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+class RatingController extends Controller
+{
+    public function rating(Request $request){
+        $email = null;
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
+        }
+        if($email != null){
+            DB::table('binh_luan')->insert([
+                                               'so_sao'=> $request->index,
+                                               'id_MSP'=> $request->product_color_id,
+                                               'create_at' =>Carbon::now(),
+                                               'emailnguoidung' => $email]);
+            return response()->json(['status'=>'Đánh sao thành công']);
+        }
+        return response()->json(['error'=>'Bạn chưa đăng nhập']);
+    }
+    public function comment(Request $request){
+//        dd($request->comment);
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
+        }
+        DB::table('binh_luan')->insert([
+            'noi_dung'=>$request->comment,
+            'id_MSP'=> $request->idMSP,
+            'create_at' => Carbon::now(),
+            'hien_thi'  => 0,
+            'emailnguoidung' => $email
+        ]);
+        return redirect()->route('product-color-detail',['id'=>$request->idMSP])
+            ->with('alert','Bình luận đang chờ admin duyệt');
+    }
+}

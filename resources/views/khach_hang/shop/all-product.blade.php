@@ -88,7 +88,7 @@
 {{--                                </div>--}}
 {{--                            @endif--}}
                         <div class="price-box">
-                            <span class="regular-price ">{{ number_format( $sp->gia_ban_ra ,0,',','.')  }} đ</span>
+                            <span class="regular-price ">{{ number_format( $sp->gia_ban_ra ,0,',','.')  }} VND</span>
                             {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                         </div>
                         <a href="{{route('list-color-product',['id' => $sp->id])}}" class="btn product-cart">CHỌN MÀU SON</a>
@@ -98,7 +98,7 @@
                             <h4 class="title-2">{{$sp->ten_SP}}</h4>
                         </div>
                         <div class="price-box">
-                            <span class="regular-price ">{{ $sp->gia_ban_ra}} đ</span>
+                            <span class="regular-price ">{{ number_format( $sp->gia_ban_ra ,0,',','.')  }} VND</span>
                             {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                         </div>
                         <p class="desc-content">{{$sp->gioithieu}}</p>

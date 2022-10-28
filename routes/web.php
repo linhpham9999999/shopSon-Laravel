@@ -482,6 +482,9 @@ Route::group(
                 Route::get('/mail-order','App\Http\Controllers\MailController@getData')->name('getMail');
             }
         );
+        // đánh giá sản phẩm
+        Route::post('/insert-rating','App\Http\Controllers\RatingController@rating');
+        Route::post('/insert-comment','App\Http\Controllers\RatingController@comment')->name('add-comment');
     }
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');
