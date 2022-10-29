@@ -1,7 +1,7 @@
 @extends('khach_hang.layout.index')
 
 @section('title')
-    <title>Shop son HLYNK Lipsticks</title>
+    <title>Chi tiết đơn hàng</title>
     <base href="{{asset('')}}">
     <link rel="stylesheet" href="khach_hang_asset/assets/css/linh.css">
 @endsection()
@@ -56,7 +56,7 @@
                         <p class="desc-content mb-5">{{$ct->thongTinMau}}</p>
                     </div>
                     <a style="float: left;" class="btn flosun-button secondary-btn secondary-border rounded-0" href="{{route('product-color-detail',['id'=>$ct->idMSP])}}">Mua lại</a>
-                    <a style="float: right; margin-right: 400px;" class="btn flosun-button secondary-btn" href="{{route('product-color-detail',['id'=>$ct->idMSP])}}">Đánh giá</a>
+                    <a style="float: right; margin-right: 400px;" target="_blank" class="btn flosun-button secondary-btn" href="{{route('danh-gia-san-pham',['id'=>$ct->idMSP])}}">Đánh giá</a>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
             <button style="float: left;margin-left: 680px;" class="btn flosun-button secondary-btn" >{{$ct->trangthai}}</button>
         @elseif($ct->idTT === 5 && (Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
             <input type="hidden" name="idHD" value="{{$ct->idHD}}" class="order-id">
-            <button style="float: left;margin-left: 630px;" class="btn flosun-button secondary-btn">Đã nhận được hàng</button>
+            <button style="float: left;margin-left: 630px;" class="btn flosun-button secondary-btn accept-receive-order">Đã nhận được hàng</button>
         @elseif($ct->idTT === 1)
         <button style="float: left;margin-left: 730px;" class="btn flosun-button secondary-btn">{{$ct->trangthai}}</button>
         @elseif($ct->idTT === 2)

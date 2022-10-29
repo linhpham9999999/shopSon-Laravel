@@ -112,11 +112,19 @@
 {{--                                <span class="nk-menu-text">Quản lý tin tức</span>--}}
 {{--                            </a>--}}
 {{--                        </li>--}}
-                    <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link">
+                    <li class="nk-menu-item has-sub">
+                        <a href="{{route('quan-ly-cmt')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
                             <span class="nk-menu-text">Quản lý bình luận</span>
                         </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('quan-ly-cmt')}}" class="nk-menu-link"><span class="nk-menu-text">Bình luận chờ duyệt</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('danh-sach-cmt')}}" class="nk-menu-link"><span class="nk-menu-text">Danh sách bình luận</span></a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="nk-menu-item has-sub">

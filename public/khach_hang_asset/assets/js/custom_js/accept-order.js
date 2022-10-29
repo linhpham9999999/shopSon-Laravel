@@ -1,5 +1,4 @@
 $(document).ready(function (){
-    //Them san pham vao cart
     $('.accept-receive-order').click(function (e){
         e.preventDefault();
         $.ajaxSetup({

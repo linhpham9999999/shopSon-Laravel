@@ -132,6 +132,15 @@ Route::group(
                 Route::post('them', 'App\Http\Controllers\NhanVienController@postThem')->name('actionThem6');
             }
         );
+        // Quản lý bình luận
+        Route::group(
+            ['prefix' => 'binh-luan', 'middleware' => 'checkQuanTriVien'],
+            function () {
+                Route::get('danh-sach-can-duyet', 'App\Http\Controllers\RatingController@getDanhSachCanDuyet')->name('quan-ly-cmt');
+                Route::get('danh-sach-da-duyet', 'App\Http\Controllers\RatingController@getDanhSachDaDuyet')->name('danh-sach-cmt');
+                Route::post('duyet', 'App\Http\Controllers\RatingController@duyetBinhLuan')->name('duyet-cmt');
+            }
+        );
         // Duyệt đơn hàng
         Route::group(['prefix'=>'duyetHD','middleware' => 'checkBanHang'],
             function (){
@@ -421,7 +430,7 @@ Route::group(
                 Route::post('/app-promotion','App\Http\Controllers\CheckoutController@applyPromo')->name('applyPromotion');
                 // delete khuyến mãi
                 Route::post('/delete-promotion','App\Http\Controllers\CheckoutController@deletePromo')->name('applyPromotion');
-                // load cart
+                // load count cart
                 Route::get('/load-cart-data','App\Http\Controllers\CartController@loadcount');
             }
         );
@@ -455,6 +464,8 @@ Route::group(
                 Route::get('/chi-tiet', 'App\Http\Controllers\OrderHistoryController@getData')->name('lich-su-mua-hang');
                 //Chi tiết từng hóa đơn
                 Route::get('/chi-tiet-hoa-don/{id}','App\Http\Controllers\BuyProductsController@billDetailView')->name('bill-detail');
+                // đánh giá sao SP sau khi mua
+                Route::get('/danh-gia/{id}', 'App\Http\Controllers\KhachHangController@listDetailColorProductRating')->name('danh-gia-san-pham');
             }
         );
 
@@ -484,7 +495,7 @@ Route::group(
         );
         // đánh giá sản phẩm
         Route::post('/insert-rating','App\Http\Controllers\RatingController@rating');
-        Route::post('/insert-comment','App\Http\Controllers\RatingController@comment')->name('add-comment');
+        Route::post('/insert-comment','App\Http\Controllers\RatingController@comment')->name('add-comment')->middleware('loginKH');
     }
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');

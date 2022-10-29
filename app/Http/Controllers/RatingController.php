@@ -43,4 +43,29 @@ class RatingController extends Controller
         return redirect()->route('product-color-detail',['id'=>$request->idMSP])
             ->with('alert','Bình luận đang chờ admin duyệt');
     }
+    //admin quản lý bình luận
+    public function getDanhSachCanDuyet(){
+        $data = DB::table('binh_luan')
+            ->join('mau_san_pham','binh_luan.id_MSP','=','mau_san_pham.id')
+            ->select('binh_luan.id as idCMT','noi_dung','id_MSP','hinhanh','Ma_MSP','binh_luan.create_at','mau','emailnguoidung','hien_thi')
+            ->where([['noi_dung','!=',null],['hien_thi','=',0]])
+            ->get()->toArray();
+        return view('admin.binh-luan.danhsach',compact('data'));
+    }
+    public function getDanhSachDaDuyet(){
+        $data = DB::table('binh_luan')
+            ->join('mau_san_pham','binh_luan.id_MSP','=','mau_san_pham.id')
+            ->select('binh_luan.id as idCMT','noi_dung','id_MSP','hinhanh','Ma_MSP','binh_luan.create_at','mau','emailnguoidung','hien_thi')
+            ->where([['noi_dung','!=',null],['hien_thi','=',1]])
+            ->get()->toArray();
+        return view('admin.binh-luan.danhsachdaduyet',compact('data'));
+    }
+    public function duyetBinhLuan(Request $request){
+        DB::table('binh_luan')->where('id','=',$request->idCMT)
+            ->update([
+                'hien_thi'=>1
+                     ]);
+        return redirect()->route('quan-ly-cmt')->with('thongbao','Duyệt thành công');
+//        return response()->json(['status'=>'Duyệt thành công']);
+    }
 }

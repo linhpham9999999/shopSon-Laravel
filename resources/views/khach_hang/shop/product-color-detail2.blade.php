@@ -1,7 +1,7 @@
 @extends('khach_hang.layout.index')
 
 @section('title')
-    <title>Shop son HLYNK Lipsticks</title>
+    <title>Đánh giá sản phẩm</title>
     <base href="{{asset('')}}">
     <link rel="stylesheet" href="khach_hang_asset/assets/css/linh.css">
 @endsection()
