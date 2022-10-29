@@ -9,14 +9,26 @@ use Illuminate\Support\Facades\DB;
 class KhachHangController extends Controller
 {
     public function index(){
-        $sanpham  = DB::table('san_pham')->select('*')
-            ->where([['noibat','=',1],['trang_thai','=',1]])
-            ->get();
         $data = DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','mau_san_pham.id','=','chi_tiet_hoa_don.id_MSP')
-            ->select('chi_tiet_hoa_don.id_MSP','mau_san_pham.id_SP' )->get()->toArray();
-//        dd($data);
-        return view('khach_hang.trangchu', compact('sanpham'));
+            ->join('hoa_don','chi_tiet_hoa_don.id_HD','=','hoa_don.id')
+            ->where('hoa_don.id_TT','!=',4)
+            ->select('mau_san_pham.id_SP',DB::raw('count(mau_san_pham.id_SP) as solanmua'))
+            ->groupBy('mau_san_pham.id_SP')->get()->toArray();
+        foreach ($data as $item){
+            if($item->solanmua >= 2){
+                $idSP_ban_chay[] = array(
+                    'id_SP' => $item->id_SP
+                );
+            }
+        }
+        $san_pham_ban_chay = DB::table('san_pham')->select('*')
+            ->where('trang_thai','=',1)
+            ->whereIn('id',$idSP_ban_chay)->get();
+        $sanphamnew = DB::table('san_pham')->select('*')
+            ->where('trang_thai','=',1)
+            ->orderBy('id','desc')->take(5)->get();
+        return view('khach_hang.trangchu', compact('san_pham_ban_chay','sanphamnew'));
     }
     // Thông tin tất cả sản phẩm trong bảng SAN_PHAM
     public function listSP(){

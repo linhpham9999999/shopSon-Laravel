@@ -55,11 +55,11 @@
             <div class="col-12 col-custom">
                 <div class="product-slider swiper-container anime-element-multi">
                     <div class="swiper-wrapper">
-                        @foreach($sanpham as $sp)
+                        @foreach($san_pham_ban_chay as $sp)
                             <div class="single-item swiper-slide">
                                 <div class="single-product position-relative mb-30">
                                     <div class="product-image">
-                                        <a class="d-block" href="product-details.html">
+                                        <a class="d-block" href="{{route('list-color-product',['id'=>$sp->id])}}">
                                             <img src="admin_asset/image_son/{{$sp->hinhanhgoc}}" alt="" class="product-image-1 w-100" width="420px" height="300px">
                                             {{--<img src="khach_hang_asset/assets/images/product/4.jpg" alt="" class="product-image-2 position-absolute w-100">--}}
                                         </a>
@@ -76,62 +76,64 @@
                                         <div class="product-title">
                                             <h4 class="title-2"> <a href="product-details.html">{{$sp->ten_SP}}</a></h4>
                                         </div>
-{{--                                        <div class="product-rating">--}}
-{{--                                            @if($sp->sosao == 0)--}}
-{{--                                                <div class="product-rating">--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                </div>--}}
-{{--                                            @elseif($sp->sosao == 1)--}}
-{{--                                                <div class="product-rating">--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                </div>--}}
-{{--                                            @elseif($sp->sosao == 2)--}}
-{{--                                                <div class="product-rating">--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                </div>--}}
-{{--                                            @elseif($sp->sosao == 3)--}}
-{{--                                                <div class="product-rating">--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                </div>--}}
-{{--                                            @elseif($sp->sosao == 4)--}}
-{{--                                                <div class="product-rating">--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star-o"></i>--}}
-{{--                                                </div>--}}
-{{--                                            @else($sp->sosao == 5)--}}
-{{--                                                <div class="product-rating">--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                            @endif--}}
-{{--                                        </div>--}}
                                         <div class="price-box">
                                             <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
 {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                         </div>
                                         <a href="{{route('list-color-product',['id'=>$sp->id])}}" class="btn product-cart">Chọn màu sản phẩm</a>
+                                    </div>
+                                </div>
+                                <!--Single Product End-->
+                            </div>
+                        @endforeach
+                    </div>
+                    <!-- Slider pagination -->
+                    <div class="swiper-pagination default-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container custom-area-2 overflow-hidden">
+        <div class="row">
+            <!--Section Title Start-->
+            <div class="col-12 col-custom">
+                <div class="section-title text-center mb-30">
+                    <span class="section-title-1">New Product</span>
+                    <h3 class="section-title-3">Sản phẩm mới nhất</h3>
+                </div>
+            </div>
+            <!--Section Title End-->
+        </div>
+        <div class="row product-row" >
+            <div class="col-12 col-custom">
+                <div class="product-slider swiper-container anime-element-multi">
+                    <div class="swiper-wrapper">
+                        @foreach($sanphamnew as $spn)
+                            <div class="single-item swiper-slide">
+                                <div class="single-product position-relative mb-30">
+                                    <div class="product-image">
+                                        <a class="d-block" href="{{route('list-color-product',['id'=>$spn->id])}}">
+                                            <img src="admin_asset/image_son/{{$spn->hinhanhgoc}}" alt="" class="product-image-1 w-100" width="420px" height="300px">
+                                            {{--<img src="khach_hang_asset/assets/images/product/4.jpg" alt="" class="product-image-2 position-absolute w-100">--}}
+                                        </a>
+                                        <div class="add-action d-flex flex-column position-absolute">
+                                            <form>
+                                                {{csrf_field()}}
+                                                <a class="list-icon" title="Add To Wishlist">
+                                                    <button type="button" data-toggle="modal" data-target="#xemnhanh" class="quick-view xemnhanh" name="xemnhanh" data-id_product="{{$spn->id}}"><i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="xem chi tiết"></i></button>
+                                                </a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="product-title">
+                                            <h4 class="title-2"> <a href="product-details.html">{{$spn->ten_SP}}</a></h4>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="regular-price ">{{ $spn->gia_ban_ra}}</span>
+                                            {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
+                                        </div>
+                                        <a href="{{route('list-color-product',['id'=>$spn->id])}}" class="btn product-cart">Chọn màu sản phẩm</a>
                                     </div>
                                 </div>
                                 <!--Single Product End-->
