@@ -55,7 +55,7 @@
                                     <td class="nk-tb-col tb-col-lg">
                                         <span>{{$dt->mau}}</span>
                                     </td>
-                                    <td class="nk-tb-col tb-col-md">
+                                    <td class="nk-tb-col tb-col-md product-image-admin">
                                        <img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="50px" height="50px"/>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">

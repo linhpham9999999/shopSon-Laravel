@@ -76,7 +76,7 @@
                                     <span class="cart-item_count cart-count">0</span> <!--Số lượng sản phẩm trong giỏ hàng-->
                                     @endif
                                 </a>
-                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
+                                {{--<div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
                                     <div class="single-cart-item">
                                         <div class="cart-img">
                                             <a href="cart.html"><img src="khach_hang_asset/assets/images/cart/1.jpg" alt=""></a>
@@ -102,7 +102,7 @@
                                         <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">Giỏ Hàng</a>
                                         <a class="btn flosun-button secondary-btn rounded-0" href="checkout.html">Thủ tục thanh toán</a>
                                     </div>
-                                </div>
+                                </div>--}}
                             </li>
                             <li class="sidemenu-wrap">
                                 <i class="fa fa-search"></i>

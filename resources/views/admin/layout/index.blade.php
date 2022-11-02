@@ -40,6 +40,13 @@
             margin-bottom: 10px;
         }
 
+        .product-image-admin {
+            transition: transform .2s; /* Animation */
+        }
+
+        .product-image-admin:hover {
+            transform: scale(2.5);
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>

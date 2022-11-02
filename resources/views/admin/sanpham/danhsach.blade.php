@@ -40,7 +40,6 @@
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Giá bán ra</span></th>
 {{--                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Số lượng tồn</span></th>--}}
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Hạn sử dụng</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Nổi bật</span></th>
                                 <th class="nk-tb-col tb-col-mb" colspan="2" style="text-align: center"><span class="sub-text">Action</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
@@ -53,7 +52,7 @@
                                     <td class="nk-tb-col tb-col-lg">
                                         <span>{{$sp->ten_SP}}</span>
                                     </td>
-                                    <td class="nk-tb-col tb-col-md">
+                                    <td class="nk-tb-col tb-col-md product-image-admin">
                                         <span><img src="admin_asset/image_son/{{$sp->hinhanhgoc}}" width="50px" height="50px"/></span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
@@ -70,13 +69,6 @@
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$sp->hansudung_thang}} tháng</span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-mb">
-                                        @if($sp->noibat == 1)
-                                            {{ 'Có' }}
-                                        @else
-                                            {{'Không'}}
-                                        @endif
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <button class="btn btn-sm  js-delete-sanpham" data-id="{{ $sp->id }}">{{-- btn-outline-danger py-0--}}

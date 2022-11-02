@@ -1,6 +1,122 @@
 @extends('admin.layout.index')
 @section('content')
-<div style="background-color: #008080">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="padding: 15px 15px">
+                    @if(session('thongbao'))
+                        <div class="alert alert-success">
+                            {{session('thongbao')}}
+                        </div>
+                    @endif
+                    <div class="header">
+                        <h4 class="title">Thêm thông tin sản phẩm</h4>
+                    </div>
+                    <div class="content">
+                        <form action="{{route('postSuaSP',['id'=>$sanpham->id])}}" method="POST" role="form" enctype="multipart/form-data" >
+                            {{csrf_field()}}
+                            <div class="row" style="margin: 10px;">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Loại sản phẩm</label>
+                                        <select class="form-control" name="idLSP">
+                                            @foreach($loaisp as $lsp)
+                                                <option value="{{$lsp->id}}">{{$lsp->ten_LSP}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Mã sản phẩm</label>
+                                        <input type="text" value="{{$sanpham->Ma_SP}}" class="form-control" name="idSP" placeholder="MSP001"/>
+                                        <div class="error"> {{$errors->first('idSP')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" style="margin-bottom: unset;">Tên sản phẩm</label>
+                                        <input type="text" value="{{$sanpham->ten_SP}}" name="tenSP" class="form-control" placeholder="Màu">
+                                        <div class="error"> {{$errors->first('tenSP')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" style="margin-bottom: unset;">Xuất xứ</label>
+                                        <input type="text" value="{{$sanpham->xuatxu}}" name="xuatxu" class="form-control">
+                                        <div class="error"> {{$errors->first('xuatxu')}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 10px;">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Trọng lượng</label>
+                                        <input type="text" name="trluong" value="{{$sanpham->trongluong}}" class="form-control" placeholder="4 (g)">
+                                        <div class="error"> {{$errors->first('trluong')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Giá nhập vào</label>
+                                        <input name="gianhap" class="form-control" value="{{$sanpham->gia_nhap_vao}}" placeholder="100000 VND">
+                                        <div class="error">{{$errors->first('gianhap')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Giá bán ra</label>
+                                        <input name="giaban" class="form-control" value="{{$sanpham->gia_ban_ra}}" placeholder="100000 VND">
+                                        <div class="error">{{$errors->first('giaban')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Hạn sử dụng</label>
+                                        <input name="hsd" class="form-control" value="{{$sanpham->hansudung_thang}}" placeholder="1 tháng">
+                                        <div class="error">{{$errors->first('hsd')}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 10px;">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Giới thiệu</label>
+                                        <textarea type="text" value="{{$sanpham->gioithieu}}" name="gthieu" class="form-control" placeholder=""></textarea>
+                                        <div class="error"> {{$errors->first('gthieu')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Thành phần</label>
+                                        <textarea name="thanhphan" value="{{$sanpham->thanh_phan}}" class="form-control" placeholder=""></textarea>
+                                        <div class="error">{{$errors->first('thanhphan')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label style="margin-bottom: unset;">Hình ảnh sản phẩm</label>
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <input type="file" multiple class="custom-file-input" name="hinh_anh" id="customFile">
+                                            <div class="error"> {{$errors->first('hinh_anh')}}</div>
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="status" value = "1">
+                            </div>
+                            <button type="submit" style="margin-left: 450px;" class="btn btn-info btn-fill pull-right">Lưu thông tin</button>
+                            <button type="reset" class="btn btn-dim btn-warning pull-right">Làm mới</button>
+                            <a href="{{route('dsSP')}}" class="btn btn-dark pull-right">Xem Sản phẩm</a>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+{{--<div style="background-color: #008080">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +137,7 @@
                         <div class="form-control-wrap">
                             <select class="form-control" name="idLSP" id="idLSP-edit">
                                 @foreach($loaisp as $lsp)
-                                <option value="{{$lsp->id}}" id="idLSP-edit" >{{$lsp->ten_LSP}}</option>
+                                    <option value="{{$lsp->id}}" id="idLSP-edit" >{{$lsp->ten_LSP}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -83,15 +199,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="email-address">Nổi bật</label>
-                        <div class="form-control-wrap">
-                            <select class="form-control" name="noibat" id="noibat-edit">
-                                <option value="0">Không</option>
-                                <option value="1">Có</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="form-label" for="default-06">Hình ảnh</label>
                         <div class="form-control-wrap">
                             <div class="custom-file">
@@ -109,111 +216,4 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
-{{--@extends('admin.layout.index')
-@section('menu')
-    @include('admin.layout.menu_d')
-@endsection
-@section('content')
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Sản phẩm
-                        <small>sửa</small>
-                    </h1>
-                </div>
-                <!-- /.col-lg-12 -->
-                <div class="col-lg-7" style="padding-bottom:120px">
-
-                    @if(session('thongbao'))
-                        <div class="alert alert-success">
-                            {{session('thongbao')}}
-                        </div>
-                    @endif
-                    <form action="admin/sanpham/sua/{{$sanpham->id}}" method="POST"  enctype="multipart/form-data">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <label>Loại sản phẩm</label>
-                            <select class="form-control" name="idLSP">
-                                @foreach($loaisp as $lsp)
-                                    <option value="{{$lsp->id}}">{{$lsp->ten_LSP}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Nhà phân phối</label>
-                            <select class="form-control" name="idNPP">
-                                @foreach($nhapp as $npp)
-                                    <option value="{{$npp->id}}">{{$npp->ten_NPP}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <label>Mã sản phẩm</label>
-                        <input class="form-control" name="id" value="{{$sanpham->Ma_SP}}" placeholder="Mã sản phẩm phải có độ dài từ 3 đến 8 ký tự" />
-                        <div class="error"> {{$errors->first('id')}}</div>
-
-                        <label>Tên sản phẩm</label>
-                        <input class="form-control" name="ten" value="{{$sanpham->ten_SP}}" />
-                        <div class="error"> {{$errors->first('ten')}}</div>
-
-                        <label>Xuất xứ</label>
-                        <input class="form-control" name="xuatxu" value="{{$sanpham->xuatxu}}" placeholder="Xuất xứ sản phẩm có độ dài từ 3 đến 50 ký tự" />
-                        <div class="error"> {{$errors->first('xuatxu')}}</div>
-
-                        <label>Trọng lượng</label>
-                        <input class="form-control" name="trluong" value="{{$sanpham->trongluong}}" placeholder="Nhập trọng lượng sản phẩm (g)" />
-                        <div class="error"> {{$errors->first('trluong')}}</div>
-
-                        <label>Giá gốc</label>
-                        <input class="form-control" name="giagoc" value="{{$sanpham->giagoc}}" placeholder="Nhập giá sản phẩm (VNĐ)" />
-                        <div class="error"> {{$errors->first('giagoc')}}</div>
-
-                        <label>Giảm giá</label>
-                        <input class="form-control" name="giamgia" value="{{$sanpham->giamgia}}" placeholder="Nhập giảm giá sản phẩm (VNĐ)" />
-                        <div class="error"> {{$errors->first('giamgia')}}</div>
-
-                        <label>Số lượng tồn</label>
-                        <input class="form-control" name="slton" value="{{$sanpham->soluongton}}" placeholder="Nhập số lượng tồn của sản phẩm" />
-                        <div class="error"> {{$errors->first('slton')}}</div>
-
-                        <label>Hạn sử dụng </label>
-                        <input class="form-control" name="hsd" value="{{$sanpham->hansudung_thang}}" placeholder="Nhập hạn sử dụng sản phẩm (tháng)" />
-                        <div class="error"> {{$errors->first('hsd')}}</div>
-
-                        <label>Giới thiệu</label>
-                        <input class="form-control" name="gthieu" value="{{$sanpham->gioithieu}}" placeholder="Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự" />
-                        <div class="error"> {{$errors->first('gthieu')}}</div>
-
-                        <label>Số sao</label>
-                        <select class="form-control" name="sosao">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-
-                        <label>Nổi bật</label>
-                        <select class="form-control" name="noibat">
-                            <option value="0">Không</option>
-                            <option value="1">Có</option>
-                        </select>
-
-                        <label>Hình ảnh sản phẩm</label>
-                        <input type="file" name="hinh_anh" />
-                        <div class="error"> {{$errors->first('hinh_anh')}}</div>
-
-                        <button type="submit" class="btn btn-default">Sửa</button>
-                        <button type="reset" class="btn btn-default">Làm mới</button>
-                    </form>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- /#page-wrapper -->
-@endsection--}}
+</div>--}}

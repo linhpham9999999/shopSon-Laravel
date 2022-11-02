@@ -30,12 +30,12 @@ class ProductController extends Controller
             [
                 'idSP'        => 'bail|required|unique:san_pham,Ma_SP|min:3|max:8',
                 'tenSP'       => 'bail|required|unique:san_pham,ten_SP',
-                'xuatxu'    => 'bail|required|min:3|max:50',
+                'xuatxu'    => 'bail|required|min:2|max:50',
                 'trluong'   => 'bail|required|numeric|min:1',
                 'gianhap'    => 'bail|required|numeric|min:5',
                 'giaban'   => 'bail|required|numeric|min:5',
                 'hsd'       => 'bail|required|integer',
-                'gthieu'    => 'bail|required|min:5|max:500',
+                'gthieu'    => 'bail|required',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
@@ -46,8 +46,8 @@ class ProductController extends Controller
                 'tenSP.required'          => 'Bạn chưa nhập Tên sản phẩm',
                 'tenSP.unique'            => 'Tên sản phẩm đã tồn tại',
                 'xuatxu.required'       => 'Bạn chưa nhập Xuất xứ sản phẩm',
-                'xuatxu.min'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
-                'xuatxu.max'            => 'Tên sản phẩm phải có độ dài từ 3 đến 50 ký tự',
+                'xuatxu.min'            => 'Tên sản phẩm phải có độ dài từ 2 đến 50 ký tự',
+                'xuatxu.max'            => 'Tên sản phẩm phải có độ dài từ 2 đến 50 ký tự',
                 'trluong.required'      => 'Bạn chưa nhập Trọng lượng sản phẩm',
                 'trluong.numeric'       => 'Trọng lượng sản phẩm phải là 1 số',
                 'trluong.min'           => 'Trọng lượng sản phẩm phải lớn hơn 1',
@@ -59,8 +59,6 @@ class ProductController extends Controller
                 'giaban.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
-                'gthieu.min'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
-                'gthieu.max'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
                 'gthieu.required'       => 'Bạn chưa nhập Thông tin sản phẩm',
                 'hinh_anh.required'     => 'Bạn chưa chọn Hình ảnh của sản phẩm',
                 'hinh_anh.mimes'        => 'File chọn phải là file hình ảnh (*.jpg, *png)'
@@ -85,7 +83,7 @@ class ProductController extends Controller
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
                 'trang_thai'=> $request->status,
-                'noibat' => $request->noibat,
+                'thanh_phan'=>$request->thanhphan,
                 'created_at' => Carbon::now()
             ]
         );
@@ -97,7 +95,7 @@ class ProductController extends Controller
         $sanpham = DB::table('san_pham')->select('*')
             ->where([['id', '=', $id],['trang_thai','=',1]])
             ->first();
-        $loaisp = DB::table('loai_san_pham')->select('*')->get();
+        $loaisp = DB::table('loai_san_pham')->where('trang_thai','=',1)->select('id', 'ten_LSP')->get();
         return view('admin.sanpham.sua', compact('sanpham', 'loaisp'));
     }
 
@@ -113,7 +111,7 @@ class ProductController extends Controller
                 'gianhap'    => 'bail|required|numeric|min:5',
                 'giaban'   => 'bail|required|numeric|min:5',
                 'hsd'       => 'bail|required|integer',
-                'gthieu'    => 'bail|required|min:5|max:500',
+                'gthieu'    => 'bail|required',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
             ],
             [
@@ -137,8 +135,6 @@ class ProductController extends Controller
                 'giaban.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
-                'gthieu.min'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
-                'gthieu.max'            => 'Thông tin sản phẩm phải có độ dài từ 5 đến 500 ký tự',
                 'gthieu.required'       => 'Bạn chưa nhập Thông tin sản phẩm',
                 'hinh_anh.required'     => 'Bạn chưa chọn Hình ảnh của sản phẩm',
                 'hinh_anh.mimes'        => 'File chọn phải là file hình ảnh (*.jpg, *png)'
@@ -162,7 +158,7 @@ class ProductController extends Controller
                 'hansudung_thang' => $request->hsd,
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
-                'noibat' => $request->noibat,
+                'thanh_phan'=>$request->thanhphan,
                 'updated_at'=>Carbon::now()
             ]
         );
@@ -255,7 +251,6 @@ class ProductController extends Controller
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
                 'trang_thai'=> $request->status,
-                'noibat' => $request->noibat,
                 'created_at' => Carbon::now()
             ]
         );
@@ -267,7 +262,7 @@ class ProductController extends Controller
         $sanpham = DB::table('san_pham')->select('*')
             ->where([['id', '=', $id],['trang_thai','=',1]])
             ->first();
-        $loaisp = DB::table('loai_san_pham')->select('*')->get();
+        $loaisp = DB::table('loai_san_pham')->where('trang_thai','=',1)->select('id', 'ten_LSP')->get();
         return view('admin.sanpham-ban-hang.sua', compact('sanpham', 'loaisp'));
     }
 
@@ -332,7 +327,6 @@ class ProductController extends Controller
                 'hansudung_thang' => $request->hsd,
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
-                'noibat' => $request->noibat,
                 'updated_at'=>Carbon::now()
             ]
         );
@@ -425,7 +419,6 @@ class ProductController extends Controller
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
                 'trang_thai'=> $request->status,
-                'noibat' => $request->noibat,
                 'created_at' => Carbon::now()
             ]
         );
@@ -437,7 +430,7 @@ class ProductController extends Controller
         $sanpham = DB::table('san_pham')->select('*')
             ->where([['id', '=', $id],['trang_thai','=',1]])
             ->first();
-        $loaisp = DB::table('loai_san_pham')->select('*')->get();
+        $loaisp = DB::table('loai_san_pham')->where('trang_thai','=',1)->select('id', 'ten_LSP')->get();
         return view('admin.sanpham-nhap-kho.sua', compact('sanpham', 'loaisp'));
     }
 
@@ -502,7 +495,6 @@ class ProductController extends Controller
                 'hansudung_thang' => $request->hsd,
                 'gioithieu' => $request->gthieu,
                 'hinhanhgoc' => $name,
-                'noibat' => $request->noibat,
                 'updated_at'=>Carbon::now()
             ]
         );

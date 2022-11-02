@@ -35,17 +35,17 @@
                         <div class="product-details-img">
                             <div class="single-product-img swiper-container gallery-top popup-gallery">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide img-magnifier-container">
                                         <a class="w-100" href="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}">
-                                            <img class="w-100" src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" alt="Product">
+                                            <img id="myimage" class="w-100" src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" alt="Product">
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="single-product-thumb swiper-container gallery-thumbs">
-                                <div class="swiper-wrapper">
+                                <div class="swiper-wrapper img-magnifier-container">
                                     <div class="swiper-slide">
-                                        <img src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" alt="Product">
+                                        <img  id="myimage" src="admin_asset/image_son/mau_san_pham/{{$msp->hinhanh}}" alt="Product">
                                     </div>
                                 </div>
                                 <!-- Add Arrows -->
@@ -233,9 +233,9 @@
                                     <div class="single-item swiper-slide">
                                         <!--Single Product Start-->
                                         <div class="single-product position-relative mb-30">
-                                            <div class="product-image">
+                                            <div class="img-magnifier-container">
                                                 <a class="d-block" href="product-details.html">
-                                                    <img src="admin_asset/image_son/mau_san_pham/{{$sptt->hinhanh}}" alt="" class="product-image-1 w-100">
+                                                    <img id="myimage" src="admin_asset/image_son/mau_san_pham/{{$sptt->hinhanh}}" alt="" class="product-image-1 w-100">
                                                 </a>
                                                 @if($sptt->soluongton < 1)
                                                     <span class="onsale">Hết!</span>

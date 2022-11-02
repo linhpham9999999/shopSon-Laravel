@@ -78,7 +78,7 @@
                             <div class="sidebar-body">
                                 @foreach($sanphamnew as $spn)
                                 <div class="sidebar-product align-items-center">
-                                    <a href="product-details.html" class="image">
+                                    <a href="{{route('list-color-product',['id'=>$spn->id])}}" class="image">
                                         <img src="admin_asset/image_son/{{$spn->hinhanhgoc}}" alt="product">
                                     </a>
                                     <div class="product-content">

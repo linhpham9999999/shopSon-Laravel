@@ -18,6 +18,7 @@ class checkNhapKho
     // route quan ly kho hang
     public function handle(Request $request, Closure $next)
     {
+//        dd(Auth::guard('nhan_vien_nhap_kho')->check(), Auth::guard('web')->check());
         if (Auth::guard('nhan_vien_nhap_kho')->check() || Auth::guard('web')->check()) {
             return $next($request);
         }
