@@ -110,8 +110,9 @@
                                     <li>
                                         <form action="{{route('search-product')}}" method="POST">
                                             {{csrf_field()}}
-                                            <input name="keywords_submit" id="search" placeholder="Nhập tên sản phẩm" type="text">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                            <input name="keywords_submit" id="search_keywords" placeholder="Nhập tên sản phẩm" type="text">
+                                            <button type="submit" class="btn-danger">Tìm</button>
+                                            <div id="search_ajax"></div>
                                         </form>
                                     </li>
                                 </ul>

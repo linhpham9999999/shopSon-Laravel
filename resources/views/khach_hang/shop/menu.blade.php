@@ -34,14 +34,15 @@
                 <!-- Sidebar Widget Start -->
                 <aside class="sidebar_widget widget-mt">
                     <div class="widget_inner">
-                        <div class="widget-list widget-mb-1">
+                        {{--<div class="widget-list widget-mb-1">
                             <h3 class="widget-title">Tìm kiếm sản phẩm</h3>
                             <form action="{{route('search-product')}}" method="POST">
                                 {{csrf_field()}}
                                 <div class="search-box">
                                     <div class="input-group" >
                                         <span>
-                                            <input type="search" name="keywords_submit" style="height: 50px; width: 200px" class="form-control" placeholder="Bạn cần tìm..." aria-label="Search Our Store">
+                                            <input type="text" id="search_keywords" name="keywords_submit" style="height: 50px; width: 200px" class="form-control">
+                                            <div id="search_ajax"></div>
                                         </span>
                                         <span>
                                             <button class="btn btn-outline-secondary" type="submit">
@@ -51,7 +52,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div>--}}
 {{--                        <div class="widget-list widget-mb-1">--}}
 {{--                            <h3 class="widget-title">Giá</h3>--}}
 {{--                            <!-- Widget Menu Start -->--}}

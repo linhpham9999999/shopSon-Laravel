@@ -388,6 +388,8 @@ Route::group(
                 );
                 Route::post('/search', 'App\Http\Controllers\SearchProductController@search')->name('search-product');
                 Route::post('/search-price', 'App\Http\Controllers\SearchProductController@searchPrice')->name('search-product-price');
+                // search ajax
+                Route::post('/autocomplete-ajax','App\Http\Controllers\SearchProductController@autocomplete');
             }
         );
 

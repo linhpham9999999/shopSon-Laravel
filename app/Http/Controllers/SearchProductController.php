@@ -21,4 +21,23 @@ class SearchProductController extends Controller
     public function searchPrice(Request $request){
 
     }
+
+    public function autocomplete(Request $request)
+    {
+        $data = $request->all();
+        if($data['query']){
+            $sanpham = DB::table('san_pham')->select('*')
+                ->where([['ten_SP','like','%'.$data['query'].'%'],['trang_thai','=',1]])->get();
+            $output='<ul class="dropdown-menu-md" style="display: block; position: relative">';
+            foreach ($sanpham as $key => $val){
+                $output .='
+                <li class="li-search-ajax">'.$val->ten_SP.'</li>
+                ';
+            }
+            $output .= '</ul';
+            echo $output;
+
+        }
+    }
+
 }
