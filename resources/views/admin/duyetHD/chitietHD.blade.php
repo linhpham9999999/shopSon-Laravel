@@ -113,7 +113,7 @@
                                                 <span class="formdetails">{{$ct->dia_chi_giao_hang}}</span>
                                             </div>
                                         </div>
-                                        @if($ct->id_TT == 3)
+                                        @if($ct->id_TT == 3 || $ct->id_TT == 6)
                                         <div class="col-md-12 col-custom">
                                             <div class="checkout-form-list">
                                                 <label style="font-weight: bold; margin-top: 15px;">Chọn người giao hàng: </label>
@@ -126,6 +126,7 @@
                                                             <option value="{{$sp->id}}" data-value="{{$sp->hoten}}">{{$sp->hoten}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <div class="error"> {{$errors->first('shipper')}}</div>
                                             </div>
                                         </div>
                                         @endif
@@ -137,7 +138,7 @@
             </div><!-- .col -->
             <div class="col-lg-12" style="margin-left: 815px;">
                 <span style="float: left">
-                    @if($ct->id_TT == 3)
+                    @if($ct->id_TT == 3 || $ct->id_TT == 6)
                         <td><button type="submit" class="btn btn-primary">Chọn shipper giao hàng</button></td>
                     @elseif($ct->id_TT == 2)
                         <td><button type="button" class="btn btn-primary">Đã duyệt</button></td>

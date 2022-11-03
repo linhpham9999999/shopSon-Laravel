@@ -49,6 +49,7 @@
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 </head>
 <body class="nk-body bg-lighter npc-general has-sidebar ">
 <div class="nk-app-root">
@@ -88,11 +89,13 @@
 {{--thêm--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
 
-{{--lay cai nay ko con logout duoc--}}
+{{--lay cai nay ko con logout duoc  --}}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 
 <script src="js/app.js"></script>
+<script src="{{ asset('admin_asset_new/js/custom_js/chart-area-demo.js') }}"></script>
+<script src="{{ asset('admin_asset_new/js/custom_js/chart-bar-demo.js') }}"></script>
 <script type="text/javascript" charset="utf-8">
     $.ajaxSetup({
         headers: {
@@ -353,7 +356,7 @@
             $('.search-data-color-product').hide();
         }
         $.ajax({
-            type:'get',
+            method:'GET',
             url:'{{route('search-color-product')}}',
             data:{'product_color_input':$value},
             success:function(data){
@@ -363,65 +366,5 @@
         });
     })
 </script>
-{{--<script>--}}
-{{--    $(document).ready(function(){--}}
-
-{{--        var date = new Date();--}}
-
-{{--        $('.input-daterange').datepicker({--}}
-{{--            todayBtn: 'linked',--}}
-{{--            format: 'yyyy-mm-dd',--}}
-{{--            autoclose: true--}}
-{{--        });--}}
-
-{{--        var _token = $('input[name="_token"]').val();--}}
-
-{{--        fetch_data();--}}
-{{--        function fetch_data(from_date = '', to_date = '')--}}
-{{--        {--}}
-{{--            $.ajax({--}}
-{{--                url:"{{route('search-order-date')}}",--}}
-{{--                method:"POST",--}}
-{{--                data:{from_date:from_date, to_date:to_date, _token:_token},--}}
-{{--                dataType:"json",--}}
-{{--                success:function(data)--}}
-{{--                {--}}
-{{--                    var output = '';--}}
-{{--                    $('#total_records').text(data.length);--}}
-{{--                    for(var count = 0; count < data.length; count++)--}}
-{{--                    {--}}
-{{--                        output += '<tr>';--}}
-{{--                        output += '<td>' + data[count].Ma_HD + '</td>';--}}
-{{--                        output += '<td>' + data[count].hoten + '</td>';--}}
-{{--                        output += '<td>' + data[count].ngaydat + '</td>';--}}
-{{--                        output += '<td>' + data[count].tongtien + '</td>';--}}
-{{--                        output += '<td>' + data[count].trangthai + '</td>';--}}
-{{--                        output +='</tr>';--}}
-{{--                    }--}}
-{{--                    $('tbody').html(output);--}}
-{{--                }--}}
-{{--            })--}}
-{{--        }--}}
-{{--        $('#filter').click(function(){--}}
-{{--            var from_date = $('.from_date').val();--}}
-{{--            var to_date = $('.to_date').val();--}}
-{{--            if(from_date != '' &&  to_date != '')--}}
-{{--            {--}}
-{{--                fetch_data(from_date, to_date);--}}
-{{--            }--}}
-{{--            else--}}
-{{--            {--}}
-{{--                alert('Both Date is required');--}}
-{{--            }--}}
-{{--        });--}}
-
-{{--        $('#refresh').click(function(){--}}
-{{--            $('.from_date').val('');--}}
-{{--            $('.to_date').val('');--}}
-{{--            fetch_data();--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
-
 </body>
 </html>

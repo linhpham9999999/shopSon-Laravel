@@ -4,59 +4,50 @@
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title">Tổng doanh thu bán hàng</h3>
+                    <h3 class="nk-block-title page-title">Thống kê số đơn hàng qua các tháng trong năm</h3>
                     <div class="nk-block-des text-soft">
                         {{--                        <p>You have total 95 projects.</p>--}}
                     </div>
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
-        <div class="nk-block">
-            <div class="card card-bordered card-stretch">
-                <div class="card-inner-group">
-                    <div class="card-inner p-0">
-                        <table class="nk-tb-list nk-tb-ulist">
-                            <thead>
-                            <tr class="nk-tb-item nk-tb-head">
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">STT</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Mã hóa đơn</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày giao </span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Người mua</span></th>
-                                <th class="nk-tb-col tb-col-lg"><span class="sub-text">Số điện thoại</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Tổng tiền</span></th>
-                            </tr><!-- .nk-tb-item -->
-                            </thead>
-                            <tbody>
-                            @foreach($sanphamdaban as $sp)
-                                <tr class="nk-tb-item">
-                                    <td class="nk-tb-col tb-col-md">
-                                        <span>{{$sp->id}}</span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-lg">
-                                        <span>{{$sp->Ma_HD}}</span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-md">
-                                        <span>{{$sp->ngaygiao}}</span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-md">
-                                        <span>{{$sp->email_nguoimua}}</span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-lg">
-                                        <span>{{$sp->sodth_giao_hang}}</span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-mb">
-                                        <span>{{ number_format($sp->tongtien)}}</span>
-                                    </td>
-                                </tr><!-- .nk-tb-item -->
-                            @endforeach
-                            </tbody>
-                        </table><!-- .nk-tb-list -->
-                    </div><!-- .card-inner -->
-                    <div class="card-inner">
-                        <span><p style="font-weight: bold; padding-left: 800px;">Tổng tiền: <span style="padding-left: 10px; font-size: 20px">{{ $sum }} VNĐ</span></p></span>
-                    </div><!-- .card-inner -->
-                </div><!-- .card-inner-group -->
-            </div><!-- .card -->
-        </div><!-- .nk-block -->
     </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    Biểu đồ ĐƯỜNG
+                </div>
+                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Biểu đồ CỘT
+                </div>
+                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Thống kê Doanh thu mỗi tháng trong năm</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+{{--                    <a class="small text-white stretched-link" href="{{url('depart')}}">View Details</a>--}}
+{{--                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>--}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var _ydata=JSON.parse('{!! json_encode($months) !!}');
+        var _xdata=JSON.parse('{!! json_encode($monthCount) !!}');
+    </script>
 @endsection
+

@@ -148,6 +148,8 @@ Route::group(
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach')->name('quanlyHD');
                 //Xem theo trang thai
                 Route::get('chua-duyet', 'App\Http\Controllers\DuyetHDController@getDSChuaDuyet')->name('chua-duyet');
+                // giao shipper có 2 TH: bị từ chối, chưa phản hồi
+                Route::get('da-giao-shipper', 'App\Http\Controllers\DuyetHDController@getDSDaGiaoShipper')->name('da-giao-shipper');
                 Route::get('da-duyet', 'App\Http\Controllers\DuyetHDController@getDSDaDuyet')->name('da-duyet');
                 Route::get('da-mua', 'App\Http\Controllers\DuyetHDController@getDSDaMua')->name('da-mua');
                 Route::get('da-huy', 'App\Http\Controllers\DuyetHDController@getDSDaHuy')->name('da-huy');
@@ -345,7 +347,7 @@ Route::group(
 //        Route::post('/chuyen-trong-don-hang', 'App\Http\Controllers\ShipperController@chuyenTrongDonHang')->name('chuyen-trong-don-hang');
 
         Route::group(
-            ['prefix' => 'hoadon'],
+            ['prefix' => 'hoadon', 'middleware' => 'checkNguoiGiaoHang'],
             function () {
                 Route::get('/don-can-giao', 'App\Http\Controllers\ShipperController@danhSachDonCanGiao')->name('don-hang-can-giao');
                 Route::get('/chi-tiet-don-can-giao/{id}', 'App\Http\Controllers\ShipperController@chiTietDonCanGiao')->name('chi-tiet-don-can-giao');
@@ -356,6 +358,8 @@ Route::group(
                 Route::post('/don-da-giao', 'App\Http\Controllers\ShipperController@daGiaoThanhCong')->name('giao-hang-thanh-cong');
                 Route::get('/don-da-giao', 'App\Http\Controllers\ShipperController@danhSachDonDaGiao')->name('don-hang-da-giao');
                 Route::get('/chi-tiet-don-da-giao/{id}', 'App\Http\Controllers\ShipperController@chiTietDonDaGiao')->name('chi-tiet-don-da-giao');
+                Route::get('/don-tu-choi', 'App\Http\Controllers\ShipperController@danhSachTuChoi')->name('don-hang-da-huy');
+                Route::get('/chi-tiet-don-tu-choi/{id}', 'App\Http\Controllers\ShipperController@chiTietDonTuChoi')->name('chi-tiet-don-tu-choi');
             }
         );
     }

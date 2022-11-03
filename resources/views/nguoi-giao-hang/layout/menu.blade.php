@@ -45,6 +45,9 @@
                             <li class="nk-menu-item">
                                 <a href="{{route('don-hang-da-giao')}}" class="nk-menu-link"><span class="nk-menu-text">ĐH đã giao</span></a>
                             </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('don-hang-da-huy')}}" class="nk-menu-link"><span class="nk-menu-text">ĐH từ chối</span></a>
+                            </li>
                         </ul>
                     </li>
                 </ul><!-- .nk-menu -->

@@ -16,8 +16,14 @@
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
+
         @if( !empty($isOrder) )
             <div class="nk-block">
+                @if(session('thongbao'))
+                    <div class="alert alert-success">
+                        {{session('thongbao')}}
+                    </div>
+                @endif
                 <div class="card card-bordered card-stretch">
                     <div class="card-inner-group">
                         <div class="card-inner p-0">

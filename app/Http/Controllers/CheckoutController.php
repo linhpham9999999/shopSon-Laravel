@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -106,19 +107,21 @@ class CheckoutController extends Controller
 
     public function getProductsFromCart(): array
     {
-        // khởi tạo biến
-//        $isHasProductsCart = false;
-        // kiểm có giỏ hàng chưa
-        if(Cookie::has('cart')){
-            //Lấy giỏ hàng
-            $cart = Cookie::get('cart');
-            // decode giỏ hàng string -> array để lấy info
-            $products = json_decode($cart, true);
-            $isHasProductsCart = true;
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
         }
-        else {
-            $products = [];
-            $isHasProductsCart = false;
+        $isHasProductsCart = false;
+        $cart = Cookie::get('cart');
+        $products = json_decode($cart, true);
+        foreach ($products as $product) {
+            if ($product['email'] == $email) {
+                $isHasProductsCart = true;
+            }else {
+                $products = [];
+                $isHasProductsCart = false;
+            }
         }
         return [$products, $isHasProductsCart];
     }

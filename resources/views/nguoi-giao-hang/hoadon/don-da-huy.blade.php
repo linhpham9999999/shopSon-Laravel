@@ -16,6 +16,7 @@
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
+
         @if( !empty($isOrder) )
             <div class="nk-block">
                 @if(session('thongbao'))
@@ -35,6 +36,7 @@
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Tổng tiền</span></th>
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Trạng thái</span></th>
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Xem</span></th>
+
                                 </tr><!-- .nk-tb-item -->
                                 </thead>
                                 <tbody>
@@ -56,7 +58,7 @@
                                             <span>{{$hd->trangthai}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
-                                            <a href="{{route('chi-tiet-don-da-giao',['id'=>$hd->id])}}" class="btn btn-dim btn-sm btn-primary">Chi tiết</a></td>
+                                            <a href="{{route('chi-tiet-don-tu-choi',['id'=>$hd->id])}}" class="btn btn-dim btn-sm btn-primary">Chi tiết</a></td>
                                     </tr><!-- .nk-tb-item -->
                                 @endforeach
                                 </tbody>

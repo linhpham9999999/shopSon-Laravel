@@ -157,7 +157,7 @@ class ShipperController extends Controller
                 $message->from($data['email'],$title_mail);
             }
         );
-        return back()->with('thongbao', 'Nhận đơn thành công');
+        return redirect()->route('don-hang-dang-giao')->with('thongbao', 'Nhận đơn thành công');
     }
 
     function tuChoi(Request $request){
@@ -165,11 +165,11 @@ class ShipperController extends Controller
         DB::table('hoa_don')->select('*')->where('id', '=', $idHD)
             ->update(
                 [
-                    'id_TT' => 3,
+                    'id_TT' => 6,
                     'nguoi_giao_hang_id' => NULL
                 ]
             );
-        return back()->with('thongbao', 'Đã từ chối nhận đơn');
+        return redirect()->route('don-hang-da-huy')->with('thongbao', 'Đã từ chối nhận đơn');
     }
 
     public function danhSachDonDangGiao(){
@@ -289,7 +289,7 @@ class ShipperController extends Controller
                 $message->from($data['email'],$title_mail);
             }
         );
-        return back()->with('thongbao', 'Đơn hàng giao thành công');
+        return redirect()->route('don-hang-da-giao')->with('thongbao', 'Đơn hàng giao thành công');
     }
     public function danhSachDonDaGiao(){
         if( Auth::guard('nguoi_giao_hang')->check()) {
@@ -329,6 +329,39 @@ class ShipperController extends Controller
         $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
         $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id)->first();
         return view('nguoi-giao-hang\hoadon\chitietHD-da-giao',compact('user','products','shipper','order_code'));
+    }
+
+    public function danhSachTuChoi(){
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->where('hoa_don.id_TT','=',6)
+            ->orderBy('hoa_don.id','desc')
+            ->paginate(5);
+        $isOrder = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->where('hoa_don.id_TT','=',6)
+            ->get()->toArray();
+        return view('nguoi-giao-hang\hoadon\don-da-huy',compact('hoadon','isOrder'));
+    }
+
+    public function chiTietDonTuChoi($id){
+        $user = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->join('hinh_thuc_thanh_toan','hoa_don.id_HTTT','=','hinh_thuc_thanh_toan.id')
+            ->where('hoa_don.id','=',$id)
+            ->select('ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai',
+                     'hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
+        $products = DB::table('chi_tiet_hoa_don')
+            ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
+            ->where('chi_tiet_hoa_don.id_HD','=',$id)
+            ->select('hinhanh','Ma_MSP','soluong','thanh_tien')->get();
+        $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
+        $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id)->first();
+        return view('nguoi-giao-hang\hoadon\chitietHD-tu-choi',compact('user','products','shipper','order_code'));
     }
 
 }

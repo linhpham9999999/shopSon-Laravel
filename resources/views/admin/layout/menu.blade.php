@@ -83,10 +83,13 @@
                                 <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đang xử lý</span></a>
+                                <a href="{{route('da-giao-shipper')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đã giao vận chuyển</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('da-mua')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>
+                                <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đang giao</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('da-mua')}}" class="nk-menu-link"><span class="nk-menu-text">Giao thành công & Đã mua</span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('da-huy')}}" class="nk-menu-link"><span class="nk-menu-text">Đã hủy</span></a>

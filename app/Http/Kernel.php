@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'checkNhapKho' => \App\Http\Middleware\checkNhapKho::class,
         'checkBanHang' => \App\Http\Middleware\checkBanHang::class,
         'checkAll' => \App\Http\Middleware\checkAll::class,
-        'loginKH' => \App\Http\Middleware\checkLoginUsers::class
+        'loginKH' => \App\Http\Middleware\checkLoginUsers::class,
+        'checkNguoiGiaoHang' => \App\Http\Middleware\checkNguoiGiaoHang::class
     ];
 }

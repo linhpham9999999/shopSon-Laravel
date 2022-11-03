@@ -16,7 +16,7 @@
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->
         </div><!-- .nk-block-head -->
-        <div class="input-daterange">
+       {{-- <div class="input-daterange">
             <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 33px; margin-left: 800px">
                 <input name="from_date" style="width: 105px;float: left;" class="from_date form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Từ ngày" id="outlined-date-picker">
                     <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
@@ -28,10 +28,15 @@
         </div>
         <button type="button" name="filter" id="filter" class="search-submit btn" style="padding-bottom: 645px; padding-right: 110px"><span style="border-radius: 5px;background-color: cornflowerblue; padding: 3px">Filter</span></button>
         <button type="button" name="refresh" id="refresh" class="search-submit btn" style="padding-bottom: 645px; padding-right: 50px"><span style="border-radius: 5px;background-color: goldenrod; padding: 3px">Refresh</span></button>
-
+--}}
 
         @if( !empty($isOrder) )
         <div class="nk-block" style="position: relative">
+            @if(session('thongbao'))
+                <div class="alert alert-success">
+                    {{session('thongbao')}}
+                </div>
+            @endif
             <div class="card card-bordered card-stretch">
                 <div class="card-inner-group">
                     <div class="card-inner p-0">

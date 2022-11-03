@@ -21,20 +21,49 @@ class DuyetHDController extends Controller
             ->get()->toArray();
         return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
+    // [đơn từ idTT == 6 (từ chối nhận)và nguoi_giao_hang_id == null] or [đơn idTT==3 và nguoi_giao_hang_id == null]
     function chonShipper(Request $request){
 //        dd($request->nguoi-giao-hang, $request->idHD);
         if( Auth::guard('web')->check()) {
             $email = Auth::guard('web')->user()->email;
         }
+        $this->validate(
+            $request,
+            [
+                'shipper'        => 'bail|required'
+            ],
+            [
+                'shipper.required'           => 'Bạn chưa chọn người giao hàng'
+            ]
+        );
         $idHD = $request->idHD;
         DB::table('hoa_don')->select('*')->where('id', '=', $idHD)
             ->update(
                 [
                     'nguoi_giao_hang_id' => $request->shipper,
-                    'email_nguoiban' => $email
+                    'email_nguoiban' => $email,
+                    'id_TT' => 3
                 ]
             );
-        return back()->with('thongbao', 'Đơn hàng đã chọn người vận chuyển');
+        return redirect()->route('da-giao-shipper')->with('thongbao', 'Đơn hàng đã chọn người vận chuyển');
+    }
+    function getDSDaGiaoShipper(){
+        $hoadon = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','nguoi_giao_hang_id')
+            ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','!=',null]])
+            ->orWhere('hoa_don.id_TT','=',6)
+            ->orderBy('hoa_don.id','desc')
+            ->paginate(8);
+
+        $isOrder = DB::table('hoa_don')
+            ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
+            ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
+            ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','!=',null]])
+            ->orWhere('hoa_don.id_TT','=',6)
+            ->get()->toArray();
+        return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
     function getChiTiet($id){
         $user = DB::table('hoa_don')
@@ -69,42 +98,43 @@ class DuyetHDController extends Controller
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
-            ->where('hoa_don.id_TT','=',3)->orderBy('hoa_don.id','desc')
+            ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','=',null]])->orderBy('hoa_don.id','desc')
             ->paginate(8);
 
         $isOrder = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->where('hoa_don.id_TT','=',3)->get()->toArray();
+            ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','=',null]])->get()->toArray();
         return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
-     // đơn đã đc shipper giao, giao xong
+     // đơn đã đc shipper nhận giao hàng
     function getDSDaDuyet(){
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
-            ->whereIn('hoa_don.id_TT', [2, 5])
+            ->where('hoa_don.id_TT','=',2)
             ->orderBy('hoa_don.id','desc')
             ->paginate(8);
         $isOrder = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->whereIn('hoa_don.id_TT', [2, 5])
+            ->where('hoa_don.id_TT','=',2)
             ->get()->toArray();
         return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
+    // đơn đã giao thành công & đã mua
     function getDSDaMua(){
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
-            ->where('hoa_don.id_TT','=',1)->orderBy('hoa_don.id','desc')->paginate(8);
+            ->whereIn('hoa_don.id_TT', [1, 5])->orderBy('hoa_don.id','desc')->paginate(8);
 
         $isOrder = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->where('hoa_don.id_TT','=',1)->get()->toArray();
+            ->whereIn('hoa_don.id_TT', [1, 5])->get()->toArray();
         return view('admin\duyetHD\danhsach',compact('hoadon','isOrder'));
     }
 

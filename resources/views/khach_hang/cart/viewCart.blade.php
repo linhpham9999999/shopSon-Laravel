@@ -82,9 +82,13 @@
 {{--                                <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</button>--}}
 {{--                                <a href="{{route('allSanPham')}}" class="btn flosun-button primary-btn rounded-0 black-btn">Tiếp tục mua hàng</a>--}}
                                 <span style="padding-right:10px "> <strong>Mã khuyến mãi: </strong></span>
-                                @foreach($promotion as $promo)
-                                    <span style="border: 2px none slategray;border-right-style: solid;padding-right:7px;padding-left:7px">#{{$promo->Ma_KM}} (-{{$promo->phan_tram}}%)</span>
-                                @endforeach
+                                @if(!empty($promotion))
+                                    @foreach($promotion as $promo)
+                                        <span style="border: 2px none slategray;border-right-style: solid;padding-right:7px;padding-left:7px">#{{$promo->Ma_KM}} (-{{$promo->phan_tram}}%)</span>
+                                    @endforeach
+                                @else
+                                    <span style="padding-right:7px;padding-left:7px">Không có</span>
+                                @endif
                             </div>
                         </div>
                         <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
