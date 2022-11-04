@@ -33,13 +33,69 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xl-12">
-            <div class="card bg-primary text-white mb-4">
-                <div class="card-body">Thống kê Doanh thu mỗi tháng trong năm</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-{{--                    <a class="small text-white stretched-link" href="{{url('depart')}}">View Details</a>--}}
-{{--                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>--}}
-
+        <div class="col-xl-6">
+            <div class="card bg-warning text-white mb-4" style="text-align: center;">
+                <div class="card-body">Thống kê LỢI NHUẬN mỗi tháng trong năm</div>
+                <div class="card-footer d-flex align-items-center justify-content-between" style="background-color: lavender">
+                    <table class="nk-tb-list nk-tb-ulist">
+                        <thead>
+                        <tr class="nk-tb-item nk-tb-head">
+                            <th class="nk-tb-col tb-col-md"><span class="sub-text">Tháng</span></th>
+                            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Tiền vốn</span></th>
+                            <th class="nk-tb-col tb-col-sm" ><span class="sub-text">Doanh thu</span></th>
+                            <th class="nk-tb-col tb-col-sm" ><span class="sub-text">Lợi nhuận</span></th>
+                        </tr><!-- .nk-tb-item -->
+                        </thead>
+                        <tbody>
+                        @foreach($loinhuan as $ln)
+                            <tr class="nk-tb-item" > {{--id="npp_{{$lsp->id}}"--}}
+                                <td class="nk-tb-col tb-col-md">
+                                    <span>{{$ln->month}}</span>
+                                </td>
+                                <td class="nk-tb-col tb-col-lg">
+                                    <span>{{number_format($ln->von,0,',','.')}}</span>
+                                </td>
+                                <td class="nk-tb-col tb-col-sm">
+                                    <span>{{number_format($ln->doanhthu_thang,0,',','.')}}</span>
+                                </td>
+                                <td class="nk-tb-col tb-col-sm">
+                                    <span>{{number_format($ln->tienloi_thang,0,',','.')}}</span>
+                                </td>
+                            </tr><!-- .nk-tb-item -->
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card bg-success text-white mb-4" style="text-align: center;">
+                <div class="card-body">Thống kê SẢN PHẨM bán chạy</div>
+                <div class="card-footer d-flex align-items-center justify-content-between" style="background-color: lavender">
+                    <table class="nk-tb-list nk-tb-ulist">
+                        <thead>
+                        <tr class="nk-tb-item nk-tb-head">
+                            <th class="nk-tb-col tb-col-md"><span class="sub-text">Thương hiệu</span></th>
+                            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Màu son</span></th>
+                            <th class="nk-tb-col tb-col-sm" ><span class="sub-text">Số lượng thỏi</span></th>
+                        </tr><!-- .nk-tb-item -->
+                        </thead>
+                        <tbody>
+                        @foreach($san_pham as $sp)
+                            <tr class="nk-tb-item" > {{--id="npp_{{$lsp->id}}"--}}
+                                <td class="nk-tb-col tb-col-md">
+                                    <span>{{$sp->ten_SP}}</span>
+                                </td>
+                                <td class="nk-tb-col tb-col-md">
+                                    <span>{{$sp->mau}}</span>
+                                </td>
+                                <td class="nk-tb-col tb-col-md">
+                                    <span>{{$sp->soluongcay}}</span>
+                                </td>
+                            </tr><!-- .nk-tb-item -->
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
