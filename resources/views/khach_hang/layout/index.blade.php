@@ -193,7 +193,9 @@
 <script src="{{ asset('khach_hang_asset/assets/js/custom_js/search.js') }}"></script>
 <!-- alertify JS -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
+{{--<chat>--}}
+<script type="text/javascript" src="https://ahachat.com/customer-chats/customer_chat_saHFgB6Ob26364c6a86c1e2.js"></script>
+{{--<chat>--}}
 <script type="text/javascript">
     $('.xemnhanh').click(function(){
         var product_id = $(this).data('id_product');
