@@ -13,7 +13,7 @@ class KhuyenMaiController extends Controller
 {
     public function getDanhSach()
     {
-        $khuyenmai = DB::table('khuyen_mai')->select('*')->paginate(5);
+        $khuyenmai = DB::table('khuyen_mai')->select('*')->orderBy('khuyen_mai.id','desc')->paginate(5);
         return view('admin.khuyenmai.danhsach', compact('khuyenmai' ));
     }
 

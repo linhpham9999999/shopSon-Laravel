@@ -47,10 +47,10 @@
                         </div>
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <div class="form-icon form-icon-right xl">
+                                <div class="form-icon form-icon-right">
                                     <em class="icon ni ni-calendar-alt"></em>
                                 </div>
-                                <input name="ngaykt" class="form-control form-control-xl form-control-outlined date-picker" id="outlined-date-picker2">
+                                <input name="ngaykt" class="form-control form-control-outlined date-picker" id="outlined-date-picker2">
                                 <label class="form-label-outlined" for="outlined-date-picker2">Ngày kết thúc</label>
                             </div>
                         </div>

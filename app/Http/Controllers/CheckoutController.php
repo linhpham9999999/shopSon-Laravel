@@ -113,15 +113,21 @@ class CheckoutController extends Controller
             $email = session('email_user_login');
         }
         $isHasProductsCart = false;
-        $cart = Cookie::get('cart');
-        $products = json_decode($cart, true);
-        foreach ($products as $product) {
-            if ($product['email'] == $email) {
-                $isHasProductsCart = true;
-            }else {
-                $products = [];
-                $isHasProductsCart = false;
+        if(Cookie::has('cart')) {
+            $cart = Cookie::get('cart');
+            $products = json_decode($cart, true);
+            foreach ($products as $product) {
+                if ($product['email'] == $email) {
+                    $isHasProductsCart = true;
+                } else {
+                    $products = [];
+                    $isHasProductsCart = false;
+                }
             }
+        }
+        else{
+            $products = [];
+            $isHasProductsCart = false;
         }
         return [$products, $isHasProductsCart];
     }

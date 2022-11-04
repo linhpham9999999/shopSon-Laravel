@@ -144,6 +144,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nk-menu-item">
+                        <a href="https://ahachat.com/bots/58583239/chat/all" target="_blank" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-mail-fill"></em></span>
+                            <span class="nk-menu-text"> Chat với khách hàng</span>
+                        </a>
+                    </li>
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

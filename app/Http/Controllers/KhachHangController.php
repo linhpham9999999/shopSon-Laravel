@@ -135,4 +135,18 @@ class KhachHangController extends Controller
         return view('khach_hang.shop.product-color-detail2',
                     compact('mausp','loaisp','sanpham','sanphamnew','san_pham_tuong_tu','rating','comment'));
     }
+    // View Lien He
+    public function contact()
+    {
+        $email  = '';
+        $name   = '';
+        $idUser = '';
+        if( Auth::check() )
+        {
+            $email  = Auth::user()->email;
+            $name   = Auth::user()->hoten;
+            $idUser = Auth::user()->id;
+        }
+        return view('khach_hang.contact.view-contact', compact('email','name','idUser'));
+    }
 }

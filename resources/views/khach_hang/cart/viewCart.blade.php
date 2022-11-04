@@ -91,6 +91,7 @@
                                 @endif
                             </div>
                         </div>
+                        @if(!empty($promotion))
                         <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
                             <div class="apply-coupon-wrapper" style=" margin-left: 505px;">
                                 <form action="#" method="post" class=" d-block d-md-flex">
@@ -101,6 +102,7 @@
                                 </form>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
