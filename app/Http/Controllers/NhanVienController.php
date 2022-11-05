@@ -22,6 +22,7 @@ class NhanVienController extends Controller
         return view('admin.nhanvien.them',compact('chucvu'));
     }
     public  function postThem(Request  $request){
+//        dd($request->all());
         $this->validate($request,
             [
                 'pass'      =>'bail|required|min:8|max:255',
@@ -29,9 +30,11 @@ class NhanVienController extends Controller
                 'ten'       => 'bail|required|min:5|max:50',
                 'diachi'    => 'bail|required|min:5|max:255',
                 'sodth'     => 'bail|required|min:10|max:10',
-                'gtinh'     => 'bail|required',
                 'email'     => 'bail|required|unique:quan_tri,email|min:5|max:50',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png',
+                'nsinh'     => 'bail|required|before:today',
+                'date'      => 'bail|required|after:nsinh',
+                'cccd'      => 'bail|required|min:10|max:50',
             ],
             [
                 'pass.required'     => 'Bạn chưa nhập Mật khẩu nhân viên',
@@ -48,13 +51,19 @@ class NhanVienController extends Controller
                 'sodth.required'    => 'Bạn chưa nhập Số điện thoại nhân viên',
                 'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
                 'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
-                'gtinh.required'    => 'Bạn chưa nhập Giới tính khách hàng',
                 'email.required'    => 'Bạn chưa nhập Email khách hàng',
                 'email.unique'      => 'Emai nhân viên đã tồn tại',
                 'email.min'         => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'email.max'         => 'Email nhân viên phải có độ dài từ 5 đến 50 ký tự',
                 'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh của sản phẩm',
                 'hinh_anh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
+                'nsinh.required'       =>'Bạn chưa nhập ngày sinh',
+                'nsinh.before'       =>'Ngày sinh không hợp lệ',
+                'date.required'       =>'Bạn chưa nhập ngày vào làm',
+                'date.after'        =>'Ngày vào làm > ngày sinh',
+                'cccd.required'   => 'CCCD là bắt buộc',
+                'cccd.min'        => 'CCCD không hợp lệ',
+                'cccd.max'        => 'CCCD không hợp lệ',
             ]);
         if ($request->hasFile('hinh_anh')) {
             $tenfile = $request->hinh_anh;
@@ -68,10 +77,10 @@ class NhanVienController extends Controller
                 'diachi' => $request->diachi,
                 'sodth' => $request->sodth,
                 'gioitinh' => $request->gtinh,
-                'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                'ngaysinh' => $request->nsinh,
                 'email' => $request->email,
                 'chuc_vu_id'=>$request->chuc_vu_id,
-                'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                'ngay_vao_lam'=>$request->date,
                 'cccd'=>$request->cccd,
                 'trang_thai'=>$request->trangthai,
                 'hinhanh'=>$name,
@@ -86,10 +95,10 @@ class NhanVienController extends Controller
                     'diachi' => $request->diachi,
                     'sodth' => $request->sodth,
                     'gioitinh' => $request->gtinh,
-                    'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                    'ngaysinh' => $request->nsinh,
                     'email' => $request->email,
                     'chuc_vu_id'=>$request->chuc_vu_id,
-                    'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                    'ngay_vao_lam'=>$request->date,
                     'cccd'=>$request->cccd,
                     'trang_thai'=>$request->trangthai,
                     'hinhanh'=>$name,
@@ -105,10 +114,10 @@ class NhanVienController extends Controller
                     'diachi' => $request->diachi,
                     'sodth' => $request->sodth,
                     'gioitinh' => $request->gtinh,
-                    'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                    'ngaysinh' => $request->nsinh,
                     'email' => $request->email,
                     'chuc_vu_id'=>$request->chuc_vu_id,
-                    'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                    'ngay_vao_lam'=>$request->date,
                     'cccd'=>$request->cccd,
                     'trang_thai'=>$request->trangthai,
                     'hinhanh'=>$name,
@@ -133,7 +142,10 @@ class NhanVienController extends Controller
                 'ten'   => 'bail|required|min:5|max:50',
                 'diachi'=> 'bail|required|min:5|max:255',
                 'sodth' => 'bail|required|min:10|max:10',
-                'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
+                'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png',
+                'nsinh'     => 'bail|required|before:today',
+                'date'      => 'bail|required|after:nsinh',
+                'cccd'      => 'bail|required|min:10|max:50',
             ],
             [
                 'ten.required'          => 'Bạn chưa nhập Tên nhân viên',
@@ -147,6 +159,13 @@ class NhanVienController extends Controller
                 'sodth.max'             => 'Số điện thoại phải có độ dài 10 ký tự',
                 'hinh_anh.required' => 'Bạn chưa chọn Hình ảnh của sản phẩm',
                 'hinh_anh.mimes'    => 'File chọn phải là file hình ảnh (*.jpg, *png)',
+                'nsinh.required'       =>'Bạn chưa nhập ngày sinh',
+                'nsinh.before'       =>'Ngày sinh không hợp lệ',
+                'date.required'       =>'Bạn chưa nhập ngày vào làm',
+                'date.after'        =>'Ngày vào làm > ngày sinh',
+                'cccd.required'   => 'CCCD là bắt buộc',
+                'cccd.min'        => 'CCCD không hợp lệ',
+                'cccd.max'        => 'CCCD không hợp lệ',
             ]);
         if ($request->hasFile('hinh_anh')) {
             $tenfile = $request->hinh_anh;
@@ -158,9 +177,9 @@ class NhanVienController extends Controller
             'diachi' => $request->diachi,
             'sodth' => $request->sodth,
             'gioitinh' => $request->gtinh,
-            'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+            'ngaysinh' => $request->nsinh,
             'chuc_vu_id'=>$request->chuc_vu_id,
-            'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+            'ngay_vao_lam'=>$request->date,
             'cccd'=>$request->cccd,
             'hinhanh'=>$name,
             'updated_at'=>Carbon :: now ()
@@ -172,9 +191,9 @@ class NhanVienController extends Controller
                 'diachi' => $request->diachi,
                 'sodth' => $request->sodth,
                 'gioitinh' => $request->gtinh,
-                'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                'ngaysinh' =>  $request->nsinh,
                 'chuc_vu_id'=>$request->chuc_vu_id,
-                'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                'ngay_vao_lam'=>$request->date,
                 'cccd'=>$request->cccd,
                 'hinhanh'=>$name,
                 'updated_at'=>Carbon :: now ()
@@ -187,9 +206,9 @@ class NhanVienController extends Controller
                   'diachi' => $request->diachi,
                   'sodth' => $request->sodth,
                   'gioitinh' => $request->gtinh,
-                  'ngaysinh' => Carbon::createFromFormat(config('app.date_format'), $request->nsinh)->format('Y-m-d'),
+                  'ngaysinh' =>$request->nsinh,
                   'chuc_vu_id'=>$request->chuc_vu_id,
-                  'ngay_vao_lam'=>Carbon::createFromFormat(config('app.date_format'), $request->date)->format('Y-m-d'),
+                  'ngay_vao_lam'=> $request->date,
                   'cccd'=>$request->cccd,
                   'hinhanh'=>$name,
                   'updated_at'=>Carbon :: now ()

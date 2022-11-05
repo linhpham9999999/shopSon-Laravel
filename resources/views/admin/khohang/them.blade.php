@@ -42,10 +42,6 @@
                                     <div class="card-tools mr-n1">
                                         <ul class="btn-toolbar gx-1">
                                             <li>
-                                                <a href="#" class="btn btn-icon search-toggle toggle-search" data-target="search"><em class="icon ni ni-search"></em></a>
-                                            </li><!-- li -->
-                                            <li class="btn-toolbar-sep"></li><!-- li -->
-                                            <li>
                                                 <div class="toggle-wrap">
                                                     <a href="#" class="btn btn-icon btn-trigger toggle" data-target="cardTools"><em class="icon ni ni-menu-right"></em></a>
                                                     <div class="toggle-content" data-content="cardTools">

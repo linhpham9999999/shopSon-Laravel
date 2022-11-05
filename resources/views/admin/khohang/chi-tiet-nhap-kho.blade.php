@@ -50,7 +50,7 @@
                             <div class="row" style="margin-left: 30px;">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <img src="admin_asset/image_son/mau_san_pham/{{$mausanpham->hinhanh}}" width="200px" height="200px"/>
+                                        <img class="product-image-admin2" src="admin_asset/image_son/mau_san_pham/{{$mausanpham->hinhanh}}" width="200px" height="200px"/>
                                     </div>
                                 </div>
                             </div>

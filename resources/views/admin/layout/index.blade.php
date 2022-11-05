@@ -47,6 +47,13 @@
         .product-image-admin:hover {
             transform: scale(2.5);
         }
+        .product-image-admin2 {
+            transition: transform .2s; /* Animation */
+        }
+
+        .product-image-admin2:hover {
+            transform: scale(1.5);
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 

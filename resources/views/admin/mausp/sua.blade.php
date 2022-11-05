@@ -52,7 +52,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label style="margin-bottom: unset;">Thông tin màu</label>
-                                        <textarea type="text" name="yn" class="form-control" value="{{$mausanppham->thongTinMau}}" placeholder="Ý nghĩa màu sản phẩm"></textarea>
+                                        <textarea type="text" name="yn" class="form-control" placeholder="{{$mausanppham->thongTinMau}}" placeholder="Ý nghĩa màu sản phẩm"></textarea>
                                         <div class="error"> {{$errors->first('yn')}}</div>
                                     </div>
                                 </div>

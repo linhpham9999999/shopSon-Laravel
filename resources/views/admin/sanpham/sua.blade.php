@@ -82,14 +82,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label style="margin-bottom: unset;">Giới thiệu</label>
-                                        <textarea type="text" value="{{$sanpham->gioithieu}}" name="gthieu" class="form-control" placeholder=""></textarea>
+                                        <textarea type="text" placeholder="{{$sanpham->gioithieu}}" name="gthieu" class="form-control" placeholder=""></textarea>
                                         <div class="error"> {{$errors->first('gthieu')}}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label style="margin-bottom: unset;">Thành phần</label>
-                                        <textarea name="thanhphan" value="{{$sanpham->thanh_phan}}" class="form-control" placeholder=""></textarea>
+                                        <textarea name="thanhphan" placeholder="{{$sanpham->thanh_phan}}" class="form-control" placeholder=""></textarea>
                                         <div class="error">{{$errors->first('thanhphan')}}</div>
                                     </div>
                                 </div>

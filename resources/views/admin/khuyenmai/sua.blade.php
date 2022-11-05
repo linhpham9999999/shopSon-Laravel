@@ -1,71 +1,72 @@
 @extends('admin.layout.index')
 @section('content')
-    <div style="background-color: #008080">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thêm thông tin khuyến mãi</h5>
-                    <a href="{{route('dsKhuyenMai')}}" class="btn btn-wider btn-primary"><span>Back</span><em class="icon ni ni-arrow-right"></em></a>
-                </div>
-                @if(session('thongbao'))
-                    <div class="alert alert-success" style="margin-bottom: 5px;">
-                        {{session('thongbao')}}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="padding: 15px 15px">
+                    @if(session('thongbao'))
+                        <div class="alert alert-success">
+                            {{session('thongbao')}}
+                        </div>
+                    @endif
+                    <div class="header">
+                        <h4 class="title">Thêm thông tin Khuyến mãi</h4>
                     </div>
-                @endif
-                <div class="modal-body">
-                    <form action="{{route('actionSuaKM',['id'=>$khuyenmai->id])}}" method="POST" role="form" class="form-validate is-alter">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <label class="form-label" for="email-address">Mã khuyến mãi</label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" name="maKM" value="{{$khuyenmai->Ma_KM}}" placeholder="Mã khuyến mãi" />
-                                <div class="error"> {{$errors->first('maKM')}}</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="phone-no">Phần trăm khuyến mãi</label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" name="phantram" value="{{$khuyenmai->phan_tram}}" placeholder="Phần trăm khuyến mãi (%)" />
-                                <div class="error"> {{$errors->first('phantram')}}</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="email-address">Giá yêu cầu</label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" name="gia_yc" value="{{$khuyenmai->gia_yeu_cau}}" placeholder="Giá yêu cầu" />
-                                <div class="error"> {{$errors->first('gia_yc')}}</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-control-wrap">
-                                <div class="form-icon form-icon-right">
-                                    <em class="icon ni ni-calendar-alt"></em>
+                    <div class="content">
+                        <form action="{{route('actionSuaKM',['id'=>$khuyenmai->id])}}" method="POST" role="form" enctype="multipart/form-data" >
+                            {{csrf_field()}}
+                            <div class="row" style="margin: 10px;">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: unset;">Mã khuyến mãi</label>
+                                        <input type="text" value="{{$khuyenmai->Ma_KM}}"  class="form-control" name="maKM" placeholder=""/>
+                                        <div class="error"> {{$errors->first('maKM')}}</div>
+                                    </div>
                                 </div>
-                                <input name="ngaybd" class="form-control form-control-outlined date-picker" id="outlined-date-picker">
-                                <label class="form-label-outlined" for="outlined-date-picker">Ngày bắt đầu</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-control-wrap">
-                                <div class="form-icon form-icon-right xl">
-                                    <em class="icon ni ni-calendar-alt"></em>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" style="margin-bottom: unset;">Phần trăm khuyến mãi</label>
+                                        <input type="text" value="{{$khuyenmai->phan_tram}}" name="phantram" class="form-control" placeholder="Phần trăm khuyến mãi (%)">
+                                        <div class="error"> {{$errors->first('phantram')}}</div>
+                                    </div>
                                 </div>
-                                <input name="ngaykt" class="form-control form-control-xl form-control-outlined date-picker" id="outlined-date-picker2">
-                                <label class="form-label-outlined" for="outlined-date-picker2">Ngày kết thúc</label>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" style="margin-bottom: unset;">Giá yêu cầu</label>
+                                        <input type="text" value="{{$khuyenmai->gia_yeu_cau}}" name="gia_yc" class="form-control" placeholder="">
+                                        <div class="error"> {{$errors->first('gia_yc')}}</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="phone-no">Nội dung</label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" name="info" value="{{$khuyenmai->thong_tin}}" placeholder="Nội dung khuyến mãi" />
-                                <div class="error"> {{$errors->first('info')}}</div>
+                            <div class="row" style="margin: 10px;">
+                                <div class="col-md-3">
+                                    <label style="margin-bottom: unset;">Ngày bắt đầu</label>
+                                    <div class="form-group">
+                                        <input type="date" value="{{$khuyenmai->ngay_bat_dau}}" class="form-control" name="ngaybd">
+                                        <div class="error"> {{$errors->first('ngaybd')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label style="margin-bottom: unset;">Ngày kết thúc</label>
+                                    <div class="form-group">
+                                        <input type="date" value="{{$khuyenmai->ngay_ket_thuc}}" class="form-control" name="ngaykt">
+                                        <div class="error"> {{$errors->first('ngaykt')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="margin-bottom: unset;">Nội dụng</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{$khuyenmai->thong_tin}}" class="form-control" name="info" placeholder="Nội dung khuyến mãi">
+                                        <div class="error"> {{$errors->first('info')}}</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group" style="padding-left: 100px;">
-                            <button type="submit" class="btn btn-lg btn-primary">Lưu thông tin</button>
-                            <button type="reset" class="btn btn-lg btn-light">Làm mới</button>
-                        </div>
-                    </form>
+                            <button type="submit" style="margin-left: 450px;" class="btn btn-info btn-fill pull-right">Lưu thông tin</button>
+                            <button type="reset" class="btn btn-dim btn-warning pull-right">Làm mới</button>
+                            <a href="{{route('dsKhuyenMai')}}" class="btn btn-dark pull-right">Xem Khuyến mãi</a>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
