@@ -20,7 +20,9 @@ class AD_AuthController extends Controller
     public function check(Request $request){
         //SESSION
         $user =  $request->email ;
-        if(Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 1])){
+        if(Auth::guard('web')->attempt([
+            'email' => $request->email,
+            'password' => $request->password, 'chuc_vu_id' => 1, 'trang_thai'=>1])){
             $request->session()->put('nameAD', $user);
             return redirect()->route('homeAd');
         }
@@ -30,7 +32,9 @@ class AD_AuthController extends Controller
 
     public function checkBanHang(Request $request){
         $user =  $request->email ;
-        if(Auth::guard('nhan_vien_ban_hang')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 3])){
+        if(Auth::guard('nhan_vien_ban_hang')->attempt([
+            'email' => $request->email,
+            'password' => $request->password, 'chuc_vu_id' => 3,'trang_thai'=>1])){
             $request->session()->put('nameBH', $user);
             return redirect()->route('homeBanHang');
         }
@@ -41,7 +45,9 @@ class AD_AuthController extends Controller
 
     public function checkNhapKho(Request $request){
         $user =  $request->email ;
-        if(Auth::guard('nhan_vien_nhap_kho')->attempt(['email' => $request->email,'password' => $request->password, 'chuc_vu_id' => 2])){
+        if(Auth::guard('nhan_vien_nhap_kho')->attempt([
+            'email' => $request->email,
+            'password' => $request->password, 'chuc_vu_id' => 2, 'trang_thai'=>1])){
             $request->session()->put('nameNK', $user);
             return redirect()->route('homeNK');
         }

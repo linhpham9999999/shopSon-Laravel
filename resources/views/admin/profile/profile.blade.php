@@ -50,14 +50,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label style="margin-bottom: unset;">Ngày sinh</label>
-                                        <input type="text" name="ngaysinh" class="form-control" placeholder="Năm-Tháng-Ngày" value="{{$users->ngaysinh}}">
+                                        <input type="date" name="ngaysinh" class="form-control"value="{{$users->ngaysinh}}">
                                         <div class="error">{{$errors->first('ngaysinh')}}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label style="margin-bottom: unset;">Ngày vào làm</label>
-                                        <input type="text" name="ngay_vao_lam" class="form-control" placeholder="Ngày vào làm" value="{{$users->ngay_vao_lam}}">
+                                        <input type="date" name="ngay_vao_lam" class="form-control" value="{{$users->ngay_vao_lam}}">
                                         <div class="error">{{$errors->first('ngay_vao_lam')}}</div>
                                     </div>
                                 </div>

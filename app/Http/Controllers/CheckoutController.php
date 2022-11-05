@@ -216,7 +216,7 @@ class CheckoutController extends Controller
 //            dd($result);
             $jsonResult = json_decode($result, true);  // decode json
 
-             return redirect()->to($jsonResult['payUrl']);
+             return redirect()->to($jsonResult['payUrl'])->with('alert','Thanh toán MOMO thành công');
     }
 
 }

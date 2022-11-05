@@ -150,6 +150,9 @@
                                 </div>
                             </div>
                         </div>
+                    @if(session('alert'))
+                        <input type="hidden" value="1" name="dathanhtoanmomo">
+                    @endif
                 </form>
                         <div class="your-order" style="margin-right: 50px; margin-top: 40px;  background-color: mistyrose;">
                             <h3 style="text-align: center; padding-left: 50px; padding-right: 50px;">Thêm địa chỉ giao hàng</h3>
@@ -163,20 +166,21 @@
                             </form>
                         </div>
                     </div>
-
-                @if(session('alert'))
-                    <div class="alert alert-success" style="width: 600px">
-                        {{session('alert')}}
-                    </div>
-                @endif
-                <div id="payment_momo" style="display: block; margin: 10px 50px 0px 60px;width: 660px">
+                <div id="payment_momo" style="display: block; margin: 10px 50px 0px 60px;width: 200px">
                     <form action="{{route('thanh-toan-MOMO')}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="total_momo" value="{{ $total + $ship }}">
                         <button type="submit" style="background-color: aqua;height: 50px;width: 200px;" class="btn btn-warning check_out" name="payUrl">Thanh toán MOMO</button>
                     </form>
                 </div>
-
+                @if(session('alert'))
+                    <div class="alert alert-success" style="width: 250px;margin-top: 10px;float: left;height: 50px;background-color: lime;">
+                        {{session('alert')}}
+                    </div>
+                @endif
+                <div class="alert alert-danger" style="width: 250px;margin-top: 10px;float: left;height: 50px;">
+                    {{$errors->first('dathanhtoanmomo')}}
+                </div>
             </div>
         </div>
     </div>

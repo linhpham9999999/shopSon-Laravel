@@ -112,7 +112,7 @@ class KhoHangController extends Controller
             'hansudung_thang'=>$sp->hansudung_thang,
             'gioithieu'=>$sp->gioithieu,
             'hinhanhgoc'=>$sp->hinhanhgoc,
-            'noibat'=>$sp->noibat,
+            'thanh_phan'=>$sp->thanh_phan,
             'id_LSP'=>$sp->id_LSP,
             'trang_thai'=>$sp->trang_thai,
             'created_at'=>Carbon::now() ]);

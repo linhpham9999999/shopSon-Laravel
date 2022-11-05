@@ -23,6 +23,7 @@
                                 <div class="card-title-group">
                                     <div class="card-tools">
                                         <div class="form-inline flex-nowrap gx-3">
+                                            <label for="">Sản phẩm</label>
                                             <form action="{{route('searchProduct')}}" method="POST">
                                                 {{csrf_field()}}
                                                 <div class="form-wrap w-150px">
@@ -31,11 +32,11 @@
                                                             <option value="{{ $sp->ten_SP }}">{{$sp->ten_SP}}</option>
                                                         @endforeach
                                                     </select>
-                                                    </div>
+                                                </div>
                                         </div><!-- .form-inline -->
                                     </div><!-- .card-tools -->
                                     <div style="padding-right: 800px">
-                                        <span class="d-none d-md-block"><button type="submit" class="btn btn-dim btn-outline-light disabled">Apply</button></span>
+                                        <span class="d-none d-md-block" style="margin-left: 7px;"><button type="submit" class="btn btn-dim btn-outline-light disabled">Apply</button></span>
                                         <span class="d-md-none"><button class="btn btn-dim btn-outline-light btn-icon disabled"><em class="icon ni ni-arrow-right"></em></button></span>
                                     </div>
                                     </form>
@@ -91,7 +92,7 @@
                                              <span class="tb-date">{{$data->thongTinMau}}</span>
                                         </div>
                                         <div class="nk-tb-col tb-col-md">
-                                            <a href="{{route('chiTietNhapKho',['id'=>$data->id])}}" class="btn btn-primary btn-add"><em class="icon ni ni-plus"></em></a>
+                                            <a href="{{route('chiTietNhapKho',['id'=>$data->id])}}" target="_blank" class="btn btn-warning btn-add"><em class="icon ni ni-plus"></em></a>
                                         </div>
                                      </div><!-- .nk-tb-item -->
                                     @endforeach

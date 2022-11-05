@@ -218,6 +218,11 @@ class NhanVienController extends Controller
     }
     public  function postXoa($id){
         DB::table('quan_tri')->where('id','=',$id)->update(['trang_thai'=>0]);
+        $data = DB::table('quan_tri')->select('email')->where('id','=',$id)->first();
+        DB::table('nhan_vien_nhap_kho')->select('trang_thai','email')
+            ->where('email','=',$data->email)->update(['trang_thai'=>0]);
+        DB::table('nhan_vien_ban_hang')->select('trang_thai','email')
+            ->where('email','=',$data->email)->update(['trang_thai'=>0]);
         return response()->json([
                                     'message' => 'Data deleted successfully!'
                                 ]);
