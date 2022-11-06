@@ -26,13 +26,18 @@
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="{{route('allSanPham')}}">Sản phẩm </a></li>
                                     <li><a href="{{route('wishList')}}">Sản phẩm yêu thích</a></li>
-                                    <li><a href="{{route('getDataKM')}}">Khuyến mãi</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{route('about_us')}}">
-                                    <span class="menu-text"> Giới thiệu</span>
+                                <a href="{{route('xem-tin-tuc')}}">
+                                    <span class="menu-text"> Tin tức </span>
+                                    <i class="fa fa-angle-down"></i>
                                 </a>
+                                <ul class="dropdown-submenu dropdown-hover">
+                                    <li><a href="{{route('xem-tin-tuc')}}">Tin tức</a></li>
+                                    <li><a href="{{route('about_us')}}">Giới thiệu</a></li>
+                                    <li><a href="{{route('getDataKM')}}">Khuyến mãi</a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="{{route('contact')}}">
@@ -63,6 +68,16 @@
                                     <li><a href="{{route('logoutKH')}}">Logout</a></li>
                                 </ul>
                             </li>
+                            {{--<li>
+                                <div class="container">
+                                    <form action="{{route('search-product')}}" method="POST" id="search-form">
+                                        {{csrf_field()}}
+                                        <input name="keywords_submit" type="text" placeholder="Search Google..." autocomplete="off" autofocus>
+                                        <button type="button"><i class="fas fa-microphone"></i></button>
+                                        <button type="submit" class="btn-danger">Tìm</button>
+                                    </form>
+                                </div>
+                            </li>--}}
                         </ul>
                     </nav>
                 </div>

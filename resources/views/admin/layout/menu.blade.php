@@ -109,12 +109,6 @@
                             <span class="nk-menu-text">Quản lý khuyến mãi</span>
                         </a>
                     </li>
-{{--                        <li class="nk-menu-item">--}}
-{{--                            <a href="#" class="nk-menu-link">--}}
-{{--                                <span class="nk-menu-icon"><em class="icon ni ni-notes-alt"></em></span>--}}
-{{--                                <span class="nk-menu-text">Quản lý tin tức</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('quan-ly-cmt')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
@@ -129,7 +123,20 @@
                             </li>
                         </ul>
                     </li>
-
+                    <li class="nk-menu-item has-sub">
+                        <a href="{{route('them-tin-tuc')}}" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
+                            <span class="nk-menu-text">Quản lý tin tức</span>
+                        </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('them-tin-tuc')}}" class="nk-menu-link"><span class="nk-menu-text">Viết bài</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('quan-ly-tin-tuc')}}" class="nk-menu-link"><span class="nk-menu-text">Liệt kê tin tức</span></a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('info')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>

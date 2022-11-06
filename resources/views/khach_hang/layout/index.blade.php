@@ -36,7 +36,6 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="khach_hang_asset/assets/css/style.css">
     <link rel="stylesheet" href="khach_hang_asset/assets/js/sweetalert.css">
-
     <!--alertify  CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <style>
@@ -191,6 +190,7 @@
 <script src="{{ asset('khach_hang_asset/assets/js/custom_js/promotion.js') }}"></script>
 <script src="{{ asset('khach_hang_asset/assets/js/custom_js/rating.js') }}"></script>
 <script src="{{ asset('khach_hang_asset/assets/js/custom_js/search.js') }}"></script>
+<script src="{{ asset('khach_hang_asset/assets/js/custom_js/statistic.js') }}"></script>
 <!-- alertify JS -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 {{--<chat>--}}

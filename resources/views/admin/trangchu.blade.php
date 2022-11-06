@@ -115,6 +115,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3">
+            <div class="card text-white mb-4" style="background-color: steelblue;">
+                <div class="card-body">TIN TỨC</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{{route('quan-ly-tin-tuc')}}">Quản lý</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

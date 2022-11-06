@@ -188,6 +188,15 @@ Route::group(
         //Thống kê doanh thu
         Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales')->middleware('checkQuanTriVien');
 
+        // Quản lý tin tức
+        Route::group(['prefix'=>'tin-tuc','middleware' => 'checkQuanTriVien'],
+            function (){
+                Route::get('/them', 'App\Http\Controllers\TinTucController@getThem')->name('them-tin-tuc');
+                Route::post('/them', 'App\Http\Controllers\TinTucController@postThem')->name('postThemTinTuc');
+                Route::get('/danhsach', 'App\Http\Controllers\TinTucController@getDanhSach')->name('quan-ly-tin-tuc');
+            }
+        );
+
         // NHÂN VIÊN BÁN HÀNG
         // Quản lý loại sản phẩm
         Route::group(
@@ -502,6 +511,10 @@ Route::group(
         // đánh giá sản phẩm
         Route::post('/insert-rating','App\Http\Controllers\RatingController@rating');
         Route::post('/insert-comment','App\Http\Controllers\RatingController@comment')->name('add-comment')->middleware('loginKH');
+
+        // Xem tin tức
+        Route::get('/xem-tin-tuc','App\Http\Controllers\TinTucController@docTinTuc')->name('xem-tin-tuc');
+        Route::get('/xem-tin-tuc/{id}','App\Http\Controllers\TinTucController@chiTietTinTuc')->name('chi-tiet-tin-tuc');
     }
 );
 //Route::post('/api/confirm', 'App\Http\Controllers\ApiConfirmOrderController@confirmOrder');

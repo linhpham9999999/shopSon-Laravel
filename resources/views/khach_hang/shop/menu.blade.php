@@ -4,6 +4,18 @@
     <title>Shop son HLYNK Lipsticks</title>
     <base href="{{asset('')}}">
     <link rel="stylesheet" href="khach_hang_asset/assets/css/linh.css">
+    <style>
+        .abc{
+            width: 350px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 3;
+            height: 50px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    </style>
 @endsection()
 
 @section('content')
