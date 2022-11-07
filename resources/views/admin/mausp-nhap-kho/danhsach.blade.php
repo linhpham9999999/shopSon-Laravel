@@ -9,6 +9,11 @@
                         {{--                        <p>You have total 95 projects.</p>--}}
                     </div>
                 </div><!-- .nk-block-head-content -->
+                <div class="nk-block-head-content" style="margin-right: 650px;">
+                    <div class="toggle-wrap nk-block-tools-toggle">
+                        <input type="search" id="search-color-product" name="product_color_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
+                    </div><!-- .toggle-wrap -->
+                </div>
                 <div class="nk-block-head-content">
                     <div class="toggle-wrap nk-block-tools-toggle">
                         <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
@@ -41,7 +46,7 @@
                                 <th class="nk-tb-col tb-col-mb" colspan="2" style="text-align: center"><span class="sub-text">Action</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
-                            <tbody>
+                            <tbody class="all-data-color-product">
                             @foreach($data as $dt)
                                 <tr class="nk-tb-item">
                                     <td class="nk-tb-col tb-col-md">
@@ -50,8 +55,8 @@
                                     <td class="nk-tb-col tb-col-lg">
                                         <span>{{$dt->mau}}</span>
                                     </td>
-                                    <td class="nk-tb-col tb-col-md">
-                                        <span><img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="50px" height="50px"/></span>
+                                    <td class="nk-tb-col tb-col-md product-image-admin">
+                                        <img src="admin_asset/image_son/mau_san_pham/{{$dt->hinhanh}}" width="50px" height="50px"/>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$dt->soluongton}}</span>
@@ -73,6 +78,8 @@
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach
+                            </tbody>
+                            <tbody id="ContentColorProduct" class="search-data-color-product">
                             </tbody>
                         </table><!-- .nk-tb-list -->
                     </div><!-- .card-inner -->

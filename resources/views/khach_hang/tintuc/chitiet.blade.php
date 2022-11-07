@@ -13,12 +13,12 @@
                     <p class="mb-4">{{$data->mo_ta_ngan}}</p>
                     <p class="mb-5" style="text-align: justify">{{$data->noi_dung}}</p>
                 </div>
-                <div class="share-article">
-                           <span class="left-side">
-                                <a href="khach_hang/xem-tin-tuc/{{$tintuc->firstItem()}}"> <i class="fa fa-long-arrow-left"></i> Trước</a>
-                           </span>
+                <div class="share-article" style="padding-left: 800px;">
+{{--                           <span class="left-side">--}}
+{{--                                <a href="khach_hang/xem-tin-tuc/{{$tintuc->firstItem()}}"> <i class="fa fa-long-arrow-left"></i> Trước</a>--}}
+{{--                           </span>--}}
                     <span class="right-side">
-                            <a href="khach_hang/xem-tin-tuc/{{$tintuc->lastItem()}}">Sau <i class="fa fa-long-arrow-right"></i></a>
+                            <a href="{{route('xem-tin-tuc')}}">Back <i class="fa fa-long-arrow-right"></i></a>
                     </span>
                 </div>
             </section>

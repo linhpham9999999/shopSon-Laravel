@@ -10,7 +10,7 @@
                         </div>
                     @endif
                     <div class="header">
-                        <h4 class="title">Thêm thông tin sản phẩm</h4>
+                        <h4 class="title">Sửa thông tin sản phẩm</h4>
                     </div>
                     <div class="content">
                         <form action="{{route('postSuaSP',['id'=>$sanpham->id])}}" method="POST" role="form" enctype="multipart/form-data" >

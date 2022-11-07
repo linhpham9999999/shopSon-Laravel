@@ -64,8 +64,8 @@
                                         <li><a href="{{route('passwordKH')}}">Đổi mật khẩu</a></li>
                                     @endif
                                     <li><a href="{{route('create_account')}}">Đăng ký thành viên</a></li>
-                                    <li><a href="{{route('loginKH')}}">Login</a></li>
-                                    <li><a href="{{route('logoutKH')}}">Logout</a></li>
+                                    <li><a href="{{route('loginKH')}}">Đăng nhập</a></li>
+                                    <li><a href="{{route('logoutKH')}}">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             {{--<li>

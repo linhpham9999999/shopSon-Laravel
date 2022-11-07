@@ -49,13 +49,19 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
+                                <a href="{{route('quanlyHD-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Tất cả</span></a>
+                            </li>
+                            <li class="nk-menu-item">
                                 <a href="{{route('chua-duyet-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('da-duyet-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đã duyệt</span></a>
+                                <a href="{{route('da-giao-shipper-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đã giao vận chuyển</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('da-mua-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đã mua</span></a>
+                                <a href="{{route('da-duyet-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đang giao</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('da-mua-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Giao thành công & Đã mua</span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('da-huy-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đã hủy</span></a>
@@ -63,7 +69,7 @@
                         </ul>
                     </li>
 {{--                    <li class="nk-menu-item">--}}
-{{--                        <a href="{{route('khach_hang')}}" class="nk-menu-link">--}}
+{{--                        <a href="{{route('khach-hang-bh')}}" class="nk-menu-link">--}}
 {{--                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>--}}
 {{--                            <span class="nk-menu-text">Quản lý khách hàng</span>--}}
 {{--                        </a>--}}
@@ -82,8 +88,12 @@
                             </li>
                         </ul>
                     </li>
-
-
+                    <li class="nk-menu-item">
+                        <a href="https://ahachat.com/bots/58583239/chat/all" target="_blank" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-mail-fill"></em></span>
+                            <span class="nk-menu-text"> Chat với khách hàng</span>
+                        </a>
+                    </li>
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

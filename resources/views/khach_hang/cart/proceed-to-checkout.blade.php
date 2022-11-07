@@ -178,7 +178,7 @@
                         {{session('alert')}}
                     </div>
                 @endif
-                <div class="alert alert-danger" style="width: 250px;margin-top: 10px;float: left;height: 50px;">
+                <div class="error" style="width: 250px;margin-top: 10px;float: left;height: 50px;padding-top: 15px;">
                     {{$errors->first('dathanhtoanmomo')}}
                 </div>
             </div>

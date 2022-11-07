@@ -12,12 +12,12 @@
             </div><!-- .nk-header-brand -->
             <div class="nk-header-news d-none d-xl-block">
                 <div class="nk-news-list">
-                    <a class="nk-news-item" href="{{route('homeBanHang')}}">
+                    <a class="nk-news-item" href="{{route('homeAd')}}">
                         <div class="nk-news-icon">
                             <em class="icon ni ni-card-view"></em>
                         </div>
-                        <div class="nk-news-text" style="width: 300px">
-                            <p>Hệ thống quản lý SHOP SON HLYNK Lipstick</p>
+                        <div class="nk-news-text" style="width: 400px">
+                            <p>Hệ thống quản lý SHOP SON HLYNK Lipsticks</p>
                         </div>
                     </a>
                 </div>
@@ -67,8 +67,8 @@
                                         @endif
                                     </div>
                                     <div>
-                                        @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
-                                        <a href="{{route('logoutBH')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                                        @if( \Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                            <a href="{{route('logoutBH')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
                                         @endif
                                     </div>
                                 </div>
@@ -104,10 +104,10 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    {{--                                    @if(\Illuminate\Support\Facades\Auth::guard('quan_tri')->check())--}}
-                                    <li><a href="{{route('logoutBH')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
-                                        {{--  @endif--}}
-                                    </li>
+                                    @if(\Illuminate\Support\Facades\Auth::guard('nhan_vien_ban_hang')->check())
+                                        <li><a href="{{route('logoutBH')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                                            @endif
+                                        </li>
                                 </ul>
                             </div>
                         </div>

@@ -256,17 +256,22 @@ Route::group(
         // Duyệt đơn hàng
         Route::group(['prefix'=>'duyetHD-ban-hang','middleware' => 'checkBanHang'],
             function (){
+
+                // tất cả hóa đơn
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSachBanHang')->name('quanlyHD-ban-hang');
-                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@postDanhSachBanHang')->name('duyetHD1-ban-hang');
-
-                Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTietBanHang')->name('chi_tiet_hd-ban-hang');
-
                 //Xem theo trang thai
                 Route::get('chua-duyet', 'App\Http\Controllers\DuyetHDController@getDSChuaDuyetBanHang')->name('chua-duyet-ban-hang');
-
+                // giao shipper có 2 TH: bị từ chối, chưa phản hồi
+                Route::get('da-giao-shipper', 'App\Http\Controllers\DuyetHDController@getDSDaGiaoShipperBanHang')->name('da-giao-shipper-ban-hang');
                 Route::get('da-duyet', 'App\Http\Controllers\DuyetHDController@getDSDaDuyetBanHang')->name('da-duyet-ban-hang');
                 Route::get('da-mua', 'App\Http\Controllers\DuyetHDController@getDSDaMuaBanHang')->name('da-mua-ban-hang');
                 Route::get('da-huy', 'App\Http\Controllers\DuyetHDController@getDSDaHuyBanHang')->name('da-huy-ban-hang');
+                // Chi tiết hóa đơn
+                Route::get('chitietHD/{id}', 'App\Http\Controllers\DuyetHDController@getChiTietBanHang')->name('chi_tiet_hd-ban-hang');
+                // chọn nguoi-giao-hang giao hàng
+                Route::post('chitietHD', 'App\Http\Controllers\DuyetHDController@chonShipperBanHang')->name('chon-nguoi-giao-hang-ban-hang');
+                // Tìm kiếm HĐ theo mã, tên khách hàng
+                Route::get('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@searchBanHang')->name('search-order-ban-hang');
             }
         );
 

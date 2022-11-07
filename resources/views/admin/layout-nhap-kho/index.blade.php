@@ -11,10 +11,10 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Page Title  -->
-    <title>HLYNK Lipsticks</title>
+    <title>Quản lý kho hàng Shop HLYNK Lipsticks</title>
     <base href="{{asset('')}}">
-@yield('cssKH')
-<!-- StyleSheets  -->
+    @yield('cssKH')
+    <!-- StyleSheets  -->
     <link rel="stylesheet" href="admin_asset_new/assets/css/dashlite.css?ver=2.9.0">
     <link id="skin-default" rel="stylesheet" href="admin_asset_new/assets/css/theme.css?ver=2.9.0">
     {{--    thêm--}}
@@ -40,10 +40,24 @@
             margin-bottom: 10px;
         }
 
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
+        .product-image-admin {
+            transition: transform .2s; /* Animation */
+        }
 
+        .product-image-admin:hover {
+            transform: scale(2.5);
+        }
+        .product-image-admin2 {
+            transition: transform .2s; /* Animation */
+        }
+
+        .product-image-admin2:hover {
+            transform: scale(1.5);
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+</head>
 <body class="nk-body bg-lighter npc-general has-sidebar ">
 <div class="nk-app-root">
     <!-- main @s -->
@@ -82,16 +96,28 @@
 {{--thêm--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
 
-{{--lay cai nay ko con logout duoc--}}
+{{--lay cai nay ko con logout duoc  --}}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 
 <script src="js/app.js"></script>
+<script src="{{ asset('admin_asset_new/js/custom_js/chart-area-demo.js') }}"></script>
+<script src="{{ asset('admin_asset_new/js/custom_js/chart-bar-demo.js') }}"></script>
 <script type="text/javascript" charset="utf-8">
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+</script>
+<script>
+    $( document ).ready(function() {
+        $("#outlined-date-picker").datepicker({
+            format: 'yyyy-mm-dd' //can also use format: 'dd-mm-yyyy'
+        });
+        $("#outlined-date-picker2").datepicker({
+            format: 'yyyy-mm-dd' //can also use format: 'dd-mm-yyyy'
+        });
     });
 </script>
 <script type="text/javascript">
@@ -129,7 +155,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/loaisp-nhap-kho/xoa/" + id,
+                    url: "admin/loaisp-ban-hang/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,
@@ -164,7 +190,7 @@
         $('.js-btn-update-lsp').on('click',function (e) {
             e.preventDefault();
             $.ajax({
-                url: "admin/loaisp-kho-hang/post-sua",
+                url: "admin/loaisp/post-sua",
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -200,7 +226,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/sanpham-kho-hang/xoa/" + id,
+                    url: "admin/sanpham/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,
@@ -217,7 +243,61 @@
                 });
             return false;
         })
+        // Xóa Nhân viên
+        $('.js-delete-nhanvien').on('click', function(e){
+            if(!confirm("Bạn có chắc xóa không?")) {
+                return false;
+            }
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            var token = $("meta[name='csrf-token']").attr("content");
+            $.ajax(
+                {
+                    url: "admin/nhanvien/xoa/" + id,
+                    method: 'POST',
+                    data: {
+                        _token: token,
+                        id: id
+                    },
+                    success: function (response){
+                        $("#success").html(response.message)
+                        Swal.fire('Remind!',
+                            'Xóa thành công Nhân viên!',
+                            'success').then(function() {
+                            location.reload();
+                        })
+                    }
+                });
+            return false;
+        })
 
+        // Xóa Khách hàng
+        $('.js-delete-khachhang').on('click', function(e){
+            if(!confirm("Bạn có chắc xóa không?")) {
+                return false;
+            }
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            var token = $("meta[name='csrf-token']").attr("content");
+            $.ajax(
+                {
+                    url: "admin/khach_hang/xoa/" + id,
+                    method: 'POST',
+                    data: {
+                        _token: token,
+                        id: id
+                    },
+                    success: function (response){
+                        $("#success").html(response.message)
+                        Swal.fire('Remind!',
+                            'Xóa thành công Khách hàng!',
+                            'success').then(function() {
+                            location.reload();
+                        })
+                    }
+                });
+            return false;
+        })
         // Xóa Màu sản phẩm
         $('.js-delete-mausanpham').on('click', function(e){
             if(!confirm("Bạn có chắc xóa không?")) {
@@ -228,7 +308,7 @@
             var token = $("meta[name='csrf-token']").attr("content");
             $.ajax(
                 {
-                    url: "admin/mausp-kho-hang/xoa/" + id,
+                    url: "admin/mausp/xoa/" + id,
                     method: 'POST',
                     data: {
                         _token: token,
@@ -247,6 +327,7 @@
         })
     });
 </script>
+
 <script type="text/javascript">
     $('#search-order').on('keyup',function (){
         $value = $(this).val();
@@ -269,5 +350,29 @@
         });
     })
 </script>
+
+<script type="text/javascript">
+    $('#search-color-product').on('keyup',function (){
+        $value = $(this).val();
+        if($value){
+            $('.all-data-color-product').hide();
+            $('.search-data-color-product').show();
+        }
+        else{
+            $('.all-data-color-product').show();
+            $('.search-data-color-product').hide();
+        }
+        $.ajax({
+            method:'GET',
+            url:'{{route('search-color-product')}}',
+            data:{'product_color_input':$value},
+            success:function(data){
+                console.log(data);
+                $('#ContentColorProduct').html(data);
+            }
+        });
+    })
+</script>
 </body>
 </html>
+

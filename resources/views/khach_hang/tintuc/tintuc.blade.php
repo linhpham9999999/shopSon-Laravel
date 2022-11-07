@@ -16,19 +16,19 @@
                 <div class="blog-lst">
                     <div class="single-blog">
                         <div class="blog-image">
-                            <a class="d-block" target="_blank" href="{{route('chi-tiet-tin-tuc',['id'=>$dt->id])}}">
+                            <a class="d-block" href="{{route('chi-tiet-tin-tuc',['id'=>$dt->id])}}">
                                 <img class="w-100 product-image" src="admin_asset/tintuc/{{$dt->hinh_anh}}" alt="Blog Image">
                             </a>
                         </div>
                         <div class="blog-content">
                             <div class="blog-text">
-                                <h4><a target="_blank" href="{{route('chi-tiet-tin-tuc',['id'=>$dt->id])}}">{{$dt->tieu_de}}</a></h4>
+                                <h4><a href="{{route('chi-tiet-tin-tuc',['id'=>$dt->id])}}">{{$dt->tieu_de}}</a></h4>
                                 <div class="blog-post-info">
                                     <span>Admin</span>
                                     <span>- {{DateTime::createFromFormat('Y-m-d', $dt->created_at)->format('m/d/Y')}}</span>
                                 </div>
                                 <p class="abc">{{$dt->mo_ta_ngan}}</p>
-                                <a target="_blank" href="{{route('chi-tiet-tin-tuc',['id'=>$dt->id])}}" class="readmore">
+                                <a href="{{route('chi-tiet-tin-tuc',['id'=>$dt->id])}}" class="readmore">
                                     Đọc thêm <i class="fa fa-long-arrow-right"></i></a>
                             </div>
                         </div>
@@ -37,7 +37,6 @@
             </div>
             @endforeach
         </div>
-
         <div class="row">
             <div class="col-sm-12 col-custom">
                 <div class="toolbar-bottom">

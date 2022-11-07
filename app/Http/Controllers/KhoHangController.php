@@ -171,8 +171,9 @@ class KhoHangController extends Controller
     public function postThemKhoHang(Request $request)
     {
         if( Auth::guard('nhan_vien_nhap_kho')->check()) {
-            $admin = Auth::guard('nhan_vien_nhap_kho')->user()->id;
+            $email = Auth::guard('nhan_vien_nhap_kho')->user()->email;
         }
+        $quan_tri = DB::table('quan_tri')->select('id','email')->where('email','=',$email)->first();
         $this->validate(
             $request,
             [
@@ -200,7 +201,7 @@ class KhoHangController extends Controller
                 'nha_cung_cap'=>$request->ncc,
                 'tong_tien' => $request->soluong * $request->dongia,
                 'created_at' => Carbon::now(),
-                'quan_tri_id'=> $admin
+                'quan_tri_id'=> $quan_tri->id
             ]
         );
         $id_PNH = DB::getPdo()->lastInsertId();
@@ -218,30 +219,29 @@ class KhoHangController extends Controller
         $msp = DB::table('mau_san_pham')->where('id','=',$request->idMSP)->first();
         //Lưu lại giá cũ vào bảng san_pham_tmp
         DB::table('san_pham_tmp')->insert([
-                                              'Ma_SP'=>$sp->Ma_SP,
-                                              'ten_SP'=>$sp->ten_SP,
-                                              'xuatxu'=>$sp->xuatxu,
-                                              'trongluong'=>$sp->trongluong,
-                                              'gia_nhap_vao'=>$sp->gia_nhap_vao,
-                                              'gia_ban_ra'=>$sp->gia_ban_ra,
-                                              'hansudung_thang'=>$sp->hansudung_thang,
-                                              'gioithieu'=>$sp->gioithieu,
-                                              'hinhanhgoc'=>$sp->hinhanhgoc,
-                                              'noibat'=>$sp->noibat,
-                                              'id_LSP'=>$sp->id_LSP,
-                                              'trang_thai'=>$sp->trang_thai,
-                                              'created_at'=>Carbon::now() ]);
+              'Ma_SP'=>$sp->Ma_SP,
+              'ten_SP'=>$sp->ten_SP,
+              'xuatxu'=>$sp->xuatxu,
+              'trongluong'=>$sp->trongluong,
+              'gia_nhap_vao'=>$sp->gia_nhap_vao,
+              'gia_ban_ra'=>$sp->gia_ban_ra,
+              'hansudung_thang'=>$sp->hansudung_thang,
+              'gioithieu'=>$sp->gioithieu,
+              'hinhanhgoc'=>$sp->hinhanhgoc,
+              'thanh_phan'=>$sp->thanh_phan,
+              'id_LSP'=>$sp->id_LSP,
+              'trang_thai'=>$sp->trang_thai,
+              'created_at'=>Carbon::now() ]);
         //Thêm số lượng sản phẩm
         DB::table('mau_san_pham')->where('id','=',$request->idMSP)->update([
-                                                                               'soluongton'=> $msp->soluongton + $request->soluong
-                                                                           ]);
+                                                   'soluongton'=> $msp->soluongton + $request->soluong
+                                               ]);
         // update lại giá cho Sản phẩm
         DB::table('san_pham')->where('id','=',$request->idSP)->update([
-                                                                          'gia_nhap_vao'=>$request->dongia,
-                                                                          'gia_ban_ra'=>$request->dongia * (1 + $request->loinhuan*0.01),
-                                                                          'updated_at'=>Carbon::now()
-                                                                      ]);
-
+                                                  'gia_nhap_vao'=>$request->dongia,
+                                                  'gia_ban_ra'=>$request->dongia * (1 + $request->loinhuan*0.01),
+                                                  'updated_at'=>Carbon::now()
+                                              ]);
         return back()->with('thongbao','Nhập kho thành công');
     }
 

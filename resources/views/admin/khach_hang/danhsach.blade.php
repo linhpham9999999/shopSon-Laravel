@@ -13,9 +13,9 @@
                         <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
                         <div class="toggle-expand-content" data-content="pageMenu">
                             <ul class="nk-block-tools g-3">
-                                <li class="nk-block-tools-opt">
-                                    <a href="{{route('getThemKH')}}" class="btn btn-primary btn-add"><em class="icon ni ni-plus"></em><span>Thêm</span></a>
-                                </li>
+{{--                                <li class="nk-block-tools-opt">--}}
+{{--                                    <a href="{{route('getThemKH')}}" class="btn btn-primary btn-add"><em class="icon ni ni-plus"></em><span>Thêm</span></a>--}}
+{{--                                </li>--}}
                             </ul>
                         </div>
                     </div><!-- .toggle-wrap -->
@@ -65,14 +65,14 @@
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$kh->email}}</span>
                                     </td>
-{{--                                    <td class="nk-tb-col tb-col-mb">--}}
-{{--                                        <button class="btn btn-sm  js-delete-khachhang" data-id="{{ $kh->id }}">--}}
-{{--                                            <img src="admin_asset/delete.png" width="45px" />--}}
-{{--                                        </button>--}}
-{{--                                    </td>--}}
                                     <td class="nk-tb-col tb-col-mb">
-                                        <a href="admin/khach_hang/sua/{{$kh->id}}"><img src="admin_asset/edit.png" width="30px"/></a>
+                                        <button class="btn btn-sm  js-delete-khachhang" data-id="{{ $kh->id }}">
+                                            <img src="admin_asset/delete.png" width="45px" />
+                                        </button>
                                     </td>
+{{--                                    <td class="nk-tb-col tb-col-mb">--}}
+{{--                                        <a href="admin/khach_hang/sua/{{$kh->id}}"><img src="admin_asset/edit.png" width="30px"/></a>--}}
+{{--                                    </td>--}}
                                 </tr><!-- .nk-tb-item -->
                             @endforeach
                             </tbody>
