@@ -341,7 +341,7 @@
         }
         $.ajax({
             type:'get',
-            url:'{{route('search-order')}}',
+            url:'{{route('search-order-ban-hang')}}',
             data:{'order_code_input':$value},
             success:function(data){
                 console.log(data);
@@ -364,7 +364,7 @@
         }
         $.ajax({
             method:'GET',
-            url:'{{route('search-color-product')}}',
+            url:'{{route('search-color-product-ban-hang')}}',
             data:{'product_color_input':$value},
             success:function(data){
                 console.log(data);

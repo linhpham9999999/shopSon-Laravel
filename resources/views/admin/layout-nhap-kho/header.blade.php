@@ -17,7 +17,7 @@
                             <em class="icon ni ni-card-view"></em>
                         </div>
                         <div class="nk-news-text" style="width: 400px">
-                            <p>Hệ thống quản lý SHOP SON HLYNK Lipsticks</p>
+                            <p>Hệ thống NHẬP KHO Shop SON HLYNK Lipsticks</p>
                         </div>
                     </a>
                 </div>

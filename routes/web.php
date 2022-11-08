@@ -225,6 +225,9 @@ Route::group(
 
                 Route::get('them', 'App\Http\Controllers\MauSpController@getThemBanHang')->name('getThemMSP-ban-hang');
                 Route::post('them', 'App\Http\Controllers\MauSpController@postThemBanHang')->name('actionThem3-ban-hang');
+
+                // tìm theo mã, màu sp
+                Route::get('/tim-kiem', 'App\Http\Controllers\SearchColorProductController@searchBanHang')->name('search-color-product-ban-hang');
             }
         );
         // Quản lý sản phẩm
@@ -303,6 +306,8 @@ Route::group(
 
                 Route::get('them', 'App\Http\Controllers\MauSpController@getThemNhapKho')->name('getThemMSP-nhap-kho');
                 Route::post('them', 'App\Http\Controllers\MauSpController@postThemNhapKho')->name('actionThem3-nhap-kho');
+                // tìm theo mã, màu sp
+                Route::get('/tim-kiem', 'App\Http\Controllers\SearchColorProductController@searchNhapKho')->name('search-color-product-nhap-kho');
             }
         );
         // Quản lý sản phẩm

@@ -3,28 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use Carbon\Carbon;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class KhachHangController extends Controller
 {
     public function index(){
+        $range = Carbon::now()->subDays(365);
         $data = DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','mau_san_pham.id','=','chi_tiet_hoa_don.id_MSP')
             ->join('hoa_don','chi_tiet_hoa_don.id_HD','=','hoa_don.id')
-            ->where('hoa_don.id_TT','!=',4)
-            ->select('mau_san_pham.id_SP',DB::raw('count(mau_san_pham.id_SP) as solanmua'))
-            ->groupBy('mau_san_pham.id_SP')->get()->toArray();
+            ->join('san_pham','san_pham.id','=','mau_san_pham.id_SP')
+            ->select('san_pham.id','mau_san_pham.mau',DB::raw('sum(soluong) as soluongcay'))
+            ->where('hoa_don.ngaydat','>=',$range)
+            ->whereIn('hoa_don.id_TT',[1,5])
+            ->groupBy('san_pham.id','mau_san_pham.mau')
+            ->get()->toArray();
         foreach ($data as $item){
-            if($item->solanmua >= 2){
+            if($item->soluongcay > 4){
                 $idSP_ban_chay[] = array(
-                    'id_SP' => $item->id_SP
+                    'id_SP' => $item->id
                 );
             }
         }
         $san_pham_ban_chay = DB::table('san_pham')->select('*')
             ->where('trang_thai','=',1)
-            ->whereIn('id',$idSP_ban_chay)->get();
+            ->whereIn('id',$idSP_ban_chay)->orderBy('id','desc')->get();
         $sanphamnew = DB::table('san_pham')->select('*')
             ->where('trang_thai','=',1)
             ->orderBy('id','desc')->take(5)->get();
@@ -65,7 +70,13 @@ class KhachHangController extends Controller
         $sanphamnew = DB::table('san_pham')->select('*')
             ->where('trang_thai','=',1)
             ->orderBy('id','desc')->take(3)->get();
-
+//            DB::table('mau_san_pham')
+//            ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
+//            ->join('binh_luan','binh_luan.id_MSP','=','mau_san_pham.id')
+//            ->where([['san_pham.id','=',$id],['san_pham.trang_thai','=',1],['mau_san_pham.trang_thai','=',1]])
+//            ->select('binh_luan.id_MSP', DB::raw('avg(so_sao) so_sao'))
+//            ->groupBy('binh_luan.id_MSP')
+//            ->get()->toArray();
         return view('khach_hang.shop.product-color-list',
                     compact('listColorProduct','loaisp','sanpham','sanphamnew'));
     }

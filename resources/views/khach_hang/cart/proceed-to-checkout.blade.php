@@ -45,19 +45,19 @@
                             <div class="row">
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
-                                        <label>Your Name <span class="required">*</span></label>
+                                        <label>Tên Khách hàng <span class="required">*</span></label>
                                         <p class="formdetails" style="height: 50px">{{$users->hoten}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
-                                        <label>Email Address </label>
+                                        <label>Địa chỉ Email </label>
                                         <p class="formdetails" style="height: 50px">{{$users->email}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
-                                        <label>Phone <span class="required">*</span></label>
+                                        <label>Điện thoại <span class="required">*</span></label>
                                         <input class="formdetails" style="height: 50px" placeholder="Số điện thoại" type="text" name="sodth" value="{{$users->sodth}}" />
                                         <div class="error"> {{$errors->first('sodth')}}</div>
                                     </div>
@@ -71,7 +71,7 @@
 {{--                                </div>--}}
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
-                                        <label>Address <span class="required">*</span></label>
+                                        <label>Địa chỉ <span class="required">*</span></label>
                                         <p class="formdetails" style="height: 50px"><select style="height: 30px; border: 1px solid crimson;" name="diachi">
                                         @foreach($diachi as $dc)
 {{--                                            <option value="" selected disabled hidden>Chọn địa chỉ giao hàng</option>--}}

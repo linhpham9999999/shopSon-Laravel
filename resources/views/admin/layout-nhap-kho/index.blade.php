@@ -364,7 +364,7 @@
         }
         $.ajax({
             method:'GET',
-            url:'{{route('search-color-product')}}',
+            url:'{{route('search-color-product-nhap-kho')}}',
             data:{'product_color_input':$value},
             success:function(data){
                 console.log(data);

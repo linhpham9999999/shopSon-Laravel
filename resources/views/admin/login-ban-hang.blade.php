@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="">
 
-    <title>Đăng nhập hệ thống quản lý</title>
+    <title>Đăng nhập hệ thống bán hàng</title>
     <base href="{{asset('')}}">
     <link rel="shortcut icon" type="image/x-icon" href="khach_hang_asset/assets/images/favicon.ico">
     <!-- Bootstrap Core CSS -->
@@ -33,7 +33,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h1 style="color:#FF8000; font-size: 19px; text-align: center"><b>ĐĂNG NHẬP HỆ THỐNG QUẢN LÝ BÁN HÀNG</b></h1>
+                    <h1 style="color:#FF8000; font-size: 19px; text-align: center"><b>ĐĂNG NHẬP HỆ THỐNG BÁN HÀNG</b></h1>
                 </div>
 
                 <div class="panel-body">

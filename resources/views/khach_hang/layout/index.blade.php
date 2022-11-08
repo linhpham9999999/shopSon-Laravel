@@ -256,6 +256,7 @@
             }
         });
     });
+    // xóa MÀU SP yêu thích
     function deleteWishList(url) {
         $.ajax({
             type: "POST",
@@ -268,6 +269,7 @@
             window.location.reload();
         });
     }
+    // Xóa SP trong cart
     function deleleProductFromCart(url){
         $.ajax({
             type: "POST",
@@ -280,6 +282,7 @@
             window.location.reload();
         });
     }
+    // Hủy đơn hàng
     function deleteOrder(url){
         $.ajax({
             type: "POST",
