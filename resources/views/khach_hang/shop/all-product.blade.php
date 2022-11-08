@@ -38,55 +38,6 @@
                         <div class="product-title">
                             <h4 class="title-2">{{$sp->ten_SP}}</h4>
                         </div>
-{{--                            @if($sp->sosao == 0)--}}
-{{--                                <div class="product-rating">--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                </div>--}}
-{{--                            @elseif($sp->sosao == 1)--}}
-{{--                                <div class="product-rating">--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                </div>--}}
-{{--                            @elseif($sp->sosao == 2)--}}
-{{--                                <div class="product-rating">--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                </div>--}}
-{{--                            @elseif($sp->sosao == 3)--}}
-{{--                                <div class="product-rating">--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                </div>--}}
-{{--                            @elseif($sp->sosao == 4)--}}
-{{--                                <div class="product-rating">--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                </div>--}}
-{{--                            @else($sp->sosao == 5)--}}
-{{--                                <div class="product-rating">--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                    <i class="fa fa-star"></i>--}}
-{{--                                </div>--}}
-{{--                            @endif--}}
                         <div class="price-box">
                             <span class="regular-price ">{{ number_format( $sp->gia_ban_ra ,0,',','.')  }} VND</span>
                             {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}

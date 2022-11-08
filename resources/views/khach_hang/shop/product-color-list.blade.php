@@ -47,50 +47,15 @@
                                 <div class="product-title">
                                     <h4 class="title-2"> {{$msp->Ma_MSP}} {{$msp->mau}}</h4>
                                 </div>
-{{--                                <div class="product-rating">--}}
-{{--                                    @if($dt->so_sao === 1)--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                    @elseif($dt->so_sao === 2)--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                    @elseif($dt->so_sao === 3)--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                    @elseif($dt->so_sao === 4)--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                    @elseif($dt->so_sao === 5)--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                        <i class="fa fa-star"></i>--}}
-{{--                                    @elseif($dt->so_sao === null)--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                        <i class="fa fa-star-o"></i>--}}
-{{--                                    @endif--}}
-{{--                                </div>--}}
                                 <div class="price-box">
                                     <span class="regular-price ">{{ number_format( $msp->gia_ban_ra ,0,',','.')  }} VND</span>
                                     {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                 </div>
-                                <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT</span> </a>
+                                @if($msp->soluongton < 1)
+                                    <span>XEM CHI TIẾT</span>
+                                @else
+                                    <a href="{{route('product-color-detail',['id' => $msp->id])}}"> <span>XEM CHI TIẾT</span> </a>
+                                @endif
                             </div>
                             <div class="product-content-listview">
                                 <div class="product-title">

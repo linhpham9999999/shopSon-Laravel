@@ -58,23 +58,42 @@ class BuyProductsController extends Controller
 
     public function orderSuccess(Request $request){
 //        dd($request->dathanhtoanmomo);
-        $this->validate(
-            $request,
-            [
-                'sodth'     => 'bail|required|min:10|max:10',
-                'diachi'    => 'bail|required|min:5|max:255',
-                'dathanhtoanmomo'=> 'bail|required'
-            ],
-            [
-                'sodth.required'    => 'Bạn chưa nhập Số điện thoại',
-                'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
-                'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
-                'diachi.required'   => 'Bạn chưa chọn địa chỉ giao hàng',
-                'diachi.min'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
-                'diachi.max'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
-                'dathanhtoanmomo.required'=>'Vui lòng thanh toán hóa đơn'
-            ]
-        );
+        if($request->payment==1){
+            $this->validate(
+                $request,
+                [
+                    'sodth'     => 'bail|required|min:10|max:10',
+                    'diachi'    => 'bail|required|min:5|max:255',
+                    'dathanhtoanmomo'=> 'bail|required'
+                ],
+                [
+                    'sodth.required'    => 'Bạn chưa nhập Số điện thoại',
+                    'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
+                    'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
+                    'diachi.required'   => 'Bạn chưa chọn địa chỉ giao hàng',
+                    'diachi.min'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+                    'diachi.max'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+                    'dathanhtoanmomo.required'=>'Vui lòng thanh toán hóa đơn'
+                ]
+            );
+        }else{
+            $this->validate(
+                $request,
+                [
+                    'sodth'     => 'bail|required|min:10|max:10',
+                    'diachi'    => 'bail|required|min:5|max:255',
+                ],
+                [
+                    'sodth.required'    => 'Bạn chưa nhập Số điện thoại',
+                    'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
+                    'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
+                    'diachi.required'   => 'Bạn chưa chọn địa chỉ giao hàng',
+                    'diachi.min'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+                    'diachi.max'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+                ]
+            );
+        }
+
 
         $email = '' ;
         if( Auth::guard('nguoi_dung')->check()) {
