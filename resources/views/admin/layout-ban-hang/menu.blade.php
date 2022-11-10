@@ -24,38 +24,20 @@
                             <span class="nk-menu-text">Trang chủ</span>
                         </a>
                     </li><!-- .nk-menu-item -->
-                    <li class="nk-menu-item">
-                        <a href="{{route('dsLSP-ban-hang')}}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-view-panel"></em></span>
-                            <span class="nk-menu-text">Quản lý loại sản phẩm</span>
-                        </a>
-                    </li>
-                    <li class="nk-menu-item">
-                        <a href="{{route('dsSP-ban-hang')}}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-view-row"></em></span>
-                            <span class="nk-menu-text">Quản lý sản phẩm</span>
-                        </a>
-                    </li>
-                    <li class="nk-menu-item">
-                        <a href="{{route('dsMSP-ban-hang')}}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-view-group-wd"></em></span>
-                            <span class="nk-menu-text">Quản lý màu sản phẩm</span>
-                        </a>
-                    </li>
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('quanlyHD-ban-hang')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                            <span class="nk-menu-text">Quản lý đơn hàng</span>
+                            <span class="nk-menu-text">Quản lý đơn hàng<sup class="hd-cho-duyet" style="color: red;"></sup></span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
                                 <a href="{{route('quanlyHD-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Tất cả</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('chua-duyet-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt</span></a>
+                                <a href="{{route('chua-duyet-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt<sup class="hd-chua-duyet" style="color: red;"></sup></span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('da-giao-shipper-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đã giao vận chuyển</span></a>
+                                <a href="{{route('da-giao-shipper-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đã giao vận chuyển<sup class="hd-cho-shiper-duyet" style="color: red;"></sup></span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('da-duyet-ban-hang')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đang giao</span></a>
@@ -68,12 +50,6 @@
                             </li>
                         </ul>
                     </li>
-{{--                    <li class="nk-menu-item">--}}
-{{--                        <a href="{{route('khach-hang-bh')}}" class="nk-menu-link">--}}
-{{--                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>--}}
-{{--                            <span class="nk-menu-text">Quản lý khách hàng</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('info-ban-hang')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>

@@ -12,7 +12,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
                 ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
                 ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-                ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+                ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
                 ->orderBy('hoa_don.id','desc')
                 ->paginate(8);
         $isOrder = DB::table('hoa_don')
@@ -51,7 +51,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','nguoi_giao_hang_id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','nguoi_giao_hang_id','sodth_giao_hang')
             ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','!=',null]])
             ->orWhere('hoa_don.id_TT','=',6)
             ->orderBy('hoa_don.id','desc')
@@ -97,7 +97,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','=',null]])->orderBy('hoa_don.id','desc')
             ->paginate(8);
 
@@ -112,7 +112,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->where('hoa_don.id_TT','=',2)
             ->orderBy('hoa_don.id','desc')
             ->paginate(8);
@@ -128,7 +128,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->whereIn('hoa_don.id_TT', [1, 5])->orderBy('hoa_don.id','desc')->paginate(8);
 
         $isOrder = DB::table('hoa_don')
@@ -142,7 +142,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->where('hoa_don.id_TT','=',4)->orderBy('hoa_don.id','desc')->paginate(8);
 
         $isOrder = DB::table('hoa_don')
@@ -157,7 +157,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->orderBy('hoa_don.id','desc')
             ->paginate(8);
         $isOrder = DB::table('hoa_don')
@@ -195,7 +195,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','nguoi_giao_hang_id')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','nguoi_giao_hang_id','sodth_giao_hang')
             ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','!=',null]])
             ->orWhere('hoa_don.id_TT','=',6)
             ->orderBy('hoa_don.id','desc')
@@ -230,7 +230,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->where([['hoa_don.id_TT','=',3],['nguoi_giao_hang_id','=',null]])->orderBy('hoa_don.id','desc')
             ->paginate(8);
 
@@ -245,7 +245,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->where('hoa_don.id_TT','=',2)
             ->orderBy('hoa_don.id','desc')
             ->paginate(8);
@@ -261,7 +261,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->whereIn('hoa_don.id_TT', [1, 5])->orderBy('hoa_don.id','desc')->paginate(8);
 
         $isOrder = DB::table('hoa_don')
@@ -275,7 +275,7 @@ class DuyetHDController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->where('hoa_don.id_TT','=',4)->orderBy('hoa_don.id','desc')->paginate(8);
 
         $isOrder = DB::table('hoa_don')

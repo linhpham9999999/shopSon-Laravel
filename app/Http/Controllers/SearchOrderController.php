@@ -15,14 +15,14 @@ class SearchOrderController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->orderBy('hoa_don.id','desc')
-            ->where('Ma_HD','like','%'.$order_code.'%')
+            ->where('sodth_giao_hang','like','%'.$order_code.'%')
             ->orWhere('nguoi_dung.hoten','like','%'.$order_code.'%')
             ->paginate(5);
         $isOrder = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
-            ->where('Ma_HD','like','%'.$order_code.'%')
+            ->where('sodth_giao_hang','like','%'.$order_code.'%')
             ->orWhere('nguoi_dung.hoten','like','%'.$order_code.'%')
             ->get()->toArray();
         if($isOrder){
@@ -31,6 +31,7 @@ class SearchOrderController extends Controller
                     '<tr class="nk-tb-item">
                     <td class="nk-tb-col tb-col-md" style="text-align: center"><span># '.$hd->Ma_HD.' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.$hd->hoten.' </span></td>
+                    <td class="nk-tb-col tb-col-md"><span> '.$hd->sodth_giao_hang.' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.DateTime::createFromFormat('Y-m-d', $hd->ngaydat)->format('m/d/Y').' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.number_format($hd->tongtien).' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.$hd->trangthai.' </span></td>
@@ -76,14 +77,14 @@ class SearchOrderController extends Controller
         $hoadon = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
-            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT')
+            ->select('Ma_HD','ngaydat','tongtien','hoten','trangthai','hoa_don.id','hoa_don.id_TT','sodth_giao_hang')
             ->orderBy('hoa_don.id','desc')
-            ->where('Ma_HD','like','%'.$order_code.'%')
+            ->where('sodth_giao_hang','like','%'.$order_code.'%')
             ->orWhere('nguoi_dung.hoten','like','%'.$order_code.'%')
             ->paginate(5);
         $isOrder = DB::table('hoa_don')
             ->join('nguoi_dung','hoa_don.email_nguoidung','=','nguoi_dung.email')
-            ->where('Ma_HD','like','%'.$order_code.'%')
+            ->where('sodth_giao_hang','like','%'.$order_code.'%')
             ->orWhere('nguoi_dung.hoten','like','%'.$order_code.'%')
             ->get()->toArray();
         if($isOrder){
@@ -92,6 +93,7 @@ class SearchOrderController extends Controller
                     '<tr class="nk-tb-item">
                     <td class="nk-tb-col tb-col-md" style="text-align: center"><span># '.$hd->Ma_HD.' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.$hd->hoten.' </span></td>
+                    <td class="nk-tb-col tb-col-md"><span> '.$hd->sodth_giao_hang.' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.DateTime::createFromFormat('Y-m-d', $hd->ngaydat)->format('m/d/Y').' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.number_format($hd->tongtien).' </span></td>
                     <td class="nk-tb-col tb-col-md"><span> '.$hd->trangthai.' </span></td>

@@ -160,7 +160,12 @@ Route::group(
                 // Tìm kiếm HĐ theo mã, tên khách hàng
                 Route::get('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@search')->name('search-order');
                 Route::post('/tim-kiem-hoa-don-ngay', 'App\Http\Controllers\SearchOrderController@fetch_data')->name('search-order-date');
-            }
+
+                // load số đơn hàng chờ duyệt
+                Route::get('/load-count-order','App\Http\Controllers\CountOrderController@loadcount');
+                Route::get('/load-count-order2','App\Http\Controllers\CountOrderController@loadcount2');
+                Route::get('/load-count-order3','App\Http\Controllers\CountOrderController@loadcount3');
+        }
         );
         // Quản lý thông tin khuyến mãi
         Route::group(['prefix'=>'khuyenmai','middleware' => 'checkQuanTriVien'],
@@ -198,53 +203,6 @@ Route::group(
         );
 
         // NHÂN VIÊN BÁN HÀNG
-        // Quản lý loại sản phẩm
-        Route::group(
-            ['prefix' => 'loaisp-ban-hang', 'middleware' => 'checkAll'],
-            function () {
-                Route::get('danhsach', 'App\Http\Controllers\LoaiSanPhamController@getDanhSachBanHang')->name('dsLSP-ban-hang');
-
-                Route::get('sua/{id}', 'App\Http\Controllers\LoaiSanPhamController@getSuaBanHang');
-                Route::post('post-sua', 'App\Http\Controllers\LoaiSanPhamController@postSuaBanHang')->name('actionSuaLSP-ban-hang');
-
-                Route::post('xoa/{id}', 'App\Http\Controllers\LoaiSanPhamController@postXoaBanHang');
-
-                Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThemBanHang')->name('actionThemLSP-ban-hang');
-            }
-        );
-        // Quản lý màu sản phẩm
-        Route::group(
-            ['prefix' => 'mausp-ban-hang', 'middleware' => 'checkAll'],
-            function () {
-                Route::get('danhsach', 'App\Http\Controllers\MauSpController@getDanhSachBanHang')->name('dsMSP-ban-hang');
-
-                Route::get('sua/{id}', 'App\Http\Controllers\MauSpController@getSuaBanHang');
-                Route::post('sua/{id}', 'App\Http\Controllers\MauSpController@postSuaBanHang')->name('actionSuaMSP-ban-hang');
-
-                Route::post('xoa/{id}', 'App\Http\Controllers\MauSpController@postXoaBanHang');
-
-                Route::get('them', 'App\Http\Controllers\MauSpController@getThemBanHang')->name('getThemMSP-ban-hang');
-                Route::post('them', 'App\Http\Controllers\MauSpController@postThemBanHang')->name('actionThem3-ban-hang');
-
-                // tìm theo mã, màu sp
-                Route::get('/tim-kiem', 'App\Http\Controllers\SearchColorProductController@searchBanHang')->name('search-color-product-ban-hang');
-            }
-        );
-        // Quản lý sản phẩm
-        Route::group(
-            ['prefix' => 'sanpham-ban-hang', 'middleware' => 'checkAll'],
-            function () {
-                Route::get('danhsach', 'App\Http\Controllers\ProductController@getDanhSachBanHang')->name('dsSP-ban-hang');
-
-                Route::get('sua/{id}', 'App\Http\Controllers\ProductController@getSuaBanHang');
-                Route::post('sua/{id}', 'App\Http\Controllers\ProductController@postSuaBanHang')->name('postSuaSP-ban-hang');
-
-                Route::post('xoa/{id}', 'App\Http\Controllers\ProductController@postXoaBanHang');
-
-                Route::get('them', 'App\Http\Controllers\ProductController@getThemBanHang')->name('getThemSP-ban-hang');
-                Route::post('them', 'App\Http\Controllers\ProductController@postThemBanHang')->name('actionThem4-ban-hang');
-            }
-        );
         // Thông tin cá nhân
         Route::get('/information-ban-hang','App\Http\Controllers\InfoController@getInfoBanHang')->name('info-ban-hang')
             ->middleware('checkAll');
@@ -275,56 +233,15 @@ Route::group(
                 Route::post('chitietHD', 'App\Http\Controllers\DuyetHDController@chonShipperBanHang')->name('chon-nguoi-giao-hang-ban-hang');
                 // Tìm kiếm HĐ theo mã, tên khách hàng
                 Route::get('/tim-kiem-hoa-don', 'App\Http\Controllers\SearchOrderController@searchBanHang')->name('search-order-ban-hang');
+
+                // load số đơn hàng chờ duyệt
+                Route::get('/load-count-order','App\Http\Controllers\CountOrderController@loadcount');
+                Route::get('/load-count-order2','App\Http\Controllers\CountOrderController@loadcount2');
+                Route::get('/load-count-order3','App\Http\Controllers\CountOrderController@loadcount3');
             }
         );
 
         // NHÂN VIÊN NHẬP KHO
-        // Quản lý loại sản phẩm
-        Route::group(
-            ['prefix' => 'loaisp-nhap-kho', 'middleware' => 'checkAll'],
-            function () {
-                Route::get('danhsach', 'App\Http\Controllers\LoaiSanPhamController@getDanhSachNhapKho')->name('dsLSP-nhap-kho');
-
-                Route::get('sua/{id}', 'App\Http\Controllers\LoaiSanPhamController@getSuaNhapKho');
-                Route::post('post-sua', 'App\Http\Controllers\LoaiSanPhamController@postSuaNhapKho')->name('actionSuaLSP-nhap-kho');
-
-                Route::post('xoa/{id}', 'App\Http\Controllers\LoaiSanPhamController@postXoaNhapKho');
-
-                Route::post('them', 'App\Http\Controllers\LoaiSanPhamController@postThemNhapKho')->name('actionThemLSP-nhap-kho');
-            }
-        );
-        // Quản lý màu sản phẩm
-        Route::group(
-            ['prefix' => 'mausp-nhap-kho', 'middleware' => 'checkAll'],
-            function () {
-                Route::get('danhsach', 'App\Http\Controllers\MauSpController@getDanhSachNhapKho')->name('dsMSP-nhap-kho');
-
-                Route::get('sua/{id}', 'App\Http\Controllers\MauSpController@getSuaNhapKho');
-                Route::post('sua/{id}', 'App\Http\Controllers\MauSpController@postSuaNhapKho')->name('actionSuaMSP-nhap-kho');
-
-                Route::post('xoa/{id}', 'App\Http\Controllers\MauSpController@postXoaNhapKho');
-
-                Route::get('them', 'App\Http\Controllers\MauSpController@getThemNhapKho')->name('getThemMSP-nhap-kho');
-                Route::post('them', 'App\Http\Controllers\MauSpController@postThemNhapKho')->name('actionThem3-nhap-kho');
-                // tìm theo mã, màu sp
-                Route::get('/tim-kiem', 'App\Http\Controllers\SearchColorProductController@searchNhapKho')->name('search-color-product-nhap-kho');
-            }
-        );
-        // Quản lý sản phẩm
-        Route::group(
-            ['prefix' => 'sanpham-nhap-kho', 'middleware' => 'checkAll'],
-            function () {
-                Route::get('danhsach', 'App\Http\Controllers\ProductController@getDanhSachNhapKho')->name('dsSP-nhap-kho');
-
-                Route::get('sua/{id}', 'App\Http\Controllers\ProductController@getSuaNhapKho');
-                Route::post('sua/{id}', 'App\Http\Controllers\ProductController@postSuaNhapKho')->name('postSuaSP-nhap-kho');
-
-                Route::post('xoa/{id}', 'App\Http\Controllers\ProductController@postXoaNhapKho');
-
-                Route::get('them', 'App\Http\Controllers\ProductController@getThemNhapKho')->name('getThemSP-nhap-kho');
-                Route::post('them', 'App\Http\Controllers\ProductController@postThemNhapKho')->name('actionThem4-nhap-kho');
-            }
-        );
         // Thông tin cá nhân
         Route::get('/information-nhap-kho','App\Http\Controllers\InfoController@getInfoNhapKho')->name('info-nhap-kho')
             ->middleware('checkAll');

@@ -45,6 +45,7 @@
                                 <tr class="nk-tb-item nk-tb-head">
                                     <th class="nk-tb-col tb-col-md" style="text-align: center"><span class="sub-text">Mã hóa đơn</span></th>
                                     <th class="nk-tb-col tb-col-lg"><span class="sub-text">Khách hàng</span></th>
+                                    <th class="nk-tb-col tb-col-lg"><span class="sub-text">Số điện thoại</span></th>
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày đặt</span></th>
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Tổng tiền</span></th>
                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Trạng thái</span></th>
@@ -62,6 +63,9 @@
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{$hd->hoten}}</span>
+                                        </td>
+                                        <td class="nk-tb-col tb-col-md">
+                                            <span>{{$hd->sodth_giao_hang}}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{DateTime::createFromFormat('Y-m-d', $hd->ngaydat)->format('m/d/Y')}}</span>

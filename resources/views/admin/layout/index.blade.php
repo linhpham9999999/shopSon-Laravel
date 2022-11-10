@@ -103,6 +103,9 @@
 <script src="js/app.js"></script>
 <script src="{{ asset('admin_asset_new/js/custom_js/chart-area-demo.js') }}"></script>
 <script src="{{ asset('admin_asset_new/js/custom_js/chart-bar-demo.js') }}"></script>
+<script src="{{ asset('admin_asset_new/js/custom_js/load-count-order.js') }}"></script>
+<script src="{{ asset('admin_asset_new/js/custom_js/load-hd-chua-giao-shipper.js') }}"></script>
+<script src="{{ asset('admin_asset_new/js/custom_js/load-hd-da-giao-shipper.js') }}"></script>
 <script type="text/javascript" charset="utf-8">
     $.ajaxSetup({
         headers: {
