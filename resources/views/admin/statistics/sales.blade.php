@@ -1,12 +1,31 @@
 @extends('admin.layout.index')
 @section('content')
-    <div class="nk-content-body">
+    <div class="nk-content-body" style="height: 60px;">
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title">Thống kê số đơn hàng qua các tháng trong năm</h3>
-                    <div class="nk-block-des text-soft">
-                        {{--                        <p>You have total 95 projects.</p>--}}
+                    <h3 class="nk-block-title page-title" style="width: 593px;float: left;">Thống kê số đơn hàng qua các tháng trong năm</h3>
+                    <div class="nk-block-des text-soft" style="float: right;padding-top: 5px;">
+                        <form action="{{route('sale-month')}}" method="POST" role="form">
+                            {{csrf_field()}}
+                            <div class="row">
+                                {{--            <h4 style="margin-left: 20px;">Thời gian</h4>--}}
+                                <div class="col-4 input-daterange">
+                                    <div class="form-group">
+                                        <input type="date" value="01/01/2022" name="startdate" class="form-control">
+                                        <div class="error"> {{$errors->first('startdate')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-4 input-daterange">
+                                    <div class="form-group">
+                                        <input type="date" value="12/31/2022" name="enddate" class="form-control">
+                                        <div class="error"> {{$errors->first('enddate')}}</div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Lọc" class="btn btn-info btn-fill pull-right" style="height: 33px; margin-left: 10px;">
+                                <a href="{{route('get-sales')}}" style="height: 33px; margin-left: 10px;" class="btn btn-dark pull-right">Refesh</a>
+                            </div>
+                        </form>
                     </div>
                 </div><!-- .nk-block-head-content -->
             </div><!-- .nk-block-between -->

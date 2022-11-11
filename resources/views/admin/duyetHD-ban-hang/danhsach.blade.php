@@ -1,35 +1,43 @@
 @extends('admin.layout-ban-hang.index')
 @section('content')
-    <div class="nk-content-body">
-        <div class="nk-block-head nk-block-head-sm">
-            <div class="nk-block-between">
-                <div class="nk-block-head-content" >
-                    <h3 class="nk-block-title page-title">Quản lý đơn hàng <span id="total_records"></span></h3>
-                    <div class="nk-block-des text-soft">
-                        {{--                        <p>You have total 95 projects.</p>--}}
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+            <div class="nk-block-head-content">
+                <h3 class="nk-block-title page-title">Quản lý đơn hàng</h3>
+                <div class="nk-block-des text-soft search">
+                    <input type="search" id="search-order" name="order_code_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
+                </div>
+            </div><!-- .nk-block-head-content -->
+            <div class="nk-block-head-content">
+                <div class="toggle-wrap nk-block-tools-toggle">
+                    <div class="toggle-expand-content" data-content="pageMenu">
+                        <form action="{{route('tk-hd-tgian-ban-hang')}}" method="POST" role="form">
+                            {{csrf_field()}}
+                            <ul class="nk-block-tools g-3">
+                                <li>
+                                    <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 42px;margin-left: 700px;">
+                                        <input name="startdate" style="width: 105px;float: left;" class="from_date form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Từ ngày" id="outlined-date-picker">
+                                        <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
+                                    </label>
+                                    <label class="form-label-outlined" for="outlined-date-picker2"  style="margin-top: 42px;margin-left: 850px;">
+                                        <input name="enddate" style="width: 105px;float: left;" class="to_date form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Đến ngày" id="outlined-date-picker2">
+                                        <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
+                                    </label>
+                                </li>
+                                <li class="nk-block-tools-opt" style="margin-top: 46px;">
+                                    <input type="submit" class="btn btn-info btn-fill pull-right" value="Lọc">
+                                </li>
+                                <li class="nk-block-tools-opt" style="margin-top: 46px;">
+                                    <a href="{{route('quanlyHD-ban-hang')}}" class="btn btn-dark pull-right">Refesh</a>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
-                </div><!-- .nk-block-head-content -->
-                <div class="nk-block-head-content" style="margin-right: 770px;">
-                    <div class="toggle-wrap nk-block-tools-toggle search">
-                        <input type="search" id="search-order" name="order_code_input" class="form-control border-transparent form-focus-none w3-input w3-border-0" placeholder="Bạn cần tìm...">
-                    </div><!-- .toggle-wrap -->
-                </div><!-- .nk-block-head-content -->
-            </div><!-- .nk-block-between -->
-        </div><!-- .nk-block-head -->
-        {{-- <div class="input-daterange">
-             <label class="form-label-outlined" for="outlined-date-picker" style="margin-top: 33px; margin-left: 800px">
-                 <input name="from_date" style="width: 105px;float: left;" class="from_date form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Từ ngày" id="outlined-date-picker">
-                     <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
-                 </label>
-             <label class="form-label-outlined" for="outlined-date-picker2"  style="margin-top: 33px; margin-left: 940px">
-                 <input name="to_date" style="width: 105px;float: left;" class="to_date form-control form-control-outlined date-picker w3-input w3-border-0" placeholder="Đến ngày" id="outlined-date-picker2">
-                 <em class="icon ni ni-calendar-alt" style=" margin-top: 10px;  padding-left: 2px; float: right;"></em>
-             </label>
-         </div>
-         <button type="button" name="filter" id="filter" class="search-submit btn" style="padding-bottom: 645px; padding-right: 110px"><span style="border-radius: 5px;background-color: cornflowerblue; padding: 3px">Filter</span></button>
-         <button type="button" name="refresh" id="refresh" class="search-submit btn" style="padding-bottom: 645px; padding-right: 50px"><span style="border-radius: 5px;background-color: goldenrod; padding: 3px">Refresh</span></button>
- --}}
-
+                </div>
+            </div><!-- .nk-block-head-content -->
+        </div><!-- .nk-block-between -->
+    </div>
+    <div class="nk-content-body">
         @if( !empty($isOrder) )
             <div class="nk-block" style="position: relative">
                 @if(session('thongbao'))

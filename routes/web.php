@@ -146,6 +146,8 @@ Route::group(
             function (){
                 // tất cả hóa đơn
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSach')->name('quanlyHD');
+                // tìm kiếm hd theo thời gian
+                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@searchHDTG')->name('tk-hd-tgian');
                 //Xem theo trang thai
                 Route::get('chua-duyet', 'App\Http\Controllers\DuyetHDController@getDSChuaDuyet')->name('chua-duyet');
                 // giao shipper có 2 TH: bị từ chối, chưa phản hồi
@@ -192,6 +194,7 @@ Route::group(
 
         //Thống kê doanh thu
         Route::get('/sales','App\Http\Controllers\SalesController@getSales')->name('get-sales')->middleware('checkQuanTriVien');
+        Route::post('/sales','App\Http\Controllers\SalesController@postMonthSales')->name('sale-month')->middleware('checkQuanTriVien');
 
         // Quản lý tin tức
         Route::group(['prefix'=>'tin-tuc','middleware' => 'checkQuanTriVien'],
@@ -217,9 +220,10 @@ Route::group(
         // Duyệt đơn hàng
         Route::group(['prefix'=>'duyetHD-ban-hang','middleware' => 'checkBanHang'],
             function (){
-
                 // tất cả hóa đơn
                 Route::get('danhsach', 'App\Http\Controllers\DuyetHDController@getDanhSachBanHang')->name('quanlyHD-ban-hang');
+                // tìm kiếm hd theo thời gian
+                Route::post('danhsach', 'App\Http\Controllers\DuyetHDController@searchHDTGBanHang')->name('tk-hd-tgian-ban-hang');
                 //Xem theo trang thai
                 Route::get('chua-duyet', 'App\Http\Controllers\DuyetHDController@getDSChuaDuyetBanHang')->name('chua-duyet-ban-hang');
                 // giao shipper có 2 TH: bị từ chối, chưa phản hồi
