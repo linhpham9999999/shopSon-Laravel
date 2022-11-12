@@ -44,21 +44,6 @@ Route::group(
         Route::get('logout-ban-hang', 'App\Http\Controllers\AD_AuthController@logoutBanHang')->name('logoutBH');
         Route::get('logout-nhap-kho', 'App\Http\Controllers\AD_AuthController@logoutNhapKho')->name('logoutNK');
 
-        // Quản lý khách hàng
-        Route::group(
-            ['prefix' => 'khach_hang', 'middleware' => 'checkQuanTriVien'],
-            function () {
-                Route::get('danhsach', 'App\Http\Controllers\AdminAddUserController@getDanhSach')->name('khach_hang');
-
-                Route::get('them', 'App\Http\Controllers\AdminAddUserController@getThem')->name('getThemShipper');
-                Route::post('them', 'App\Http\Controllers\AdminAddUserController@postThem')->name('actionThemKH');
-
-                Route::post('xoa/{id}', 'App\Http\Controllers\AdminAddUserController@postXoa');
-
-                Route::get('sua/{id}', 'App\Http\Controllers\AdminAddUserController@getSua')->name('getSuaKH');
-                Route::post('sua/{id}', 'App\Http\Controllers\AdminAddUserController@postSua')->name('postSuaKH');
-            }
-        );
         // Quản lý loại sản phẩm
         Route::group(
             ['prefix' => 'loaisp', 'middleware' => 'checkAll'],
@@ -205,18 +190,64 @@ Route::group(
             }
         );
 
+        //Quản lý shipper
+        Route::group(['prefix'=>'shipper','middleware' => 'checkQuanTriVien'],
+            function (){
+                Route::get('danhsach', 'App\Http\Controllers\AdminAddShipperController@getDanhSach')->name('danhsachShipper');
+
+                Route::get('them', 'App\Http\Controllers\AdminAddShipperController@getThem')->name('getThemShipper');
+                Route::post('them', 'App\Http\Controllers\AdminAddShipperController@postThem')->name('actionThemShipper');
+
+                Route::get('sua/{id}', 'App\Http\Controllers\AdminAddShipperController@getSua');
+                Route::post('sua/{id}', 'App\Http\Controllers\AdminAddShipperController@postSua')->name('actionSuaShipper');
+
+                Route::post('xoa/{id}', 'App\Http\Controllers\AdminAddShipperController@postXoa');
+            }
+        );
+
+        // Quản lý khách hàng: xem, xóa KH
+        Route::group(
+            ['prefix' => 'khach-hang', 'middleware' => 'checkQuanTriVien'],
+            function () {
+                Route::get('danhsach', 'App\Http\Controllers\AdminAddUserController@getDanhSach')->name('danhsachKH');
+                Route::post('xoa/{id}', 'App\Http\Controllers\AdminAddUserController@postXoa');
+            }
+        );
+
         // NHÂN VIÊN BÁN HÀNG
         // Thông tin cá nhân
         Route::get('/information-ban-hang','App\Http\Controllers\InfoController@getInfoBanHang')->name('info-ban-hang')
-            ->middleware('checkAll');
+            ->middleware('checkBanHang');
         Route::post('/update-information-ban-hang/{id}','App\Http\Controllers\InfoController@postInfoBanHang')->name('update-info-ban-hang')
-            ->middleware('checkAll');
+            ->middleware('checkBanHang');
 
         //Thay đổi mật khẩu
-        Route::get('/changePassword-ban-hang','App\Http\Controllers\ADChangePasswordController@indexBanHang')->name('change-password-admin-ban-hang')
-            ->middleware('checkAll');
-        Route::post('/changePassword-ban-hang','App\Http\Controllers\ADChangePasswordController@storeBanHang')->name('post-change-password-admin-ban-hang');
+        Route::get('/changePassword-ban-hang','App\Http\Controllers\BH_ChangePasswordController@indexBanHang')->name('change-password-admin-ban-hang')
+            ->middleware('checkBanHang');
+        Route::post('/changePassword-ban-hang','App\Http\Controllers\BH_ChangePasswordController@storeBanHang')->name('post-change-password-admin-ban-hang');
+        //Quản lý shipper
+        Route::group(['prefix'=>'shipper-nv','middleware' => 'checkQuanTriVien'],
+            function (){
+                Route::get('danhsach', 'App\Http\Controllers\AdminAddShipperController@getDanhSachBanHang')->name('danhsachShipper-ban-hang');
 
+                Route::get('them', 'App\Http\Controllers\AdminAddShipperController@getThemBanHang')->name('getThemShipper-ban-hang');
+                Route::post('them', 'App\Http\Controllers\AdminAddShipperController@postThemBanHang')->name('actionThemShipper-ban-hang');
+
+                Route::get('sua/{id}', 'App\Http\Controllers\AdminAddShipperController@getSuaBanHang');
+                Route::post('sua/{id}', 'App\Http\Controllers\AdminAddShipperController@postSuaBanHang')->name('actionSuaShipper-ban-hang');
+
+                Route::post('xoa/{id}', 'App\Http\Controllers\AdminAddShipperController@postXoaBanHang');
+            }
+        );
+
+        // Quản lý khách hàng: xem, xóa KH
+        Route::group(
+            ['prefix' => 'khach-hang-nv', 'middleware' => 'checkQuanTriVien'],
+            function () {
+                Route::get('danhsach', 'App\Http\Controllers\AdminAddUserController@getDanhSachBanHang')->name('danhsachKH-ban-hang');
+                Route::post('xoa/{id}', 'App\Http\Controllers\AdminAddUserController@postXoaBanHang');
+            }
+        );
         // Duyệt đơn hàng
         Route::group(['prefix'=>'duyetHD-ban-hang','middleware' => 'checkBanHang'],
             function (){
@@ -253,9 +284,9 @@ Route::group(
             ->middleware('checkAll');
 
         //Thay đổi mật khẩu
-        Route::get('/changePassword-nhap-kho','App\Http\Controllers\ADChangePasswordController@indexNhapKho')->name('change-password-admin-nhap-kho')
+        Route::get('/changePassword-nhap-kho','App\Http\Controllers\NK_ChangePasswordController@indexNhapKho')->name('change-password-admin-nhap-kho')
             ->middleware('checkAll');
-        Route::post('/changePassword-nhap-kho','App\Http\Controllers\ADChangePasswordController@storeNhapKho')->name('post-change-password-admin-nhap-kho');
+        Route::post('/changePassword-nhap-kho','App\Http\Controllers\NK_ChangePasswordController@storeNhapKho')->name('post-change-password-admin-nhap-kho');
 
         // Quản lý kho hàng
         Route::group(
@@ -300,8 +331,11 @@ Route::group(
                 Route::get('/chi-tiet-don-da-giao/{id}', 'App\Http\Controllers\ShipperController@chiTietDonDaGiao')->name('chi-tiet-don-da-giao');
                 Route::get('/don-tu-choi', 'App\Http\Controllers\ShipperController@danhSachTuChoi')->name('don-hang-da-huy');
                 Route::get('/chi-tiet-don-tu-choi/{id}', 'App\Http\Controllers\ShipperController@chiTietDonTuChoi')->name('chi-tiet-don-tu-choi');
+                // load số đơn hàng chờ giao hàng
+                Route::get('/load-count-order-shipper','App\Http\Controllers\CountOrderController@loadcountShipper');
             }
         );
+
     }
 );
 

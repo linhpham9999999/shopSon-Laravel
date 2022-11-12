@@ -17,6 +17,7 @@ $(document).ready(function (){
                 alertify.set('notifier','position','top-right');
                 if(response.status != null){
                     alertify.success(response.status);
+                    location.reload();
                 }else{
                     alertify.set('notifier','position','top-right');
                     alertify.error(response.error);

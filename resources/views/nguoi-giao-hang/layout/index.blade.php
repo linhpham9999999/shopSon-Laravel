@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="admin_asset_new/images/title-shipper.JPG">
@@ -38,11 +38,10 @@
         .text-sm {
             margin-bottom: 10px;
         }
-
     </style>
 </head>
 
-<body class="nk-body bg-lighter npc-general has-sidebar ">
+<body class="nk-body bg-lighter npc-general has-sidebar reponsive">
 <div class="nk-app-root">
     <!-- main @s -->
     <div class="nk-main ">
@@ -83,7 +82,7 @@
 {{--lay cai nay ko con logout duoc--}}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
-
+<script src="{{ asset('admin_asset_new/js/custom_js/load-hd-shipper-can-giao.js') }}"></script>
 <script src="js/app.js"></script>
 <script type="text/javascript" charset="utf-8">
     $.ajaxSetup({

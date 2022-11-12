@@ -49,13 +49,18 @@
                             <span class="nk-menu-text">Quản lý nhân viên</span>
                         </a>
                     </li>
-{{--                    <li class="nk-menu-item">--}}
-{{--                        <a href="{{route('getThemShipper')}}" class="nk-menu-link">--}}
-{{--                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>--}}
-{{--                            <span class="nk-menu-text">Quản lý khách hàng</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-
+                    <li class="nk-menu-item">
+                        <a href="{{route('danhsachKH')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-user-alt"></em></span>
+                            <span class="nk-menu-text">Quản lý khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{route('danhsachShipper')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-truck"></em></span>
+                            <span class="nk-menu-text">Quản lý shipper</span>
+                        </a>
+                    </li>
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('dsKhoHang')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-archived"></em></span>
@@ -73,17 +78,17 @@
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('quanlyHD')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                            <span class="nk-menu-text">Quản lý đơn hàng<sup class="hd-cho-duyet" style="color: red;"></sup></span>
+                            <span class="nk-menu-text">Quản lý đơn hàng<sup class="hd-cho-duyet" style="color: firebrick;font-size: 15px;"></sup></span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
                                 <a href="{{route('quanlyHD')}}" class="nk-menu-link"><span class="nk-menu-text">Tất cả</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt<sup class="hd-chua-duyet" style="color: red;"></sup></span></a>
+                                <a href="{{route('chua-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Chưa duyệt<sup class="hd-chua-duyet" style="color: firebrick;font-size: 15px;"></sup></span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{route('da-giao-shipper')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đã giao vận chuyển<sup class="hd-cho-shiper-duyet" style="color: red;"></sup></span></a>
+                                <a href="{{route('da-giao-shipper')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đã giao vận chuyển<sup class="hd-cho-shiper-duyet" style="color: firebrick;font-size: 15px;"></sup></span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('da-duyet')}}" class="nk-menu-link"><span class="nk-menu-text">Đơn đang giao</span></a>

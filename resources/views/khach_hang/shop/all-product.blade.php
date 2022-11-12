@@ -36,7 +36,7 @@
                     </div>
                     <div class="product-content">
                         <div class="product-title">
-                            <h4 class="title-2">{{$sp->ten_SP}}</h4>
+                            <h4 class="title-2"><a href="{{route('list-color-product',['id' => $sp->id])}}">{{$sp->ten_SP}}</a></h4>
                         </div>
                         <div class="price-box">
                             <span class="regular-price ">{{ number_format( $sp->gia_ban_ra ,0,',','.')  }} VND</span>

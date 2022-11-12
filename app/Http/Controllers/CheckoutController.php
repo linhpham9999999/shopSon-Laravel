@@ -32,24 +32,23 @@ class CheckoutController extends Controller
     }
 
     /**
-    * @return View
-    **/
+     * @return View
+     **/
     public function showView(): View
     {
         // lấy thông tin product
         [$products, $isHasProductsCart]  = $this->getProductsFromCart();
         $subPrice = $this->subPrice($products);
         $shipping = $this->shipPrice($products);
-//        dd(empty($products) , $isHasProductsCart);
         $current = Carbon::now()->toDateString();
         $promotion = DB::table('khuyen_mai')->select('*')
             ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current]])->get()->toArray();
-        return view('khach_hang/cart/viewCart',['products'     => $products,
-                                                    'isHasProduct'  => $isHasProductsCart,
-                                                    'subPrice'      => $subPrice,
-                                                    'shipping'      => $shipping,
-                                                    'promotion'=>$promotion
-                                                    ]
+        return view('khach_hang.cart.viewCart',['products'     => $products,
+                                                  'isHasProduct'  => $isHasProductsCart,
+                                                  'subPrice'      => $subPrice,
+                                                  'shipping'      => $shipping,
+                                                  'promotion'=>$promotion
+                                              ]
         );
     }
 
@@ -107,23 +106,24 @@ class CheckoutController extends Controller
 
     public function getProductsFromCart(): array
     {
-        if( Auth::guard('nguoi_dung')->check()) {
-            $email = Auth::guard('nguoi_dung')->user()->email;
-        }else{
-            $email = session('email_user_login');
-        }
+//        if( Auth::guard('nguoi_dung')->check()) {
+//            $email = Auth::guard('nguoi_dung')->user()->email;
+//        }else{
+//            $email = session('email_user_login');
+//        }
         $isHasProductsCart = false;
         if(Cookie::has('cart')) {
             $cart = Cookie::get('cart');
             $products = json_decode($cart, true);
-            foreach ($products as $product) {
-                if ($product['email'] == $email) {
-                    $isHasProductsCart = true;
-                } else {
-                    $products = [];
-                    $isHasProductsCart = false;
-                }
-            }
+            $isHasProductsCart = true;
+//            foreach ($products as $product) {
+//                if ($product['email'] == $email) {
+//                    $isHasProductsCart = true;
+//                } else {
+//                    $products = [];
+//                    $isHasProductsCart = false;
+//                }
+//            }
         }
         else{
             $products = [];
@@ -193,30 +193,30 @@ class CheckoutController extends Controller
         $ipnUrl = "http://localhost:8999/shopSon/public/khach_hang/buy-products/billing-details";
         $extraData = "";
 
-            $requestId = time() . "";
-            $requestType = "payWithATM";
+        $requestId = time() . "";
+        $requestType = "payWithATM";
 //            $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
-            //before sign HMAC SHA256 signature
-            $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
-            $signature = hash_hmac("sha256", $rawHash, $secretKey);
-            $data = array('partnerCode' => $partnerCode,
-                'partnerName' => "Test",
-                "storeId" => "MomoTestStore",
-                'requestId' => $requestId,
-                'amount' => $amount,
-                'orderId' => $orderId,
-                'orderInfo' => $orderInfo,
-                'redirectUrl' => $redirectUrl,
-                'ipnUrl' => $ipnUrl,
-                'lang' => 'vi',
-                'extraData' => $extraData,
-                'requestType' => $requestType,
-                'signature' => $signature);
-            $result = $this->execPostRequest($endpoint, json_encode($data));
+        //before sign HMAC SHA256 signature
+        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
+        $data = array('partnerCode' => $partnerCode,
+            'partnerName' => "Test",
+            "storeId" => "MomoTestStore",
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => 'vi',
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature);
+        $result = $this->execPostRequest($endpoint, json_encode($data));
 //            dd($result);
-            $jsonResult = json_decode($result, true);  // decode json
+        $jsonResult = json_decode($result, true);  // decode json
 
-             return redirect()->to($jsonResult['payUrl'])->with('alert','Thanh toán MOMO thành công');
+        return redirect()->to($jsonResult['payUrl'])->with('alert','Thanh toán MOMO thành công');
     }
 
 }

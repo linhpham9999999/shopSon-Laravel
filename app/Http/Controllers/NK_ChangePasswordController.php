@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rules\MatchOldPassword;
+use App\Rules\MatchOldPasswordNK;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
-class ADChangePasswordController extends Controller
+class NK_ChangePasswordController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -16,7 +17,7 @@ class ADChangePasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('checkNhapKho');
     }
 
     /**
@@ -24,20 +25,16 @@ class ADChangePasswordController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+
+    // NHÂN VIEN NHẬP KHO
+    public function indexNhapKho()
     {
-        return view('admin.account.changePassword');
+        return view('admin.account-nhap-kho.changePassword');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function store(Request $request)
+    public function storeNhapKho(Request $request)
     {
         $request->validate([
-                               'current_password' => ['required', new MatchOldPassword],
+                               'current_password' => ['required', new MatchOldPasswordNK],
                                'new_password' => ['required'],
                                'new_confirm_password' => ['same:new_password'],
                            ],
@@ -48,7 +45,16 @@ class ADChangePasswordController extends Controller
                            ]
         );
 
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        if( Auth::guard('nhan_vien_nhap_kho')->check()) {
+            $email = Auth::guard('nhan_vien_nhap_kho')->user()->email;
+        }
+        DB::table('nhan_vien_nhap_kho')
+            ->where('email','=',$email)
+            ->update(['password'=> Hash::make($request->new_password)]);
+
+        DB::table('quan_tri')
+            ->where('email','=',$email)
+            ->update(['password'=> Hash::make($request->new_password)]);
 
         return back()->with('alert','Đã thay đổi');
     }

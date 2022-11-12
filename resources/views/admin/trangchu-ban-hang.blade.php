@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-xl-3">
             <div class="card text-white mb-4" style="background-color: steelblue;">
-                <div class="card-body" >ĐƠN HÀNG</div>
+                <div class="card-body" >ĐƠN HÀNG  <span class="hd-chua-duyet" style="color: firebrick;font-size: 20px;"></span></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="{{route('quanlyHD-ban-hang')}}">Quản lý</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -35,6 +35,26 @@
                 <div class="card-body">TÀI KHOẢN</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="{{route('info-ban-hang')}}">Quản lý</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="card text-white mb-4" style="background-color: steelblue;">
+                <div class="card-body">KHÁCH HÀNG</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{{route('danhsachKH-ban-hang')}}">Quản lý</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="card text-white mb-4" style="background-color: steelblue;">
+                <div class="card-body">SHIPPER</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{{route('danhsachShipper-ban-hang')}}">Quản lý</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title">Khách hàng</h3>
+                    <h3 class="nk-block-title page-title">Quản lý Khách hàng</h3>
                     <div class="nk-block-des text-soft">
                     </div>
                 </div><!-- .nk-block-head-content -->
@@ -13,9 +13,6 @@
                         <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
                         <div class="toggle-expand-content" data-content="pageMenu">
                             <ul class="nk-block-tools g-3">
-{{--                                <li class="nk-block-tools-opt">--}}
-{{--                                    <a href="{{route('getThemKH')}}" class="btn btn-primary btn-add"><em class="icon ni ni-plus"></em><span>Thêm</span></a>--}}
-{{--                                </li>--}}
                             </ul>
                         </div>
                     </div><!-- .toggle-wrap -->
@@ -30,7 +27,6 @@
                             <thead>
                             <tr class="nk-tb-item nk-tb-head">
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Họ tên</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Giới tính</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày sinh</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Địa chỉ</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Số điện thoại</span></th>
@@ -44,23 +40,26 @@
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{$kh->hoten}}</span>
                                     </td>
-                                    <td class="nk-tb-col tb-col-md">
-                                        <span>
-                                        @if($kh->gioitinh == 0)
-                                                {{'Nữ'}}
-                                            @else
-                                                {{'Nam'}}
-                                            @endif
-                                        </span>
+                                    <td class="nk-tb-col tb-col-mb">
+                                        @if($kh->ngaysinh !== null)
+                                            <span>{{DateTime::createFromFormat('Y-m-d', $kh->ngaysinh)->format('m/d/Y')}}</span>
+                                        @else
+                                            <span>Chưa cập nhật</span>
+                                        @endif
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{DateTime::createFromFormat('Y-m-d', $kh->ngaysinh)->format('m/d/Y')}}</span>
+                                        @if($kh->diachi !== null)
+                                            <span>{{$kh->diachi}}</span>
+                                        @else
+                                            <span><p>Chưa cập nhật</p></span>
+                                        @endif
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$kh->diachi}}</span>
-                                    </td>
-                                    <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$kh->sodth}} </span>
+                                        @if($kh->sodth === null)
+                                            <span><p>Chưa cập nhật</p></span>
+                                        @else
+                                            <span>{{$kh->sodth}}</span>
+                                        @endif
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$kh->email}}</span>
@@ -70,9 +69,6 @@
                                             <img src="admin_asset/delete.png" width="45px" />
                                         </button>
                                     </td>
-{{--                                    <td class="nk-tb-col tb-col-mb">--}}
-{{--                                        <a href="admin/khach_hang/sua/{{$kh->id}}"><img src="admin_asset/edit.png" width="30px"/></a>--}}
-{{--                                    </td>--}}
                                 </tr><!-- .nk-tb-item -->
                             @endforeach
                             </tbody>

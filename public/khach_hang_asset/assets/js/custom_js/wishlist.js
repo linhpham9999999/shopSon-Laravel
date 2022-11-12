@@ -31,7 +31,7 @@ $(document).ready(function (){
     //     const product_id = $(this).closest('.wishlist-table').find('.product_id_wish_delete').val();
     //     $.ajax({
     //         method: "POST",
-    //         url: "khach_hang/wishlist/delete/"+product_id,
+    //         url: "khach-hang/wishlist/delete/"+product_id,
     //         data: {'product_id': product_id, },
     //         success:function (response){
     //             alertify.set('notifier','position','top-right');
@@ -53,7 +53,7 @@ $(document).ready(function (){
     //     var product_color_id = $(this).closest('.cart-table').find('.product_id_cart_delete').val();
     //     $.ajax({
     //         method: "POST",
-    //         url: "khach_hang/cart/delete",
+    //         url: "khach-hang/cart/delete",
     //         data: {'product_color_id': product_color_id, },
     //         success:function (response){
     //             alertify.set('notifier','position','top-right');

@@ -121,7 +121,7 @@ class KH_AuthController extends Controller
         Session::put('email_user_login',$account_name->email);
         Session::put('user_id',$account_name->id);
 //        dd(session('email_user_login'));
-        return redirect('/khach_hang/trangchu')->with('message', 'Đăng nhập thành công');
+        return redirect()->route('trangchuKH')->with('message', 'Đăng nhập thành công');
     }
 
     public function findOrCreateUser($users,$provider){
@@ -153,7 +153,7 @@ class KH_AuthController extends Controller
         Session::put('user_login',$account_name->hoten);
         Session::put('user_id',$account_name->id);
 //        dd(session('email_user_login'));
-        return redirect('/khach_hang/trangchu')->with('message', 'Đăng nhập thành công');
+        return redirect()->route('trangchuKH')->with('message', 'Đăng nhập thành công');
 
     }
 }

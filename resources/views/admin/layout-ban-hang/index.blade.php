@@ -141,6 +141,60 @@
             }
         });
     })
+    // Xóa shipper
+    $('.js-delete-shipper').on('click', function(e){
+        if(!confirm("Bạn có chắc xóa không?")) {
+            return false;
+        }
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        var token = $("meta[name='csrf-token']").attr("content");
+        $.ajax(
+            {
+                url: "admin/shipper-nv/xoa/" + id,
+                method: 'POST',
+                data: {
+                    _token: token,
+                    id: id
+                },
+                success: function (response){
+                    $("#success").html(response.message)
+                    Swal.fire('Remind!',
+                        'Xóa thành công Shipper!',
+                        'success').then(function() {
+                        location.reload();
+                    })
+                }
+            });
+        return false;
+    })
+    // Xóa Khách hàng
+    $('.js-delete-khachhang').on('click', function(e){
+        if(!confirm("Bạn có chắc xóa không?")) {
+            return false;
+        }
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        var token = $("meta[name='csrf-token']").attr("content");
+        $.ajax(
+            {
+                url: "admin/khach-hang-nv/xoa/" + id,
+                method: 'POST',
+                data: {
+                    _token: token,
+                    id: id
+                },
+                success: function (response){
+                    $("#success").html(response.message)
+                    Swal.fire('Remind!',
+                        'Xóa thành công Khách hàng!',
+                        'success').then(function() {
+                        location.reload();
+                    })
+                }
+            });
+        return false;
+    })
 </script>
 </body>
 </html>

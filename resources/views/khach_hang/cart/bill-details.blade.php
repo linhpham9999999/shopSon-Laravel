@@ -56,7 +56,10 @@
                         <p class="desc-content mb-5">{{$ct->thongTinMau}}</p>
                     </div>
                     <a style="float: left;" class="btn flosun-button secondary-btn secondary-border rounded-0" href="{{route('product-color-detail',['id'=>$ct->idMSP])}}">Mua lại</a>
+                    @if($ct->idTT === 1 || $ct->idTT === 5)
                     <a style="float: right; margin-right: 400px;" target="_blank" class="btn flosun-button secondary-btn" href="{{route('danh-gia-san-pham',['id'=>$ct->idMSP])}}">Đánh giá</a>
+                    @endif
+
                 </div>
             </div>
         </div>

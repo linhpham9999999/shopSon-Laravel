@@ -15,7 +15,7 @@
                 </div>
                 <div class="share-article" style="padding-left: 800px;">
 {{--                           <span class="left-side">--}}
-{{--                                <a href="khach_hang/xem-tin-tuc/{{$tintuc->firstItem()}}"> <i class="fa fa-long-arrow-left"></i> Trước</a>--}}
+{{--                                <a href="khach-hang/xem-tin-tuc/{{$tintuc->firstItem()}}"> <i class="fa fa-long-arrow-left"></i> Trước</a>--}}
 {{--                           </span>--}}
                     <span class="right-side">
                             <a href="{{route('xem-tin-tuc')}}">Back <i class="fa fa-long-arrow-right"></i></a>

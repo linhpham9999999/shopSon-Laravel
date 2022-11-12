@@ -40,7 +40,7 @@ class RatingController extends Controller
             'hien_thi'  => 0,
             'emailnguoidung' => $email
         ]);
-        return redirect()->route('product-color-detail',['id'=>$request->idMSP])
+        return redirect()->route('danh-gia-san-pham',['id'=>$request->idMSP])
             ->with('alert','Bình luận đang chờ admin duyệt');
     }
     //admin quản lý bình luận

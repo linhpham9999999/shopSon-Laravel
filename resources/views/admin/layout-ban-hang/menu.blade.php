@@ -24,6 +24,18 @@
                             <span class="nk-menu-text">Trang chủ</span>
                         </a>
                     </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="{{route('danhsachKH-ban-hang')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-user-alt"></em></span>
+                            <span class="nk-menu-text">Quản lý khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{route('danhsachShipper-ban-hang')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-truck"></em></span>
+                            <span class="nk-menu-text">Quản lý shipper</span>
+                        </a>
+                    </li>
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('quanlyHD-ban-hang')}}" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>

@@ -45,7 +45,7 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-title">
-                                    <h4 class="title-2"> {{$msp->Ma_MSP}} {{$msp->mau}}</h4>
+                                    <h4 class="title-2"><a href="{{route('product-color-detail',['id' => $msp->id])}}"> {{$msp->Ma_MSP}} {{$msp->mau}}</a></h4>
                                 </div>
 {{--
 

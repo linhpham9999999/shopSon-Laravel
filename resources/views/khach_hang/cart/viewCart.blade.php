@@ -47,7 +47,7 @@
                                 @foreach($products as $product)
                                 <tbody>
                                     <tr>
-                                        <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
+                                        <td class="pro-thumbnail"><a href="{{route('product-color-detail',['id' => $product['id']])}}" target="_blank"><img class="img-fluid" src="admin_asset/image_son/mau_san_pham/{{$product['image']}}" alt="Product" /></a></td>
                                         <td class="pro-quantity">{{$product['name']}}</td>
                                         <td class="pro-quantity">{{$product['color']}}</td>
                                         <td class="pro-title"><span>{{ number_format($product['unit_price'],0,',','.')}}</span></td>

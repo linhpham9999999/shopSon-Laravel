@@ -159,7 +159,7 @@
                                     </div>
                                     <!-- Start RAting Area -->
                                     <!-- End RAting Area -->
-                                    <div class="comments-area comments-reply-area">
+{{--                                    <div class="comments-area comments-reply-area">
                                         <div class="row">
                                             <div class="col-lg-12 col-custom">
                                                 @if(session('alert'))
@@ -180,7 +180,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
                                 <!-- End Single Content -->
                             </div>
@@ -234,9 +234,7 @@
                                         <!--Single Product Start-->
                                         <div class="single-product position-relative mb-30">
                                             <div class="img-magnifier-container">
-                                                <a class="d-block" href="product-details.html">
-                                                    <img id="myimage" src="admin_asset/image_son/mau_san_pham/{{$sptt->hinhanh}}" alt="" class="product-image-1 w-100">
-                                                </a>
+                                                <img id="myimage" src="admin_asset/image_son/mau_san_pham/{{$sptt->hinhanh}}" alt="" class="product-image-1 w-100">
                                                 @if($sptt->soluongton < 1)
                                                     <span class="onsale">Hết!</span>
                                                 @endif
@@ -251,12 +249,12 @@
                                             </div>
                                             <div class="product-content">
                                                 <div class="product-title">
-                                                    <h4 class="title-2"> <a href="">{{$sptt->Ma_MSP}} {{$sptt->mau}}</a></h4>
+                                                    <h4 class="title-2"> <a href="{{route('product-color-detail',['id' => $sptt->id])}}">{{$sptt->Ma_MSP}} {{$sptt->mau}}</a></h4>
                                                 </div>
                                                 <div class="price-box">
                                                     <span class="regular-price ">{{$sptt->gia_ban_ra}}</span>
                                                 </div>
-                                                <a href="{{route('product-color-detail',['id' => $msp->id])}}" class="btn product-cart">XEM CHI TIẾT</a>
+                                                <a href="{{route('product-color-detail',['id' => $sptt->id])}}" class="btn product-cart">XEM CHI TIẾT</a>
                                             </div>
                                         </div>
                                         <!--Single Product End-->
@@ -409,7 +407,7 @@
                                 <ul class="sidebar-list">
                                     <li><a href="{{route('allSanPham')}}">Tất cả</a></li>
                                     @foreach($loaisp as $lsp)
-                                        <li><a href="khach_hang/shop/product-type/{{$lsp->id}}">{{$lsp->ten_LSP}}</a></li>
+                                        <li><a href="khach-hang/shop/product-type/{{$lsp->id}}">{{$lsp->ten_LSP}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
