@@ -39,7 +39,7 @@
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Khách hàng</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Nội dung</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Ngày tạo</span></th>
-                                <th class="nk-tb-col tb-col-mb" style="text-align: center"><span class="sub-text">Action</span></th>
+                                <th class="nk-tb-col tb-col-mb" colspan="2" style="text-align: center"><span class="sub-text">Action</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
                             <tbody>
@@ -69,6 +69,11 @@
                                         <input type="hidden" name="idCMT" value="{{$sp->idCMT}}" class="id-comment">
                                         <button type="submit" class="btn-primary duyet-binh-luan">Duyệt</button>
                                         </form>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-mb">
+                                        <button class="btn btn-sm  js-delete-cmt" data-id="{{ $sp->idCMT }}">
+                                            <img src="admin_asset/delete.png" width="30px" />
+                                        </button>
                                     </td>
                                 </tr><!-- .nk-tb-item -->
                             @endforeach

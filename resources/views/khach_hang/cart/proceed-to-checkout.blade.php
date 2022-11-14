@@ -83,6 +83,12 @@
                                 </div>
                                 <div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
+                                        <label>Lời nhắn cho người bán</label>
+                                        <input class="formdetails" placeholder="ghi chú" type="text" name="note" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-custom">
+                                    <div class="checkout-form-list">
                                         <label>Hình thức giao hàng <span class="required">*</span></label>
                                         <p class="formdetails" style="height: 50px"><select style="height: 30px;border: 1px solid crimson;" name="delivery">
                                                 @foreach($delivery as $del)

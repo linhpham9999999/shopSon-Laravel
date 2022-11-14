@@ -91,6 +91,16 @@
                                         </div>
                                         <div class="col-md-12 col-custom">
                                             <div class="checkout-form-list">
+                                                <label style="font-weight: bold">Lời nhắn:</label>
+                                                @if($ct->ghichu !== null)
+                                                    <span class="formdetails">{{$ct->ghichu}}</span>
+                                                @else
+                                                    <span class="formdetails">Không có</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-custom">
+                                            <div class="checkout-form-list">
                                                 <label style="font-weight: bold">Tổng thanh toán (+ship):</label>
                                                 <span class="formdetails">{{$ct->tongtien}}</span>
                                             </div>

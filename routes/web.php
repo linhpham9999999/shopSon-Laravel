@@ -124,6 +124,8 @@ Route::group(
                 Route::get('danh-sach-can-duyet', 'App\Http\Controllers\RatingController@getDanhSachCanDuyet')->name('quan-ly-cmt');
                 Route::get('danh-sach-da-duyet', 'App\Http\Controllers\RatingController@getDanhSachDaDuyet')->name('danh-sach-cmt');
                 Route::post('duyet', 'App\Http\Controllers\RatingController@duyetBinhLuan')->name('duyet-cmt');
+                // xóa cmt
+                Route::post('xoa/{id}', 'App\Http\Controllers\RatingController@deleteCmt');
             }
         );
         // Duyệt đơn hàng

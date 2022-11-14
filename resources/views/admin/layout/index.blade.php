@@ -175,6 +175,33 @@
                 });
             return false;
         })
+        //Xóa bình luận
+        $('.js-delete-cmt').on('click', function(e){
+            if(!confirm("Bạn có chắc xóa không?")) {
+                return false;
+            }
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            var token = $("meta[name='csrf-token']").attr("content");
+            $.ajax(
+                {
+                    url: "admin/binh-luan/xoa/" + id,
+                    method: 'POST',
+                    data: {
+                        _token: token,
+                        id: id
+                    },
+                    success: function (response){
+                        $("#success").html(response.message)
+                        Swal.fire('Remind!',
+                            'Xóa thành công Bình luận!',
+                            'success').then(function() {
+                            location.reload();
+                        })
+                    }
+                });
+            return false;
+        })
     });
 </script>
 

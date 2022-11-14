@@ -57,7 +57,6 @@ class BuyProductsController extends Controller
     }
 
     public function orderSuccess(Request $request){
-//        dd($request->dathanhtoanmomo);
         if($request->payment==1){
             $this->validate(
                 $request,
@@ -93,8 +92,6 @@ class BuyProductsController extends Controller
                 ]
             );
         }
-
-
         $email = '' ;
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;

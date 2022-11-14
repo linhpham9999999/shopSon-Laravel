@@ -83,7 +83,7 @@ class ShipperController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('hinh_thuc_thanh_toan','hoa_don.id_HTTT','=','hinh_thuc_thanh_toan.id')
             ->where('hoa_don.id','=',$id)
-            ->select('ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai','hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
+            ->select('ghichu','ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai','hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
         $products = DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
@@ -199,7 +199,7 @@ class ShipperController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('hinh_thuc_thanh_toan','hoa_don.id_HTTT','=','hinh_thuc_thanh_toan.id')
             ->where('hoa_don.id','=',$id)
-            ->select('ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai','hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
+            ->select('ghichu','ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai','hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
         $products = DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
@@ -320,7 +320,7 @@ class ShipperController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('hinh_thuc_thanh_toan','hoa_don.id_HTTT','=','hinh_thuc_thanh_toan.id')
             ->where('hoa_don.id','=',$id)
-            ->select('ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai', 'hinh_anh_giao_hang',
+            ->select('ghichu','ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai', 'hinh_anh_giao_hang',
                      'hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
         $products = DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
@@ -353,7 +353,7 @@ class ShipperController extends Controller
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->join('hinh_thuc_thanh_toan','hoa_don.id_HTTT','=','hinh_thuc_thanh_toan.id')
             ->where('hoa_don.id','=',$id)
-            ->select('ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai',
+            ->select('ghichu','ngaydat','tongtien','hoten','dia_chi_giao_hang','sodth','email','trangthai',
                      'hoa_don.id_TT','hoa_don.id','hinh_thuc_thanh_toan.ten_HTTT')->get();
         $products = DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')

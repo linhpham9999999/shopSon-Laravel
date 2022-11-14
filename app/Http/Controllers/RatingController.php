@@ -68,4 +68,11 @@ class RatingController extends Controller
         return redirect()->route('quan-ly-cmt')->with('thongbao','Duyệt thành công');
 //        return response()->json(['status'=>'Duyệt thành công']);
     }
+    public function deleteCmt($id)
+    {
+        DB::table('binh_luan')->where('id','=',$id)->delete();
+        return response()->json([
+                                    'message' => 'Data deleted successfully!'
+                                ]);
+    }
 }
