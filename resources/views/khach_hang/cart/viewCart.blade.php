@@ -78,7 +78,7 @@
                             </table>
                         </div>
                         <div class="cart-update-option d-block d-md-flex justify-content-between" style="border: 1px solid white;">
-                            <div class="apply-coupon-wrapper" style=" width: 420px;margin-left: 710px;">
+                            <div class="apply-coupon-wrapper" style=" width: 450px;margin-left: 720px;">
 {{--                                <button type="submit" class="btn flosun-button primary-btn rounded-0 black-btn">Cập nhật giỏ hàng</button>--}}
 {{--                                <a href="{{route('allSanPham')}}" class="btn flosun-button primary-btn rounded-0 black-btn">Tiếp tục mua hàng</a>--}}
                                 <span style="padding-right:10px "> <strong>Mã khuyến mãi: </strong></span>
@@ -109,12 +109,12 @@
                     <div class="col-lg-5 ml-auto col-custom">
                         <div class="cart-calculator-wrapper">
                             <div class="cart-calculate-items">
-                                <h3>Cart Totals</h3>
+                                <h3>Tổng hóa đơn</h3>
                                 <div class="table-responsive">
                                     <table class="table">
 {{--                                        @foreach($products as $product)--}}
                                         <tr>
-                                            <td>Sub Total
+                                            <td>Tổng đơn hàng
                                                 -{{$product['promotion']}}%
                                             </td>
                                             <td>{{ number_format( $subPrice * (1 - $product['promotion']*0.01) ,0,',','.')  }}</td>
@@ -124,7 +124,7 @@
                                             <td>{{ $shipping }}</td>
                                         </tr>
                                         <tr class="total">
-                                            <td>Total</td>
+                                            <td>Thành tiền</td>
                                             <td class="total-amount">{{number_format( ($subPrice * (1 - $product['promotion']*0.01)) +  $shipping,0,',','.') }}</td>
                                         </tr>
 {{--                                        @endforeach--}}

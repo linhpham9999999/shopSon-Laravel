@@ -25,19 +25,6 @@ class CartController extends Controller
 //            return back()->with('testquantity', 'Số lượng sản phẩm tồn không đủ bán');
             return response()->json(['error'=>'Số lượng mua vượt quá số lượng tồn']);
         }
-
-//        $validate = $this->validate(
-//                        $request,
-//                        [
-//                            'number'                => 'bail|required|integer|min:1'
-//                        ],
-//                        [
-//                            'number.required'      => 'Bạn chưa nhập số lượng sản phẩm',
-//                            'number.integer'       => 'Số lượng sản phẩm phải là 1 số nguyên',
-//                            'number.min'           => 'Số lượng sản phẩm ít nhất là  1',
-//                        ]
-//                    );
-
         // Lấy sản phẩm từ DB dựa vào id
         $product = $this->getProduct($productIdColor);
         // Kiểm tra sản phẩm có hay ko

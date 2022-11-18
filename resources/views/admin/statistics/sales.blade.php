@@ -69,16 +69,16 @@
                         @foreach($loinhuan as $ln)
                             <tr class="nk-tb-item" > {{--id="npp_{{$lsp->id}}"--}}
                                 <td class="nk-tb-col tb-col-md">
-                                    <span>{{$ln->month}}</span>
+                                    <span>{{$ln['month']}}</span>
                                 </td>
                                 <td class="nk-tb-col tb-col-lg">
-                                    <span>{{number_format($ln->von,0,',','.')}}</span>
+                                    <span>{{number_format($ln['von'],0,',','.')}}</span>
                                 </td>
                                 <td class="nk-tb-col tb-col-sm">
-                                    <span>{{number_format($ln->doanhthu_thang,0,',','.')}}</span>
+                                    <span>{{number_format($ln['doanhthu'],0,',','.')}}</span>
                                 </td>
                                 <td class="nk-tb-col tb-col-sm">
-                                    <span>{{number_format($ln->tienloi_thang,0,',','.')}}</span>
+                                    <span>{{number_format($ln['tienloi'],0,',','.')}}</span>
                                 </td>
                             </tr><!-- .nk-tb-item -->
                         @endforeach

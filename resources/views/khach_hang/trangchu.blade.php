@@ -77,7 +77,7 @@
                                             <h4 class="title-2"> <a href="product-details.html">{{$sp->ten_SP}}</a></h4>
                                         </div>
                                         <div class="price-box">
-                                            <span class="regular-price ">{{ $sp->gia_ban_ra}}</span>
+                                            <span class="regular-price ">{{ $sp->gia_ban_ra}} VND</span>
 {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                         </div>
                                         <a href="{{route('list-color-product',['id'=>$sp->id])}}" class="btn product-cart">Chọn màu sản phẩm</a>
@@ -130,7 +130,7 @@
                                             <h4 class="title-2"> <a href="product-details.html">{{$spn->ten_SP}}</a></h4>
                                         </div>
                                         <div class="price-box">
-                                            <span class="regular-price ">{{ $spn->gia_ban_ra}}</span>
+                                            <span class="regular-price ">{{ $spn->gia_ban_ra}} VND</span>
                                             {{--                                            <span class="old-price"><del>{{$sp->giagoc}}</del></span>--}}
                                         </div>
                                         <a href="{{route('list-color-product',['id'=>$spn->id])}}" class="btn product-cart">Chọn màu sản phẩm</a>

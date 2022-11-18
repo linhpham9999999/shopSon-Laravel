@@ -41,8 +41,10 @@ class CheckoutController extends Controller
         $subPrice = $this->subPrice($products);
         $shipping = $this->shipPrice($products);
         $current = Carbon::now()->toDateString();
+        // lấy danh sách các khuyến mãi có giá yêu cầu <= tổng tiền hóa đơn, ngày hợp lệ
         $promotion = DB::table('khuyen_mai')->select('*')
-            ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current]])->get()->toArray();
+            ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['gia_yeu_cau','<=',$subPrice]])
+            ->get()->toArray();
         return view('khach_hang.cart.viewCart',['products'     => $products,
                                                   'isHasProduct'  => $isHasProductsCart,
                                                   'subPrice'      => $subPrice,
@@ -55,7 +57,8 @@ class CheckoutController extends Controller
     public function applyPromo(Request $request){
         $current = Carbon::now()->toDateString();
         if($request->maKM == null){
-            return back()->with('message','Chưa nhập mã khuyến mãi');
+//            return back()->with('error','Chưa nhập mã khuyến mãi');
+            return response()->json(['error'=>'Chưa nhập mã khuyến mãi']);
         }
         $data2 = DB::table('khuyen_mai')->select('*')
             ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['Ma_KM','=',$request->maKM]])->first();
@@ -106,24 +109,33 @@ class CheckoutController extends Controller
 
     public function getProductsFromCart(): array
     {
-//        if( Auth::guard('nguoi_dung')->check()) {
-//            $email = Auth::guard('nguoi_dung')->user()->email;
-//        }else{
-//            $email = session('email_user_login');
-//        }
+        if( Auth::guard('nguoi_dung')->check()) {
+            $email = Auth::guard('nguoi_dung')->user()->email;
+        }else{
+            $email = session('email_user_login');
+        }
         $isHasProductsCart = false;
         if(Cookie::has('cart')) {
             $cart = Cookie::get('cart');
             $products = json_decode($cart, true);
             $isHasProductsCart = true;
-//            foreach ($products as $product) {
-//                if ($product['email'] == $email) {
-//                    $isHasProductsCart = true;
-//                } else {
-//                    $products = [];
-//                    $isHasProductsCart = false;
-//                }
-//            }
+            foreach ($products as $product) {
+                // lấy thông tin màu sản phẩm trong cart , kiểm tra còn đúng soluong thì hiện thị
+                $mausp = DB::table('mau_san_pham')->select('id','soluongton')
+                    ->where('id','=', $product['id'])->get()->toArray();
+                foreach ($mausp as $msp){
+                    if( $msp->id == $product['id'] && $msp->soluongton < $product['quantity']){
+                        unset($products[$msp->id]);
+                    }
+                }
+                // kiểm tra email người thêm giỏ hàng
+                if ($product['email'] == $email) {
+                    $isHasProductsCart = true;
+                } else {
+                    $products = [];
+                    $isHasProductsCart = false;
+                }
+            }
         }
         else{
             $products = [];
