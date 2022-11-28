@@ -103,7 +103,7 @@
                                         <p class="formdetails" style="height: 50px">
                                             <select style="height: 30px;border: 1px solid crimson;" id="thanhtoanmomo" name="payment" onchange="showDiv('payment_momo', this)">
 
-                                           <option value="1">Thanh toán bằng ATM MOMO</option>
+                                           <option value="1">Thanh toán bằng ATM VNPAY</option>
                                            <option value="2">Thanh toán khi nhận hàng</option>
                                         </select></p>
                                     </div>
@@ -123,7 +123,7 @@
                                         <th class="cart-product-total">Total</th>
                                     </tr>
                                     </thead>
-                                    @foreach($products as $product)
+                                    @foreach($productnew as $product)
                                         <tbody>
                                         <tr class="cart_item">
                                             <td class="cart-product-name">{{ $product['name'] }} {{ $product['color'] }}<strong class="product-quantity">
@@ -172,13 +172,20 @@
                             </form>
                         </div>
                     </div>
-                <div id="payment_momo" style="display: block; margin: 10px 50px 0px 60px;width: 200px">
-                    <form action="{{route('thanh-toan-MOMO')}}" method="POST">
-                        {{csrf_field()}}
-                        <input type="hidden" name="total_momo" value="{{ $total + $ship }}">
-                        <button type="submit" style="background-color: aqua;height: 50px;width: 200px;" class="btn btn-warning check_out" name="payUrl">Thanh toán MOMO</button>
-                    </form>
-                </div>
+{{--                <div id="payment_momo" style="display: block; margin: 10px 50px 0px 60px;width: 200px">--}}
+{{--                    <form action="{{route('thanh-toan-MOMO')}}" method="POST">--}}
+{{--                        {{csrf_field()}}--}}
+{{--                        <input type="hidden" name="total_momo" value="{{ $total + $ship }}">--}}
+{{--                        <button type="submit" style="background-color: aqua;height: 50px;width: 200px;" class="btn btn-warning check_out" name="payUrl">Thanh toán VNPAY</button>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+                    <div id="payment_momo" style="display: block; margin: 10px 50px 0px 60px;width: 200px">
+                        <form action="{{route('thanh-toan-VNPAY')}}" method="POST">
+                            {{csrf_field()}}
+                            <input type="hidden" name="total_momo" value="{{ $total + $ship }}">
+                            <button type="submit" style="background-color: aqua;height: 50px;width: 200px;" class="btn btn-warning check_out" name="redirect">Thanh toán VNPAY</button>
+                        </form>
+                    </div>
                 @if(session('alert'))
                     <div class="alert alert-success" style="width: 250px;margin-top: 10px;float: left;height: 50px;background-color: lime;">
                         {{session('alert')}}

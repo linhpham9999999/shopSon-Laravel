@@ -466,8 +466,8 @@ Route::group(
 
         //KH xác nhận lấy hàng
         Route::post('/accept-order','App\Http\Controllers\DuyetHDController@confirm')->name('accept-order')->middleware('loginKH');
-        //Thanh toán bằng MOMO
-        Route::post('/momo_payment','App\Http\Controllers\CheckoutController@momoPayment')->name('thanh-toan-MOMO')->middleware('loginKH');
+        //Thanh toán bằng VNPAY
+        Route::post('/vnp_payment','App\Http\Controllers\CheckoutController@VNPayment')->name('thanh-toan-VNPAY')->middleware('loginKH');
 
         Route::group(
             ['prefix' => 'mail'],

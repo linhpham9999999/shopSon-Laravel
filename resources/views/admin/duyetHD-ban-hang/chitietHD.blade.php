@@ -140,6 +140,14 @@
                                                     </div>
                                                 </div>
                                             @endif
+                                            @if($ct->hinh_anh_giao_hang != null)
+                                                <div class="col-md-12 col-custom">
+                                                    <div class="checkout-form-list">
+                                                        <label style="font-weight: bold; height: 0px">Ảnh giao hàng: </label>
+                                                        <span class="formdetails"><img src="admin_asset/hinh-anh-giao-hang/{{$ct->hinh_anh_giao_hang}}" width="70px" height="70px"/></span>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                 </div>
                             </div><!-- .card-inner -->

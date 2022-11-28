@@ -4,7 +4,7 @@
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title" style="width: 593px;float: left;">Thống kê số đơn hàng qua các tháng trong năm</h3>
+                    <h3 class="nk-block-title page-title" style="width: 593px;float: left;">Thống kê số lượt mua hàng</h3>
                     <div class="nk-block-des text-soft" style="float: right;padding-top: 5px;">
                         <form action="{{route('sale-month')}}" method="POST" role="form">
                             {{csrf_field()}}
@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col-xl-6">
             <div class="card bg-warning text-white mb-4" style="text-align: center;">
-                <div class="card-body">Thống kê LỢI NHUẬN mỗi tháng trong năm</div>
+                <div class="card-body">Thống kê LỢI NHUẬN</div>
                 <div class="card-footer d-flex align-items-center justify-content-between" style="background-color: lavender">
                     <table class="nk-tb-list nk-tb-ulist">
                         <thead>

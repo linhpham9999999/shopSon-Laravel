@@ -7,12 +7,13 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
 
-    public function execPostRequest($url, $data)
+    /*public function execPostRequest($url, $data)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -29,7 +30,7 @@ class CheckoutController extends Controller
         //close connection
         curl_close($ch);
         return $result;
-    }
+    }*/
 
     /**
      * @return View
@@ -37,7 +38,7 @@ class CheckoutController extends Controller
     public function showView(): View
     {
         // lấy thông tin product
-        [$products, $isHasProductsCart]  = $this->getProductsFromCart();
+        $products = $this->getProductsFromCart();
         $subPrice = $this->subPrice($products);
         $shipping = $this->shipPrice($products);
         $current = Carbon::now()->toDateString();
@@ -46,7 +47,6 @@ class CheckoutController extends Controller
             ->where([['ngay_bat_dau','<=',$current],['ngay_ket_thuc','>=',$current],['gia_yeu_cau','<=',$subPrice]])
             ->get()->toArray();
         return view('khach_hang.cart.viewCart',['products'     => $products,
-                                                  'isHasProduct'  => $isHasProductsCart,
                                                   'subPrice'      => $subPrice,
                                                   'shipping'      => $shipping,
                                                   'promotion'=>$promotion
@@ -107,18 +107,17 @@ class CheckoutController extends Controller
      * @return array<string, string>
      */
 
-    public function getProductsFromCart(): array
+    public function getProductsFromCart()
     {
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
         }else{
             $email = session('email_user_login');
         }
-        $isHasProductsCart = false;
+        $productnew = [];
         if(Cookie::has('cart')) {
             $cart = Cookie::get('cart');
             $products = json_decode($cart, true);
-            $isHasProductsCart = true;
             foreach ($products as $product) {
                 // lấy thông tin màu sản phẩm trong cart , kiểm tra còn đúng soluong thì hiện thị
                 $mausp = DB::table('mau_san_pham')->select('id','soluongton')
@@ -128,20 +127,25 @@ class CheckoutController extends Controller
                         unset($products[$msp->id]);
                     }
                 }
+//                dd($email, $product['email']);
                 // kiểm tra email người thêm giỏ hàng
-                if ($product['email'] == $email) {
-                    $isHasProductsCart = true;
-                } else {
-                    $products = [];
-                    $isHasProductsCart = false;
+                if ($email === $product['email']) {
+                    $productnew[] = array(
+                        'id' => $product['id'],
+                        'image'=>$product['image'],
+                        'name' =>$product['name'],
+                        'color' =>$product['color'],
+                        'promotion' =>$product['promotion'],
+                        'unit_price' =>$product['unit_price'],
+                        'email'=>$product['email'],
+                        'id_KM'=>$product['id_KM'],
+                        'quantity'=>$product['quantity']
+                    );
                 }
             }
         }
-        else{
-            $products = [];
-            $isHasProductsCart = false;
-        }
-        return [$products, $isHasProductsCart];
+//        dd($productnew);
+        return $productnew;
     }
     /**
      * @param array $products
@@ -191,7 +195,7 @@ class CheckoutController extends Controller
 //        return back()->with('message','Đã xóa khỏi giỏ!');
     }
 
-    function momoPayment(Request $request)
+    /*function momoPayment(Request $request)
     {
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
@@ -229,6 +233,71 @@ class CheckoutController extends Controller
         $jsonResult = json_decode($result, true);  // decode json
 
         return redirect()->to($jsonResult['payUrl'])->with('alert','Thanh toán MOMO thành công');
-    }
+    }*/
+    public function VNPayment(Request $request){
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = "http://localhost:8999/shopSon/public/khach_hang/buy-products/billing-details";
+        $vnp_TmnCode = "OG41S5YF";//Mã website tại VNPAY
+        $vnp_HashSecret = "HQGPBAYFYWLEEHMPYAEDVXXNZDTVHZWT"; //Chuỗi bí mật
 
+        $vnp_TxnRef = Str::random(6);
+        $vnp_OrderInfo = 'Thanh toán đơn hàng test';
+        $vnp_OrderType = 'billpayment';
+        $vnp_Amount = $request->total_momo * 100;
+        $vnp_Locale = 'vn';
+        $vnp_BankCode = 'NCB';
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+
+
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+        }
+
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = array('code' => '00'
+        , 'message' => 'success'
+        , 'data' => $vnp_Url);
+        if (isset($_POST['redirect'])) {
+//            header('Location: ' . $vnp_Url);
+            return redirect()->to($vnp_Url)->with('alert','Thanh toán MOMO thành công');
+        } else {
+            echo json_encode($returnData);
+        }
+    }
 }

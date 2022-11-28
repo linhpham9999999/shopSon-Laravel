@@ -43,7 +43,7 @@
                                                 <td class="nk-tb-col tb-col-md" style="text-align: center">Màu sản phẩm</td>
                                                 <td class="nk-tb-col tb-col-md" style="text-align: center">Số lượng</td>
                                                 <td class="nk-tb-col tb-col-md" style="text-align: center">Giá tiền</td>
-                                                <td class="nk-tb-col tb-col-md" style="text-align: center">Thành tiền</td>
+                                                <td class="nk-tb-col tb-col-md" style="text-align: center">Thành tiền (bao gồm phí ship)</td>
                                             </tr>
                                             @foreach($cart_array as $cart)
                                                 <tr class="nk-tb-item">

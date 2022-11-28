@@ -98,7 +98,8 @@ class KhachHangController extends Controller
         $san_pham_tuong_tu = DB::table('mau_san_pham')
             ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
             ->select('mau_san_pham.*','gia_ban_ra','san_pham.trang_thai')
-            ->where([['san_pham.trang_thai','=',1],['mau_san_pham.id_SP','=',$idSP->id_SP],['mau_san_pham.id','!=',$id]])
+            ->where([['san_pham.trang_thai','=',1],['mau_san_pham.trang_thai','=',1],
+                        ['mau_san_pham.id_SP','=',$idSP->id_SP],['mau_san_pham.id','!=',$id]])
             ->get()->toArray();
         $sanphamnew = DB::table('san_pham')->select('*')
             ->where('trang_thai','=',1)
@@ -133,7 +134,8 @@ class KhachHangController extends Controller
         $san_pham_tuong_tu = DB::table('mau_san_pham')
             ->join('san_pham','mau_san_pham.id_SP','=','san_pham.id')
             ->select('mau_san_pham.*','gia_ban_ra','san_pham.trang_thai')
-            ->where([['san_pham.trang_thai','=',1],['mau_san_pham.id_SP','=',$idSP->id_SP],['mau_san_pham.id','!=',$id]])
+            ->where([['san_pham.trang_thai','=',1],['mau_san_pham.trang_thai','=',1],
+                        ['mau_san_pham.id_SP','=',$idSP->id_SP],['mau_san_pham.id','!=',$id]])
             ->get()->toArray();
         $sanphamnew = DB::table('san_pham')->select('*')
             ->where('trang_thai','=',1)
