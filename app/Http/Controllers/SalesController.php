@@ -69,10 +69,23 @@ class SalesController extends Controller
             ->where('hoa_don.ngaydat','>=',$range)
             ->whereIn('hoa_don.id_TT',[1,5])
             ->groupBy('mau_san_pham.mau','san_pham.ten_SP')
-            ->orderBy('soluongcay','desc')->take(3)
+            ->orderBy('soluongcay','desc')->take(4)
             ->get()->toArray();
+        // soluongton kho cua moi san pham
+        $soluongton_sp = DB::table('mau_san_pham')->join('san_pham','san_pham.id','=','mau_san_pham.id_SP')
+            ->select('san_pham.ten_SP',DB::raw('sum(mau_san_pham.soluongton) as soluongtonkho'))
+            ->where([['san_pham.trang_thai','=',1],['mau_san_pham.trang_thai','=',1]])
+            ->groupBy('san_pham.ten_SP')->get()->toArray();
+        // so luong da ban cua moi sp
+        $soluongdaban_sp =  DB::table('chi_tiet_hoa_don')
+            ->join('mau_san_pham','mau_san_pham.id','=','chi_tiet_hoa_don.id_MSP')
+            ->join('san_pham','san_pham.id','=','mau_san_pham.id_SP')
+            ->where('chi_tiet_hoa_don.trang_thai','=',1)
+            ->select('san_pham.ten_SP',DB::raw('sum(chi_tiet_hoa_don.soluong) as soluongdaban'))
+            ->groupBy('san_pham.ten_SP')->get()->toArray();
         return view('admin.statistics.sales',
-                    compact('data','months','monthCount','loinhuan','san_pham','tienvon','doanhthu'));
+                    compact('data','months','monthCount','loinhuan',
+                            'san_pham','tienvon','doanhthu','soluongton_sp','soluongdaban_sp'));
     }
 
     public function postMonthSales(Request $request){
@@ -135,7 +148,7 @@ class SalesController extends Controller
             ->where([['hoa_don.ngaydat','>=',$request->startdate],['ngaydat','<=',$request->enddate]])
             ->whereIn('hoa_don.id_TT',[1,5])
             ->groupBy('mau_san_pham.mau','san_pham.ten_SP')
-            ->orderBy('soluongcay','desc')->take(3)
+            ->orderBy('soluongcay','desc')->take(4)
             ->get()->toArray();
         return   view('admin.statistics.sales',
                     compact('data','months','monthCount','loinhuan','san_pham'));

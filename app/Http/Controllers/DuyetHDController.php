@@ -78,7 +78,7 @@ class DuyetHDController extends Controller
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
             ->select('hinhanh','Ma_MSP','soluong','thanh_tien')->get();
-        $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
+        $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->where('trang_thai','=',1)->get();
         $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id)->first();
         return view('admin\duyetHD\chitietHD',compact('user','products','shipper','order_code'));
     }
@@ -222,7 +222,7 @@ class DuyetHDController extends Controller
             ->join('mau_san_pham','chi_tiet_hoa_don.id_MSP','=','mau_san_pham.id')
             ->where('chi_tiet_hoa_don.id_HD','=',$id)
             ->select('hinhanh','Ma_MSP','soluong','thanh_tien')->get();
-        $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->get();
+        $shipper = DB::table('nguoi_giao_hang')->select('hoten','id')->where('trang_thai','=',1)->get();
         $order_code = DB::table('hoa_don')->select('Ma_HD')->where('id','=',$id)->first();
         return view('admin\duyetHD-ban-hang\chitietHD',compact('user','products','shipper','order_code'));
     }

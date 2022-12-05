@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" style="margin-left: 340px;" class="btn btn-info btn-fill pull-right">Lưu thay đổi</button>
+                            <button type="submit" style="margin-left: 340px;" class="btn btn-info btn-fill pull-right">Lưu thông tin</button>
                             <button type="reset" class="btn btn-dim btn-warning pull-right">Làm mới</button>
                             <a href="{{route('quan-ly-tin-tuc')}}" class="btn btn-dark pull-right">Xem bài viết</a>
                             <div class="clearfix"></div>

@@ -89,7 +89,7 @@
         </div>
         <div class="col-xl-6">
             <div class="card bg-success text-white mb-4" style="text-align: center;">
-                <div class="card-body">Thống kê SẢN PHẨM bán chạy</div>
+                <div class="card-body">Thống kê MÀU SẢN PHẨM bán chạy</div>
                 <div class="card-footer d-flex align-items-center justify-content-between" style="background-color: lavender">
                     <table class="nk-tb-list nk-tb-ulist">
                         <thead>
@@ -113,6 +113,51 @@
                                 </td>
                             </tr><!-- .nk-tb-item -->
                         @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card bg-gray text-white mb-4" style="text-align: center;">
+                <div class="card-body">Thống kê số lượng son của mỗi thương hiệu</div>
+                <div class="card-footer d-flex align-items-center justify-content-between" style="background-color: lavender">
+                    <table class="nk-tb-list nk-tb-ulist" style="width: 890px;">
+                        <thead>
+                        <tr class="nk-tb-item nk-tb-head">
+                            <th class="nk-tb-col tb-col-md"><span class="sub-text">Tên thương hiệu</span></th>
+                            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Số lượng tồn kho</span></th>
+                        </tr><!-- .nk-tb-item -->
+                        </thead>
+                        <tbody>
+                                @foreach($soluongton_sp as $slton)
+                                    <tr class="nk-tb-item" >
+                                        <td class="nk-tb-col tb-col-md">
+                                            <span>{{$slton->ten_SP}}</span>
+                                        </td>
+                                        <td class="nk-tb-col tb-col-lg">
+                                            <span>{{$slton->soluongtonkho}}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                        </tbody>
+                    </table>
+                    <table class="nk-tb-list nk-tb-ulist" style=" margin-top: 2px;">
+                        <thead>
+                        <tr class="nk-tb-item nk-tb-head">
+                            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Số lượng đã bán</span></th>
+                        </tr><!-- .nk-tb-item -->
+                        </thead>
+                        <tbody>
+                            @foreach($soluongdaban_sp as $slban)
+                                <tr class="nk-tb-item" >
+                                    <td class="nk-tb-col tb-col-lg">
+                                        <span>{{$slban->soluongdaban}}</span>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

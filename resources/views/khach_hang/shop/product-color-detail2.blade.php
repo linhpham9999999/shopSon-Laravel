@@ -265,12 +265,20 @@
                                             <span class="onsale">Hết!</span>
                                         @endif
                                         <div class="add-action d-flex flex-column position-absolute">
-                                            <a href="wishlist.html" title="Add To Wishlist">
-                                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
-                                            </a>
-{{--                                            <a href="#exampleModalCenter" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter">--}}
-{{--                                                <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>--}}
-{{--                                            </a>--}}
+                                            <input type="hidden" class="product_id_wish" value="{{$sptt->id}}">
+                                            @if((Auth::guard('nguoi_dung')->check() || !empty(session('user_login'))))
+                                                <a title="Add To Wishlist">
+                                                    <button type="button" class="add-wish-list-to-btn-sptt" name="add-wish-list">
+                                                        <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
+                                                    </button>
+                                                </a>
+                                            @else
+                                                <a title="Add To Wishlist" class="request-login">
+                                                    <button type="button">
+                                                        <i class="lnr lnr-heart" class="request-login" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
+                                                    </button>
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="product-content">

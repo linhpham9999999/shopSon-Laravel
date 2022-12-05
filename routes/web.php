@@ -73,7 +73,7 @@ Route::group(
                 Route::get('them', 'App\Http\Controllers\MauSpController@getThem')->name('getThemMSP');
                 Route::post('them', 'App\Http\Controllers\MauSpController@postThem')->name('actionThem3');
                 // tìm theo mã, màu sp
-                Route::get('/tim-kiem', 'App\Http\Controllers\SearchColorProductController@search')->name('search-color-product');
+                Route::post('/tim-kiem', 'App\Http\Controllers\SearchColorProductController@search')->name('search-color-product');
             }
         );
         // Quản lý sản phẩm

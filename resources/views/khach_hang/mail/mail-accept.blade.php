@@ -42,7 +42,7 @@
                                                 <td class="nk-tb-col tb-col-md" style="text-align: center">Màu sản phẩm</td>
                                                 <td class="nk-tb-col tb-col-md" style="text-align: center">Số lượng</td>
                                                 <td class="nk-tb-col tb-col-md" style="text-align: center">Giá tiền</td>
-                                                <td class="nk-tb-col tb-col-md" style="text-align: center">Thành tiền (bao gồm phí ship)</td>
+                                                <td class="nk-tb-col tb-col-md" style="text-align: center">Thành tiền</td>
                                             </tr>
                                             @foreach($cart_array as $cart)
                                                 <tr class="nk-tb-item">
@@ -54,7 +54,7 @@
                                                 </tr>
                                             @endforeach
                                             <tr class="nk-tb-item">
-                                                <td class="nk-tb-col tb-col-md" colspan="5" align="right">Tổng tiền thanh toán: <strong>{{number_format($total,0,',','.')}}</strong>
+                                                <td class="nk-tb-col tb-col-md" colspan="5" align="right">Tổng tiền thanh toán (bao gồm phí ship): <strong>{{number_format($total,0,',','.')}}</strong>
                                                 </td>
                                             </tr>
                                         </table>

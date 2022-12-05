@@ -145,7 +145,7 @@ class ShipperController extends Controller
                 'product_color' => $product_color_name->mau,
                 'product_quantity' => $value->soluong,
                 'product_price' => $value->don_gia * (1 - $promotion_percent*0.01),
-                'product_price_total' => $data_order->tongtien
+                'product_price_total' => $value->soluong * $value->don_gia * (1 - $promotion_percent*0.01)
             );
         }
         $total = $data_order->tongtien;
@@ -277,7 +277,7 @@ class ShipperController extends Controller
                 'product_color' => $product_color_name->mau,
                 'product_quantity' => $value->soluong,
                 'product_price' => $value->don_gia * (1 - $promotion_percent*0.01),
-                'product_price_total' => $data_order->tongtien
+                'product_price_total' => $value->soluong * $value->don_gia * (1 - $promotion_percent*0.01)
             );
         }
         $total = $data_order->tongtien;

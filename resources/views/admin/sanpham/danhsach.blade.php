@@ -1,4 +1,18 @@
 @extends('admin.layout.index')
+@section('cssKH')
+    <style>
+        .abc span{
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 3;
+            height: 75px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="nk-content-body">
         <div class="nk-block-head nk-block-head-sm">
@@ -32,14 +46,14 @@
                             <thead>
                             <tr class="nk-tb-item nk-tb-head">
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Mã</span></th>
-                                <th class="nk-tb-col tb-col-lg"><span class="sub-text">Tên sản phẩm</span></th>
+                                <th class="nk-tb-col tb-col-lg"><span class="sub-text">Tên</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Hình ảnh</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Xuất xứ</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Trọng lượng</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Giá nhập vào</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Giá bán ra</span></th>
-{{--                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Số lượng tồn</span></th>--}}
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Hạn sử dụng</span></th>
+                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Giá nhập vào (VNĐ)</span></th>
+                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Giá bán ra (VNĐ)</span></th>
+                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Giới thiệu</span></th>
+                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Thành phần</span></th>
                                 <th class="nk-tb-col tb-col-mb" colspan="2" style="text-align: center"><span class="sub-text">Action</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
@@ -62,14 +76,23 @@
                                         <span>{{$sp->trongluong}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{number_format($sp->gia_nhap_vao,0,',','.')}} VNĐ</span>
+                                        <span>{{number_format($sp->gia_nhap_vao,0,',','.')}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span>{{number_format($sp->gia_ban_ra,0,',','.')}} VNĐ</span>
+                                        <span>{{number_format($sp->gia_ban_ra,0,',','.')}}</span>
                                     </td>
-                                    <td class="nk-tb-col tb-col-mb">
-                                        <span>{{$sp->hansudung_thang}} tháng</span>
+                                    <td class="nk-tb-col tb-col-mb abc">
+                                        <span>{{$sp->gioithieu}}</span>
                                     </td>
+                                    @if($sp->thanh_phan !== null)
+                                        <td class="nk-tb-col tb-col-mb abc">
+                                            <span>{{$sp->thanh_phan}}</span>
+                                        </td>
+                                    @else
+                                        <td class="nk-tb-col tb-col-mb">
+                                            <span>Không có</span>
+                                        </td>
+                                    @endif
                                     <td class="nk-tb-col tb-col-mb">
                                         <button class="btn btn-sm  js-delete-sanpham" data-id="{{ $sp->id }}">{{-- btn-outline-danger py-0--}}
                                             <img src="admin_asset/delete.png" width="30px" />
