@@ -63,7 +63,7 @@ class InfoController extends Controller
         if( Auth::guard('nhan_vien_ban_hang')->check()) {
             $email = Auth::guard('nhan_vien_ban_hang')->user()->email;
         }
-        $users = DB::table('quan_tri')->select('*')->where('email','=',$email)->first();
+        $users = DB::table('nhan_vien_ban_hang')->select('*')->where('email','=',$email)->first();
         return view('admin.profile-ban-hang.profile', compact('users'));
     }
     public function postInfoBanHang(Request  $request, $id){
@@ -94,7 +94,8 @@ class InfoController extends Controller
                             'info.min'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
                             'info.max'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
                         ]);
-        DB::table('quan_tri')->select('*')->where('id','=',$id)
+        $email = DB::table('nhan_vien_ban_hang')->select('email')->where('id','=',$id)->first();
+        DB::table('quan_tri')->select('*')->where('email','=',$email->email)
             ->update([
                          'hoten'        =>$request->hoten,
                          'ngaysinh'     =>$request->ngaysinh,
@@ -151,7 +152,8 @@ class InfoController extends Controller
                             'info.min'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
                             'info.max'                  => 'Thông tin cá nhân phải có độ dài từ 5 đến 500 ký tự',
                         ]);
-        DB::table('quan_tri')->select('*')->where('id','=',$id)
+        $email = DB::table('nhan_vien_nhap_kho')->select('email')->where('id','=',$id)->first();
+        DB::table('quan_tri')->select('*')->where('email','=',$email->email)
             ->update([
                          'hoten'        =>$request->hoten,
                          'ngaysinh'     =>$request->ngaysinh,

@@ -19,6 +19,26 @@ $(document).ready(function (){
             }
         })
     });
+
+    $('.add-wish-list-to-btn-sptt').click(function (e){
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var product_id = $(this).closest('.position-absolute').find('.product_id_wish').val();
+        $.ajax({
+            method: "POST",
+            url: "khach_hang/wishlist/add",
+            data: {'product_id': product_id, },
+            success:function (response){
+                alertify.set('notifier','position','top-right');
+                alertify.success(response.status);
+            }
+        })
+    });
+
     // xóa sp yêu thích
     // $('.delete-wish-list-to-btn').click(function (e){
     //     e.preventDefault();

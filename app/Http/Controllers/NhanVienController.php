@@ -172,6 +172,7 @@ class NhanVienController extends Controller
             $name = $tenfile->getClientOriginalName();
             $tenfile->move('images', $name);
         }
+        $email = DB::table('quan_tri')->select('email')->where('id','=',$id)->first();
         DB::table('quan_tri')->select('*')->where('id','=',$id)->update([
             'hoten' => $request->ten,
             'diachi' => $request->diachi,
@@ -186,7 +187,7 @@ class NhanVienController extends Controller
         ]);
 
         if($request->chuc_vu_id == 2){
-            DB::table('nhan_vien_nhap_kho')->select('*')->where('id','=',$id)->update([
+            DB::table('nhan_vien_nhap_kho')->select('*')->where('email','=',$email->email)->update([
                 'hoten' => $request->ten,
                 'diachi' => $request->diachi,
                 'sodth' => $request->sodth,
@@ -201,7 +202,7 @@ class NhanVienController extends Controller
         }
 
         if($request->chuc_vu_id == 3){
-            DB::table('nhan_vien_ban_hang')->select('*')->where('id','=',$id)->update([
+            DB::table('nhan_vien_ban_hang')->select('*')->where('email','=',$email->email)->update([
                   'hoten' => $request->ten,
                   'diachi' => $request->diachi,
                   'sodth' => $request->sodth,

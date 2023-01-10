@@ -33,7 +33,7 @@ class ProductController extends Controller
                 'xuatxu'    => 'bail|required|min:2|max:50',
                 'trluong'   => 'bail|required|numeric|min:1',
                 'gianhap'    => 'bail|required|numeric|min:5',
-                'giaban'   => 'bail|required|numeric|min:5',
+                'giaban'   => 'bail|required|numeric|min:5|gt:gianhap',
                 'hsd'       => 'bail|required|integer',
                 'gthieu'    => 'bail|required',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
@@ -57,6 +57,7 @@ class ProductController extends Controller
                 'giaban.required'      => 'Bạn chưa nhập Giá sản phẩm',
                 'giaban.numeric'       => 'Giá sản phẩm phải là 1 số',
                 'giaban.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
+                'giaban.gt'           => 'Giá bán ra lớn hơn giá nhập vào',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
                 'gthieu.required'       => 'Bạn chưa nhập Thông tin sản phẩm',
@@ -109,7 +110,7 @@ class ProductController extends Controller
                 'xuatxu'    => 'bail|required|min:3|max:50',
                 'trluong'   => 'bail|required|numeric|min:1',
                 'gianhap'    => 'bail|required|numeric|min:5',
-                'giaban'   => 'bail|required|numeric|min:5',
+                'giaban'   => 'bail|required|numeric|min:5|gt:gianhap',
                 'hsd'       => 'bail|required|integer',
                 'gthieu'    => 'bail|required',
                 'hinh_anh'  => 'bail|required|mimes:jpg,bmp,png'
@@ -133,6 +134,7 @@ class ProductController extends Controller
                 'giaban.required'      => 'Bạn chưa nhập Giá sản phẩm',
                 'giaban.numeric'       => 'Giá sản phẩm phải là 1 số',
                 'giaban.min'           => 'Giá sản phẩm phải có độ dài từ 5 ký tự',
+                'giaban.gt'           => 'Giá bán ra lớn hơn giá nhập vào',
                 'hsd.required'          => 'Bạn chưa nhập Hạn sử dụng của sản phẩm',
                 'hsd.integer'           => 'Hạn sử dụng của sản phẩm phải là 1 số nguyên',
                 'gthieu.required'       => 'Bạn chưa nhập Thông tin sản phẩm',

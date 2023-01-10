@@ -19,7 +19,7 @@ class ShipperController extends Controller
     public function check(Request $request){
         //SESSION
         $user =  $request->email ;
-        if(Auth::guard('nguoi_giao_hang')->attempt(['email' => $request->email,'password' => $request->password])){
+        if(Auth::guard('nguoi_giao_hang')->attempt(['email' => $request->email,'password' => $request->password,'trang_thai'=>1])){
             $request->session()->put('nameSP', $user);
             return redirect()->route('statusShipper');
         }

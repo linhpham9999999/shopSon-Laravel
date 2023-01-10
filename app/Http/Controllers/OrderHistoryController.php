@@ -18,8 +18,8 @@ class OrderHistoryController extends Controller
         $cho_xac_nhan = DB::table('hoa_don')
             ->join('trang_thai','hoa_don.id_TT','=','trang_thai.id')
             ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
-                ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
-            ->where([['hoa_don.email_nguoidung','=',$email],['hoa_don.id_TT','=',3]])
+                ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT','hoa_don.nguoi_giao_hang_id')
+            ->where([['hoa_don.email_nguoidung','=',$email],['hoa_don.id_TT','=',3],['hoa_don.nguoi_giao_hang_id','=',null]])
             ->orderBy('hoa_don.id','desc')
             ->get()->toArray();
 
@@ -28,6 +28,7 @@ class OrderHistoryController extends Controller
             ->select('hoa_don.id','hoa_don.email_nguoidung','hoa_don.Ma_HD','ngaygiao','ngaydat'
                 ,'hoa_don.tongtien','trang_thai.trangthai', 'trang_thai.id as idTT')
             ->where([['hoa_don.email_nguoidung','=',$email],['hoa_don.id_TT','=',2]])
+            ->orWhere([['hoa_don.email_nguoidung','=',$email],['hoa_don.id_TT','=',3],['hoa_don.nguoi_giao_hang_id','!=',null]])
             ->orderBy('hoa_don.id','desc')
             ->get()->toArray();
 

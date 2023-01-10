@@ -33,7 +33,7 @@ class KH_AuthController extends Controller
                 'password.max' => 'Password phải có độ dài từ 8 đến 255 ký tự'
             ]);
         $tenKH = DB::table('nguoi_dung')->select('hoten')->where('email','=',$request->email)->first();
-        $authenticated = Auth::guard('nguoi_dung')->attempt(['email' => $request->email, 'password' => $request->password]);
+        $authenticated = Auth::guard('nguoi_dung')->attempt(['email' => $request->email, 'password' => $request->password, 'trang_thai'=>1]);
         if ($authenticated) {
             $request->session()->put('nameKH', $tenKH);
             return redirect()->route('trangchuKH');

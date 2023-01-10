@@ -1,4 +1,18 @@
 @extends('admin.layout.index')
+@section('cssKH')
+    <style>
+        .abc span{
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 3;
+            height: 75px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="nk-content-body">
         <div class="nk-block-head nk-block-head-sm">
@@ -43,6 +57,7 @@
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Số lượng tồn</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Tên sản phảm</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Loại sản phẩm</span></th>
+                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Ý nghĩa</span></th>
                                 <th class="nk-tb-col tb-col-mb" colspan="2" style="text-align: center"><span class="sub-text">Action</span></th>
                             </tr><!-- .nk-tb-item -->
                             </thead>
@@ -66,6 +81,9 @@
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <span>{{$dt->ten_LSP}}</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-mb abc">
+                                        <span>{{$dt->thongTinMau}}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <button class="btn btn-sm  js-delete-mausanpham" data-id="{{ $dt->id }}">{{-- btn-outline-danger py-0--}}
@@ -93,4 +111,32 @@
             </div><!-- .card -->
         </div><!-- .nk-block -->
     </div>
+    <script>
+        $('.js-delete-mausanpham').on('click', function(e){
+            if(!confirm("Bạn có chắc xóa không?")) {
+                return false;
+            }
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            var token = $("meta[name='csrf-token']").attr("content");
+            $.ajax(
+                {
+                    url: "admin/mausp/xoa/" + id,
+                    method: 'POST',
+                    data: {
+                        _token: token,
+                        id: id
+                    },
+                    success: function (response){
+                        $("#success").html(response.message)
+                        Swal.fire('Remind!',
+                            'Xóa thành công Màu sản phẩm!',
+                            'success').then(function() {
+                            location.reload();
+                        })
+                    }
+                });
+            return false;
+        })
+    </script>
 @endsection

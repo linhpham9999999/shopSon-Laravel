@@ -122,7 +122,7 @@
     <div class="row">
         <div class="col-xl-6">
             <div class="card bg-gray text-white mb-4" style="text-align: center;">
-                <div class="card-body">Thống kê số lượng son của mỗi thương hiệu</div>
+                <div class="card-body" style="background-color: pink;">Thống kê số lượng son của mỗi thương hiệu</div>
                 <div class="card-footer d-flex align-items-center justify-content-between" style="background-color: lavender">
                     <table class="nk-tb-list nk-tb-ulist" style="width: 890px;">
                         <thead>

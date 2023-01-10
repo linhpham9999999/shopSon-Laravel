@@ -37,9 +37,9 @@ class SearchColorProductController extends Controller
                     <td class="nk-tb-col tb-col-mb"><span>'.$dt->ten_LSP.'</span></td>
                     <td class="nk-tb-col tb-col-mb abc"><span>'.$dt->thongTinMau.'</span></td>
                     <td class="nk-tb-col tb-col-mb">'.'
-                     <button class="btn btn-sm  js-delete-mausanpham" data-id="'.$dt->id.'">
+                     <a class="btn btn-sm " href="admin/mausp/xoa-msp/'.$dt->id.'">
                                             '.'<img src="admin_asset/delete.png" width="30px" />'.'
-                                        </button>
+                                        </a>
                     '.'</td>
                     <td class="nk-tb-col tb-col-mb">'.'
                     <a href="admin/mausp/sua/'.$dt->id.'">'.'<img src="admin_asset/edit.png" width="30px"/>'.'
@@ -53,5 +53,10 @@ class SearchColorProductController extends Controller
                     <h3 style="text-align: center">Màu sản phẩm không tồn tại.</h3>';
         }
         return($output);
+    }
+    public function getXoa($id)
+    {
+        DB::table('mau_san_pham')->where('id','=',$id)->update(['trang_thai' => 0]);
+        return redirect()->route('dsMSP');
     }
 }

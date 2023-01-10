@@ -15,14 +15,39 @@ class BuyProductsController extends Controller
 {
     public function proceedCheckout()
     {
-        $cart = Cookie::get('cart');
-        $products = json_decode($cart, true);
-        $email = '';
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
         }else{
             $email = session('email_user_login');
         }
+        if(!Cookie::has('cart')) {
+            return redirect()->route('view-cart');
+        }
+        $productnew = [];
+        if(Cookie::has('cart')) {
+            $cart = Cookie::get('cart');
+            $products = json_decode($cart, true);
+            foreach ($products as $product) {
+                // kiểm tra email người thêm giỏ hàng
+                if ($email === $product['email']) {
+                    $productnew[] = array(
+                        'id' => $product['id'],
+                        'image'=>$product['image'],
+                        'name' =>$product['name'],
+                        'color' =>$product['color'],
+                        'promotion' =>$product['promotion'],
+                        'unit_price' =>$product['unit_price'],
+                        'email'=>$product['email'],
+                        'id_KM'=>$product['id_KM'],
+                        'quantity'=>$product['quantity']
+                    );
+                }
+            }
+        }
+        if(!$productnew){
+            return redirect()->route('view-cart');
+        }
+
         $users = DB::table('nguoi_dung')
             ->select('diachi', 'hoten', 'email', 'sodth','id')
             ->where('email','=',$email)->first();
@@ -30,13 +55,13 @@ class BuyProductsController extends Controller
         $total = 0;
         $total_test = 0;
         $ship = 0;
-        foreach ($products as $product)
+        foreach ($productnew as $product)
         {
             $sumPrice = $product['unit_price'] * $product['quantity'];
             $total += $sumPrice * (1 - $product['promotion']*0.01);
         }
         // Phí ship tính theo lúc chưa apply Promotion
-        foreach ($products as $product)
+        foreach ($productnew as $product)
         {
             $sumPrice = $product['unit_price'] * $product['quantity'];
             $total_test += $sumPrice;
@@ -48,22 +73,38 @@ class BuyProductsController extends Controller
             }
         }
 
-//        dd($products);
         $payments = DB::table('hinh_thuc_thanh_toan')->select('*')->get();
         $delivery = DB::table('hinh_thuc_giao_hang')->select('*')->get();
         $diachi = DB::table('dia_chi_giao_hang')->select('*')->where('emailnguoidung','=',$email)->get();
         return view('khach_hang.cart.proceed-to-checkout',
-                    compact('users','products','ship','total','payments','delivery','diachi'));
+                    compact('users','productnew','ship','total','payments','delivery','diachi'));
     }
 
     public function orderSuccess(Request $request){
-        if($request->payment==1){
+//        if($request->payment==1){
+//            $this->validate(
+//                $request,
+//                [
+//                    'sodth'     => 'bail|required|min:10|max:10',
+//                    'diachi'    => 'bail|required|min:5|max:255',
+//                    'dathanhtoanmomo'=> 'bail|required'
+//                ],
+//                [
+//                    'sodth.required'    => 'Bạn chưa nhập Số điện thoại',
+//                    'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
+//                    'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
+//                    'diachi.required'   => 'Bạn chưa chọn địa chỉ giao hàng',
+//                    'diachi.min'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+//                    'diachi.max'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
+//                    'dathanhtoanmomo.required'=>'Vui lòng thanh toán hóa đơn'
+//                ]
+//            );
+//        }else{
             $this->validate(
                 $request,
                 [
                     'sodth'     => 'bail|required|min:10|max:10',
                     'diachi'    => 'bail|required|min:5|max:255',
-                    'dathanhtoanmomo'=> 'bail|required'
                 ],
                 [
                     'sodth.required'    => 'Bạn chưa nhập Số điện thoại',
@@ -72,35 +113,42 @@ class BuyProductsController extends Controller
                     'diachi.required'   => 'Bạn chưa chọn địa chỉ giao hàng',
                     'diachi.min'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
                     'diachi.max'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
-                    'dathanhtoanmomo.required'=>'Vui lòng thanh toán hóa đơn'
                 ]
             );
-        }else{
-            $this->validate(
-                $request,
-                [
-                    'sodth'     => 'bail|required|min:10|max:10',
-                    'diachi'    => 'bail|required|min:5|max:255',
-                ],
-                [
-                    'sodth.required'    => 'Bạn chưa nhập Số điện thoại',
-                    'sodth.min'         => 'Số điện thoại phải có độ dài 10 ký tự',
-                    'sodth.max'         => 'Số điện thoại phải có độ dài 10 ký tự',
-                    'diachi.required'   => 'Bạn chưa chọn địa chỉ giao hàng',
-                    'diachi.min'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
-                    'diachi.max'        => 'Địa chỉ phải có độ dài từ 5 đến 255 ký tự',
-                ]
-            );
-        }
+//        }
         $email = '' ;
         if( Auth::guard('nguoi_dung')->check()) {
             $email = Auth::guard('nguoi_dung')->user()->email;
         }else{
             $email = session('email_user_login');
         }
-        $cart = Cookie::get('cart');
-        $products = json_decode($cart, true);
-
+        if(!Cookie::has('cart')) {
+            return redirect()->route('view-cart');
+        }
+        $productnew = [];
+        if(Cookie::has('cart')) {
+            $cart = Cookie::get('cart');
+            $products = json_decode($cart, true);
+            foreach ($products as $product) {
+                // kiểm tra email người thêm giỏ hàng
+                if ($email === $product['email']) {
+                    $productnew[] = array(
+                        'id' => $product['id'],
+                        'image' => $product['image'],
+                        'name' => $product['name'],
+                        'color' => $product['color'],
+                        'promotion' => $product['promotion'],
+                        'unit_price' => $product['unit_price'],
+                        'email' => $product['email'],
+                        'id_KM' => $product['id_KM'],
+                        'quantity' => $product['quantity']
+                    );
+                }
+            }
+        }
+        if(!$productnew){
+            return redirect()->route('view-cart');
+        }
         //Thêm dữ liệu vào bảng Hóa đơn
         DB::table('hoa_don')
             ->insert(['Ma_HD'               => Str::random(6),
@@ -118,7 +166,7 @@ class BuyProductsController extends Controller
         $id_HD = DB::getPdo()->lastInsertId();
 
         //Thêm dữ liệu vào bảng Chi tiết hóa đơn
-        foreach ( $products as $product)
+        foreach ( $productnew as $product)
         {
             $soluongton = DB::table('mau_san_pham')->select('soluongton')->where('id','=', $product['id'])->first();
             $sluong = $soluongton->soluongton;
@@ -153,22 +201,20 @@ class BuyProductsController extends Controller
 
         $promotion_id='';
         $total = 0;
-        if(Cookie::has('cart')){
-            $cart_mail = Cookie::get('cart');
-            $products_mail = json_decode($cart_mail, true);
-            foreach ($products_mail as $value){
-                $cart_array[] = array(
-                    'product_name' => $value['name'],
-                    'product_color' => $value['color'],
-                    'product_quantity' => $value['quantity'],
-                    'product_price' => $value['unit_price'] * (1 - $value['promotion']*0.01),
-                    'product_price_total' => $value['unit_price']  * $value['quantity'] * (1 - $value['promotion']*0.01)
-                );
-                $promotion_id = $value['id_KM'];
-                $sumPrice = $value['unit_price'] * $value['quantity'];
-                $total += $sumPrice * (1 - $value['promotion']*0.01);
-            }
+
+        foreach ($productnew as $value){
+            $cart_array[] = array(
+                'product_name' => $value['name'],
+                'product_color' => $value['color'],
+                'product_quantity' => $value['quantity'],
+                'product_price' => $value['unit_price'] * (1 - $value['promotion']*0.01),
+                'product_price_total' => $value['unit_price']  * $value['quantity'] * (1 - $value['promotion']*0.01)
+            );
+            $promotion_id = $value['id_KM'];
+//            $sumPrice = $value['unit_price'] * $value['quantity'];
+
         }
+        $total = $request->total;
 
         // lay thong tin khach hang
         $shipping_array = array(
@@ -178,7 +224,8 @@ class BuyProductsController extends Controller
             'customer_address' => $data_order->dia_chi_giao_hang
         );
         // lay hinh thuc thanh toan
-        $payment_method = DB::table('hinh_thuc_thanh_toan')->select('ten_HTTT')->where('id','=',$data_order->id_HTTT)->first();
+        $payment_method = DB::table('hinh_thuc_thanh_toan')->select('ten_HTTT')
+            ->where('id','=',$data_order->id_HTTT)->first();
         // lay ma giam gia
         if($promotion_id != NULL){
             $promotion = DB::table('khuyen_mai')->where('id','=',$promotion_id)->first();

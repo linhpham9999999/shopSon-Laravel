@@ -92,7 +92,7 @@
                             </div>
                             <button type="submit" style="margin-left: 450px;" class="btn btn-info btn-fill pull-right">Lưu thông tin</button>
                             <button type="reset" class="btn btn-dim btn-warning pull-right">Làm mới</button>
-                            <a href="{{route('danhsachShipper-ban-hang')}}" class="btn btn-dark pull-right">Xem Nhân viên</a>
+                            <a href="{{route('danhsachShipper-ban-hang')}}" class="btn btn-dark pull-right">Xem Shipper</a>
                             <div class="clearfix"></div>
                         </form>
                     </div>

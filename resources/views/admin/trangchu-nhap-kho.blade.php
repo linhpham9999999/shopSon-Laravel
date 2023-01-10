@@ -13,19 +13,19 @@
     </div>
     <div class="row">
         <div class="col-xl-3">
-            <div class="card text-white mb-4" style="background-color: steelblue;">
-                <div class="card-body" >KHO HÀNG</div>
+            <div class="card text-white mb-4" style="background-color: antiquewhite;">
+                <div class="card-body" style="color: black">KHO HÀNG</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{route('dsKhoHang-nhap-kho')}}">Quản lý</a>
+                    <a class="small text-white stretched-link" style="color: black" href="{{route('dsKhoHang-nhap-kho')}}">Quản lý</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3">
-            <div class="card text-white mb-4" style="background-color: steelblue;">
-                <div class="card-body">TÀI KHOẢN</div>
+            <div class="card text-white mb-4" style="background-color: antiquewhite;">
+                <div class="card-body" style="color: black">TÀI KHOẢN</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{route('info-nhap-kho')}}">Quản lý</a>
+                    <a class="small text-white stretched-link" style="color: black" href="{{route('info-nhap-kho')}}">Quản lý</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

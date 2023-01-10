@@ -329,32 +329,7 @@
             return false;
         })
         // Xóa Màu sản phẩm
-        $('.js-delete-mausanpham').on('click', function(e){
-            if(!confirm("Bạn có chắc xóa không?")) {
-                return false;
-            }
-            e.preventDefault();
-            var id = $(this).attr('data-id');
-            var token = $("meta[name='csrf-token']").attr("content");
-            $.ajax(
-                {
-                    url: "admin/mausp/xoa/" + id,
-                    method: 'POST',
-                    data: {
-                        _token: token,
-                        id: id
-                    },
-                    success: function (response){
-                        $("#success").html(response.message)
-                        Swal.fire('Remind!',
-                            'Xóa thành công Màu sản phẩm!',
-                            'success').then(function() {
-                            location.reload();
-                        })
-                    }
-                });
-            return false;
-        })
+
         // Xóa shipper
         $('.js-delete-shipper').on('click', function(e){
             if(!confirm("Bạn có chắc xóa không?")) {
@@ -420,7 +395,7 @@
             $('.search-data-color-product').hide();
         }
         $.ajax({
-            method:'GET',
+            method:'POST',
             url:'{{route('search-color-product')}}',
             data:{'product_color_input':$value},
             success:function(data){

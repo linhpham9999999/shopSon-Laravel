@@ -11,17 +11,23 @@ class KhachHangController extends Controller
 {
     public function index(){
         $range = Carbon::now()->subDays(365);
-        $data = DB::table('chi_tiet_hoa_don')
+//        $data = DB::table('chi_tiet_hoa_don')
+//            ->join('mau_san_pham','mau_san_pham.id','=','chi_tiet_hoa_don.id_MSP')
+//            ->join('hoa_don','chi_tiet_hoa_don.id_HD','=','hoa_don.id')
+//            ->join('san_pham','san_pham.id','=','mau_san_pham.id_SP')
+//            ->select('san_pham.id','mau_san_pham.mau',DB::raw('sum(soluong) as soluongcay'))
+//            ->where('hoa_don.ngaydat','>=',$range)
+//            ->whereIn('hoa_don.id_TT',[1,5])
+//            ->groupBy('san_pham.id','mau_san_pham.mau')
+//            ->get()->toArray();
+        $data = $soluongdaban_sp =  DB::table('chi_tiet_hoa_don')
             ->join('mau_san_pham','mau_san_pham.id','=','chi_tiet_hoa_don.id_MSP')
-            ->join('hoa_don','chi_tiet_hoa_don.id_HD','=','hoa_don.id')
             ->join('san_pham','san_pham.id','=','mau_san_pham.id_SP')
-            ->select('san_pham.id','mau_san_pham.mau',DB::raw('sum(soluong) as soluongcay'))
-            ->where('hoa_don.ngaydat','>=',$range)
-            ->whereIn('hoa_don.id_TT',[1,5])
-            ->groupBy('san_pham.id','mau_san_pham.mau')
-            ->get()->toArray();
+            ->where('chi_tiet_hoa_don.trang_thai','=',1)
+            ->select('san_pham.id','san_pham.ten_SP',DB::raw('sum(chi_tiet_hoa_don.soluong) as soluongdaban'))
+            ->groupBy('san_pham.id','san_pham.ten_SP')->get()->toArray();
         foreach ($data as $item){
-            if($item->soluongcay > 4){
+            if($item->soluongdaban > 10){
                 $idSP_ban_chay[] = array(
                     'id_SP' => $item->id
                 );
