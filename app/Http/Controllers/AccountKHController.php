@@ -7,6 +7,7 @@ use DB;
 
 class AccountKHController extends Controller
 {
+    // Test
 //    public function viewAccount(){
 //        if( Auth::guard('nguoi_dung')->check()) {
 //            $email = Auth::guard('nguoi_dung')->user()->email;
